@@ -454,6 +454,8 @@
       
         
       
+        
+      
     
     
     
@@ -1081,6 +1083,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../background-data/" class="md-nav__link">
         
   
@@ -1682,6 +1712,9 @@ does not re-upload the data.</p>
 <code>position</code>, <code>value</code>, and an optional <code>category</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">setData</span><span class="p">([{</span> <span class="k">position:</span> <span class="mi">2020</span><span class="p">,</span> <span class="k">value:</span> <span class="mi">4</span> <span class="p">},</span> <span class="p">{</span> <span class="k">position:</span> <span class="mi">2021</span><span class="p">,</span> <span class="k">value:</span> <span class="mi">7</span> <span class="p">}])</span>
 </code></pre></div>
+<p><code>replaceData(index, position, value)</code> replaces one bar in place, for example
+the latest bar of a live feed. It keeps the bar's category; pass a fourth
+<code>category</code> argument to change it. Ranged bars cannot be replaced this way.</p>
 <table>
 <thead>
 <tr>
@@ -1838,7 +1871,8 @@ returns its <code>position</code>, <code>value</code>, <code>category</code>, an
 <li>Bars that change between ranged and (position, value) all enter.</li>
 <li><code>count</code>, <code>barAt()</code>, the data ranges, hover, and inspection use the new data
   from the start of the animation.</li>
-<li><code>clearData()</code> runs the exit transition.</li>
+<li><code>replaceData()</code> shows the new bar at once; <code>clearData()</code> runs the exit
+  transition.</li>
 <li>While a transition is enabled, the float paths store doubles.</li>
 </ul>
 <h2 id="feed-data-from-c">Feed data from C++<a class="headerlink" href="#feed-data-from-c" title="Permanent link">&para;</a></h2>

@@ -27,6 +27,7 @@
 * `#include <QQmlListProperty>`
 * `#include <array>`
 * `#include <memory>`
+* `#include <optional>`
 * `#include <vector>`
 
 

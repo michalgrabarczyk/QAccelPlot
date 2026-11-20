@@ -446,6 +446,8 @@
       
         
       
+        
+      
     
     
     
@@ -907,6 +909,34 @@
     
   
     Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
   
 
     
@@ -1464,6 +1494,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-querynearest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function queryNearest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-querytopmost" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1564,6 +1605,10 @@
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-querynearest"><strong>queryNearest</strong></a> (double minX, double minY, double maxX, double maxY, double maxDistance, const std::function&lt; std::optional&lt; double &gt;(int)&gt; &amp; distance) const<br><em>Returns the rectangle overlapping the box that</em> <em>distance</em> <em>finds nearest, or -1.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
 <td style="text-align: left;"><a href="#function-querytopmost"><strong>queryTopmost</strong></a> (double minX, double minY, double maxX, double maxY, const std::function&lt; bool(int)&gt; &amp; accept) const<br><em>Returns the highest index among rectangles overlapping the box for which</em> <em>accept</em> <em>returns true, or -1.</em></td>
 </tr>
 </tbody>
@@ -1625,39 +1670,37 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-querytopmost">function queryTopmost<a class="headerlink" href="#function-querytopmost" title="Permanent link">&para;</a></h3>
-<p><em>Returns the highest index among rectangles overlapping the box for which</em> <em>accept</em> <em>returns true, or -1.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SpatialGrid</span><span class="o">::</span><span class="n">queryTopmost</span><span class="w"> </span><span class="p">(</span>
+<h3 id="function-querynearest">function queryNearest<a class="headerlink" href="#function-querynearest" title="Permanent link">&para;</a></h3>
+<p><em>Returns the rectangle overlapping the box that</em> <em>distance</em> <em>finds nearest, or -1.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SpatialGrid</span><span class="o">::</span><span class="n">queryNearest</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">minX</span><span class="p">,</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">minY</span><span class="p">,</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">maxX</span><span class="p">,</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">maxY</span><span class="p">,</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">accept</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">maxDistance</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">distance</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Calls <em>distance</em> once for each rectangle overlapping the box. It returns the distance to rectangle <em>index</em>, such as in pixels, or nullopt to skip it. Rectangles farther than <em>maxDistance</em> are skipped; of equally near ones, the highest index wins. </p>
+<hr>
+
+<h3 id="function-querytopmost">function queryTopmost<a class="headerlink" href="#function-querytopmost" title="Permanent link">&para;</a></h3>
+<p><em>Returns the highest index among rectangles overlapping the box for which</em> <em>accept</em> <em>returns true, or -1.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SpatialGrid</span><span class="o">::</span><span class="n">queryTopmost</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">minX</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">minY</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">maxX</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">maxY</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">accept</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Lets callers apply a precise hit test, e.g. in pixel space, to the few candidates near a point. </p>
 <hr>
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-scantopmost">function scanTopmost<a class="headerlink" href="#function-scantopmost" title="Permanent link">&para;</a></h3>
 <p><em>Returns what</em> <code>queryTopmost()</code> <em>returns on a grid built from the same rectangles, without building one.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SpatialGrid</span><span class="o">::</span><span class="n">scanTopmost</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">itemCount</span><span class="p">,</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">minX</span><span class="p">,</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">minY</span><span class="p">,</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">maxX</span><span class="p">,</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">maxY</span><span class="p">,</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">accept</span><span class="p">,</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">valuesPerItem</span><span class="o">=</span><span class="mi">4</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<p>Tests rectangles from the last to the first, so a call costs up to one pass over <em>data</em>. That is cheaper than a rebuild while the data is replaced after only a few queries. </p>
-<hr>
-
-<h3 id="function-scantopmostf">function scanTopmostF<a class="headerlink" href="#function-scantopmostf" title="Permanent link">&para;</a></h3>
-<p><em>Scans single-precision</em> <em>data</em> <em>, like</em><code>scanTopmost()</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SpatialGrid</span><span class="o">::</span><span class="n">scanTopmostF</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SpatialGrid</span><span class="o">::</span><span class="n">scanTopmost</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">itemCount</span><span class="p">,</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">minX</span><span class="p">,</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">minY</span><span class="p">,</span>
@@ -1666,6 +1709,22 @@
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">accept</span><span class="p">,</span>
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">valuesPerItem</span><span class="o">=</span><span class="mi">4</span>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>Tests rectangles from the last to the first, so a call costs up to one pass over <em>data</em>. That is cheaper than a rebuild while the data is replaced after only a few queries. </p>
+<hr>
+
+<h3 id="function-scantopmostf">function scanTopmostF<a class="headerlink" href="#function-scantopmostf" title="Permanent link">&para;</a></h3>
+<p><em>Scans single-precision</em> <em>data</em> <em>, like</em><code>scanTopmost()</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SpatialGrid</span><span class="o">::</span><span class="n">scanTopmostF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">itemCount</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">minX</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">minY</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">maxX</span><span class="p">,</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">maxY</span><span class="p">,</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">accept</span><span class="p">,</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">valuesPerItem</span><span class="o">=</span><span class="mi">4</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

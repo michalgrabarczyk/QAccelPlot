@@ -66,6 +66,8 @@
 | class | [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md) <br>_QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._ |
 | class | [**BarSeries**](classQAccelPlot_1_1BarSeries.md) <br>_A hardware-accelerated QML item that renders a bar chart._  |
 | class | [**Border**](classQAccelPlot_1_1Border.md) <br>_Outline color and width, exposed as a_ `border` _grouped property, for example_`border.width: 1` _._ |
+| class | [**CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) <br>_Material that draws candles from (x, open, high, low, close) data points in a data texture._  |
+| class | [**CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md) <br>_A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point._  |
 | class | [**Category**](classQAccelPlot_1_1Category.md) <br>_One category of a_ `BarSeries` _or_`RectangleSeries :` _a value, a name, and a fill color._ |
 | class | [**ColorBar**](classQAccelPlot_1_1ColorBar.md) <br>_A continuous key that shows how a series'_ `Colormap` _maps values to colors._ |
 | class | [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) <br>_A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._ |

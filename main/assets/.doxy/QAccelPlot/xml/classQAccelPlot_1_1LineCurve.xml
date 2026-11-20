@@ -1293,20 +1293,16 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="183" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1ad88615d4b1590c81fcef9f249db033db" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a3623f101f8c69ee2b6f66fcd94ab91cd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
         <definition>void QAccelPlot::LineCurve::onDataPointsChanged</definition>
-        <argsstring>(DataChange change, int previousCount) override</argsstring>
+        <argsstring>(const DataUpdate &amp;dataUpdate) override</argsstring>
         <name>onDataPointsChanged</name>
         <qualifiedname>QAccelPlot::LineCurve::onDataPointsChanged</qualifiedname>
-        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a6aa2a1a96940b34ac259143005b0aa47">onDataPointsChanged</reimplements>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1ab61abad910eae7897710d1d3e66a4084">onDataPointsChanged</reimplements>
         <param>
-          <type><ref refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8" kindref="member">DataChange</ref></type>
-          <declname>change</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>previousCount</declname>
+          <type>const <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataUpdate" kindref="compound">DataUpdate</ref> &amp;</type>
+          <declname>dataUpdate</declname>
         </param>
         <briefdescription>
 <para>Refreshes the vertex cache and the hit-test chunks after the points changed. </para>
@@ -1930,6 +1926,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a4ab130c4ee8aafee3cc274bee94b0633" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>countChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>DataChange</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1af91ad584daa39dc94c68dd2a5fa66fa7" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>dataChanged_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a7305f9a835a1173b6e8c10d7e94003c2" prot="protected" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>dataPointExtents</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a92ba17a411311bfe937b241a8b470bae" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>dataPoints</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a6d99b3e386cc6e8d703e590c83a3332b" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>dataPoints</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a77d9c4792d45233735cfe620491fc8fc" prot="protected" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>dataPointValueCount</name></member>
@@ -1968,7 +1965,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>inspection</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a00a3d60288b86fd54569387281355060" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>inspection</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a32638eb7718d210d95fa70351696441d" prot="protected" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>inspectionAvailable</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a10efc3369e62d44c163ca7bdcd39fb26" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>inspectionDataChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a07af90c5da3dca5c5c932ad09dc4afa5" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>inspectionDataChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aa12ee9f8a4fb237b8cf8789ae1a9df7e" prot="protected" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>inspectionDataPointAt</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a9f822a232d100806927a0a34f0ca1a5e" prot="protected" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>inspectionRecord</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a56c10df5cbc0648557caa5d40153ace8" prot="protected" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>inspectionRecordAt</name></member>
@@ -2003,10 +2000,10 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>name</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1abfa3199d6097eb55cf17697eff2be090" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>name</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1acd842870d90a7ece81859be06effe0a7" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>nameChanged</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a76f0a354a43064f857553ffb2997b6da" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>notifyDataPointsChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a334f632697f84b9b0764db8c873d62b7" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>notifyDataPointsReplaced</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a0d37e4fd843acbd10bd9c5d0bf2300c9" prot="protected" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>onAxisRangeChanged</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a81600a34c7dd5c5970431b1a1a3ab2e8" prot="protected" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>onAxisScaleChanged</name></member>
-      <member refid="classQAccelPlot_1_1LineCurve_1ad88615d4b1590c81fcef9f249db033db" prot="protected" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>onDataPointsChanged</name></member>
+      <member refid="classQAccelPlot_1_1LineCurve_1a3623f101f8c69ee2b6f66fcd94ab91cd" prot="protected" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>onDataPointsChanged</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1aa37cd6e308baa0caf70d89328d3632dd" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>onLineStyleChanged</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a78010918673eb08bcc452b7ff0dcc4b2" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>onLineStyleDestroyed</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a48bdf57083a9e8fd213c85cd4d2f36bb" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>onMarkerShapeChanged</name></member>
@@ -2072,6 +2069,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1aa443c35379a9aa2df5da14a5b87a7417" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>supportHover</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a594271d1150f41e356a09053bc89d6de" prot="protected" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>supportsEffect</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a5a52a33848144ccf26bbff1fb25a1914" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>transition_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a71f6fb14887760e26f7a81b5ab2a455b" prot="protected" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>updateDataRangeInputs</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ae657768ad16fcf2b26eac4ce2f6cfd75" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>updateRenderCapacity</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a6b3fc9a312cf1d956dfb0af5912f6cee" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>updateTransition</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1adb2bd1a83a587019d62ecbf4ca869ff2" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>updateTransition</name></member>

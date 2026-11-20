@@ -393,24 +393,24 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1abf4ce3d5a370ede8b6db55d29e00da6a" prot="private" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
-        <type></type>
-        <definition>QAccelPlot::PlotMouseEvent::PlotMouseEvent</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1a27189dea1d9ee973b86d5e68d7021e43" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotMouseEvent::reset</definition>
         <argsstring>(const QSinglePointEvent &amp;event)</argsstring>
-        <name>PlotMouseEvent</name>
-        <qualifiedname>QAccelPlot::PlotMouseEvent::PlotMouseEvent</qualifiedname>
+        <name>reset</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::reset</qualifiedname>
         <param>
           <type>const QSinglePointEvent &amp;</type>
           <declname>event</declname>
         </param>
         <briefdescription>
-<para>Constructs an unaccepted event that copies <computeroutput>event</computeroutput>, for a mouse signal about to be emitted. </para>
+<para>Copies <computeroutput>event</computeroutput> and clears the acceptance before a mouse signal is emitted. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="72" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="72" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -418,7 +418,7 @@
     </briefdescription>
     <detaileddescription>
 <para>An instance of this class is passed to each <computeroutput><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref></computeroutput> mouse signal and to <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a39353e80103ab068dc96b6ae293dd759" kindref="member">Axis::doubleClicked()</ref></computeroutput>. Mirrors the Qt <computeroutput>QEvent</computeroutput> API: call <computeroutput><ref refid="classQAccelPlot_1_1PlotMouseEvent_1a7944913d23a28ca9e24c274b505af679" kindref="member">accept()</ref></computeroutput> in a handler to consume the event and suppress the built-in handling (dragging, double-click rescaling, etc.).</para>
-<para><simplesect kind="note"><para>The object is owned by <computeroutput>QAccelPlot</computeroutput> and is destroyed after the signal — do not store a reference to it beyond the signal handler. </para>
+<para><simplesect kind="note"><para>The object is owned by <computeroutput>QAccelPlot</computeroutput> and is reused across events — do not store a reference to it beyond the signal handler. </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -462,8 +462,8 @@
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1acba280638c6542e7741a5e163657b079" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>modifiers</name></member>
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1af0d6071e378ba399747980c850749f81" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>modifiers_</name></member>
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1a6d497e472f5b1eb8158e46b00365c2d4" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>PlotMouseEvent</name></member>
-      <member refid="classQAccelPlot_1_1PlotMouseEvent_1abf4ce3d5a370ede8b6db55d29e00da6a" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>PlotMouseEvent</name></member>
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1a8431a636b65eadbbf187e83f8ac2b58c" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>PlotView</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a27189dea1d9ee973b86d5e68d7021e43" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>reset</name></member>
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1ab18c886fe3f574609d59f4d92ff113ee" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>setAccepted</name></member>
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1aeb7cfbe01655891a4782f410a18dcd3f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>x</name></member>
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1a253c477fe12ba1c346e595e0d258bea3" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>x</name></member>

@@ -15,6 +15,7 @@
 #pragma once
 
 #include <functional>
+#include <optional>
 #include <vector>
 
 namespace QAccelPlot {
@@ -25,6 +26,7 @@ public:
     void buildF(const float* data, int itemCount, int valuesPerItem = 4);
     int query(double x, double y) const;
     int queryTopmost(double minX, double minY, double maxX, double maxY, const std::function<bool(int)>& accept) const;
+    int queryNearest(double minX, double minY, double maxX, double maxY, double maxDistance, const std::function<std::optional<double>(int)>& distance) const;
 
     static int scanTopmost(
         const double* data, int itemCount, double minX, double minY, double maxX, double maxY, const std::function<bool(int)>& accept, int valuesPerItem = 4);

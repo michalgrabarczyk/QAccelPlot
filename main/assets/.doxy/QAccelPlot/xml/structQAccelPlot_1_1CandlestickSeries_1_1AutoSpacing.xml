@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing" kind="struct" language="C++" prot="private">
+    <compoundname>QAccelPlot::CandlestickSeries::AutoSpacing</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing_1ad1956bc2dfb76f4f523b508461bc5750" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::CandlestickSeries::AutoSpacing::minimumGap</definition>
+        <argsstring></argsstring>
+        <name>minimumGap</name>
+        <qualifiedname>QAccelPlot::CandlestickSeries::AutoSpacing::minimumGap</qualifiedname>
+        <initializer>{std::numeric_limits&lt;double&gt;::infinity()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/CandlestickSeries.hpp" line="314" column="16" bodyfile="QAccelPlot/src/QAccelPlot/series/CandlestickSeries.hpp" bodystart="314" bodyend="314"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing_1adcbb61e5d9d00deee70978545c3d0f0d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::CandlestickSeries::AutoSpacing::lastX</definition>
+        <argsstring></argsstring>
+        <name>lastX</name>
+        <qualifiedname>QAccelPlot::CandlestickSeries::AutoSpacing::lastX</qualifiedname>
+        <initializer>{std::numeric_limits&lt;double&gt;::quiet_NaN()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/CandlestickSeries.hpp" line="315" column="16" bodyfile="QAccelPlot/src/QAccelPlot/series/CandlestickSeries.hpp" bodystart="315" bodyend="315"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing_1a2d21c4cb1615892ae074289c6bb1b342" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::CandlestickSeries::AutoSpacing::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::CandlestickSeries::AutoSpacing::count</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/CandlestickSeries.hpp" line="316" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/CandlestickSeries.hpp" bodystart="316" bodyend="316"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing_1a2c7d40c33623efa0a4bd615828cbc379" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::CandlestickSeries::AutoSpacing::valid</definition>
+        <argsstring></argsstring>
+        <name>valid</name>
+        <qualifiedname>QAccelPlot::CandlestickSeries::AutoSpacing::valid</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/CandlestickSeries.hpp" line="317" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/CandlestickSeries.hpp" bodystart="317" bodyend="317"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing_1a73df33ca5ee4eef984191f1f94e2601e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::CandlestickSeries::AutoSpacing::include</definition>
+        <argsstring>(double x)</argsstring>
+        <name>include</name>
+        <qualifiedname>QAccelPlot::CandlestickSeries::AutoSpacing::include</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/CandlestickSeries.hpp" line="320" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing_1a35ff7638995ef2a9e800c1a1c9b3568d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::CandlestickSeries::AutoSpacing::value</definition>
+        <argsstring>() const</argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::CandlestickSeries::AutoSpacing::value</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/CandlestickSeries.hpp" line="322" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/CandlestickSeries.hpp" line="313" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/CandlestickSeries.hpp" bodystart="313" bodyend="323"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing_1a2d21c4cb1615892ae074289c6bb1b342" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickSeries::AutoSpacing</scope><name>count</name></member>
+      <member refid="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing_1a73df33ca5ee4eef984191f1f94e2601e" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickSeries::AutoSpacing</scope><name>include</name></member>
+      <member refid="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing_1adcbb61e5d9d00deee70978545c3d0f0d" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickSeries::AutoSpacing</scope><name>lastX</name></member>
+      <member refid="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing_1ad1956bc2dfb76f4f523b508461bc5750" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickSeries::AutoSpacing</scope><name>minimumGap</name></member>
+      <member refid="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing_1a2c7d40c33623efa0a4bd615828cbc379" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickSeries::AutoSpacing</scope><name>valid</name></member>
+      <member refid="structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing_1a35ff7638995ef2a9e800c1a1c9b3568d" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickSeries::AutoSpacing</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

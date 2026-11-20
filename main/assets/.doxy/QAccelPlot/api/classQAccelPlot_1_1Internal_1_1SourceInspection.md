@@ -63,6 +63,7 @@ _Inspection queries that read a series' own buffer whose records are ordered alo
 | ---: | :--- |
 |  void | [**appended**](#function-appended) (int count) <br>_Updates cached statistics after one record was appended, giving_ _count_ _records._ |
 |  void | [**collect**](#function-collect) (const [**InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md) & source, InspectionAxis order, const [**InspectionBounds**](structQAccelPlot_1_1Internal_1_1InspectionBounds.md) & bounds, int offset, int limit, QList&lt; int &gt; & indices) <br> |
+|  void | [**modified**](#function-modified) (int index) <br>_Updates cached statistics after record_ _index_ _was replaced in place._ |
 |  [**InspectionHit**](structQAccelPlot_1_1Internal_1_1InspectionHit.md) | [**nearest**](#function-nearest) (const [**InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md) & source, const [**InspectionMetric**](structQAccelPlot_1_1Internal_1_1InspectionMetric.md) & metric, InspectionAxis order, const QPointF & position, double radius) <br> |
 |  [**InspectionHit**](structQAccelPlot_1_1Internal_1_1InspectionHit.md) | [**nearestAlong**](#function-nearestalong) (const [**InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md) & source, const [**InspectionMetric**](structQAccelPlot_1_1Internal_1_1InspectionMetric.md) & metric, InspectionAxis order, double pixel, double radius) const<br>_Returns the valid data point nearest to_ _pixel_ _along the ordered axis._ |
 |  [**InspectionNeighbors**](structQAccelPlot_1_1Internal_1_1InspectionNeighbors.md) | [**neighbors**](#function-neighbors) (const [**InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md) & source, InspectionAxis order, double value) const<br>_Returns the valid data points on either side of_ _value_ _on the ordered axis._ |
@@ -142,6 +143,23 @@ void QAccelPlot::Internal::SourceInspection::collect (
     int offset,
     int limit,
     QList< int > & indices
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function modified {#function-modified}
+
+_Updates cached statistics after record_ _index_ _was replaced in place._
+```C++
+void QAccelPlot::Internal::SourceInspection::modified (
+    int index
 ) 
 ```
 

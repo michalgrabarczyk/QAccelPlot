@@ -64,6 +64,7 @@ _Uniform-grid spatial index with bounded per-rectangle storage._ [More...](#deta
 |  void | [**build**](#function-build) (const double \* data, int itemCount, int valuesPerItem=4) <br>_Rebuilds the spatial index from_ _data_ _containing__itemCount_ _axis-aligned rectangles._ |
 |  void | [**buildF**](#function-buildf) (const float \* data, int itemCount, int valuesPerItem=4) <br>_Rebuilds the spatial index from single-precision_ _data_ _, like_`build()` _._ |
 |  int | [**query**](#function-query) (double x, double y) const<br>_Returns the index of the topmost rectangle that contains point (_ _x_ _,__y_ _), or -1 if none._ |
+|  int | [**queryNearest**](#function-querynearest) (double minX, double minY, double maxX, double maxY, double maxDistance, const std::function&lt; std::optional&lt; double &gt;(int)&gt; & distance) const<br>_Returns the rectangle overlapping the box that_ _distance_ _finds nearest, or -1._ |
 |  int | [**queryTopmost**](#function-querytopmost) (double minX, double minY, double maxX, double maxY, const std::function&lt; bool(int)&gt; & accept) const<br>_Returns the highest index among rectangles overlapping the box for which_ _accept_ _returns true, or -1._ |
 
 
@@ -175,6 +176,32 @@ int QAccelPlot::SpatialGrid::query (
 
 
 
+
+<hr>
+
+
+
+
+### function queryNearest {#function-querynearest}
+
+_Returns the rectangle overlapping the box that_ _distance_ _finds nearest, or -1._
+```C++
+int QAccelPlot::SpatialGrid::queryNearest (
+    double minX,
+    double minY,
+    double maxX,
+    double maxY,
+    double maxDistance,
+    const std::function< std::optional< double >(int)> & distance
+) const
+```
+
+
+
+Calls _distance_ once for each rectangle overlapping the box. It returns the distance to rectangle _index_, such as in pixels, or nullopt to skip it. Rectangles farther than _maxDistance_ are skipped; of equally near ones, the highest index wins. 
+
+
+        
 
 <hr>
 

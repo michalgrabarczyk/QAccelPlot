@@ -74,6 +74,8 @@ flowchart TB
 | property QColor | [**axisLabel**](classQAccelPlot_1_1ColorPalette.md#property-axislabel)  <br> |
 | property QColor | [**axisLine**](classQAccelPlot_1_1ColorPalette.md#property-axisline)  <br> |
 | property QColor | [**axisTickLabel**](classQAccelPlot_1_1ColorPalette.md#property-axisticklabel)  <br> |
+| property QColor | [**candleDown**](classQAccelPlot_1_1ColorPalette.md#property-candledown)  <br> |
+| property QColor | [**candleUp**](classQAccelPlot_1_1ColorPalette.md#property-candleup)  <br> |
 | property QColor | [**control**](classQAccelPlot_1_1ColorPalette.md#property-control)  <br> |
 | property QColor | [**controlHover**](classQAccelPlot_1_1ColorPalette.md#property-controlhover)  <br> |
 | property QColor | [**focus**](classQAccelPlot_1_1ColorPalette.md#property-focus)  <br> |
@@ -303,6 +305,34 @@ QColor QAccelPlot::ColorPalette::axisLine;
 
 ```C++
 QColor QAccelPlot::ColorPalette::axisTickLabel;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property candleDown {#property-candledown}
+
+```C++
+QColor QAccelPlot::ColorPalette::candleDown;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property candleUp {#property-candleup}
+
+```C++
+QColor QAccelPlot::ColorPalette::candleUp;
 ```
 
 

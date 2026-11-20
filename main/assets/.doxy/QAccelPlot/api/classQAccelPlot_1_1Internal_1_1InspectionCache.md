@@ -80,6 +80,7 @@ flowchart TB
 |   | [**InspectionCache**](#function-inspectioncache) ([**Host**](classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host.md) & host) <br> |
 |  const [**InspectionIndex**](classQAccelPlot_1_1Internal_1_1InspectionIndex.md) \* | [**index**](#function-index) () const<br>_Returns the index for the current records, or null while none is ready._  |
 |  void | [**invalidate**](#function-invalidate) () <br>_Drops the index, the request for one, and pending work._  |
+|  void | [**modified**](#function-modified) (const [**InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md) & source, int index) <br>_Moves record_ _index_ _in a ready index to its value in__source_ _; otherwise drops the index like_`invalidate()` _._ |
 |  void | [**request**](#function-request) () <br>_Starts building an index unless one is ready or already in progress._  |
 |  bool | [**requested**](#function-requested) () const<br> |
 |   | [**~InspectionCache**](#function-inspectioncache) () override<br> |
@@ -153,6 +154,24 @@ const InspectionIndex * QAccelPlot::Internal::InspectionCache::index () const
 _Drops the index, the request for one, and pending work._ 
 ```C++
 void QAccelPlot::Internal::InspectionCache::invalidate () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function modified {#function-modified}
+
+_Moves record_ _index_ _in a ready index to its value in__source_ _; otherwise drops the index like_`invalidate()` _._
+```C++
+void QAccelPlot::Internal::InspectionCache::modified (
+    const InspectionSource & source,
+    int index
+) 
 ```
 
 

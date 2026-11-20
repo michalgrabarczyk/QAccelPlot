@@ -33,6 +33,7 @@ public:
 
     bool build(std::vector<Point>&& points, bool logX, bool logY, const std::atomic_bool& cancelled);
     [[nodiscard]] std::size_t storageBytes() const;
+    bool movePoint(int index, double x, double y);
     [[nodiscard]] InspectionHit nearestAlong(const InspectionMetric& metric, InspectionAxis axis, double pixel, double radius) const;
     [[nodiscard]] InspectionHit nearest(const InspectionMetric& metric, const QPointF& position, double radius) const;
     [[nodiscard]] InspectionNeighbors neighbors(InspectionAxis axis, double value) const;
@@ -50,8 +51,15 @@ private:
         int maxIndex{-1};
     };
 
+    // Widens node's bounds, maximum index, and summary by point.
+    static void include(Node& node, const Point& point);
+
     void buildNodes(const std::atomic_bool& cancelled);
     int createNode(int first, int last, const std::atomic_bool& cancelled);
+    // Moves the entry for the point at position in order to where value sorts, before the point gets value.
+    void reorder(InspectionAxis axis, std::vector<int>& order, int position, double value);
+    // Recomputes the nodes containing position, from its leaf up to the root.
+    void refreshNodes(int position);
     // Fills order with the positions in points_ sorted by their coordinate along axis, then by source index.
     void sortOrder(InspectionAxis axis, std::vector<int>& order) const;
     const std::vector<int>& order(InspectionAxis axis) const;

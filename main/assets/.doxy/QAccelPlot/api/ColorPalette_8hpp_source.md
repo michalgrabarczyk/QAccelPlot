@@ -77,6 +77,8 @@ class ColorPalette : public QObject {
     Q_PROPERTY(QColor seriesRose MEMBER seriesRose CONSTANT)
     Q_PROPERTY(QColor seriesYellow MEMBER seriesYellow CONSTANT)
     Q_PROPERTY(QColor seriesMuted MEMBER seriesMuted CONSTANT)
+    Q_PROPERTY(QColor candleUp MEMBER candleUp CONSTANT)
+    Q_PROPERTY(QColor candleDown MEMBER candleDown CONSTANT)
 
     // Annotations
     Q_PROPERTY(QColor annotationEvent MEMBER annotationEvent CONSTANT)
@@ -138,6 +140,8 @@ public:
     QColor seriesRose;
     QColor seriesYellow;
     QColor seriesMuted;
+    QColor candleUp;
+    QColor candleDown;
 
     QColor annotationEvent;
     QColor annotationPeak;

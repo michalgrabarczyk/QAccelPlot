@@ -1286,20 +1286,16 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="188" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1af2a8483764f73e4d266d1f669348ef40" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1ac39e9a2754413eb78712a70dd6859eec" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
         <definition>void QAccelPlot::PointCloud::onDataPointsChanged</definition>
-        <argsstring>(DataChange change, int previousCount) override</argsstring>
+        <argsstring>(const DataUpdate &amp;dataUpdate) override</argsstring>
         <name>onDataPointsChanged</name>
         <qualifiedname>QAccelPlot::PointCloud::onDataPointsChanged</qualifiedname>
-        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a6aa2a1a96940b34ac259143005b0aa47">onDataPointsChanged</reimplements>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1ab61abad910eae7897710d1d3e66a4084">onDataPointsChanged</reimplements>
         <param>
-          <type><ref refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8" kindref="member">DataChange</ref></type>
-          <declname>change</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>previousCount</declname>
+          <type>const <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataUpdate" kindref="compound">DataUpdate</ref> &amp;</type>
+          <declname>dataUpdate</declname>
         </param>
         <briefdescription>
 <para>Refreshes the hover index, the value range, and the count after the points changed. </para>
@@ -1771,6 +1767,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1aeb5ea2178ca0117bb4a308ab5e0625d6" prot="public" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>count</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a4ab130c4ee8aafee3cc274bee94b0633" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>countChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>DataChange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a7305f9a835a1173b6e8c10d7e94003c2" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>dataPointExtents</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a92ba17a411311bfe937b241a8b470bae" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>dataPoints</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a6d99b3e386cc6e8d703e590c83a3332b" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>dataPoints</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a77d9c4792d45233735cfe620491fc8fc" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>dataPointValueCount</name></member>
@@ -1818,7 +1815,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>inspection</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a00a3d60288b86fd54569387281355060" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>inspection</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a32638eb7718d210d95fa70351696441d" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>inspectionAvailable</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a10efc3369e62d44c163ca7bdcd39fb26" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>inspectionDataChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a07af90c5da3dca5c5c932ad09dc4afa5" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>inspectionDataChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aa12ee9f8a4fb237b8cf8789ae1a9df7e" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>inspectionDataPointAt</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a9f822a232d100806927a0a34f0ca1a5e" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>inspectionRecord</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a56c10df5cbc0648557caa5d40153ace8" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>inspectionRecordAt</name></member>
@@ -1846,10 +1843,10 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1abfa3199d6097eb55cf17697eff2be090" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>name</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1acd842870d90a7ece81859be06effe0a7" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>nameChanged</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a4c23e0924b73e64c794dafdd40424a95" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>nearestPoint</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a76f0a354a43064f857553ffb2997b6da" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>notifyDataPointsChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a334f632697f84b9b0764db8c873d62b7" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>notifyDataPointsReplaced</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a0d37e4fd843acbd10bd9c5d0bf2300c9" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>onAxisRangeChanged</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a7c2ecabe80870f75863ba1705b4f82cb" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>onAxisScaleChanged</name></member>
-      <member refid="classQAccelPlot_1_1PointCloud_1af2a8483764f73e4d266d1f669348ef40" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>onDataPointsChanged</name></member>
+      <member refid="classQAccelPlot_1_1PointCloud_1ac39e9a2754413eb78712a70dd6859eec" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>onDataPointsChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a7e959948dfdc3fded2cfd5819c62ee61" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>overRenderCapacity_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>plotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1abf3aa64b08afe4f5d2a1728d035665b2" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>plotRect</name></member>
@@ -1907,6 +1904,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1aa443c35379a9aa2df5da14a5b87a7417" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>supportHover</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1aed53c65312b4b7e09789ccb7ab354f1f" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>supportsEffect</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a88fdaeb6803ae6065e81b8efb0d251dc" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>transition_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a71f6fb14887760e26f7a81b5ab2a455b" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>updateDataRangeInputs</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ae657768ad16fcf2b26eac4ce2f6cfd75" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>updateRenderCapacity</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a43858f86fd1df4e988b210fdaaa29b86" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>updateTransition</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1ab51782cb4a0abe62de9be06f57c566f8" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>updateTransition</name></member>

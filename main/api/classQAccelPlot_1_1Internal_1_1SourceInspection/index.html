@@ -446,6 +446,8 @@
       
         
       
+        
+      
     
     
     
@@ -907,6 +909,34 @@
     
   
     Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
   
 
     
@@ -1453,6 +1483,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-modified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function modified
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-nearest" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1592,6 +1633,10 @@
 <td style="text-align: left;"><a href="#function-collect"><strong>collect</strong></a> (const <a href="../structQAccelPlot_1_1Internal_1_1InspectionSource/"><strong>InspectionSource</strong></a> &amp; source, InspectionAxis order, const <a href="../structQAccelPlot_1_1Internal_1_1InspectionBounds/"><strong>InspectionBounds</strong></a> &amp; bounds, int offset, int limit, QList&lt; int &gt; &amp; indices) <br></td>
 </tr>
 <tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-modified"><strong>modified</strong></a> (int index) <br><em>Updates cached statistics after record</em> <em>index</em> <em>was replaced in place.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;"><a href="../structQAccelPlot_1_1Internal_1_1InspectionHit/"><strong>InspectionHit</strong></a></td>
 <td style="text-align: left;"><a href="#function-nearest"><strong>nearest</strong></a> (const <a href="../structQAccelPlot_1_1Internal_1_1InspectionSource/"><strong>InspectionSource</strong></a> &amp; source, const <a href="../structQAccelPlot_1_1Internal_1_1InspectionMetric/"><strong>InspectionMetric</strong></a> &amp; metric, InspectionAxis order, const QPointF &amp; position, double radius) <br></td>
 </tr>
@@ -1655,66 +1700,74 @@
 </code></pre></div>
 <hr>
 
+<h3 id="function-modified">function modified<a class="headerlink" href="#function-modified" title="Permanent link">&para;</a></h3>
+<p><em>Updates cached statistics after record</em> <em>index</em> <em>was replaced in place.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">modified</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-nearest">function nearest<a class="headerlink" href="#function-nearest" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">InspectionHit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">nearest</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionMetric</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metric</span><span class="p">,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">order</span><span class="p">,</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span><span class="p">,</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">radius</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">InspectionHit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">nearest</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionMetric</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metric</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">order</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">radius</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-nearestalong">function nearestAlong<a class="headerlink" href="#function-nearestalong" title="Permanent link">&para;</a></h3>
 <p><em>Returns the valid data point nearest to</em> <em>pixel</em> <em>along the ordered axis.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">InspectionHit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">nearestAlong</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionMetric</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metric</span><span class="p">,</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">order</span><span class="p">,</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">pixel</span><span class="p">,</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">radius</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">InspectionHit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">nearestAlong</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionMetric</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metric</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">order</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">pixel</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">radius</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-neighbors">function neighbors<a class="headerlink" href="#function-neighbors" title="Permanent link">&para;</a></h3>
 <p><em>Returns the valid data points on either side of</em> <em>value</em> <em>on the ordered axis.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">InspectionNeighbors</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">neighbors</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">order</span><span class="p">,</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">InspectionNeighbors</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">neighbors</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">order</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-reset">function reset<a class="headerlink" href="#function-reset" title="Permanent link">&para;</a></h3>
 <p><em>Discards cached statistics after the records were replaced or their validity changed.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">reset</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">reset</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-storagebytes">function storageBytes<a class="headerlink" href="#function-storagebytes" title="Permanent link">&para;</a></h3>
 <p><em>Returns the bytes held by cached statistics.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">storageBytes</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">storageBytes</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-summarize">function summarize<a class="headerlink" href="#function-summarize" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">SummaryAccumulator</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">summarize</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">order</span><span class="p">,</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">SummaryAccumulator</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">summarize</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">order</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div>
 <hr>
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-issorted">function isSorted<a class="headerlink" href="#function-issorted" title="Permanent link">&para;</a></h3>
 <p><em>Returns true when every coordinate of</em> <em>source</em> <em>along__axis</em> <em>is finite and not smaller than its predecessor.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">isSorted</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">axis</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">SourceInspection</span><span class="o">::</span><span class="n">isSorted</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">axis</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

@@ -142,7 +142,7 @@ Effects are attached through the `PlotSeries::effects` list and evaluated when t
 |Effect  |Series  |
 |-----|-----|
 |`GradientFill`, `GradientStroke`  |`LineCurve`  |
-|`Glow`  |`LineCurve`, `PointCloud`, `BarSeries`, `ErrorBarSeries`  |
+|`Glow`  |`LineCurve`, `PointCloud`, `BarSeries`, `ErrorBarSeries`, `CandlestickSeries`  |
 |`FadeTrail`  |`LineCurve`, `PointCloud`  |
 
 

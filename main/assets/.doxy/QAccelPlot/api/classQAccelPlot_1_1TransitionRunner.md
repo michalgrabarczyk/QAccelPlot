@@ -136,7 +136,7 @@ flowchart TB
 A data change splits the items by index: with _m_ items before and _n_ after, items below both counts are kept, items from _m_ on are added, and items from _n_ on are removed. Each group runs the transition of its slot; a group without one changes instantly. Kept items run the update transition only when one of them changes. A `DrawTransition` or `GrowTransition` in the update slot then redraws all new items instead.
 
 
-The runner asks for a frame once per rendered frame while it is active. The request comes on the GUI thread from `QQuickWindow::afterAnimating`, before the scene graph syncs, so `DataTransition::runningChanged` reaches QML there and the frame renders the new step. `LineCurve`, `BarSeries`, `PointCloud`, and `ErrorBarSeries` animate through it.
+The runner asks for a frame once per rendered frame while it is active. The request comes on the GUI thread from `QQuickWindow::afterAnimating`, before the scene graph syncs, so `DataTransition::runningChanged` reaches QML there and the frame renders the new step. `LineCurve`, `BarSeries`, `PointCloud`, `ErrorBarSeries`, and `CandlestickSeries` animate through it.
 
 
 

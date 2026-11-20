@@ -5,6 +5,8 @@
 
 ## a
 
+* **allocateRecordVertices** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **assignNonNegative** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **axisLabelCenter** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **appendEnvelopeSamples** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **applyUniforms** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
@@ -19,6 +21,7 @@
 * **compareGlowStyles** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **compareItemFades** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **compareItemTrails** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **createRecordNode** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **createNode** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
 
@@ -27,6 +30,7 @@
 * **dataTextureHeight** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureItemCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureUploadTotals** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **distanceToBox** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **distanceToInterval** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
@@ -45,6 +49,7 @@
 * **glowUniforms** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **grabSizeFor** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **growBaseline** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **growViewport** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## h
@@ -58,6 +63,7 @@
 * **InspectionAxis** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **InspectionMatching** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **imageFormatForPath** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **interleave** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **itemOpacityUniforms** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **itemTiming** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **isValidPoint** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
@@ -103,6 +109,7 @@
 ## p
 
 * **pannedRange** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **placeGrowBaseline** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **plannedSlots** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **planRunSampling** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 
@@ -114,6 +121,8 @@
 * **readOpacityAnimations** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **recordCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **recordDataTextureUpload** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **recordFrameDrawn** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **reservedRecordCount** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **resetDataTextureUploadTotals** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **resolveGradientValueRange** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **rotatedBoundingSize** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
@@ -126,6 +135,7 @@
 * **Status** ([**QAccelPlot::InspectionNS**](namespaceQAccelPlot_1_1InspectionNS.md))
 * **summarize** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **setImageResolution** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **shortestLength** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **stepCorner** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **stepCornerCount** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **supportsCustomShaderRendering** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
@@ -142,7 +152,9 @@
 ## u
 
 * **unboundedGradientCoordinate** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **updateRecordNode** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **uploadDataTexture** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **uploadRecordData** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## v

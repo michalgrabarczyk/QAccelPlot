@@ -1,0 +1,376 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1CandlestickMaterial" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::CandlestickMaterial</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1DataTextureMaterial" prot="public" virt="non-virtual">QAccelPlot::DataTextureMaterial</basecompoundref>
+    <includes local="no">CandlestickMaterial.hpp</includes>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1CandlestickMaterial_1a8df2cf8f7f095aa9298faef4ded443c1" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::CandlestickMaterial::kVerticesPerCandle</definition>
+        <argsstring></argsstring>
+        <name>kVerticesPerCandle</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::kVerticesPerCandle</qualifiedname>
+        <initializer>{18}</initializer>
+        <briefdescription>
+<para>Vertices per candle: a quad of two triangles for each of three parts. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="22" column="26" bodyfile="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" bodystart="22" bodyend="22"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1CandlestickMaterial_1a3cbde41508d97119bdd9e27af26ee35f" prot="public" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::CandlestickMaterial::downColor</definition>
+        <argsstring></argsstring>
+        <name>downColor</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::downColor</qualifiedname>
+        <initializer>{Qt::red}</initializer>
+        <briefdescription>
+<para>Color of down candles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="35" column="12" bodyfile="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1CandlestickMaterial_1ab8ca291974e383267edcb479fd30c62e" prot="public" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::CandlestickMaterial::hoverColor</definition>
+        <argsstring></argsstring>
+        <name>hoverColor</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::hoverColor</qualifiedname>
+        <initializer>{Qt::transparent}</initializer>
+        <briefdescription>
+<para>Color of the highlighted candle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="36" column="12" bodyfile="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1CandlestickMaterial_1ad16f9922ef847a6c2e353781755bc220" prot="public" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::CandlestickMaterial::glowDownColor</definition>
+        <argsstring></argsstring>
+        <name>glowDownColor</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::glowDownColor</qualifiedname>
+        <briefdescription>
+<para>Halo color of down candles; <computeroutput>glow</computeroutput> holds the one of up candles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="37" column="12" bodyfile="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1CandlestickMaterial_1abfeca9618fd3d493cfe1422ac6cad967" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::CandlestickMaterial::hoveredIndex</definition>
+        <argsstring></argsstring>
+        <name>hoveredIndex</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::hoveredIndex</qualifiedname>
+        <initializer>{-1.0f}</initializer>
+        <briefdescription>
+<para>Index of the highlighted candle, or -1 for none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="38" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1CandlestickMaterial_1a35a8f3283127ca8387c2bfb706925efe" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::CandlestickMaterial::lineWidth</definition>
+        <argsstring></argsstring>
+        <name>lineWidth</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::lineWidth</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+<para>Width of wicks, OHLC lines, and ticks in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="39" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1CandlestickMaterial_1a3dfdfc9842532615419c5f85adb83d8f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::CandlestickMaterial::halfWidth</definition>
+        <argsstring></argsstring>
+        <name>halfWidth</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::halfWidth</qualifiedname>
+        <initializer>{0.4f}</initializer>
+        <briefdescription>
+<para>Half the candle width in x data units. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="40" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1CandlestickMaterial_1a546ab9bc522d4609f3c36be468b5e289" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::CandlestickMaterial::minimumWidth</definition>
+        <argsstring></argsstring>
+        <name>minimumWidth</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::minimumWidth</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+<para>Smallest candle width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="41" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1CandlestickMaterial_1a269276fe3e69cbae11e4082128694ef3" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::CandlestickMaterial::ohlc</definition>
+        <argsstring></argsstring>
+        <name>ohlc</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::ohlc</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>1.0 to draw OHLC bars instead of candlesticks (float for std140 UBO compatibility). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="42" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1CandlestickMaterial_1a34bb007864f9c901338fbde764ba9bab" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::CandlestickMaterial::candleCount</definition>
+        <argsstring></argsstring>
+        <name>candleCount</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::candleCount</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>Number of candles drawn; vertices beyond them are culled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="43" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1CandlestickMaterial_1abf492731cf8adccbbbba098c7ed9df76" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::CandlestickMaterial::antialiasing</definition>
+        <argsstring></argsstring>
+        <name>antialiasing</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::antialiasing</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+<para>1.0 to smooth the edges. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="44" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" bodystart="44" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1CandlestickMaterial_1a1a0cb7f86851d286d10c535841539c18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::CandlestickMaterial::CandlestickMaterial</definition>
+        <argsstring>()</argsstring>
+        <name>CandlestickMaterial</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::CandlestickMaterial</qualifiedname>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1CandlestickMaterial" kindref="compound">CandlestickMaterial</ref> with default uniform values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="25" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1CandlestickMaterial_1a141c56776adc43ac1380bfbbfb326ec4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGMaterialType *</type>
+        <definition>QSGMaterialType * QAccelPlot::CandlestickMaterial::type</definition>
+        <argsstring>() const override</argsstring>
+        <name>type</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::type</qualifiedname>
+        <briefdescription>
+<para>Returns the unique material type identifier for this class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="28" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1CandlestickMaterial_1a6ec6a51d172029b7cf624b37707b4080" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGMaterialShader *</type>
+        <definition>QSGMaterialShader * QAccelPlot::CandlestickMaterial::createShader</definition>
+        <argsstring>(QSGRendererInterface::RenderMode renderMode) const override</argsstring>
+        <name>createShader</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::createShader</qualifiedname>
+        <param>
+          <type>QSGRendererInterface::RenderMode</type>
+          <declname>renderMode</declname>
+        </param>
+        <briefdescription>
+<para>Creates and returns the candlestick shader program. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="30" column="23"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1CandlestickMaterial_1a1172d8acbce8f859a38bca12cc4fddc1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const QSGGeometry::AttributeSet &amp;</type>
+        <definition>static const QSGGeometry::AttributeSet &amp; QAccelPlot::CandlestickMaterial::attributeSet</definition>
+        <argsstring>()</argsstring>
+        <name>attributeSet</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::attributeSet</qualifiedname>
+        <briefdescription>
+<para>Returns the vertex attribute set: a 4-byte placeholder the shader ignores. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="33" column="44"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1CandlestickMaterial_1a97bf188aa96bd6968ad1a16e3d4f1512" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::CandlestickMaterial::compareExtra</definition>
+        <argsstring>(const QSGMaterial *other) const override</argsstring>
+        <name>compareExtra</name>
+        <qualifiedname>QAccelPlot::CandlestickMaterial::compareExtra</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1DataTextureMaterial_1a7cd48b95da2721520a594dae33147990">compareExtra</reimplements>
+        <param>
+          <type>const QSGMaterial *</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Compares the candle-specific uniforms after the base-class comparison succeeds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="48" column="9"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Material that draws candles from (x, open, high, low, close) data points in a data texture. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Each candle takes <computeroutput>kVerticesPerCandle</computeroutput> vertices: two triangles each for three parts, the wick above and below the body and the body of a candlestick, or the line and two ticks of an OHLC bar. The shader derives the candle, part, and corner from the vertex index. The inherited <computeroutput>color</computeroutput> is the up candle color. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::CandlestickMaterial</label>
+        <link refid="classQAccelPlot_1_1CandlestickMaterial"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::DataTextureMaterial</label>
+        <link refid="classQAccelPlot_1_1DataTextureMaterial"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QSGMaterial</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::CandlestickMaterial</label>
+        <link refid="classQAccelPlot_1_1CandlestickMaterial"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::DataTextureMaterial</label>
+        <link refid="classQAccelPlot_1_1DataTextureMaterial"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>itemFade</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>itemTrail</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>glow</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>QAccelPlot::Internal::GlowStyle</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1GlowStyle"/>
+      </node>
+      <node id="4">
+        <label>QAccelPlot::Internal::ItemFade</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1ItemFade"/>
+      </node>
+      <node id="5">
+        <label>QAccelPlot::Internal::ItemTrail</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1ItemTrail"/>
+      </node>
+      <node id="3">
+        <label>QSGMaterial</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" line="19" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp" bodystart="19" bodyend="49"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1abf492731cf8adccbbbba098c7ed9df76" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>antialiasing</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1a1172d8acbce8f859a38bca12cc4fddc1" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>attributeSet</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1a34bb007864f9c901338fbde764ba9bab" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>candleCount</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1a1a0cb7f86851d286d10c535841539c18" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>CandlestickMaterial</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a121c04af7cb73165e87449c986e03d83" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ab9ea2c6bb472ce5d1f3ed968c4dfb68f" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>commitTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a2484cf817f49a5f6e3343c8f263e7d9d" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>compare</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1a97bf188aa96bd6968ad1a16e3d4f1512" prot="protected" virt="virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>compareExtra</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1a6ec6a51d172029b7cf624b37707b4080" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>createShader</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ad9c83ba84140e97631c0e139f18ab5b1" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>dataTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a74a19db442fff0944f5a6ac191afc859" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>DataTextureMaterial</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ae34fecdef9a4b3c338dcf272d81f1eb1" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>domainMax</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a21b112871373c779d09d5692744b10d9" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>domainMin</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1a3cbde41508d97119bdd9e27af26ee35f" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>downColor</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a49dda439c65b3f84a6a84f6a287adb7a" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>glow</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1ad16f9922ef847a6c2e353781755bc220" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>glowDownColor</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1a3dfdfc9842532615419c5f85adb83d8f" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>halfWidth</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1ab8ca291974e383267edcb479fd30c62e" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>hoverColor</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1abfeca9618fd3d493cfe1422ac6cad967" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>hoveredIndex</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ae7f52c58c22e5333bbd6bd89a8746643" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>itemFade</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1afd456b2ac8b2b51d8667771328bb47fb" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>itemTrail</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1a8df2cf8f7f095aa9298faef4ded443c1" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>kVerticesPerCandle</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1a35a8f3283127ca8387c2bfb706925efe" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>lineWidth</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a478f24d8b6cf0cefb720ea5788f72abe" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>logScaleX</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a2479ace02cc0526418fbff014b2cefd3" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>logScaleY</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1a546ab9bc522d4609f3c36be468b5e289" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>minimumWidth</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1a269276fe3e69cbae11e4082128694ef3" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>ohlc</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a4fa0d843ec56ae5d4e6a541f26752d9b" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>sampledTexture</name></member>
+      <member refid="classQAccelPlot_1_1CandlestickMaterial_1a141c56776adc43ac1380bfbbfb326ec4" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>type</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a98644bbb664529ed4fa2003f1842bac4" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>uploadTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1aeca4b9436551afba413a9739957b3b9a" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>useVertexColor</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ab3956754bb359cdee269e210cff6c157" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>vertexIndexAttributeSet</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a33c065d9638eb6faf76732bae044d19e" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>viewportSize</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a3c4115d0b9f08938db44fd529c10f24b" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>writeCommonUniforms</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a6434926c1121e31da48ecb56b6b427e5" prot="public" virt="non-virtual"><scope>QAccelPlot::CandlestickMaterial</scope><name>~DataTextureMaterial</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

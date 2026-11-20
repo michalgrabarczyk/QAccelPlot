@@ -85,6 +85,7 @@ public:
     void assignFloat(const float* coordinates, int count);
     void setAttributes(std::vector<float>&& attributes);
     void setCategories(std::vector<int>&& categories);
+    void setCategory(int index, int category);
     void append(const double* coordinates);
     void replace(int index, const double* coordinates);
     void promoteToPrecise();

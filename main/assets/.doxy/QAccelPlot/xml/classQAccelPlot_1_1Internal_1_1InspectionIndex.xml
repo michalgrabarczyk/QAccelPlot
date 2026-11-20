@@ -19,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="58" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="58" bodyend="58"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="70" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="70" bodyend="70"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a7c2738223eec5c9274eb9871a238a6b6" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="59" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="59" bodyend="59"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="71" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="71" bodyend="71"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a5c4502c4c177d1ec79d0b4f1769eaf35" prot="private" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Point" kindref="compound">Point</ref> &gt;</type>
@@ -48,7 +48,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="60" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="60" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="72" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="72" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a4d25bc3ae62b8259a54313a4076090ac" prot="private" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -62,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="61" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="61" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="73" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1afbba651bfa68a578f6496cb1fec1231f" prot="private" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="62" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="62" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="74" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="74" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a622a74ffd76469d2563b99578511227c" prot="private" static="no" mutable="no">
         <type>std::vector&lt; Node &gt;</type>
@@ -90,7 +90,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="63" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="63" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="75" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -139,6 +139,34 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="27" column="18"/>
       </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a84c35b54655165a8d151b493878d9445" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::InspectionIndex::movePoint</definition>
+        <argsstring>(int index, double x, double y)</argsstring>
+        <name>movePoint</name>
+        <qualifiedname>QAccelPlot::Internal::InspectionIndex::movePoint</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Moves the indexed data point with source <emphasis>index</emphasis> to <emphasis>x</emphasis>, <emphasis>y</emphasis> in place. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Node bounds and summaries along the point&apos;s path are recomputed, so queries stay exact; the tree may only get less balanced. Returns false when the data point is not indexed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="32" column="10"/>
+      </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1acd14c3cbd897f02106cca7526b8a68fa" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1InspectionHit" kindref="compound">InspectionHit</ref></type>
         <definition>InspectionHit QAccelPlot::Internal::InspectionIndex::nearestAlong</definition>
@@ -168,7 +196,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="29" column="20"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="34" column="20"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a800768752665ebc96c35a81d1b6c00e3" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1InspectionHit" kindref="compound">InspectionHit</ref></type>
@@ -194,7 +222,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="30" column="20"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="35" column="20"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a2e33673333cfcf755a5e5d45eac83eac" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1InspectionNeighbors" kindref="compound">InspectionNeighbors</ref></type>
@@ -217,7 +245,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="32" column="26"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="37" column="26"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a729ea72a79748be1512483a8cfaaf3ca" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator" kindref="compound">SummaryAccumulator</ref></type>
@@ -235,7 +263,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="33" column="25"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="38" column="25"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a8c050ba1942da2ab688b7ca40f611029" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -265,7 +293,31 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="34" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="39" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a507db496a62a4ac33fb6ba778a0e453e" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::Internal::InspectionIndex::include</definition>
+        <argsstring>(Node &amp;node, const Point &amp;point)</argsstring>
+        <name>include</name>
+        <qualifiedname>QAccelPlot::Internal::InspectionIndex::include</qualifiedname>
+        <param>
+          <type>Node &amp;</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Point" kindref="compound">Point</ref> &amp;</type>
+          <declname>point</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="53" column="17"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -285,7 +337,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="47" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="55" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a081880f6d2378909c3f14355e444c1cb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -311,7 +363,55 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="48" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="56" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1aa2841d737647385955d7b69ec3da1a8a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::InspectionIndex::reorder</definition>
+        <argsstring>(InspectionAxis axis, std::vector&lt; int &gt; &amp;order, int position, double value)</argsstring>
+        <name>reorder</name>
+        <qualifiedname>QAccelPlot::Internal::InspectionIndex::reorder</qualifiedname>
+        <param>
+          <type>InspectionAxis</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;</type>
+          <declname>order</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="58" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a2ea7429a6210d02f5af1adad72353ede" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::InspectionIndex::refreshNodes</definition>
+        <argsstring>(int position)</argsstring>
+        <name>refreshNodes</name>
+        <qualifiedname>QAccelPlot::Internal::InspectionIndex::refreshNodes</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="60" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1ae1c4bd9fe8814b16647c2cb7707c22b0" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -333,7 +433,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="50" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="62" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a2f06cc588a866002a2c12abd2d4bf521" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const std::vector&lt; int &gt; &amp;</type>
@@ -351,7 +451,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="51" column="23"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="63" column="23"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a65c3f93a862b986e3873a788d04908dc" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -373,7 +473,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="53" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="65" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1ab68e8d58c7f382b50d99547fd59ce973" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -399,7 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="54" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="66" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a8f2778cc5c985e52807069794084b55c" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -417,7 +517,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="55" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="67" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a9c996289c2af04ff439ca70b046e2711" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -435,7 +535,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="56" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="68" column="12"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -443,24 +543,28 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="17" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="17" bodyend="64"/>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="17" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" bodystart="17" bodyend="76"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1afd8c88bff7cfd031a742b348e801b157" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>build</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a33994df1698b602447bd39c071c8b7a9" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>buildNodes</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a8c050ba1942da2ab688b7ca40f611029" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>collect</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a081880f6d2378909c3f14355e444c1cb" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>createNode</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1ab68e8d58c7f382b50d99547fd59ce973" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>distanceToBounds</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a507db496a62a4ac33fb6ba778a0e453e" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>include</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a65c3f93a862b986e3873a788d04908dc" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>key</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1aa3e41f13dc9c868cf66af1896a7bc287" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>logX_</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a7c2738223eec5c9274eb9871a238a6b6" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>logY_</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a8f2778cc5c985e52807069794084b55c" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>mappedX</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a9c996289c2af04ff439ca70b046e2711" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>mappedY</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a84c35b54655165a8d151b493878d9445" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>movePoint</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a800768752665ebc96c35a81d1b6c00e3" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>nearest</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1acd14c3cbd897f02106cca7526b8a68fa" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>nearestAlong</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a2e33673333cfcf755a5e5d45eac83eac" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>neighbors</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a622a74ffd76469d2563b99578511227c" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>nodes_</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a2f06cc588a866002a2c12abd2d4bf521" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>order</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a5c4502c4c177d1ec79d0b4f1769eaf35" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>points_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a2ea7429a6210d02f5af1adad72353ede" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>refreshNodes</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1aa2841d737647385955d7b69ec3da1a8a" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>reorder</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1ae1c4bd9fe8814b16647c2cb7707c22b0" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>sortOrder</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1aba37eb05ac28933600af84a4d0c7ee63" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>storageBytes</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a729ea72a79748be1512483a8cfaaf3ca" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionIndex</scope><name>summarize</name></member>

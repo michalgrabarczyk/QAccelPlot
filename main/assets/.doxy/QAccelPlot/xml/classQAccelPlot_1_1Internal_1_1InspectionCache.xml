@@ -19,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="50" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="50" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="52" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1a183bf3930990c4e25c7c8b6f5934596a" prot="private" static="no" mutable="no">
         <type>QTimer</type>
@@ -33,7 +33,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="51" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="51" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="53" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1a7ddb93ef866b8dcf2511112ed0ae6a1e" prot="private" static="no" mutable="no">
         <type>quint64</type>
@@ -48,7 +48,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="52" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="52" bodyend="52"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="54" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="54" bodyend="54"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1aef4679e6de402e4680dc0ee17577e95c" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -63,7 +63,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="53" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="53" bodyend="53"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="55" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="55" bodyend="55"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1a38901554eb212147800f04d45230c214" prot="private" static="no" mutable="no">
         <type>std::shared_ptr&lt; Job &gt;</type>
@@ -77,7 +77,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="54" column="21" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="54" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="56" column="21" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1a68d4059ed9a8275c0cdcea57de612579" prot="private" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classQAccelPlot_1_1Internal_1_1InspectionIndex" kindref="compound">InspectionIndex</ref> &gt;</type>
@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="55" column="21" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="55" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="57" column="21" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -142,6 +142,29 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="32" column="10"/>
       </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1ab03ec39cfbc2a1343a7f770456a07f82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::InspectionCache::modified</definition>
+        <argsstring>(const InspectionSource &amp;source, int index)</argsstring>
+        <name>modified</name>
+        <qualifiedname>QAccelPlot::Internal::InspectionCache::modified</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1InspectionSource" kindref="compound">InspectionSource</ref> &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Moves record <emphasis>index</emphasis> in a ready index to its value in <emphasis>source</emphasis>; otherwise drops the index like <computeroutput><ref refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1af2847606918ddeac19df09fb68ea44be" kindref="member">invalidate()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="34" column="10"/>
+      </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1a74e19a2b40134253b3bec54360852a07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::Internal::InspectionCache::request</definition>
@@ -155,7 +178,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="34" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="36" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1a54ebb2c5709a95193c70886eb7a1f07a" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -169,7 +192,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="35" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="37" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1a91a3e787e63da64ee9fc1a0e15e59b7c" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const <ref refid="classQAccelPlot_1_1Internal_1_1InspectionIndex" kindref="compound">InspectionIndex</ref> *</type>
@@ -184,7 +207,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="37" column="28"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="39" column="28"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -200,7 +223,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="47" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="49" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1a50cd0c66b6b40324354462b8ef6f7ee3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -214,7 +237,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="48" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="50" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -244,7 +267,7 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="17" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="17" bodyend="56"/>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="17" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="17" bodyend="58"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1a7ddb93ef866b8dcf2511112ed0ae6a1e" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionCache</scope><name>generation_</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1a06701cf89698afbd2922a78775f2e816" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionCache</scope><name>host_</name></member>
@@ -254,6 +277,7 @@
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1af2847606918ddeac19df09fb68ea44be" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionCache</scope><name>invalidate</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1a38901554eb212147800f04d45230c214" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionCache</scope><name>job_</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1a50cd0c66b6b40324354462b8ef6f7ee3" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionCache</scope><name>launch</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1ab03ec39cfbc2a1343a7f770456a07f82" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionCache</scope><name>modified</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1a74e19a2b40134253b3bec54360852a07" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionCache</scope><name>request</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1a54ebb2c5709a95193c70886eb7a1f07a" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionCache</scope><name>requested</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1aef4679e6de402e4680dc0ee17577e95c" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::InspectionCache</scope><name>requested_</name></member>

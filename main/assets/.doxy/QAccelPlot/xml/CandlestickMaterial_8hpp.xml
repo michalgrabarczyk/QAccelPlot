@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="CandlestickMaterial_8hpp" kind="file" language="C++">
+    <compoundname>CandlestickMaterial.hpp</compoundname>
+    <includes refid="DataTextureMaterial_8hpp" local="yes">QAccelPlot/materials/DataTextureMaterial.hpp</includes>
+    <includes local="no">QSGGeometry</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp</label>
+        <link refid="CandlestickMaterial_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QSGGeometry</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classQAccelPlot_1_1CandlestickMaterial" prot="public">QAccelPlot::CandlestickMaterial</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>MIT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/materials/DataTextureMaterial.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QSGGeometry&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classQAccelPlot_1_1CandlestickMaterial" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a1a0cb7f86851d286d10c535841539c18" kindref="member">CandlestickMaterial</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1DataTextureMaterial_1a74a19db442fff0944f5a6ac191afc859" kindref="member">DataTextureMaterial</ref><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a8df2cf8f7f095aa9298faef4ded443c1" kindref="member">kVerticesPerCandle</ref>{18};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a1a0cb7f86851d286d10c535841539c18" kindref="member">CandlestickMaterial</ref>();</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>QSGMaterialType*<sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a141c56776adc43ac1380bfbbfb326ec4" kindref="member">type</ref>()<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>QSGMaterialShader*<sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a6ec6a51d172029b7cf624b37707b4080" kindref="member">createShader</ref>(QSGRendererInterface::RenderMode<sp/>renderMode)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QSGGeometry::AttributeSet&amp;<sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a1172d8acbce8f859a38bca12cc4fddc1" kindref="member">attributeSet</ref>();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a3cbde41508d97119bdd9e27af26ee35f" kindref="member">downColor</ref>{Qt::red};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1ab8ca291974e383267edcb479fd30c62e" kindref="member">hoverColor</ref>{Qt::transparent};<sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1ad16f9922ef847a6c2e353781755bc220" kindref="member">glowDownColor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1abfeca9618fd3d493cfe1422ac6cad967" kindref="member">hoveredIndex</ref>{-1.0f};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a35a8f3283127ca8387c2bfb706925efe" kindref="member">lineWidth</ref>{1.0f};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a3dfdfc9842532615419c5f85adb83d8f" kindref="member">halfWidth</ref>{0.4f};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a546ab9bc522d4609f3c36be468b5e289" kindref="member">minimumWidth</ref>{1.0f};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a269276fe3e69cbae11e4082128694ef3" kindref="member">ohlc</ref>{0.0f};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a34bb007864f9c901338fbde764ba9bab" kindref="member">candleCount</ref>{0.0f};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1abf492731cf8adccbbbba098c7ed9df76" kindref="member">antialiasing</ref>{1.0f};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1CandlestickMaterial_1a97bf188aa96bd6968ad1a16e3d4f1512" kindref="member">compareExtra</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QSGMaterial*<sp/>other)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/QAccelPlot/materials/CandlestickMaterial.hpp"/>
+  </compounddef>
+</doxygen>

@@ -51,6 +51,7 @@
 | struct | [**GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) <br>_How the shaders draw a_ `Glow` _halo; see shaders/glow.glsl._ |
 | struct | [**GlowUniforms**](structQAccelPlot_1_1Internal_1_1GlowUniforms.md) <br>_The std140 uniform members of a_ `Glow` _halo,_`glowColor` _and_`glowParams` _, at a 16-byte aligned offset._ |
 | struct | [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) <br>_Sizes of one item grab._  |
+| struct | [**GrowViewport**](structQAccelPlot_1_1Internal_1_1GrowViewport.md) <br>_The viewport of the axis items grow along, which places a baseline the axis cannot show._  |
 | struct | [**HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) <br>_One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._ |
 | struct | [**HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md) <br>_How heatmap.frag maps an item-local pixel position_ _p_ _to a fractional cell coordinate along one dimension._ |
 | class | [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) <br>_Decides when queried data is worth a hover index._  |
@@ -73,6 +74,8 @@
 | class | [**OutlinedRectangle**](classQAccelPlot_1_1Internal_1_1OutlinedRectangle.md) <br>_Item that fills its bounds and outlines them inside its edges._  |
 | class | [**OverlayChildren**](classQAccelPlot_1_1Internal_1_1OverlayChildren.md) <br>_Objects declared inside an inspection tool in QML._  |
 | class | [**PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md) <br>_Tracks the pointer over a plot from the plot's mouse and hover events._  |
+| struct | [**RecordFrame**](structQAccelPlot_1_1Internal_1_1RecordFrame.md) <br>_What a series that draws one record per data point draws in a frame._  |
+| class | [**RecordHitIndex**](classQAccelPlot_1_1Internal_1_1RecordHitIndex.md) <br>_Finds the drawn record nearest to a pixel position, for series that draw one record per data point._  |
 | struct | [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) <br>_Mirrors the std140 uniform block of rect.vert._  |
 | class | [**RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md) <br>_Vertices of a series that draws each rectangle as a quad positioned from a data texture._  |
 | class | [**RectangleZoomOverlay**](classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay.md) <br> |
@@ -81,6 +84,7 @@
 | class | [**SelectionRectangle**](classQAccelPlot_1_1Internal_1_1SelectionRectangle.md) <br>_Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._ |
 | class | [**SeriesEffectList**](classQAccelPlot_1_1Internal_1_1SeriesEffectList.md) <br>_The_ `effects` _list of one series._ |
 | class | [**SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md) <br>_Inspection queries that read a series' own buffer whose records are ordered along one axis._  |
+| class | [**StoreTransition**](classQAccelPlot_1_1Internal_1_1StoreTransition.md) <br>_Shows the runs of a_ `TransitionRunner` _as the drawn data points of a_`DataPointStore` _._ |
 | struct | [**SummaryAccumulator**](structQAccelPlot_1_1Internal_1_1SummaryAccumulator.md) <br>_Running data-point-weighted Y statistics that can be merged across disjoint data point sets._  |
 | struct | [**TransitionFrameInput**](structQAccelPlot_1_1Internal_1_1TransitionFrameInput.md) <br>_The two sides of a transition and the steps of its slots at one frame._  |
 | struct | [**TransitionItems**](structQAccelPlot_1_1Internal_1_1TransitionItems.md) <br>_Items on one side of a transition,_ `TransitionLayout::stride` _values each._ |
@@ -130,22 +134,29 @@
 
 | Type | Name |
 | ---: | :--- |
+|  void | [**allocateRecordVertices**](#function-allocaterecordvertices) (QSGGeometryNode & node, const [**RecordFrame**](structQAccelPlot_1_1Internal_1_1RecordFrame.md) & frame) <br>_Sizes the vertex buffer of_ _node_ _for_`reservedRecordCount()` _records of__frame_ _._ |
+|  bool | [**assignNonNegative**](#function-assignnonnegative) (qreal & member, qreal requested) <br>_Stores_ _requested_ _, clamped to 0 or more, in__member_ _and returns_`true` _when that changes it._ |
 |  QPointF | [**axisLabelCenter**](#function-axislabelcenter) (const [**AxisLabelLayoutParams**](structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams.md) & params) <br>_Returns the center of the axis label described by_ _params_ _, in item coordinates._ |
 |  qreal | [**clampAntialiasingFeather**](#function-clampantialiasingfeather) (qreal feather) <br>_Returns_ _feather_ _clamped to the [0, 10] pixel range of the series'_`antialiasingFeather` _properties._ |
 |  [**ItemFadeGroup**](structQAccelPlot_1_1Internal_1_1ItemFadeGroup.md) | [**compactedFadeGroup**](#function-compactedfadegroup) (const [**ItemFadeGroup**](structQAccelPlot_1_1Internal_1_1ItemFadeGroup.md) & group, int first, const std::vector&lt; int &gt; & kept) <br>_Returns_ _group_ _after some of its items are left out of the drawn items; it starts at drawn index__first_ _._ |
 |  int | [**compareGlowStyles**](#function-compareglowstyles) (const [**GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) & left, const [**GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) & right) noexcept<br>_Orders_ _left_ _and__right_ _for_`QSGMaterial::compare()` _: negative, 0, or positive._ |
 |  int | [**compareItemFades**](#function-compareitemfades) (const [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) & left, const [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) & right) noexcept<br>_Orders_ _left_ _and__right_ _for_`QSGMaterial::compare()` _: negative, 0, or positive._ |
 |  int | [**compareItemTrails**](#function-compareitemtrails) (const [**ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) & left, const [**ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) & right) noexcept<br>_Orders_ _left_ _and__right_ _for_`QSGMaterial::compare()` _: negative, 0, or positive._ |
+|  QSGGeometryNode \* | [**createRecordNode**](#function-createrecordnode) (const QSGGeometry::AttributeSet & attributes, QSGMaterial \* material) <br>_Returns an empty triangle node of_ _attributes_ _that owns its geometry and__material_ _._ |
 |  int | [**dataTextureHeight**](#function-datatextureheight) (const int floatCount) <br>_Returns the number of data texture rows needed to store_ _floatCount_ _floats._ |
 |  qint64 | [**dataTextureItemCapacity**](#function-datatextureitemcapacity) (const int maxHeight, const int floatsPerItem) <br>_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture at most__maxHeight_ _rows tall._ |
 |  [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) | [**dataTextureUploadTotals**](#function-datatextureuploadtotals) () <br>_Returns the totals since the last reset. Thread-safe._  |
+|  qreal | [**distanceToBox**](#function-distancetobox) (qreal x, qreal y, const std::pair&lt; qreal, qreal &gt; & xs, const std::pair&lt; qreal, qreal &gt; & ys) <br>_Returns the pixel distance from (_ _x_ _,__y_ _) to the box spanning__xs_ _and__ys_ _; 0 inside._ |
 |  double | [**distanceToInterval**](#function-distancetointerval) (double position, double a, double b) noexcept<br>_Returns the signed distance from_ _position_ _to the closed interval between__a_ _and__b_ _._ |
 |  qreal | [**edgePixel**](#function-edgepixel) (double value, const [**Axis**](classQAccelPlot_1_1Axis.md) & axis, qreal length) <br>_Maps rectangle edge_ _value_ _on__axis_ _to item pixels along an item side__length_ _pixels long._ |
 |  [**GlowUniforms**](structQAccelPlot_1_1Internal_1_1GlowUniforms.md) | [**glowUniforms**](#function-glowuniforms) (const [**GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) & style) <br>_Returns the uniforms that draw_ _style_ _._ |
 |  [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) | [**grabSizeFor**](#function-grabsizefor) (const QSize & pixels, qreal devicePixelRatio) <br>_Returns the grab whose image is closest to_ _pixels_ _in a window at__devicePixelRatio_ _._ |
 |  double | [**growBaseline**](#function-growbaseline) (double baseline, const [**Axis**](classQAccelPlot_1_1Axis.md) \* valueAxis) <br>_Returns the value that items drawn from_ _baseline_ _on__valueAxis_ _grow from._ |
+|  [**GrowViewport**](structQAccelPlot_1_1Internal_1_1GrowViewport.md) | [**growViewport**](#function-growviewport) (const [**Axis**](classQAccelPlot_1_1Axis.md) \* valueAxis) <br>_Returns the viewport of_ _valueAxis_ _that places grow baselines; without an axis, both edges are 0._ |
 |  bool | [**hoverEnabled**](#function-hoverenabled) () <br>_Returns whether series accept hover events:_ `false` _only when_`QACCELPLOT_HOVER_ENABLED` _is 0._ |
 |  QByteArray | [**imageFormatForPath**](#function-imageformatforpath) (const QString & path) <br>_Returns the lowercase_ `QImageWriter` _format for__path's_ _suffix, or an empty array when none can write it._ |
+|  std::vector&lt; double &gt; | [**interleave**](#function-interleave) (std::initializer\_list&lt; std::reference\_wrapper&lt; const QList&lt; qreal &gt; &gt; &gt; columns) <br>_Interleaves the first values of_ _columns_ _, as many as the shortest column holds, into data points of one value per column._ |
+|  std::vector&lt; double &gt; | [**interleave**](#function-interleave) (std::initializer\_list&lt; std::reference\_wrapper&lt; const std::vector&lt; double &gt; &gt; &gt; columns) <br>`std::vector` _overload of_`interleave` _(__columns_ _)._ |
 |  [**ItemOpacityUniforms**](structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms.md) | [**itemOpacityUniforms**](#function-itemopacityuniforms) (const [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) & fade, const [**ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) & trail) <br>_Returns the uniforms that fade the items of_ _fade_ _and__trail_ _._ |
 |  [**ItemTiming**](structQAccelPlot_1_1Internal_1_1ItemTiming.md) | [**itemTiming**](#function-itemtiming) (const [**TransitionStep**](structQAccelPlot_1_1Internal_1_1TransitionStep.md) & step, int itemCount) <br>_Returns the timing of a group of_ _itemCount_ _items under__step_ _._ |
 |  bool | [**keptItemsChanged**](#function-keptitemschanged) (const [**TransitionItems**](structQAccelPlot_1_1Internal_1_1TransitionItems.md) & from, const [**TransitionItems**](structQAccelPlot_1_1Internal_1_1TransitionItems.md) & to, int stride) <br>_Returns_ `true` _when an item below both counts of__from_ _and__to_ _,__stride_ _values each, changes._ |
@@ -153,21 +164,27 @@
 |  QString | [**localFilePath**](#function-localfilepath) (const QString & pathOrUrl) <br>_Returns_ _pathOrUrl_ _as a local file path; a_`file:` _URL, as a QML file dialog returns, is converted._ |
 |  int | [**maxTextureSize**](#function-maxtexturesize) (QQuickWindow \* window) <br>_Returns the largest texture width and height, in pixels, that_ _window's_ _GPU supports._ |
 |  [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) | [**pannedRange**](#function-pannedrange) (const [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) & range, qreal fraction, bool logarithmic) <br>_Returns_ _range_ _shifted by__fraction_ _of its extent; a positive__fraction_ _raises both bounds._ |
+|  double | [**placeGrowBaseline**](#function-placegrowbaseline) (double baseline, const [**GrowViewport**](structQAccelPlot_1_1Internal_1_1GrowViewport.md) & viewport) <br>_Returns the value that items drawn from_ _baseline_ _grow from in__viewport_ _._ |
 |  [**TransitionSlots**](structQAccelPlot_1_1Internal_1_1TransitionSlots.md) | [**plannedSlots**](#function-plannedslots) (int fromCount, int toCount, bool keptChanged, std::optional&lt; TransitionKind &gt; enter, std::optional&lt; TransitionKind &gt; update, std::optional&lt; TransitionKind &gt; exit) <br>_Returns the slots that animate a change from_ _fromCount_ _to__toCount_ _items._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readEffectStops**](#function-readeffectstops) (const [**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap, QObject \* gradient) <br>_Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of the QML_`Gradient` ___gradient_ _._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStopList**](#function-readgradientstoplist) (const QVariantList & stopObjects) <br>_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._ |
 |  [**OpacityTimeline**](classQAccelPlot_1_1Internal_1_1OpacityTimeline.md) | [**readOpacityAnimations**](#function-readopacityanimations) (const QList&lt; QObject \* &gt; & animations, QStringList \* problems=nullptr) <br>_Reads the Qt Quick animations of_ `"opacity"` _among__animations_ _, which run together, as one timeline._ |
 |  int | [**recordCapacity**](#function-recordcapacity) (QQuickWindow \* window, int floatsPerRecord, int vertexBytesPerRecord) <br>_Returns how many records a series draws that reads them from the data texture by a float vertex id._  |
 |  void | [**recordDataTextureUpload**](#function-recorddatatextureupload) (std::int64\_t bytes) <br>_Adds one upload of_ _bytes_ _to the totals. Thread-safe._ |
+|  bool | [**recordFrameDrawn**](#function-recordframedrawn) (const [**RecordFrame**](structQAccelPlot_1_1Internal_1_1RecordFrame.md) & frame, bool & softwareWarned) <br>_Returns whether_ _frame_ _is drawn; warns once through__softwareWarned_ _when the backend cannot run custom shaders._ |
+|  int | [**reservedRecordCount**](#function-reservedrecordcount) (int drawnCount) <br>_Returns how many data points the vertex buffer of a record node holds room for, given_ _drawnCount_ _drawn ones._ |
 |  void | [**resetDataTextureUploadTotals**](#function-resetdatatextureuploadtotals) () <br>_Sets the totals back to zero. Thread-safe._  |
 |  void | [**resolveGradientValueRange**](#function-resolvegradientvaluerange) (Payload & payload, const qreal dataMin, const qreal dataMax) <br>_Fills each unset gradient value bound of_ _payload_ _from [__dataMin_ _,__dataMax_ _]._ |
 |  QSizeF | [**rotatedBoundingSize**](#function-rotatedboundingsize) (const QSizeF & size, qreal degrees) <br>_Returns the size of the box that holds_ _size_ _rotated by__degrees_ _._ |
 |  void | [**setImageResolution**](#function-setimageresolution) (QImage & image, qreal dpi) <br>_Sets the resolution stored with_ _image_ _to__dpi_ _dots per inch._ |
+|  std::size\_t | [**shortestLength**](#function-shortestlength) (const Lists &... lists) <br>_Returns the size of the shortest of_ _lists_ _._ |
 |  std::optional&lt; QPointF &gt; | [**stepCorner**](#function-stepcorner) (const [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) & data, int from, int to, int corner, [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode, bool logScaleX, bool logScaleY) <br>_Returns corner_ _corner_ _of the step from data point__from_ _to data point__to_ _, in data space._ |
 |  int | [**stepCornerCount**](#function-stepcornercount) ([**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode) noexcept<br>_Returns the number of line path points per data point for_ _mode:_ _the data point and the step corners after it._ |
 |  bool | [**supportsCustomShaderRendering**](#function-supportscustomshaderrendering) (const QQuickWindow \* window) <br>_Returns_ `true` _when__window_ _renders through a hardware scene graph backend that runs custom shaders._ |
 |  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const Qt::Orientation direction, const qreal value, const qreal minimum, const qreal maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
+|  QSGGeometryNode \* | [**updateRecordNode**](#function-updaterecordnode) (QSGNode \* oldNode, const [**RecordFrame**](structQAccelPlot_1_1Internal_1_1RecordFrame.md) & frame, const [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) & store, std::uint64\_t & uploadedRevision, UpdateMaterial && updateMaterial) <br>_Returns the node that draws_ _frame_ _with a__Material_ _, reusing__oldNode_ _, or_`nullptr` _when__frame_ _is not drawn._ |
 |  void | [**uploadDataTexture**](#function-uploaddatatexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const QImage & image) <br>_Uploads an image to the live-data texture using the configured Qt API path._  |
+|  void | [**uploadRecordData**](#function-uploadrecorddata) ([**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) & material, const [**RecordFrame**](structQAccelPlot_1_1Internal_1_1RecordFrame.md) & frame, const [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) & store, std::uint64\_t & uploadedRevision, bool newMaterial) <br>_Uploads the render data of_ _store_ _to__material_ _unless__uploadedRevision_ _is its render revision._ |
 |  std::optional&lt; qreal &gt; | [**valueIfSet**](#function-valueifset) (const qreal value) <br>_Returns_ _value_ _, or_`std::nullopt` _when it is NaN, the unset state of an effect property._ |
 |  qreal | [**wheelZoomFactor**](#function-wheelzoomfactor) (qreal zoomScaleFactor, bool zoomingIn, qreal steps=1.0) <br>_Returns the extent multiplier for mouse-wheel zoom with a_ _zoomScaleFactor_ _in (0, 1)._ |
 |  std::pair&lt; qreal, qreal &gt; | [**widenedSpan**](#function-widenedspan) (qreal a, qreal b, qreal minimumSize) <br>_Returns the pixel span between edges_ _a_ _and__b_ _, widened around its center to at least__minimumSize_ _._ |
@@ -348,6 +365,46 @@ int QAccelPlot::Internal::kTrailEasingSamples;
 
 
 
+### function allocateRecordVertices {#function-allocaterecordvertices}
+
+_Sizes the vertex buffer of_ _node_ _for_`reservedRecordCount()` _records of__frame_ _._
+```C++
+void QAccelPlot::Internal::allocateRecordVertices (
+    QSGGeometryNode & node,
+    const RecordFrame & frame
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function assignNonNegative {#function-assignnonnegative}
+
+_Stores_ _requested_ _, clamped to 0 or more, in__member_ _and returns_`true` _when that changes it._
+```C++
+bool QAccelPlot::Internal::assignNonNegative (
+    qreal & member,
+    qreal requested
+) 
+```
+
+
+
+A non-finite _requested_, or one nearly equal to _member_, leaves _member_ unchanged. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function axisLabelCenter {#function-axislabelcenter}
 
 _Returns the center of the axis label described by_ _params_ _, in item coordinates._
@@ -463,6 +520,28 @@ int QAccelPlot::Internal::compareItemTrails (
 
 
 
+### function createRecordNode {#function-createrecordnode}
+
+_Returns an empty triangle node of_ _attributes_ _that owns its geometry and__material_ _._
+```C++
+QSGGeometryNode * QAccelPlot::Internal::createRecordNode (
+    const QSGGeometry::AttributeSet & attributes,
+    QSGMaterial * material
+) 
+```
+
+
+
+For series whose shader derives every vertex from its index and reads the data points from the data texture. The vertex buffer is in static GPU memory, as it only changes with `reservedRecordCount()`. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function dataTextureHeight {#function-datatextureheight}
 
 _Returns the number of data texture rows needed to store_ _floatCount_ _floats._
@@ -513,6 +592,26 @@ DataTextureUploadTotals QAccelPlot::Internal::dataTextureUploadTotals ()
 
 
 
+### function distanceToBox {#function-distancetobox}
+
+_Returns the pixel distance from (_ _x_ _,__y_ _) to the box spanning__xs_ _and__ys_ _; 0 inside._
+```C++
+qreal QAccelPlot::Internal::distanceToBox (
+    qreal x,
+    qreal y,
+    const std::pair< qreal, qreal > & xs,
+    const std::pair< qreal, qreal > & ys
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function distanceToInterval {#function-distancetointerval}
 
 _Returns the signed distance from_ _position_ _to the closed interval between__a_ _and__b_ _._
@@ -545,7 +644,7 @@ qreal QAccelPlot::Internal::edgePixel (
 
 
 
-Infinite edges, and non-positive edges on a log axis, map to infinity on the matching side, as rect\_geometry.glsl extends them past the plot edge. 
+Infinite edges, and non-positive edges on a log axis, map to infinity on the matching side, as axis\_pixel.glsl extends them past the plot edge. 
 
 
         
@@ -616,6 +715,23 @@ It is _baseline_, or the viewport edge the items are drawn from when _valueAxis_
 
 
 
+### function growViewport {#function-growviewport}
+
+_Returns the viewport of_ _valueAxis_ _that places grow baselines; without an axis, both edges are 0._
+```C++
+GrowViewport QAccelPlot::Internal::growViewport (
+    const Axis * valueAxis
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function hoverEnabled {#function-hoverenabled}
 
 _Returns whether series accept hover events:_ `false` _only when_`QACCELPLOT_HOVER_ENABLED` _is 0._
@@ -637,6 +753,40 @@ _Returns the lowercase_ `QImageWriter` _format for__path's_ _suffix, or an empty
 ```C++
 QByteArray QAccelPlot::Internal::imageFormatForPath (
     const QString & path
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function interleave {#function-interleave}
+
+_Interleaves the first values of_ _columns_ _, as many as the shortest column holds, into data points of one value per column._
+```C++
+std::vector< double > QAccelPlot::Internal::interleave (
+    std::initializer_list< std::reference_wrapper< const QList< qreal > > > columns
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function interleave {#function-interleave}
+
+`std::vector` _overload of_`interleave` _(__columns_ _)._
+```C++
+std::vector< double > QAccelPlot::Internal::interleave (
+    std::initializer_list< std::reference_wrapper< const std::vector< double > > > columns
 ) 
 ```
 
@@ -786,6 +936,28 @@ ValueRange QAccelPlot::Internal::pannedRange (
 
 
 With _logarithmic_ set, the shift is applied in `log10` space, so both bounds are scaled by the same ratio. A range that is not positive is shifted linearly instead. Returns _range_ unchanged when a bound would leave the range of a double or both bounds would round to the same value. 
+
+
+        
+
+<hr>
+
+
+
+
+### function placeGrowBaseline {#function-placegrowbaseline}
+
+_Returns the value that items drawn from_ _baseline_ _grow from in__viewport_ _._
+```C++
+double QAccelPlot::Internal::placeGrowBaseline (
+    double baseline,
+    const GrowViewport & viewport
+) 
+```
+
+
+
+It is _baseline_, or the viewport edge the items are drawn from when the axis cannot place it: an infinite baseline, or one at or below 0 on a log axis. 
 
 
         
@@ -948,6 +1120,45 @@ void QAccelPlot::Internal::recordDataTextureUpload (
 
 
 
+### function recordFrameDrawn {#function-recordframedrawn}
+
+_Returns whether_ _frame_ _is drawn; warns once through__softwareWarned_ _when the backend cannot run custom shaders._
+```C++
+bool QAccelPlot::Internal::recordFrameDrawn (
+    const RecordFrame & frame,
+    bool & softwareWarned
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function reservedRecordCount {#function-reservedrecordcount}
+
+_Returns how many data points the vertex buffer of a record node holds room for, given_ _drawnCount_ _drawn ones._
+```C++
+int QAccelPlot::Internal::reservedRecordCount (
+    int drawnCount
+) 
+```
+
+
+
+It is the next power of two, at least 256, so appending one data point at a time reallocates the buffer only when the count crosses one. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function resetDataTextureUploadTotals {#function-resetdatatextureuploadtotals}
 
 _Sets the totals back to zero. Thread-safe._ 
@@ -1012,6 +1223,24 @@ _Sets the resolution stored with_ _image_ _to__dpi_ _dots per inch._
 void QAccelPlot::Internal::setImageResolution (
     QImage & image,
     qreal dpi
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function shortestLength {#function-shortestlength}
+
+_Returns the size of the shortest of_ _lists_ _._
+```C++
+template<typename... Lists>
+std::size_t QAccelPlot::Internal::shortestLength (
+    const Lists &... lists
 ) 
 ```
 
@@ -1108,6 +1337,32 @@ Coordinates outside [0, 1] are intentionally preserved for interpolation. Render
 
 
 
+### function updateRecordNode {#function-updaterecordnode}
+
+_Returns the node that draws_ _frame_ _with a__Material_ _, reusing__oldNode_ _, or_`nullptr` _when__frame_ _is not drawn._
+```C++
+template<typename Material, typename UpdateMaterial>
+QSGGeometryNode * QAccelPlot::Internal::updateRecordNode (
+    QSGNode * oldNode,
+    const RecordFrame & frame,
+    const DataPointStore & store,
+    std::uint64_t & uploadedRevision,
+    UpdateMaterial && updateMaterial
+) 
+```
+
+
+
+Deletes _oldNode_ when returning `nullptr`. Otherwise sizes the vertex buffer, uploads the render data of _store_ when it changed since _uploadedRevision_, and passes the material to _updateMaterial_ to set its uniforms. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function uploadDataTexture {#function-uploaddatatexture}
 
 _Uploads an image to the live-data texture using the configured Qt API path._ 
@@ -1121,6 +1376,31 @@ void QAccelPlot::Internal::uploadDataTexture (
 
 
 
+
+<hr>
+
+
+
+
+### function uploadRecordData {#function-uploadrecorddata}
+
+_Uploads the render data of_ _store_ _to__material_ _unless__uploadedRevision_ _is its render revision._
+```C++
+void QAccelPlot::Internal::uploadRecordData (
+    DataTextureMaterial & material,
+    const RecordFrame & frame,
+    const DataPointStore & store,
+    std::uint64_t & uploadedRevision,
+    bool newMaterial
+) 
+```
+
+
+
+Set _newMaterial_ for a material that has never been uploaded to. 
+
+
+        
 
 <hr>
 
@@ -1180,7 +1460,7 @@ std::pair< qreal, qreal > QAccelPlot::Internal::widenedSpan (
 
 
 
-Matches `widenedSpan()` in rect\_geometry.glsl, so hit tests use the drawn size. 
+Matches `widenedSpan()` in axis\_pixel.glsl, so hit tests use the drawn size. 
 
 
         

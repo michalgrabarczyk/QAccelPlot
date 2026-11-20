@@ -450,6 +450,8 @@
       
         
       
+        
+      
     
     
     
@@ -911,6 +913,34 @@
     
   
     Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
   
 
     
@@ -1438,6 +1468,8 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry and colormap uniforms.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Border/"><strong>Border</strong></a> <em>Outline color and width, exposed as a</em> <code>border</code> <em>grouped property, for example</em><code>border.width: 1</code> <em>.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1CandlestickMaterial/"><strong>CandlestickMaterial</strong></a> <em>Material that draws candles from (x, open, high, low, close) data points in a data texture.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1CandlestickSeries/"><strong>CandlestickSeries</strong></a> <em>A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Category/"><strong>Category</strong></a> <em>One category of a</em> <code>BarSeries</code> <em>or</em><code>RectangleSeries :</code> <em>a value, a name, and a fill color.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ColorBar/"><strong>ColorBar</strong></a> <em>A continuous key that shows how a series'</em> <code>Colormap</code> <em>maps values to colors.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ColorPalette/"><strong>ColorPalette</strong></a> <em>A named set of theme colors shared by QML (via the</em> <code>Colors</code> <em>singleton) and C++ defaults.</em>    </li>
@@ -1514,6 +1546,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1GlowStyle/"><strong>GlowStyle</strong></a> <em>How the shaders draw a</em> <code>Glow</code> <em>halo; see shaders/glow.glsl.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1GlowUniforms/"><strong>GlowUniforms</strong></a> <em>The std140 uniform members of a</em> <code>Glow</code> <em>halo,</em><code>glowColor</code> <em>and</em><code>glowParams</code> <em>, at a 16-byte aligned offset.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1GrabSize/"><strong>GrabSize</strong></a> <em>Sizes of one item grab.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1GrowViewport/"><strong>GrowViewport</strong></a> <em>The viewport of the axis items grow along, which places a baseline the axis cannot show.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1HeatmapGridDimension/"><strong>HeatmapGridDimension</strong></a> <em>One dimension of a heatmap grid:</em> <code>count</code> <em>cells between the edges</em><code>from</code> <em>and</em><code>to</code> <em>.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping/"><strong>HeatmapShaderMapping</strong></a> <em>How heatmap.frag maps an item-local pixel position</em> <em>p</em> <em>to a fractional cell coordinate along one dimension.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1HoverIndexBudget/"><strong>HoverIndexBudget</strong></a> <em>Decides when queried data is worth a hover index.</em>     </li>
@@ -1543,6 +1576,11 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1OutlinedRectangle/"><strong>OutlinedRectangle</strong></a> <em>Item that fills its bounds and outlines them inside its edges.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1OverlayChildren/"><strong>OverlayChildren</strong></a> <em>Objects declared inside an inspection tool in QML.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1PointerTracker/"><strong>PointerTracker</strong></a> <em>Tracks the pointer over a plot from the plot's mouse and hover events.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RecordFrame/"><strong>RecordFrame</strong></a> <em>What a series that draws one record per data point draws in a frame.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1RecordHitIndex/"><strong>RecordHitIndex</strong></a> <em>Finds the drawn record nearest to a pixel position, for series that draw one record per data point.</em>     <ul>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query/"><strong>Query</strong></a> <em>A record lookup around a pixel position.</em>     </li>
+</ul>
+</li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectUbo/"><strong>RectUbo</strong></a> <em>Mirrors the std140 uniform block of rect.vert.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1RectVertexCache/"><strong>RectVertexCache</strong></a> <em>Vertices of a series that draws each rectangle as a quad positioned from a data texture.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay/"><strong>RectangleZoomOverlay</strong></a>     </li>
@@ -1551,6 +1589,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1SelectionRectangle/"><strong>SelectionRectangle</strong></a> <em>Draws the gesture or the selected region of a</em> <a href="../classQAccelPlot_1_1SelectionTool/"><em><strong>SelectionTool</strong></em></a> <em>, clipped to the plot area.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1SeriesEffectList/"><strong>SeriesEffectList</strong></a> <em>The</em> <code>effects</code> <em>list of one series.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1SourceInspection/"><strong>SourceInspection</strong></a> <em>Inspection queries that read a series' own buffer whose records are ordered along one axis.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1StoreTransition/"><strong>StoreTransition</strong></a> <em>Shows the runs of a</em> <code>TransitionRunner</code> <em>as the drawn data points of a</em><code>DataPointStore</code> <em>.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1SummaryAccumulator/"><strong>SummaryAccumulator</strong></a> <em>Running data-point-weighted Y statistics that can be merged across disjoint data point sets.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionFrameInput/"><strong>TransitionFrameInput</strong></a> <em>The two sides of a transition and the steps of its slots at one frame.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionItems/"><strong>TransitionItems</strong></a> <em>Items on one side of a transition,</em> <code>TransitionLayout::stride</code> <em>values each.</em>    </li>
@@ -1592,6 +1631,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PlotSeries_1_1DataPointInput/"><strong>DataPointInput</strong></a> <em>Data points passed to</em> <code>setData()</code> <em>or</em><code>setDataF()</code> <em>, already checked.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PlotSeries_1_1DataPointWording/"><strong>DataPointWording</strong></a> <em>Words used in the warnings about rejected data arguments.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PlotSeries_1_1DataRanges/"><strong>DataRanges</strong></a> <em>Extents of a series in both dimensions.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1PlotSeries_1_1DataUpdate/"><strong>DataUpdate</strong></a> <em>A change of the data points, as passed to</em> <code>updateDataRangeInputs()</code> <em>and</em><code>onDataPointsChanged()</code> <em>.</em>    </li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> <em>The main plot canvas QML item — hosts axes, curves, and a grid.</em>     </li>
@@ -1624,7 +1664,11 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale/"><strong>ArcLengthScale</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1RenderView/"><strong>RenderView</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1Span/"><strong>Span</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BarSeries_1_1BarExtents/"><strong>BarExtents</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BarSeries_1_1Bars/"><strong>Bars</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing/"><strong>AutoSpacing</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1CandlestickSeries_1_1CandleBoxes/"><strong>CandleBoxes</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1CandlestickSeries_1_1PixelBox/"><strong>PixelBox</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1ColorBar_1_1Layout/"><strong>Layout</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1DataPointStore_1_1Compacted/"><strong>Compacted</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1DataPointStore_1_1Origin/"><strong>Origin</strong></a>     </li>

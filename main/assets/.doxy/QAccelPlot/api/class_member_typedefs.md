@@ -9,6 +9,11 @@
 * **ColorFunction** ([**QAccelPlot::Internal::RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md))
 
 
+## d
+
+* **Distance** ([**QAccelPlot::Internal::RecordHitIndex**](classQAccelPlot_1_1Internal_1_1RecordHitIndex.md))
+
+
 ## l
 
 * **Layout** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
@@ -21,6 +26,7 @@
 
 ## s
 
+* **SpanAt** ([**QAccelPlot::Internal::RecordHitIndex**](classQAccelPlot_1_1Internal_1_1RecordHitIndex.md))
 * **Supports** ([**QAccelPlot::Internal::SeriesEffectList**](classQAccelPlot_1_1Internal_1_1SeriesEffectList.md))
 
 

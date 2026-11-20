@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1PlotSeries_1_1DataUpdate" kind="struct" language="C++" prot="protected">
+    <compoundname>QAccelPlot::PlotSeries::DataUpdate</compoundname>
+    <includes local="no">PlotSeries.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1PlotSeries_1_1DataUpdate_1a76393cc559c5bc980481c2eaea47dff9" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8" kindref="member">DataChange</ref></type>
+        <definition>DataChange QAccelPlot::PlotSeries::DataUpdate::change</definition>
+        <argsstring></argsstring>
+        <name>change</name>
+        <qualifiedname>QAccelPlot::PlotSeries::DataUpdate::change</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8ab3f23170be598de0771ac94684114f94" kindref="member">DataChange::Replaced</ref>}</initializer>
+        <briefdescription>
+<para>How the data points changed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="297" column="20" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="297" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1PlotSeries_1_1DataUpdate_1ac76348410d34e1e339dd119e87ca5b16" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::PlotSeries::DataUpdate::previousCount</definition>
+        <argsstring></argsstring>
+        <name>previousCount</name>
+        <qualifiedname>QAccelPlot::PlotSeries::DataUpdate::previousCount</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>The data point count before the change. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="298" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="298" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1PlotSeries_1_1DataUpdate_1ab2c4c286ba0d84f2135bfa72c3f5e88f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::PlotSeries::DataUpdate::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <qualifiedname>QAccelPlot::PlotSeries::DataUpdate::index</qualifiedname>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+<para>The appended or modified data point; -1 for <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8ab3f23170be598de0771ac94684114f94" kindref="member">DataChange::Replaced</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="299" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="299" bodyend="299"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1PlotSeries_1_1DataUpdate_1a77b25312fac4198b64dcd3837a4300c1" prot="public" static="no" mutable="no">
+        <type>const double *</type>
+        <definition>const double* QAccelPlot::PlotSeries::DataUpdate::previousCoordinates</definition>
+        <argsstring></argsstring>
+        <name>previousCoordinates</name>
+        <qualifiedname>QAccelPlot::PlotSeries::DataUpdate::previousCoordinates</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+<para>The <computeroutput>columnCount()</computeroutput> coordinates the modified data point had; <computeroutput>nullptr</computeroutput> unless <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8a35e0c8c0b180c95d4e122e55ed62cc64" kindref="member">DataChange::Modified</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only valid until <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1ab61abad910eae7897710d1d3e66a4084" kindref="member">onDataPointsChanged()</ref></computeroutput> returns. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="303" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="303" bodyend="303"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A change of the data points, as passed to <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a71f6fb14887760e26f7a81b5ab2a455b" kindref="member">updateDataRangeInputs()</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1ab61abad910eae7897710d1d3e66a4084" kindref="member">onDataPointsChanged()</ref></computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="296" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="296" bodyend="304"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1PlotSeries_1_1DataUpdate_1a76393cc559c5bc980481c2eaea47dff9" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries::DataUpdate</scope><name>change</name></member>
+      <member refid="structQAccelPlot_1_1PlotSeries_1_1DataUpdate_1ab2c4c286ba0d84f2135bfa72c3f5e88f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries::DataUpdate</scope><name>index</name></member>
+      <member refid="structQAccelPlot_1_1PlotSeries_1_1DataUpdate_1a77b25312fac4198b64dcd3837a4300c1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries::DataUpdate</scope><name>previousCoordinates</name></member>
+      <member refid="structQAccelPlot_1_1PlotSeries_1_1DataUpdate_1ac76348410d34e1e339dd119e87ca5b16" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries::DataUpdate</scope><name>previousCount</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -58,6 +58,7 @@
 ## s
 
 * **Side** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **Style** ([**QAccelPlot::CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md))
 * **Spacing** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md))
 * **Slot** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
 

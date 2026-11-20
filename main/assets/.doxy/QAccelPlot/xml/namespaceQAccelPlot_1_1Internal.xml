@@ -35,10 +35,14 @@
     <innerclass refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping" prot="public">QAccelPlot::Internal::HeatmapShaderMapping</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension" prot="public">QAccelPlot::Internal::HeatmapGridDimension</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" prot="public">QAccelPlot::Internal::HoverIndexBudget</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex" prot="public">QAccelPlot::Internal::RecordHitIndex</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1RecordFrame" prot="public">QAccelPlot::Internal::RecordFrame</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1RectVertexCache" prot="public">QAccelPlot::Internal::RectVertexCache</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList" prot="public">QAccelPlot::Internal::SeriesEffectList</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1StoreTransition" prot="public">QAccelPlot::Internal::StoreTransition</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1OpacitySegment" prot="public">QAccelPlot::Internal::OpacitySegment</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline" prot="public">QAccelPlot::Internal::OpacityTimeline</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1GrowViewport" prot="public">QAccelPlot::Internal::GrowViewport</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1TransitionLayout" prot="public">QAccelPlot::Internal::TransitionLayout</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1TransitionStep" prot="public">QAccelPlot::Internal::TransitionStep</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1ItemTiming" prot="public">QAccelPlot::Internal::ItemTiming</innerclass>
@@ -929,6 +933,240 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" line="41" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" declline="41" declcolumn="6"/>
       </memberdef>
+      <memberdef kind="function" id="InterleavedData_8hpp_1a04c1dac0fd859aafe9db4a196742abcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Lists</declname>
+            <defname>Lists</defname>
+          </param>
+        </templateparamlist>
+        <type>std::size_t</type>
+        <definition>std::size_t QAccelPlot::Internal::shortestLength</definition>
+        <argsstring>(const Lists &amp;... lists)</argsstring>
+        <name>shortestLength</name>
+        <qualifiedname>QAccelPlot::Internal::shortestLength</qualifiedname>
+        <param>
+          <type>const Lists &amp;...</type>
+          <declname>lists</declname>
+        </param>
+        <briefdescription>
+<para>Returns the size of the shortest of <emphasis>lists</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/InterleavedData.hpp" line="18" column="25" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/InterleavedData.hpp" bodystart="18" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="InterleavedData_8hpp_1a5c00e6e305b51d11c3862015b756b88d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; QAccelPlot::Internal::interleave</definition>
+        <argsstring>(std::initializer_list&lt; std::reference_wrapper&lt; const QList&lt; qreal &gt; &gt; &gt; columns)</argsstring>
+        <name>interleave</name>
+        <qualifiedname>QAccelPlot::Internal::interleave</qualifiedname>
+        <param>
+          <type>std::initializer_list&lt; std::reference_wrapper&lt; const QList&lt; qreal &gt; &gt; &gt;</type>
+          <declname>columns</declname>
+        </param>
+        <briefdescription>
+<para>Interleaves the first values of <emphasis>columns</emphasis>, as many as the shortest column holds, into data points of one value per column. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/InterleavedData.hpp" line="24" column="13" declfile="QAccelPlot/src/QAccelPlot/series/internal/InterleavedData.hpp" declline="24" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="InterleavedData_8hpp_1a09814d5d0de96347aac212f77ba878a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; QAccelPlot::Internal::interleave</definition>
+        <argsstring>(std::initializer_list&lt; std::reference_wrapper&lt; const std::vector&lt; double &gt; &gt; &gt; columns)</argsstring>
+        <name>interleave</name>
+        <qualifiedname>QAccelPlot::Internal::interleave</qualifiedname>
+        <param>
+          <type>std::initializer_list&lt; std::reference_wrapper&lt; const std::vector&lt; double &gt; &gt; &gt;</type>
+          <declname>columns</declname>
+        </param>
+        <briefdescription>
+<para><computeroutput>std::vector</computeroutput> overload of <computeroutput>interleave</computeroutput>(<emphasis>columns</emphasis>). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/InterleavedData.hpp" line="26" column="13" declfile="QAccelPlot/src/QAccelPlot/series/internal/InterleavedData.hpp" declline="26" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="RecordNode_8hpp_1af55a32b89f6994b0e3447c03b60039b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGGeometryNode *</type>
+        <definition>QSGGeometryNode * QAccelPlot::Internal::createRecordNode</definition>
+        <argsstring>(const QSGGeometry::AttributeSet &amp;attributes, QSGMaterial *material)</argsstring>
+        <name>createRecordNode</name>
+        <qualifiedname>QAccelPlot::Internal::createRecordNode</qualifiedname>
+        <param>
+          <type>const QSGGeometry::AttributeSet &amp;</type>
+          <declname>attributes</declname>
+        </param>
+        <param>
+          <type>QSGMaterial *</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+<para>Returns an empty triangle node of <emphasis>attributes</emphasis> that owns its geometry and <emphasis>material</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For series whose shader derives every vertex from its index and reads the data points from the data texture. The vertex buffer is in static GPU memory, as it only changes with <computeroutput>reservedRecordCount()</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="37" column="17" declfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" declline="37" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="RecordNode_8hpp_1a2cb3f8ec97e8efb4aa15e0adc13f7ba1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::reservedRecordCount</definition>
+        <argsstring>(int drawnCount)</argsstring>
+        <name>reservedRecordCount</name>
+        <qualifiedname>QAccelPlot::Internal::reservedRecordCount</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>drawnCount</declname>
+        </param>
+        <briefdescription>
+<para>Returns how many data points the vertex buffer of a record node holds room for, given <emphasis>drawnCount</emphasis> drawn ones. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is the next power of two, at least 256, so appending one data point at a time reallocates the buffer only when the count crosses one. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="43" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" declline="43" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="RecordNode_8hpp_1a5c3cf85745c776e4aaf84dc49e513a14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::recordFrameDrawn</definition>
+        <argsstring>(const RecordFrame &amp;frame, bool &amp;softwareWarned)</argsstring>
+        <name>recordFrameDrawn</name>
+        <qualifiedname>QAccelPlot::Internal::recordFrameDrawn</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1RecordFrame" kindref="compound">RecordFrame</ref> &amp;</type>
+          <declname>frame</declname>
+        </param>
+        <param>
+          <type>bool &amp;</type>
+          <declname>softwareWarned</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether <emphasis>frame</emphasis> is drawn; warns once through <emphasis>softwareWarned</emphasis> when the backend cannot run custom shaders. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="46" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="RecordNode_8hpp_1a716706cf9384a714eeea32835039cf06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::allocateRecordVertices</definition>
+        <argsstring>(QSGGeometryNode &amp;node, const RecordFrame &amp;frame)</argsstring>
+        <name>allocateRecordVertices</name>
+        <qualifiedname>QAccelPlot::Internal::allocateRecordVertices</qualifiedname>
+        <param>
+          <type>QSGGeometryNode &amp;</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1RecordFrame" kindref="compound">RecordFrame</ref> &amp;</type>
+          <declname>frame</declname>
+        </param>
+        <briefdescription>
+<para>Sizes the vertex buffer of <emphasis>node</emphasis> for <computeroutput>reservedRecordCount()</computeroutput> records of <emphasis>frame</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="49" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" declline="49" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="RecordNode_8hpp_1a1fece270e96bd9e6bb5d2809f1fceff2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::uploadRecordData</definition>
+        <argsstring>(DataTextureMaterial &amp;material, const RecordFrame &amp;frame, const DataPointStore &amp;store, std::uint64_t &amp;uploadedRevision, bool newMaterial)</argsstring>
+        <name>uploadRecordData</name>
+        <qualifiedname>QAccelPlot::Internal::uploadRecordData</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1DataTextureMaterial" kindref="compound">DataTextureMaterial</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1RecordFrame" kindref="compound">RecordFrame</ref> &amp;</type>
+          <declname>frame</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1DataPointStore" kindref="compound">DataPointStore</ref> &amp;</type>
+          <declname>store</declname>
+        </param>
+        <param>
+          <type>std::uint64_t &amp;</type>
+          <declname>uploadedRevision</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>newMaterial</declname>
+        </param>
+        <briefdescription>
+<para>Uploads the render data of <emphasis>store</emphasis> to <emphasis>material</emphasis> unless <emphasis>uploadedRevision</emphasis> is its render revision. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Set <emphasis>newMaterial</emphasis> for a material that has never been uploaded to. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="54" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" declline="54" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="RecordNode_8hpp_1ab6cb51fb03ac0df1b42cee465e6a8560" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Material</type>
+          </param>
+          <param>
+            <type>typename UpdateMaterial</type>
+          </param>
+        </templateparamlist>
+        <type>QSGGeometryNode *</type>
+        <definition>QSGGeometryNode * QAccelPlot::Internal::updateRecordNode</definition>
+        <argsstring>(QSGNode *oldNode, const RecordFrame &amp;frame, const DataPointStore &amp;store, std::uint64_t &amp;uploadedRevision, UpdateMaterial &amp;&amp;updateMaterial)</argsstring>
+        <name>updateRecordNode</name>
+        <qualifiedname>QAccelPlot::Internal::updateRecordNode</qualifiedname>
+        <param>
+          <type>QSGNode *</type>
+          <declname>oldNode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1RecordFrame" kindref="compound">RecordFrame</ref> &amp;</type>
+          <declname>frame</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1DataPointStore" kindref="compound">DataPointStore</ref> &amp;</type>
+          <declname>store</declname>
+        </param>
+        <param>
+          <type>std::uint64_t &amp;</type>
+          <declname>uploadedRevision</declname>
+        </param>
+        <param>
+          <type>UpdateMaterial &amp;&amp;</type>
+          <declname>updateMaterial</declname>
+        </param>
+        <briefdescription>
+<para>Returns the node that draws <emphasis>frame</emphasis> with a <emphasis>Material</emphasis>, reusing <emphasis>oldNode</emphasis>, or <computeroutput>nullptr</computeroutput> when <emphasis>frame</emphasis> is not drawn. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Deletes <emphasis>oldNode</emphasis> when returning <computeroutput>nullptr</computeroutput>. Otherwise sizes the vertex buffer, uploads the render data of <emphasis>store</emphasis> when it changed since <emphasis>uploadedRevision</emphasis>, and passes the material to <emphasis>updateMaterial</emphasis> to set its uniforms. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="61" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" bodystart="61" bodyend="76"/>
+      </memberdef>
       <memberdef kind="function" id="RectGeometry_8hpp_1afd040a5c9d2313b9e7f773a54bcf9c5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
         <definition>qreal QAccelPlot::Internal::edgePixel</definition>
@@ -951,7 +1189,7 @@
 <para>Maps rectangle edge <emphasis>value</emphasis> on <emphasis>axis</emphasis> to item pixels along an item side <emphasis>length</emphasis> pixels long. </para>
         </briefdescription>
         <detaileddescription>
-<para>Infinite edges, and non-positive edges on a log axis, map to infinity on the matching side, as rect_geometry.glsl extends them past the plot edge. </para>
+<para>Infinite edges, and non-positive edges on a log axis, map to infinity on the matching side, as axis_pixel.glsl extends them past the plot edge. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -979,11 +1217,42 @@
 <para>Returns the pixel span between edges <emphasis>a</emphasis> and <emphasis>b</emphasis>, widened around its center to at least <emphasis>minimumSize</emphasis>. </para>
         </briefdescription>
         <detaileddescription>
-<para>Matches <computeroutput>widenedSpan()</computeroutput> in rect_geometry.glsl, so hit tests use the drawn size. </para>
+<para>Matches <computeroutput>widenedSpan()</computeroutput> in axis_pixel.glsl, so hit tests use the drawn size. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" line="26" column="11" declfile="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" declline="26" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="RectGeometry_8hpp_1a7417b8e192c478fef96635a5d4bef01c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::distanceToBox</definition>
+        <argsstring>(qreal x, qreal y, const std::pair&lt; qreal, qreal &gt; &amp;xs, const std::pair&lt; qreal, qreal &gt; &amp;ys)</argsstring>
+        <name>distanceToBox</name>
+        <qualifiedname>QAccelPlot::Internal::distanceToBox</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const std::pair&lt; qreal, qreal &gt; &amp;</type>
+          <declname>xs</declname>
+        </param>
+        <param>
+          <type>const std::pair&lt; qreal, qreal &gt; &amp;</type>
+          <declname>ys</declname>
+        </param>
+        <briefdescription>
+<para>Returns the pixel distance from (<emphasis>x</emphasis>, <emphasis>y</emphasis>) to the box spanning <emphasis>xs</emphasis> and <emphasis>ys</emphasis>; 0 inside. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" line="29" column="7" declfile="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" declline="29" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1aa0d65f61e140a98b727f1649918c3566" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -998,7 +1267,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="18" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="18" declcolumn="6"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="20" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="20" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1ac34e08413bb3b53ff8e1154bf2c494dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1017,7 +1286,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="21" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="21" declcolumn="6"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="23" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="23" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1aa6ae5dce39f0d0f413c54cf6cf325998" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1037,7 +1306,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="28" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="28" declcolumn="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="30" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="30" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1a1115a2b55eeca9e9b1f936432726572f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1065,7 +1334,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="35" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="35" declcolumn="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="37" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="37" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1a4d22277096776b7ab88ec04d5a44ae88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1084,7 +1353,50 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="38" column="7" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="38" declcolumn="7"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="40" column="7" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="40" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1a0dc34270b91cbc5c5a63d964fcd721dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::assignNonNegative</definition>
+        <argsstring>(qreal &amp;member, qreal requested)</argsstring>
+        <name>assignNonNegative</name>
+        <qualifiedname>QAccelPlot::Internal::assignNonNegative</qualifiedname>
+        <param>
+          <type>qreal &amp;</type>
+          <declname>member</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>requested</declname>
+        </param>
+        <briefdescription>
+<para>Stores <emphasis>requested</emphasis>, clamped to 0 or more, in <emphasis>member</emphasis> and returns <computeroutput>true</computeroutput> when that changes it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A non-finite <emphasis>requested</emphasis>, or one nearly equal to <emphasis>member</emphasis>, leaves <emphasis>member</emphasis> unchanged. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="45" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="45" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1ae0d3157a533e0d97e23a2829017f80c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1GrowViewport" kindref="compound">GrowViewport</ref></type>
+        <definition>GrowViewport QAccelPlot::Internal::growViewport</definition>
+        <argsstring>(const Axis *valueAxis)</argsstring>
+        <name>growViewport</name>
+        <qualifiedname>QAccelPlot::Internal::growViewport</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+          <declname>valueAxis</declname>
+        </param>
+        <briefdescription>
+<para>Returns the viewport of <emphasis>valueAxis</emphasis> that places grow baselines; without an axis, both edges are 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="48" column="14" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="48" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1a4415b1f9588a64676a5ce8c4726806d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -1108,7 +1420,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="45" column="8" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="45" declcolumn="8"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="55" column="8" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="55" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="StepPath_8hpp_1a6f2f7ff4a80785b5d31e9313e7434119" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>int</type>
@@ -1252,6 +1564,30 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityAnimations.hpp" line="24" column="17" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityAnimations.hpp" declline="24" declcolumn="17"/>
       </memberdef>
+      <memberdef kind="function" id="TransitionFrame_8hpp_1ab83af445244128d79d05b9802c67e6a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::placeGrowBaseline</definition>
+        <argsstring>(double baseline, const GrowViewport &amp;viewport)</argsstring>
+        <name>placeGrowBaseline</name>
+        <qualifiedname>QAccelPlot::Internal::placeGrowBaseline</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>baseline</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1GrowViewport" kindref="compound">GrowViewport</ref> &amp;</type>
+          <declname>viewport</declname>
+        </param>
+        <briefdescription>
+<para>Returns the value that items drawn from <emphasis>baseline</emphasis> grow from in <emphasis>viewport</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is <emphasis>baseline</emphasis>, or the viewport edge the items are drawn from when the axis cannot place it: an infinite baseline, or one at or below 0 on a log axis. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="37" column="8" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="37" declcolumn="8"/>
+      </memberdef>
       <memberdef kind="function" id="TransitionFrame_8hpp_1a0474e802d0ab252f6561de68613182a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1ItemTiming" kindref="compound">ItemTiming</ref></type>
         <definition>ItemTiming QAccelPlot::Internal::itemTiming</definition>
@@ -1273,7 +1609,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="54" column="12" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="54" declcolumn="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="72" column="12" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="72" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="TransitionFrame_8hpp_1aa5c8dd3b8a966dda22ff7b08268aba1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1301,7 +1637,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="116" column="6" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="116" declcolumn="6"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="134" column="6" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="134" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="TransitionFrame_8hpp_1a2dab1e95ec43120c0cba614675d9b155" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1TransitionSlots" kindref="compound">TransitionSlots</ref></type>
@@ -1341,7 +1677,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="124" column="17" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="124" declcolumn="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="142" column="17" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="142" declcolumn="17"/>
       </memberdef>
       <memberdef kind="function" id="TransitionFrame_8hpp_1a79a1f08e5675847699c9a6f8760afba7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1371,7 +1707,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="142" column="5" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="142" declcolumn="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="160" column="5" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="160" declcolumn="5"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

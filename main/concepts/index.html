@@ -593,6 +593,8 @@
       
         
       
+        
+      
     
     
     
@@ -1054,6 +1056,34 @@
     
   
     Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
   
 
     
@@ -1723,6 +1753,10 @@ can draw lines along both edges.</p>
 <p><code>ErrorBarSeries</code> draws a capped line from a low to a high bound at each data
 point, along the Y axis or, with <code>orientation: Qt.Horizontal</code>, the X axis. It
 stores <code>(x, y, low, high)</code> quadruples and does not draw the values.</p>
+<p><code>CandlestickSeries</code> draws the open, high, low, and close of each data point as
+a candle: a body over a wick, or an OHLC bar. It stores
+<code>(x, open, high, low, close)</code> quintuples; a candle's width is a fraction of the
+spacing between candles.</p>
 <p><code>RectangleSeries</code> renders many data-space rectangles in one item, such as event
 spans and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color.</p>
@@ -1767,6 +1801,13 @@ series beneath. The other hover properties depend on what the series draws:</p>
 <td><code>Colors.dark.hover</code></td>
 </tr>
 <tr>
+<td><code>CandlestickSeries</code></td>
+<td>The nearest candle within <code>hoverRadius</code></td>
+<td>Yes</td>
+<td>4</td>
+<td>No highlight</td>
+</tr>
+<tr>
 <td><code>BarSeries</code>, <code>RectangleSeries</code></td>
 <td>A bar or rectangle</td>
 <td>Yes</td>
@@ -1789,6 +1830,7 @@ on a line drawn over another series leaves hover to the series beneath.</p>
 dash patterns, transitions, auto-ranging, and hover hit testing. For the other
 series, see <a href="../cookbook/bands/#invalid-data-points">bands</a>,
 <a href="../cookbook/error-bars/#invalid-data-points">error bars</a>,
+<a href="../cookbook/candlesticks/#invalid-data-points">candlesticks</a>,
 <a href="../cookbook/point-clouds/#invalid-points">point clouds</a>, and
 <a href="../cookbook/bar-charts/#invalid-bars">bars</a>.</p>
 <p>A data point is <strong>invalid</strong> when its X or Y coordinate is <code>NaN</code> or <code>±Inf</code>, or when a

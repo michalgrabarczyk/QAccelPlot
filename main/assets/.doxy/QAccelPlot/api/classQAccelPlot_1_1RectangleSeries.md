@@ -310,7 +310,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecord**](#function-inspectionrecord) (int index) override const<br>_Returns the rectangle at_ _index_ _with its edges and category._ |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecordAt**](#function-inspectionrecordat) (const QPointF & position) override const<br>_Returns the rectangle drawn at the series-local_ _position_ _._ |
 | virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () override<br>_Repaints with the coordinates mapped for the new scale._  |
-| virtual void | [**onDataPointsChanged**](#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) override<br>_Refreshes the vertices, the hover index, and the count after the rectangles changed._  |
+| virtual void | [**onDataPointsChanged**](#function-ondatapointschanged) (const [**DataUpdate**](structQAccelPlot_1_1PlotSeries_1_1DataUpdate.md) & dataUpdate) override<br>_Refreshes the vertices, the hover index, and the count after the rectangles changed._  |
 | virtual bool | [**recordInspectionSupported**](#function-recordinspectionsupported) () override const<br>_Returns true: rectangles are inspected as records._  |
 |  QSGNode \* | [**updatePaintNode**](#function-updatepaintnode) (QSGNode \* oldNode, UpdatePaintNodeData \*) override<br> |
 
@@ -322,11 +322,12 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md#function-plotseries-22) ([**DataPointStore::Layout**](structQAccelPlot_1_1DataPointStore_1_1Layout.md) layout, [**DataPointWording**](structQAccelPlot_1_1PlotSeries_1_1DataPointWording.md) wording, QQuickItem \* parent) <br>_Creates a series whose data points have_ _layout_ _;__wording_ _names them in warnings._ |
-|  void | [**appendDataPoint**](classQAccelPlot_1_1PlotSeries.md#function-appenddatapoint) (const double \* coordinates) <br>_Appends one double data point and widens the data ranges by its valid coordinates._  |
+|  void | [**appendDataPoint**](classQAccelPlot_1_1PlotSeries.md#function-appenddatapoint) (const double \* coordinates) <br>_Appends one double data point and widens the data ranges by its_ `dataPointExtents()` _._ |
 | virtual void | [**applyDataPoints**](classQAccelPlot_1_1PlotSeries.md#function-applydatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Applies data points passed to_ `setData()` _or_`setDataF()` _._ |
 |  void | [**classBegin**](classQAccelPlot_1_1PlotSeries.md#function-classbegin) () override<br>_Holds back the warnings about ignored effects while the component loads._  |
 |  void | [**componentComplete**](classQAccelPlot_1_1PlotSeries.md#function-componentcomplete) () override<br>_Reports ignored effects once the component is complete._  |
 | virtual [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) | [**computeDataRanges**](classQAccelPlot_1_1PlotSeries.md#function-computedataranges) () const<br>_Scans the records for their extents. The default implementation scans the data points._  |
+| virtual [**DataPointStore::Extents**](structQAccelPlot_1_1DataPointStore_1_1Extents.md) | [**dataPointExtents**](classQAccelPlot_1_1PlotSeries.md#function-datapointextents) (int index) const<br>_Returns the extents stored data point_ _index_ _adds to the data ranges._ |
 | virtual int | [**dataPointValueCount**](classQAccelPlot_1_1PlotSeries.md#function-datapointvaluecount) () const<br>_Returns the number of values per data point that_ `setData()` _and_`setDataF()` _take._ |
 |  [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) & | [**dataPoints**](classQAccelPlot_1_1PlotSeries.md#function-datapoints-12) () <br>_Returns the data points of the series._  |
 |  const [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) & | [**dataPoints**](classQAccelPlot_1_1PlotSeries.md#function-datapoints-22) () const<br>_Returns the data points of the series._  |
@@ -335,7 +336,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**extendXDataRange**](classQAccelPlot_1_1PlotSeries.md#function-extendxdatarange) (qreal x) <br>_Widens the X extent to include_ _x_ _and notifies the bound axes._ |
 |  void | [**extendYDataRange**](classQAccelPlot_1_1PlotSeries.md#function-extendydatarange) (qreal y) <br>_Widens the Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
 | virtual bool | [**inspectionAvailable**](classQAccelPlot_1_1PlotSeries.md#function-inspectionavailable) () const<br>_Returns false while the records are ambiguous, such as during a data transition. Default: true._  |
-|  void | [**inspectionDataChanged**](classQAccelPlot_1_1PlotSeries.md#function-inspectiondatachanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change=DataChange::Replaced) <br>_Advances the data revision and refreshes the data queries. Call after every accepted record change._  |
+|  void | [**inspectionDataChanged**](classQAccelPlot_1_1PlotSeries.md#function-inspectiondatachanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change=DataChange::Replaced, int index=-1) <br>_Advances the data revision and refreshes the data queries. Call after every accepted record change._  |
 | virtual [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**inspectionDataPointAt**](classQAccelPlot_1_1PlotSeries.md#function-inspectiondatapointat) (const QPointF & position) const<br>_Returns the record drawn at the series-local_ _position_ _as a data point. Default: unsupported._ |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecord**](classQAccelPlot_1_1PlotSeries.md#function-inspectionrecord) (int index) const<br>_Returns the native record at_ _index_ _for series that are not plain XY series. Default: unsupported._ |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecordAt**](classQAccelPlot_1_1PlotSeries.md#function-inspectionrecordat) (const QPointF & position) const<br>_Returns the native record drawn at the series-local_ _position_ _. Default: unsupported._ |
@@ -345,10 +346,10 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**itemChange**](classQAccelPlot_1_1PlotSeries.md#function-itemchange) (ItemChange change, const ItemChangeData & value) override<br>_Follows the window, whose frames refresh the effects._  |
 |  bool | [**logScaleX**](classQAccelPlot_1_1PlotSeries.md#function-logscalex) () const<br>_Returns whether the horizontal axis is logarithmic; false without an axis._  |
 |  bool | [**logScaleY**](classQAccelPlot_1_1PlotSeries.md#function-logscaley) () const<br>_Returns whether the vertical axis is logarithmic; false without an axis._  |
-|  void | [**notifyDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _,_`countChanged()` _, data queries, and a repaint._ |
+|  void | [**notifyDataPointsReplaced**](classQAccelPlot_1_1PlotSeries.md#function-notifydatapointsreplaced) (int previousCount) <br>_Finishes replacing all data points, after a series stored the new ones._  |
 | virtual void | [**onAxisRangeChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisrangechanged) () <br>_Called when the viewport of a bound axis changes. The default implementation schedules a repaint._  |
 | virtual void | [**onAxisScaleChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
-| virtual void | [**onDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Called after the data points changed, before the data queries are refreshed. The default does nothing._  |
+| virtual void | [**onDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-ondatapointschanged) (const [**DataUpdate**](structQAccelPlot_1_1PlotSeries_1_1DataUpdate.md) & dataUpdate) <br>_Called after the data ranges reflect a change of the data points, before the data queries are refreshed. The default does nothing._  |
 | virtual bool | [**positionInspectionSupported**](classQAccelPlot_1_1PlotSeries.md#function-positioninspectionsupported) () const<br>_Returns whether_ `inspectionDataPointAt()` _matches records drawn as areas, such as heatmap cells. Default: false._ |
 | virtual bool | [**recordInspectionSupported**](classQAccelPlot_1_1PlotSeries.md#function-recordinspectionsupported) () const<br>_Returns whether_ `inspectionRecord()` _and_`inspectionRecordAt()` _answer for this series. Default: false._ |
 |  void | [**replaceDataPoint**](classQAccelPlot_1_1PlotSeries.md#function-replacedatapoint) (int index, const double \* coordinates) <br>_Replaces stored data point_ _index_ _with the double__coordinates_ _._ |
@@ -358,6 +359,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**storeDataPoints**](classQAccelPlot_1_1PlotSeries.md#function-storedatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Stores_ _input_ _as the data points and finishes the change._ |
 |  void | [**supportHover**](classQAccelPlot_1_1PlotSeries.md#function-supporthover) () <br>_Makes the series accept hover events while_ `hoverEnabled` _is_`true` _._ |
 | virtual bool | [**supportsEffect**](classQAccelPlot_1_1PlotSeries.md#function-supportseffect) (const [**SeriesEffect**](classQAccelPlot_1_1SeriesEffect.md) & effect) const<br>_Returns whether the series draws_ _effect_ _. The default draws none._ |
+| virtual bool | [**updateDataRangeInputs**](classQAccelPlot_1_1PlotSeries.md#function-updatedatarangeinputs) (const [**DataUpdate**](structQAccelPlot_1_1PlotSeries_1_1DataUpdate.md) & dataUpdate) <br>_Updates what_ `computeDataRanges()` _and_`dataPointExtents()` _read after the data points changed._ |
 |  void | [**updateRenderCapacity**](classQAccelPlot_1_1PlotSeries.md#function-updaterendercapacity) (int capacity, int recordCount, [**CapacityOverflow**](classQAccelPlot_1_1PlotSeries.md#enum-capacityoverflow) overflow=CapacityOverflow::DropsExcess) <br>_Stores_ _capacity_ _, the number of records the GPU buffers hold, and warns when__recordCount_ _newly exceeds it._ |
 |  bool | [**validateDataPointIndex**](classQAccelPlot_1_1PlotSeries.md#function-validatedatapointindex) (int index) const<br>_Returns whether_ _index_ _is the index of a stored data point; warns otherwise._ |
 |  bool | [**validateDataSize**](classQAccelPlot_1_1PlotSeries.md#function-validatedatasize) (std::size\_t valueCount, int count, bool floatData, int valuesPerDataPoint=0) const<br>_Returns whether_ _valueCount_ _values hold__count_ _data points; warns otherwise._ |
@@ -1379,8 +1381,7 @@ Implements [*QAccelPlot::PlotSeries::onAxisScaleChanged*](classQAccelPlot_1_1Plo
 _Refreshes the vertices, the hover index, and the count after the rectangles changed._ 
 ```C++
 virtual void QAccelPlot::RectangleSeries::onDataPointsChanged (
-    DataChange change,
-    int previousCount
+    const DataUpdate & dataUpdate
 ) override
 ```
 

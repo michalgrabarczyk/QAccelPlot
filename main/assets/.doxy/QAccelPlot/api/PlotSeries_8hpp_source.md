@@ -66,7 +66,7 @@ class PlotSeries : public QQuickItem {
     Q_PROPERTY(QQmlListProperty<SeriesEffect> effects READ effects)
 
 public:
-    enum class LegendSymbol { Line, Fill, Marker };
+    enum class LegendSymbol { Line, Fill, Marker, Candle };
     Q_ENUM(LegendSymbol)
 
     
@@ -174,6 +174,13 @@ protected:
         Modified, 
     };
 
+    struct DataUpdate {
+        DataChange change{DataChange::Replaced}; 
+        int previousCount{0};                    
+        int index{-1};                           
+        const double* previousCoordinates{nullptr};
+    };
+
     DataPointStore& dataPoints();
     const DataPointStore& dataPoints() const;
     bool logScaleX() const;
@@ -183,10 +190,12 @@ protected:
     void appendDataPoint(const double* coordinates);
     bool validateDataPointIndex(int index) const;
     void replaceDataPoint(int index, const double* coordinates);
-    void notifyDataPointsChanged(DataChange change, int previousCount);
-    virtual void onDataPointsChanged(DataChange change, int previousCount);
+    virtual DataPointStore::Extents dataPointExtents(int index) const;
+    void notifyDataPointsReplaced(int previousCount);
+    virtual bool updateDataRangeInputs(const DataUpdate& dataUpdate);
+    virtual void onDataPointsChanged(const DataUpdate& dataUpdate);
 
-    void inspectionDataChanged(DataChange change = DataChange::Replaced);
+    void inspectionDataChanged(DataChange change = DataChange::Replaced, int index = -1);
     void invalidateInspection();
     virtual Internal::InspectionSource inspectionSource() const;
     virtual bool inspectionAvailable() const;
@@ -237,6 +246,10 @@ private:
     void ensureDataRanges() const;
     // Returns whether replacing a data point of extents \a previous with one of extents \a replaced could shrink the data ranges.
     bool replacementMayShrinkDataRanges(const DataPointStore::Extents& previous, const DataPointStore::Extents& replaced) const;
+    // Brings everything that depends on the data points up to date after dataUpdate, in one fixed order.
+    // previousExtents are the dataPointExtents() a modified data point had.
+    void finishDataChange(const DataUpdate& dataUpdate, const DataPointStore::Extents& previousExtents = {});
+    void widenDataRanges(const DataPointStore::Extents& extents);
     void reportDataRangesChanged() const;
     void deliverTopmostHover(QHoverEvent* event);
     bool coveredBySeriesAbove(const QPointF& position) const;

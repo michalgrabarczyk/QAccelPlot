@@ -446,6 +446,8 @@
       
         
       
+        
+      
     
     
     
@@ -907,6 +909,34 @@
     
   
     Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
   
 
     
@@ -1497,7 +1527,7 @@
 <a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">supportsEffect</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">SeriesEffect</span><span class="o">&amp;</span><span class="w"> </span><span class="n">effect</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
 <a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">applyDataPoints</span><span class="p">(</span><span class="n">DataPointInput</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">input</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
 <a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onAxisScaleChanged</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
-<a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onDataPointsChanged</span><span class="p">(</span><span class="n">DataChange</span><span class="w"> </span><span class="n">change</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">previousCount</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onDataPointsChanged</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">DataUpdate</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dataUpdate</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
 <a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>
 <a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a><span class="nl">signals</span><span class="p">:</span>
 <a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">colorChanged</span><span class="p">();</span>

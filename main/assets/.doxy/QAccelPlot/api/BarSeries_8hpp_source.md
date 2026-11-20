@@ -31,6 +31,7 @@
 
 #include <array>
 #include <memory>
+#include <optional>
 #include <vector>
 
 namespace QAccelPlot {
@@ -112,6 +113,9 @@ public:
 
     Q_INVOKABLE void setData(const QVariantList& bars);
 
+    Q_INVOKABLE void replaceData(int index, qreal position, qreal value);
+    Q_INVOKABLE void replaceData(int index, qreal position, qreal value, const QVariant& category);
+
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
 
     void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
@@ -166,8 +170,9 @@ protected:
     int dataPointValueCount() const override;
     void onAxisScaleChanged() override;
     DataRanges computeDataRanges() const override;
+    DataPointStore::Extents dataPointExtents(int index) const override;
     bool supportsEffect(const SeriesEffect& effect) const override;
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
     std::optional<ValueSpan> scanValueRange() const override;
 
 private:
@@ -179,6 +184,16 @@ private:
         int stride{2};
     };
 
+    // The extents one bar adds to the data ranges along the position and value axes.
+    struct BarExtents {
+        std::optional<DataPointStore::Extent> position;
+        std::optional<DataPointStore::Extent> value;
+    };
+
+    // Returns whether bar \a index can be replaced by replaceData(); warns otherwise.
+    bool validateReplacedBar(int index) const;
+    // Replaces bar \a index, and its category when \a category is set.
+    void replaceBar(int index, qreal position, qreal value, std::optional<int> category);
     void onCategoriesChanged();
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount, int barValueCount = 2) const;
     // Switches between (position, value) and (from, to, value) bars; dropping the bars when it changes.
@@ -238,6 +253,8 @@ private:
     void ensureSpatialGrid() const;
     // Builds the vertices of the first \a barCount of the drawn bars.
     void buildVertexCache(int barCount);
+    // Returns the extents bar \a index adds to the data ranges; none for a bar that is not drawn.
+    BarExtents barExtents(int index, bool logPosition, bool logValue) const;
 
     Qt::Orientation orientation_{Qt::Vertical};
     qreal barWidth_{0.8};

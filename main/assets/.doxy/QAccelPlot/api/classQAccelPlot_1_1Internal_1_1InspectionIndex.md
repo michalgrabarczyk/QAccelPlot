@@ -68,6 +68,7 @@ _Immutable k-d tree over the valid data points of a series, with their order alo
 | ---: | :--- |
 |  bool | [**build**](#function-build) (std::vector&lt; [**Point**](structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Point.md) &gt; && points, bool logX, bool logY, const std::atomic\_bool & cancelled) <br>_Builds the tree from_ _points_ _; returns false when__cancelled_ _was set meanwhile._ |
 |  void | [**collect**](#function-collect) (const [**InspectionBounds**](structQAccelPlot_1_1Internal_1_1InspectionBounds.md) & bounds, int offset, int limit, QList&lt; int &gt; & indices) const<br> |
+|  bool | [**movePoint**](#function-movepoint) (int index, double x, double y) <br>_Moves the indexed data point with source_ _index_ _to__x_ _,__y_ _in place._ |
 |  [**InspectionHit**](structQAccelPlot_1_1Internal_1_1InspectionHit.md) | [**nearest**](#function-nearest) (const [**InspectionMetric**](structQAccelPlot_1_1Internal_1_1InspectionMetric.md) & metric, const QPointF & position, double radius) const<br> |
 |  [**InspectionHit**](structQAccelPlot_1_1Internal_1_1InspectionHit.md) | [**nearestAlong**](#function-nearestalong) (const [**InspectionMetric**](structQAccelPlot_1_1Internal_1_1InspectionMetric.md) & metric, InspectionAxis axis, double pixel, double radius) const<br>_Returns the data point nearest to_ _pixel_ _along__axis_ _._ |
 |  [**InspectionNeighbors**](structQAccelPlot_1_1Internal_1_1InspectionNeighbors.md) | [**neighbors**](#function-neighbors) (InspectionAxis axis, double value) const<br>_Returns the data points on either side of_ _value_ _on__axis_ _._ |
@@ -140,6 +141,29 @@ void QAccelPlot::Internal::InspectionIndex::collect (
 
 
 
+
+<hr>
+
+
+
+
+### function movePoint {#function-movepoint}
+
+_Moves the indexed data point with source_ _index_ _to__x_ _,__y_ _in place._
+```C++
+bool QAccelPlot::Internal::InspectionIndex::movePoint (
+    int index,
+    double x,
+    double y
+) 
+```
+
+
+
+Node bounds and summaries along the point's path are recomputed, so queries stay exact; the tree may only get less balanced. Returns false when the data point is not indexed. 
+
+
+        
 
 <hr>
 

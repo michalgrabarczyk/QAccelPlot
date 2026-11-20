@@ -54,7 +54,7 @@ private:
     friend class Axis;
     friend class PlotView;
 
-    explicit PlotMouseEvent(const QSinglePointEvent& event);
+    void reset(const QSinglePointEvent& event);
 
     Qt::MouseButton button_{Qt::NoButton};
     Qt::MouseButtons buttons_{Qt::NoButton};

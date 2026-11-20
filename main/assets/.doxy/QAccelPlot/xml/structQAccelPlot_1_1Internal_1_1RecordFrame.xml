@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1RecordFrame" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::RecordFrame</compoundname>
+    <includes local="no">RecordNode.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1RecordFrame_1afff5fe8f6a9ec3637b1c9f56ef501839" prot="public" static="no" mutable="no">
+        <type>QQuickWindow *</type>
+        <definition>QQuickWindow* QAccelPlot::Internal::RecordFrame::window</definition>
+        <argsstring></argsstring>
+        <name>window</name>
+        <qualifiedname>QAccelPlot::Internal::RecordFrame::window</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+<para>Window the series renders in. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="24" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1RecordFrame_1a7d04a52390d625271c80cbd4e42e65b7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::RecordFrame::drawnCount</definition>
+        <argsstring></argsstring>
+        <name>drawnCount</name>
+        <qualifiedname>QAccelPlot::Internal::RecordFrame::drawnCount</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Records drawn. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="25" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1RecordFrame_1a5baca044c1658642b5a93ade3c80e1ce" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::RecordFrame::drawable</definition>
+        <argsstring></argsstring>
+        <name>drawable</name>
+        <qualifiedname>QAccelPlot::Internal::RecordFrame::drawable</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para><computeroutput>false</computeroutput> removes the node: no records are drawn, or an axis, the plot rectangle, or the window is missing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="27" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1RecordFrame_1af84ba26aa30360d13d5d2b678275e3e1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::RecordFrame::floatsPerRecord</definition>
+        <argsstring></argsstring>
+        <name>floatsPerRecord</name>
+        <qualifiedname>QAccelPlot::Internal::RecordFrame::floatsPerRecord</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Floats of one record in the data texture. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="28" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1RecordFrame_1a059f0a9fd057f44f89eb1fb22999b62e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::RecordFrame::verticesPerRecord</definition>
+        <argsstring></argsstring>
+        <name>verticesPerRecord</name>
+        <qualifiedname>QAccelPlot::Internal::RecordFrame::verticesPerRecord</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Vertices the shader draws one record with. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="29" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1RecordFrame_1ad434222415f1d66a036d39b92f9c4104" prot="public" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* QAccelPlot::Internal::RecordFrame::typeName</definition>
+        <argsstring></argsstring>
+        <name>typeName</name>
+        <qualifiedname>QAccelPlot::Internal::RecordFrame::typeName</qualifiedname>
+        <initializer>{&quot;&quot;}</initializer>
+        <briefdescription>
+<para>Series class the software-backend warning names. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="30" column="16" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" bodystart="30" bodyend="30"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>What a series that draws one record per data point draws in a frame. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordNode.hpp" bodystart="23" bodyend="31"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1RecordFrame_1a5baca044c1658642b5a93ade3c80e1ce" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordFrame</scope><name>drawable</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1RecordFrame_1a7d04a52390d625271c80cbd4e42e65b7" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordFrame</scope><name>drawnCount</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1RecordFrame_1af84ba26aa30360d13d5d2b678275e3e1" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordFrame</scope><name>floatsPerRecord</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1RecordFrame_1ad434222415f1d66a036d39b92f9c4104" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordFrame</scope><name>typeName</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1RecordFrame_1a059f0a9fd057f44f89eb1fb22999b62e" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordFrame</scope><name>verticesPerRecord</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1RecordFrame_1afff5fe8f6a9ec3637b1c9f56ef501839" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordFrame</scope><name>window</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

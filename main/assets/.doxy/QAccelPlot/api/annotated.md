@@ -25,6 +25,8 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._    
     * **class** [**BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._     
     * **class** [**Border**](classQAccelPlot_1_1Border.md) _Outline color and width, exposed as a_ `border` _grouped property, for example_`border.width: 1` _._    
+    * **class** [**CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) _Material that draws candles from (x, open, high, low, close) data points in a data texture._     
+    * **class** [**CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md) _A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point._     
     * **class** [**Category**](classQAccelPlot_1_1Category.md) _One category of a_ `BarSeries` _or_`RectangleSeries :` _a value, a name, and a fill color._    
     * **class** [**ColorBar**](classQAccelPlot_1_1ColorBar.md) _A continuous key that shows how a series'_ `Colormap` _maps values to colors._    
     * **class** [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) _A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._    
@@ -93,6 +95,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **struct** [**GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) _How the shaders draw a_ `Glow` _halo; see shaders/glow.glsl._    
         * **struct** [**GlowUniforms**](structQAccelPlot_1_1Internal_1_1GlowUniforms.md) _The std140 uniform members of a_ `Glow` _halo,_`glowColor` _and_`glowParams` _, at a 16-byte aligned offset._    
         * **struct** [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) _Sizes of one item grab._     
+        * **struct** [**GrowViewport**](structQAccelPlot_1_1Internal_1_1GrowViewport.md) _The viewport of the axis items grow along, which places a baseline the axis cannot show._     
         * **struct** [**HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) _One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._    
         * **struct** [**HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md) _How heatmap.frag maps an item-local pixel position_ _p_ _to a fractional cell coordinate along one dimension._    
         * **class** [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) _Decides when queried data is worth a hover index._     
@@ -118,6 +121,9 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**OutlinedRectangle**](classQAccelPlot_1_1Internal_1_1OutlinedRectangle.md) _Item that fills its bounds and outlines them inside its edges._     
         * **class** [**OverlayChildren**](classQAccelPlot_1_1Internal_1_1OverlayChildren.md) _Objects declared inside an inspection tool in QML._     
         * **class** [**PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md) _Tracks the pointer over a plot from the plot's mouse and hover events._     
+        * **struct** [**RecordFrame**](structQAccelPlot_1_1Internal_1_1RecordFrame.md) _What a series that draws one record per data point draws in a frame._     
+        * **class** [**RecordHitIndex**](classQAccelPlot_1_1Internal_1_1RecordHitIndex.md) _Finds the drawn record nearest to a pixel position, for series that draw one record per data point._     
+            * **struct** [**Query**](structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query.md) _A record lookup around a pixel position._     
         * **struct** [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._     
         * **class** [**RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md) _Vertices of a series that draws each rectangle as a quad positioned from a data texture._     
         * **class** [**RectangleZoomOverlay**](classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay.md)     
@@ -126,6 +132,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**SelectionRectangle**](classQAccelPlot_1_1Internal_1_1SelectionRectangle.md) _Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._    
         * **class** [**SeriesEffectList**](classQAccelPlot_1_1Internal_1_1SeriesEffectList.md) _The_ `effects` _list of one series._    
         * **class** [**SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md) _Inspection queries that read a series' own buffer whose records are ordered along one axis._     
+        * **class** [**StoreTransition**](classQAccelPlot_1_1Internal_1_1StoreTransition.md) _Shows the runs of a_ `TransitionRunner` _as the drawn data points of a_`DataPointStore` _._    
         * **struct** [**SummaryAccumulator**](structQAccelPlot_1_1Internal_1_1SummaryAccumulator.md) _Running data-point-weighted Y statistics that can be merged across disjoint data point sets._     
         * **struct** [**TransitionFrameInput**](structQAccelPlot_1_1Internal_1_1TransitionFrameInput.md) _The two sides of a transition and the steps of its slots at one frame._     
         * **struct** [**TransitionItems**](structQAccelPlot_1_1Internal_1_1TransitionItems.md) _Items on one side of a transition,_ `TransitionLayout::stride` _values each._    
@@ -163,6 +170,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **struct** [**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) _Data points passed to_ `setData()` _or_`setDataF()` _, already checked._    
         * **struct** [**DataPointWording**](structQAccelPlot_1_1PlotSeries_1_1DataPointWording.md) _Words used in the warnings about rejected data arguments._     
         * **struct** [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) _Extents of a series in both dimensions._     
+        * **struct** [**DataUpdate**](structQAccelPlot_1_1PlotSeries_1_1DataUpdate.md) _A change of the data points, as passed to_ `updateDataRangeInputs()` _and_`onDataPointsChanged()` _._    
     * **class** [**PlotView**](classQAccelPlot_1_1PlotView.md) _The main plot canvas QML item — hosts axes, curves, and a grid._     
     * **class** [**PointCloud**](classQAccelPlot_1_1PointCloud.md) _A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._     
     * **class** [**PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._    
@@ -189,7 +197,11 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **struct** [**ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md)     
 * **struct** [**RenderView**](structQAccelPlot_1_1BandSeries_1_1RenderView.md)     
 * **struct** [**Span**](structQAccelPlot_1_1BandSeries_1_1Span.md)     
+* **struct** [**BarExtents**](structQAccelPlot_1_1BarSeries_1_1BarExtents.md)     
 * **struct** [**Bars**](structQAccelPlot_1_1BarSeries_1_1Bars.md)     
+* **struct** [**AutoSpacing**](structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing.md)     
+* **struct** [**CandleBoxes**](structQAccelPlot_1_1CandlestickSeries_1_1CandleBoxes.md)     
+* **struct** [**PixelBox**](structQAccelPlot_1_1CandlestickSeries_1_1PixelBox.md)     
 * **struct** [**Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md)     
 * **struct** [**Compacted**](structQAccelPlot_1_1DataPointStore_1_1Compacted.md)     
 * **struct** [**Origin**](structQAccelPlot_1_1DataPointStore_1_1Origin.md)     

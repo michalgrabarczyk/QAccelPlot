@@ -5,6 +5,7 @@
     <includes local="no">QObject</includes>
     <includes local="no">QtQml/qqmlregistration.h</includes>
     <includedby refid="PlotView_8hpp" local="yes">QAccelPlot/src/QAccelPlot/PlotView.hpp</includedby>
+    <includedby refid="Axis_8hpp" local="yes">QAccelPlot/src/QAccelPlot/axis/Axis.hpp</includedby>
     <incdepgraph>
       <node id="1">
         <label>QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp</label>
@@ -74,7 +75,7 @@
 <codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Axis;</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">PlotView;</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotMouseEvent_1a6d497e472f5b1eb8158e46b00365c2d4" kindref="member">PlotMouseEvent</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QSinglePointEvent&amp;<sp/>event);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>reset(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QSinglePointEvent&amp;<sp/>event);</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"></highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>Qt::MouseButton<sp/>button_{Qt::NoButton};</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>Qt::MouseButtons<sp/>buttons_{Qt::NoButton};</highlight></codeline>

@@ -32,11 +32,21 @@ enum class TransitionKind {
     Grow,  
 };
 
+struct GrowViewport {
+    double low{0.0};      
+    double high{0.0};     
+    bool logScale{false}; 
+};
+
+double placeGrowBaseline(double baseline, const GrowViewport& viewport);
+
 struct TransitionLayout {
     int stride{2};                    
     std::vector<int> valueColumns{1}; 
     double baseline{0.0};             
     bool continuous{false};           
+    int baselineColumn{-1};
+    GrowViewport viewport{}; 
 };
 
 struct TransitionStep {

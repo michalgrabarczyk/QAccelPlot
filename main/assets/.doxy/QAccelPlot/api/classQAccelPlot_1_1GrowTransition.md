@@ -98,7 +98,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property qreal | [**baseline**](classQAccelPlot_1_1GrowTransition.md#property-baseline-12)  <br>_Value the items grow from, in data units. Unset by default:_ `BarSeries::baselineValue` _for bars, 0 for other series._ |
+| property qreal | [**baseline**](classQAccelPlot_1_1GrowTransition.md#property-baseline-12)  <br>_Value the items grow from, in data units. Unset by default:_ `BarSeries::baselineValue` _for bars, each candle's open for candles, 0 for other series._ |
 
 
 
@@ -277,6 +277,7 @@ As an `enterTransition`, the added items grow from `baseline` to their values; a
 |`LineCurve`, `PointCloud`  |Y  |
 |`BarSeries`  |The bar value  |
 |`ErrorBarSeries`  |The center and both bounds  |
+|`CandlestickSeries`  |The open, high, low, and close  |
 
 
 
@@ -301,7 +302,7 @@ With `stagger`, the items grow one after another in a wave.
 
 ### property baseline {#property-baseline-12}
 
-_Value the items grow from, in data units. Unset by default:_ `BarSeries::baselineValue` _for bars, 0 for other series._
+_Value the items grow from, in data units. Unset by default:_ `BarSeries::baselineValue` _for bars, each candle's open for candles, 0 for other series._
 ```C++
 qreal QAccelPlot::GrowTransition::baseline;
 ```

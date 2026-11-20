@@ -14,6 +14,8 @@
 //
 #pragma once
 
+#include "QAccelPlot/transitions/internal/TransitionFrame.hpp"
+
 #include <QtGlobal>
 
 QT_FORWARD_DECLARE_CLASS(QQuickWindow)
@@ -33,6 +35,10 @@ int maxTextureSize(QQuickWindow* window);
 int recordCapacity(QQuickWindow* window, int floatsPerRecord, int vertexBytesPerRecord);
 
 qreal clampAntialiasingFeather(qreal feather);
+
+bool assignNonNegative(qreal& member, qreal requested);
+
+GrowViewport growViewport(const Axis* valueAxis);
 
 double growBaseline(double baseline, const Axis* valueAxis);
 

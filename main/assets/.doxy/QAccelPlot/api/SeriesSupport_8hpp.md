@@ -17,6 +17,7 @@
 
 
 
+* `#include "QAccelPlot/transitions/internal/TransitionFrame.hpp"`
 * `#include <QtGlobal>`
 
 

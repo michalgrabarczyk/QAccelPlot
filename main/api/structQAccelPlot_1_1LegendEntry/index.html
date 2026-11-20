@@ -446,6 +446,8 @@
       
         
       
+        
+      
     
     
     
@@ -907,6 +909,34 @@
     
   
     Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
   
 
     
@@ -1408,6 +1438,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#detailed-description" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1569,10 +1610,49 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#property-secondarycolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property secondaryColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#property-symbol" class="md-nav__link">
     <span class="md-ellipsis">
       
         property symbol
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-downcandlecolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function downCandleColor
       
     </span>
   </a>
@@ -1641,7 +1721,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property QColor</td>
-<td style="text-align: left;"><a href="./#property-color"><strong>color</strong></a>  <br><em>Color of the line, marker, or fill.</em></td>
+<td style="text-align: left;"><a href="./#property-color"><strong>color</strong></a>  <br><em>Color of the line, marker, or fill; of the up candle for the</em> <code>Candle</code> <em>symbol.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property <a href="../classQAccelPlot_1_1LineStyle/"><strong>LineStyle</strong></a> *</td>
@@ -1672,8 +1752,27 @@
 <td style="text-align: left;"><a href="./#property-name-12"><strong>name</strong></a>  <br><em>Row label, such as a category name. Empty labels the row with the series name.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">property QColor</td>
+<td style="text-align: left;"><a href="./#property-secondarycolor"><strong>secondaryColor</strong></a>  <br><em>Color of the down candle for the</em> <code>Candle</code> <em>symbol; unused by the other symbols.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">property <a href="../classQAccelPlot_1_1PlotSeries/#enum-legendsymbol"><strong>PlotSeries::LegendSymbol</strong></a></td>
 <td style="text-align: left;"><a href="./#property-symbol"><strong>symbol</strong></a>  <br><em>Symbol style.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">QColor</td>
+<td style="text-align: left;"><a href="#function-downcandlecolor"><strong>downCandleColor</strong></a> () const<br><em>Returns</em> <code>secondaryColor</code> <em>, or</em><code>color</code> <em>when</em><code>secondaryColor</code> <em>is invalid.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1702,10 +1801,10 @@
 <hr>
 
 <h3 id="property-color">property color<a class="headerlink" href="#property-color" title="Permanent link">&para;</a></h3>
-<p><em>Color of the line, marker, or fill.</em> 
+<p><em>Color of the line, marker, or fill; of the up candle for the</em> <code>Candle</code> <em>symbol.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">color</span><span class="p">;</span>
 </code></pre></div></p>
-<p>Line, marker, or fill color. </p>
+<p>Line, marker, fill, or up candle color. </p>
 <hr>
 
 <h3 id="property-linestyle">property lineStyle<a class="headerlink" href="#property-linestyle" title="Permanent link">&para;</a></h3>
@@ -1753,9 +1852,23 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="property-secondarycolor">property secondaryColor<a class="headerlink" href="#property-secondarycolor" title="Permanent link">&para;</a></h3>
+<p><em>Color of the down candle for the</em> <code>Candle</code> <em>symbol; unused by the other symbols.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">secondaryColor</span><span class="p">;</span>
+</code></pre></div></p>
+<p>Down candle color, or invalid for <code>color</code>.</p>
+<p>Reads as <code>color</code> when the series sets no down candle color. </p>
+<hr>
+
 <h3 id="property-symbol">property symbol<a class="headerlink" href="#property-symbol" title="Permanent link">&para;</a></h3>
 <p><em>Symbol style.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">PlotSeries</span><span class="o">::</span><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">symbol</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">PlotSeries</span><span class="o">::</span><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">symbol</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-downcandlecolor">function downCandleColor<a class="headerlink" href="#function-downcandlecolor" title="Permanent link">&para;</a></h3>
+<p><em>Returns</em> <code>secondaryColor</code> <em>, or</em><code>color</code> <em>when</em><code>secondaryColor</code> <em>is invalid.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">downCandleColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

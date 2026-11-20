@@ -110,7 +110,7 @@ protected:
     void applyDataPoints(DataPointInput&& input) override;
     bool supportsEffect(const SeriesEffect& effect) const override;
     void onAxisScaleChanged() override;
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
     std::optional<ValueSpan> scanValueRange() const override;
 
 private:

@@ -454,6 +454,8 @@
       
         
       
+        
+      
     
     
     
@@ -1067,6 +1069,34 @@
     
   
     Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
   
 
     
@@ -1739,6 +1769,11 @@ A dash pattern lists alternating on/off lengths in pixels.</p>
 <td>lines and caps</td>
 </tr>
 <tr>
+<td><code>CandlestickSeries</code></td>
+<td><code>true</code></td>
+<td>bodies, wicks, and OHLC lines</td>
+</tr>
+<tr>
 <td><code>RectangleSeries</code>, <code>BarSeries</code></td>
 <td><code>false</code></td>
 <td>rectangles and their border</td>
@@ -1903,8 +1938,8 @@ oscilloscope:</p>
 <tbody>
 <tr>
 <td><code>Glow</code></td>
-<td><code>LineCurve</code>, <code>PointCloud</code>, <code>BarSeries</code>, <code>ErrorBarSeries</code></td>
-<td><code>color</code> (default: the series color), <code>radius</code> in pixels, <code>intensity</code></td>
+<td><code>LineCurve</code>, <code>PointCloud</code>, <code>BarSeries</code>, <code>ErrorBarSeries</code>, <code>CandlestickSeries</code></td>
+<td><code>color</code> (default: the series color; each candle's own color), <code>radius</code> in pixels, <code>intensity</code></td>
 </tr>
 <tr>
 <td><code>FadeTrail</code></td>
@@ -2025,10 +2060,11 @@ animation continues from the items drawn now.</p>
 <p>Each animated frame interpolates the data on the CPU: about 4 ms per million
 points, 6 ms with a stagger. Disable transitions for continuous high-rate
 updates.</p>
-<p><code>BarSeries</code>, <code>PointCloud</code>, and <code>ErrorBarSeries</code> take the same transitions; see
-<a href="../bar-charts/#animate-data-changes">bar charts</a>,
-<a href="../point-clouds/#animate-data-changes">point clouds</a>, and
-<a href="../error-bars/#animate-data-changes">error bars</a>.</p>
+<p><code>BarSeries</code>, <code>PointCloud</code>, <code>ErrorBarSeries</code>, and <code>CandlestickSeries</code> take the
+same transitions; see <a href="../bar-charts/#animate-data-changes">bar charts</a>,
+<a href="../point-clouds/#animate-data-changes">point clouds</a>,
+<a href="../error-bars/#animate-data-changes">error bars</a>, and
+<a href="../candlesticks/#animate-data-changes">candlesticks</a>.</p>
 <p>Complete sources:</p>
 <ul>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/theming"><code>examples/styling/theming</code></a></li>

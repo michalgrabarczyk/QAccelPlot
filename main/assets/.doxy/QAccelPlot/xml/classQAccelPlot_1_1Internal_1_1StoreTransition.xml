@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1StoreTransition" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::StoreTransition</compoundname>
+    <includes local="no">StoreTransition.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1StoreTransition_1a6eac90b68e6091b4f5e21e67d9a48d13" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1TransitionRunner" kindref="compound">TransitionRunner</ref> &amp;</type>
+        <definition>TransitionRunner&amp; QAccelPlot::Internal::StoreTransition::runner_</definition>
+        <argsstring></argsstring>
+        <name>runner_</name>
+        <qualifiedname>QAccelPlot::Internal::StoreTransition::runner_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" line="39" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1StoreTransition_1a1c7e3cd219a510c0c6f16583cc7a578c" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1DataPointStore" kindref="compound">DataPointStore</ref> &amp;</type>
+        <definition>DataPointStore&amp; QAccelPlot::Internal::StoreTransition::store_</definition>
+        <argsstring></argsstring>
+        <name>store_</name>
+        <qualifiedname>QAccelPlot::Internal::StoreTransition::store_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" line="40" column="20" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1StoreTransition_1acfd64aa2b250fce655d20afe0be0a441" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::Internal::StoreTransition::frameBuffer_</definition>
+        <argsstring></argsstring>
+        <name>frameBuffer_</name>
+        <qualifiedname>QAccelPlot::Internal::StoreTransition::frameBuffer_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" line="42" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1StoreTransition_1a208b4fa483535f6b084231d8d1d53664" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::StoreTransition::StoreTransition</definition>
+        <argsstring>(TransitionRunner &amp;runner, DataPointStore &amp;store)</argsstring>
+        <name>StoreTransition</name>
+        <qualifiedname>QAccelPlot::Internal::StoreTransition::StoreTransition</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1TransitionRunner" kindref="compound">TransitionRunner</ref> &amp;</type>
+          <declname>runner</declname>
+        </param>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1DataPointStore" kindref="compound">DataPointStore</ref> &amp;</type>
+          <declname>store</declname>
+        </param>
+        <briefdescription>
+<para>Constructs the transition for <emphasis>runner</emphasis> and <emphasis>store</emphasis>, which must outlive it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" line="24" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1StoreTransition_1a2ec02e7a01c439cc4e59c43dd4be0528" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::StoreTransition::start</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int count, const TransitionRunner::Layout &amp;layout)</argsstring>
+        <name>start</name>
+        <qualifiedname>QAccelPlot::Internal::StoreTransition::start</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1TransitionRunner_1a94c528648c0b3cfcd9e3fe3b998822ea" kindref="member">TransitionRunner::Layout</ref> &amp;</type>
+          <declname>layout</declname>
+        </param>
+        <briefdescription>
+<para>Stores the <emphasis>count</emphasis> double data points moved from <emphasis>data</emphasis> and starts a run to them from the drawn ones. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><computeroutput>false</computeroutput> when no run started; call <computeroutput><ref refid="classQAccelPlot_1_1Internal_1_1StoreTransition_1a56b628dde1a343787bbc58449062d160" kindref="member">discard()</ref></computeroutput> then. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" line="28" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1StoreTransition_1ab3ee2edeba5a35cce9aa75aed77bb3f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::StoreTransition::advance</definition>
+        <argsstring>()</argsstring>
+        <name>advance</name>
+        <qualifiedname>QAccelPlot::Internal::StoreTransition::advance</qualifiedname>
+        <briefdescription>
+<para>Draws the next frame of the run, or the stored data points again once it has ended. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><computeroutput>false</computeroutput> when the drawn data points did not change. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" line="31" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1StoreTransition_1ad738005ca76b95ee0723f7fa0c197e32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::StoreTransition::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <qualifiedname>QAccelPlot::Internal::StoreTransition::end</qualifiedname>
+        <briefdescription>
+<para>Ends a run that draws other data points than the stored ones, drawing the stored ones again. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><computeroutput>false</computeroutput> when the stored data points were drawn already. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" line="34" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1StoreTransition_1a56b628dde1a343787bbc58449062d160" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::StoreTransition::discard</definition>
+        <argsstring>()</argsstring>
+        <name>discard</name>
+        <qualifiedname>QAccelPlot::Internal::StoreTransition::discard</qualifiedname>
+        <briefdescription>
+<para>Ends the run and draws the stored data points again. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" line="36" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Shows the runs of a <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner" kindref="compound">TransitionRunner</ref></computeroutput> as the drawn data points of a <computeroutput><ref refid="classQAccelPlot_1_1DataPointStore" kindref="compound">DataPointStore</ref></computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The store&apos;s data points have no attributes. The drawn data points change on <computeroutput><ref refid="classQAccelPlot_1_1Internal_1_1StoreTransition_1ab3ee2edeba5a35cce9aa75aed77bb3f2" kindref="member">advance()</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1Internal_1_1StoreTransition_1ad738005ca76b95ee0723f7fa0c197e32" kindref="member">end()</ref></computeroutput>, and <computeroutput><ref refid="classQAccelPlot_1_1Internal_1_1StoreTransition_1a56b628dde1a343787bbc58449062d160" kindref="member">discard()</ref></computeroutput>, so the series refreshes what depends on them, such as its hover lookup, after each. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" line="21" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/StoreTransition.hpp" bodystart="21" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1StoreTransition_1ab3ee2edeba5a35cce9aa75aed77bb3f2" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::StoreTransition</scope><name>advance</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1StoreTransition_1a56b628dde1a343787bbc58449062d160" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::StoreTransition</scope><name>discard</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1StoreTransition_1ad738005ca76b95ee0723f7fa0c197e32" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::StoreTransition</scope><name>end</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1StoreTransition_1acfd64aa2b250fce655d20afe0be0a441" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::StoreTransition</scope><name>frameBuffer_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1StoreTransition_1a6eac90b68e6091b4f5e21e67d9a48d13" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::StoreTransition</scope><name>runner_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1StoreTransition_1a2ec02e7a01c439cc4e59c43dd4be0528" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::StoreTransition</scope><name>start</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1StoreTransition_1a1c7e3cd219a510c0c6f16583cc7a578c" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::StoreTransition</scope><name>store_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1StoreTransition_1a208b4fa483535f6b084231d8d1d53664" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::StoreTransition</scope><name>StoreTransition</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

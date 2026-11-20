@@ -30,6 +30,7 @@ struct LegendEntry {
     Q_PROPERTY(QString name MEMBER name CONSTANT)
     Q_PROPERTY(PlotSeries::LegendSymbol symbol MEMBER symbol CONSTANT)
     Q_PROPERTY(QColor color MEMBER color CONSTANT)
+    Q_PROPERTY(QColor secondaryColor READ downCandleColor CONSTANT)
     Q_PROPERTY(qreal lineWidth MEMBER lineWidth CONSTANT)
     Q_PROPERTY(LineStyle* lineStyle MEMBER lineStyle CONSTANT)
     Q_PROPERTY(MarkerShape markerShape MEMBER markerShape CONSTANT)
@@ -43,6 +44,7 @@ public:
     QString name;                                                    
     PlotSeries::LegendSymbol symbol{PlotSeries::LegendSymbol::Line}; 
     QColor color;                                                    
+    QColor secondaryColor;                                           
     qreal lineWidth{1.0};                                            
     LineStyle* lineStyle{nullptr};                                   
     MarkerShape markerShape{MarkerShape::None};                      
@@ -51,6 +53,8 @@ public:
     qreal markerStrokeWidth{1.0};                                    
     bool antialiasing{true};                                         
     qreal antialiasingFeather{1.0};                                  
+
+    QColor downCandleColor() const;
 };
 
 } // namespace QAccelPlot

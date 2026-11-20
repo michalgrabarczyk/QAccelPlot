@@ -110,6 +110,7 @@ _Holds the data points of one series and derives everything that depends only on
 |  void | [**replace**](#function-replace) (int index, const double \* coordinates) <br>_Replaces the coordinates of data point_ _index_ _with_`columnCount()` _doubles; promotes float data first._ |
 |  void | [**setAttributes**](#function-setattributes) (std::vector&lt; float &gt; && attributes) <br>_Replaces the float attributes: empty, or_ `attributeCount` _floats per data point._ |
 |  void | [**setCategories**](#function-setcategories) (std::vector&lt; int &gt; && categories) <br>_Replaces the categories: empty, or one per data point._  |
+|  void | [**setCategory**](#function-setcategory) (int index, int category) <br>_Sets the category of data point_ _index_ _to__category_ _; the others get -1 when there were no categories._ |
 |  void | [**setDimensionState**](#function-setdimensionstate) ([**Dimension**](classQAccelPlot_1_1DataPointStore.md#enum-dimension) dimension, const [**DimensionState**](structQAccelPlot_1_1DataPointStore_1_1DimensionState.md) & state) <br>_Updates the scale and viewport of_ _dimension_ _._ |
 |  std::vector&lt; double &gt; | [**setDrawn**](#function-setdrawn) (std::vector&lt; double &gt; && dataPoints, int count) <br>_Draws_ _count_ _data points moved from__dataPoints_ _instead of the stored ones._ |
 |  void | [**setFloat**](#function-setfloat) (std::vector&lt; float &gt; && coordinates, int count, std::vector&lt; float &gt; && attributes={}) <br>_Replaces the data points with_ _count_ _float data points moved from__coordinates_ _._ |
@@ -746,6 +747,24 @@ Replacing the data points drops the categories; appending gives the new data poi
 
 
         
+
+<hr>
+
+
+
+
+### function setCategory {#function-setcategory}
+
+_Sets the category of data point_ _index_ _to__category_ _; the others get -1 when there were no categories._
+```C++
+void QAccelPlot::DataPointStore::setCategory (
+    int index,
+    int category
+) 
+```
+
+
+
 
 <hr>
 

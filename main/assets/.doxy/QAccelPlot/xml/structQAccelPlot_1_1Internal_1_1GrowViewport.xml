@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1GrowViewport" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::GrowViewport</compoundname>
+    <includes local="no">TransitionFrame.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1GrowViewport_1ab22e5e945ef1e73980899a62bfbfe40c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::GrowViewport::low</definition>
+        <argsstring></argsstring>
+        <name>low</name>
+        <qualifiedname>QAccelPlot::Internal::GrowViewport::low</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Lower viewport edge. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="28" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1GrowViewport_1a387e94e9f56dc54579a46357a91a5ce1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::GrowViewport::high</definition>
+        <argsstring></argsstring>
+        <name>high</name>
+        <qualifiedname>QAccelPlot::Internal::GrowViewport::high</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Upper viewport edge. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="29" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1GrowViewport_1a6c80731f4f6c04c2ebf563aec87fb72e" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::GrowViewport::logScale</definition>
+        <argsstring></argsstring>
+        <name>logScale</name>
+        <qualifiedname>QAccelPlot::Internal::GrowViewport::logScale</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>The axis is logarithmic. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="30" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="30" bodyend="30"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The viewport of the axis items grow along, which places a baseline the axis cannot show. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="27" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="27" bodyend="31"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1GrowViewport_1a387e94e9f56dc54579a46357a91a5ce1" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::GrowViewport</scope><name>high</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1GrowViewport_1a6c80731f4f6c04c2ebf563aec87fb72e" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::GrowViewport</scope><name>logScale</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1GrowViewport_1ab22e5e945ef1e73980899a62bfbfe40c" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::GrowViewport</scope><name>low</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

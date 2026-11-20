@@ -212,6 +212,7 @@ The halo fades out over `radius` pixels outside the drawn shape. It is drawn in 
 |`PointCloud`  |The markers  |
 |`BarSeries`  |The bars  |
 |`ErrorBarSeries`  |The error bars  |
+|`CandlestickSeries`  |Each candle, in its own color unless `color` is set  |
 
 
 

@@ -14,6 +14,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/PlotMouseEvent.hpp"
 #include "QAccelPlot/axis/AxisMapping.hpp"
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/axis/AxisTicks.hpp"
@@ -25,14 +26,12 @@
 #include <QPointer>
 #include <QQuickPaintedItem>
 
-// Declared only: AxisLabel uses Axis::LabelAlignment, and PlotMouseEvent only appears in a signal.
+// AxisLabel uses Axis::LabelAlignment, so this header only declares it.
 Q_MOC_INCLUDE("QAccelPlot/axis/AxisLabel.hpp")
-Q_MOC_INCLUDE("QAccelPlot/PlotMouseEvent.hpp")
 
 namespace QAccelPlot {
 
 class AxisLabel;
-class PlotMouseEvent;
 class PlotSeries;
 
 class Axis : public QQuickPaintedItem {
@@ -208,6 +207,7 @@ private:
     bool hovered_{false};
     bool isDragging_{false};
     QPointF lastMousePos_;
+    PlotMouseEvent doubleClickEvent_{this};
     QColor baselineColor_{ColorPalette::dark().axisLine};
     qreal baselineWidth_{2.0};
     QColor hoverColor_{ColorPalette::dark().hover};

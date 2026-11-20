@@ -7,6 +7,7 @@
 * [**ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md)
 * [**AttributeView**](structQAccelPlot_1_1DataPointStore_1_1AttributeView.md)
 ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
+* [**AutoSpacing**](structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing.md)
 * [**Axis**](classQAccelPlot_1_1Axis.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md)
@@ -41,6 +42,7 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**BandSeries**](classQAccelPlot_1_1BandSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**BarExtents**](structQAccelPlot_1_1BarSeries_1_1BarExtents.md)
 * [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Bars**](structQAccelPlot_1_1BarSeries_1_1Bars.md)
@@ -53,6 +55,11 @@
 
 ## c
 
+* [**CandleBoxes**](structQAccelPlot_1_1CandlestickSeries_1_1CandleBoxes.md)
+* [**CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Category**](classQAccelPlot_1_1Category.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**CategoryList**](classQAccelPlot_1_1Internal_1_1CategoryList.md)
@@ -113,6 +120,8 @@
 ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**DataTransition**](classQAccelPlot_1_1DataTransition.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**DataUpdate**](structQAccelPlot_1_1PlotSeries_1_1DataUpdate.md)
+([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**DimensionState**](structQAccelPlot_1_1DataPointStore_1_1DimensionState.md)
@@ -182,6 +191,8 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**GrowTransition**](classQAccelPlot_1_1GrowTransition.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**GrowViewport**](structQAccelPlot_1_1Internal_1_1GrowViewport.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## h
@@ -324,6 +335,7 @@
 ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
 * [**Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md)
 ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
+* [**PixelBox**](structQAccelPlot_1_1CandlestickSeries_1_1PixelBox.md)
 * [**PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md)
@@ -357,8 +369,18 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
+## q
+
+* [**Query**](structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query.md)
+([**QAccelPlot::Internal::RecordHitIndex**](classQAccelPlot_1_1Internal_1_1RecordHitIndex.md))
+
+
 ## r
 
+* [**RecordFrame**](structQAccelPlot_1_1Internal_1_1RecordFrame.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**RecordHitIndex**](classQAccelPlot_1_1Internal_1_1RecordHitIndex.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**RectangleZoomOverlay**](classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay.md)
@@ -403,6 +425,8 @@
 * [**Span**](structQAccelPlot_1_1BandSeries_1_1Span.md)
 * [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**StoreTransition**](classQAccelPlot_1_1Internal_1_1StoreTransition.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**SummaryAccumulator**](structQAccelPlot_1_1Internal_1_1SummaryAccumulator.md)
 ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 

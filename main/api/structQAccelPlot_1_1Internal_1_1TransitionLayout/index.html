@@ -446,6 +446,8 @@
       
         
       
+        
+      
     
     
     
@@ -907,6 +909,34 @@
     
   
     Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
   
 
     
@@ -1420,6 +1450,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#variable-baselinecolumn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable baselineColumn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-continuous" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1446,6 +1487,17 @@
     <span class="md-ellipsis">
       
         variable valueColumns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-viewport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable viewport
       
     </span>
   </a>
@@ -1494,6 +1546,10 @@
 <td style="text-align: left;"><a href="#variable-baseline"><strong>baseline</strong></a>   = <code>{0.0}</code><br><em>Value items grow from when the</em> <code>GrowTransition</code> <em>has no baseline.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#variable-baselinecolumn"><strong>baselineColumn</strong></a>   = <code>{-1}</code><br><em>Column whose value each item grows from when the</em> <code>GrowTransition</code> <em>has no baseline; -1 uses</em><code>baseline</code> <em>.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#variable-continuous"><strong>continuous</strong></a>   = <code>{false}</code><br><em>A</em> <code>DrawTransition</code> <em>reveals the last item partway, as a line segment.</em></td>
 </tr>
@@ -1505,6 +1561,10 @@
 <td style="text-align: right;">std::vector&lt; int &gt;</td>
 <td style="text-align: left;"><a href="#variable-valuecolumns"><strong>valueColumns</strong></a>   = <code>{1}</code><br><em>Columns a</em> <code>GrowTransition</code> <em>grows.</em></td>
 </tr>
+<tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1Internal_1_1GrowViewport/"><strong>GrowViewport</strong></a></td>
+<td style="text-align: left;"><a href="#variable-viewport"><strong>viewport</strong></a>   = <code>{}</code><br><em>Viewport that places the values of</em> <code>baselineColumn</code> <em>.</em></td>
+</tr>
 </tbody>
 </table>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
@@ -1514,21 +1574,34 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="variable-baselinecolumn">variable baselineColumn<a class="headerlink" href="#variable-baselinecolumn" title="Permanent link">&para;</a></h3>
+<p><em>Column whose value each item grows from when the</em> <code>GrowTransition</code> <em>has no baseline; -1 uses</em><code>baseline</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">TransitionLayout</span><span class="o">::</span><span class="n">baselineColumn</span><span class="p">;</span>
+</code></pre></div></p>
+<p><code>viewport</code> places each item's value with <code>placeGrowBaseline()</code>. </p>
+<hr>
+
 <h3 id="variable-continuous">variable continuous<a class="headerlink" href="#variable-continuous" title="Permanent link">&para;</a></h3>
 <p><em>A</em> <code>DrawTransition</code> <em>reveals the last item partway, as a line segment.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">TransitionLayout</span><span class="o">::</span><span class="n">continuous</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">TransitionLayout</span><span class="o">::</span><span class="n">continuous</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-stride">variable stride<a class="headerlink" href="#variable-stride" title="Permanent link">&para;</a></h3>
 <p><em>Values per item.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">TransitionLayout</span><span class="o">::</span><span class="n">stride</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">TransitionLayout</span><span class="o">::</span><span class="n">stride</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-valuecolumns">variable valueColumns<a class="headerlink" href="#variable-valuecolumns" title="Permanent link">&para;</a></h3>
 <p><em>Columns a</em> <code>GrowTransition</code> <em>grows.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">TransitionLayout</span><span class="o">::</span><span class="n">valueColumns</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">TransitionLayout</span><span class="o">::</span><span class="n">valueColumns</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="variable-viewport">variable viewport<a class="headerlink" href="#variable-viewport" title="Permanent link">&para;</a></h3>
+<p><em>Viewport that places the values of</em> <code>baselineColumn</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">GrowViewport</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">TransitionLayout</span><span class="o">::</span><span class="n">viewport</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 

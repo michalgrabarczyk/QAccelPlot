@@ -446,6 +446,8 @@
       
         
       
+        
+      
     
     
     
@@ -907,6 +909,34 @@
     
   
     Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
   
 
     
@@ -1525,7 +1555,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#function-plotmouseevent-12" class="md-nav__link">
+  <a href="#function-plotmouseevent" class="md-nav__link">
     <span class="md-ellipsis">
       
         function PlotMouseEvent
@@ -1716,7 +1746,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-plotmouseevent-12"><strong>PlotMouseEvent</strong></a> (QObject * parent=nullptr) <br><em>Constructs a</em> <a href="./"><em><strong>PlotMouseEvent</strong></em></a> <em>with an optional</em><code>parent</code> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-plotmouseevent"><strong>PlotMouseEvent</strong></a> (QObject * parent=nullptr) <br><em>Constructs a</em> <a href="./"><em><strong>PlotMouseEvent</strong></em></a> <em>with an optional</em><code>parent</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE void</td>
@@ -1759,7 +1789,7 @@
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>An instance of this class is passed to each <code>PlotView</code> mouse signal and to <code>Axis::doubleClicked()</code>. Mirrors the Qt <code>QEvent</code> API: call <code>accept()</code> in a handler to consume the event and suppress the built-in handling (dragging, double-click rescaling, etc.).</p>
 <p><strong>Note:</strong></p>
-<p>The object is owned by <code>QAccelPlot</code> and is destroyed after the signal — do not store a reference to it beyond the signal handler. </p>
+<p>The object is owned by <code>QAccelPlot</code> and is reused across events — do not store a reference to it beyond the signal handler. </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-accepted">property accepted<a class="headerlink" href="#property-accepted" title="Permanent link">&para;</a></h3>
 <p><em>Whether this event has been accepted by a handler. Read via</em> <code>isAccepted()</code> <em>; set via</em><code>accept()</code> <em>or</em><code>ignore()</code> <em>.</em>
@@ -1797,7 +1827,7 @@
 </code></pre></div></p>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-plotmouseevent-12">function PlotMouseEvent<a class="headerlink" href="#function-plotmouseevent-12" title="Permanent link">&para;</a></h3>
+<h3 id="function-plotmouseevent">function PlotMouseEvent<a class="headerlink" href="#function-plotmouseevent" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>PlotMouseEvent</strong></em></a> <em>with an optional</em><code>parent</code> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span>

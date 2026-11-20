@@ -446,6 +446,8 @@
       
         
       
+        
+      
     
     
     
@@ -907,6 +909,34 @@
     
   
     Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
   
 
     
@@ -2189,7 +2219,7 @@
 <td style="text-align: left;"><a href="./#property-border-12"><strong>border</strong></a>  <br><em>Frame inside the plot area's edges, e.g.</em> <code>border.width: 2</code> <em>. Default: transparent, width 0.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property QQmlListProperty&lt; <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> &gt;</td>
+<td style="text-align: right;">property QQmlListProperty&lt; Axis &gt;</td>
 <td style="text-align: left;"><a href="./#property-extraaxes-12"><strong>extraAxes</strong></a>  <br><em>Additional axes beyond the primary four; each extra axis must supply its own side.</em></td>
 </tr>
 <tr>
@@ -2221,19 +2251,19 @@
 <td style="text-align: left;"><a href="./#property-series-12"><strong>series</strong></a>  <br><em>Read-only: all registered plot series.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: right;">property Axis *</td>
 <td style="text-align: left;"><a href="./#property-x2axis-12"><strong>x2Axis</strong></a>  <br><em>Optional secondary horizontal axis; assigning it sets its side to</em> <code>Axis.Top</code> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: right;">property Axis *</td>
 <td style="text-align: left;"><a href="./#property-xaxis-12"><strong>xAxis</strong></a>  <br><em>Primary horizontal axis; assigning it sets its side to</em> <code>Axis.Bottom</code> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: right;">property Axis *</td>
 <td style="text-align: left;"><a href="./#property-y2axis-12"><strong>y2Axis</strong></a>  <br><em>Optional secondary vertical axis; assigning it sets its side to</em> <code>Axis.Right</code> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: right;">property Axis *</td>
 <td style="text-align: left;"><a href="./#property-yaxis-12"><strong>yAxis</strong></a>  <br><em>Primary vertical axis; assigning it sets its side to</em> <code>Axis.Left</code> <em>.</em></td>
 </tr>
 </tbody>
@@ -2339,7 +2369,7 @@
 <td style="text-align: left;"><a href="#function-datatopixely"><strong>dataToPixelY</strong></a> (qreal dataValue) const<br><em>Converts a vertical data-space value to an item-local pixel Y coordinate.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">QQmlListProperty&lt; <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> &gt;</td>
+<td style="text-align: right;">QQmlListProperty&lt; Axis &gt;</td>
 <td style="text-align: left;"><a href="#function-extraaxes-22"><strong>extraAxes</strong></a> () <br><em>Returns the QML list property for extra axes.</em></td>
 </tr>
 <tr>
@@ -2400,34 +2430,34 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setx2axis"><strong>setX2Axis</strong></a> (<a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> * axis) <br><em>Sets the secondary horizontal axis to</em> <em>axis</em> <em>and assigns it to the top side.</em></td>
+<td style="text-align: left;"><a href="#function-setx2axis"><strong>setX2Axis</strong></a> (Axis * axis) <br><em>Sets the secondary horizontal axis to</em> <em>axis</em> <em>and assigns it to the top side.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setxaxis"><strong>setXAxis</strong></a> (<a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> * axis) <br><em>Sets the primary horizontal axis to</em> <em>axis</em> <em>and assigns it to the bottom side.</em></td>
+<td style="text-align: left;"><a href="#function-setxaxis"><strong>setXAxis</strong></a> (Axis * axis) <br><em>Sets the primary horizontal axis to</em> <em>axis</em> <em>and assigns it to the bottom side.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-sety2axis"><strong>setY2Axis</strong></a> (<a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> * axis) <br><em>Sets the secondary vertical axis to</em> <em>axis</em> <em>and assigns it to the right side.</em></td>
+<td style="text-align: left;"><a href="#function-sety2axis"><strong>setY2Axis</strong></a> (Axis * axis) <br><em>Sets the secondary vertical axis to</em> <em>axis</em> <em>and assigns it to the right side.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setyaxis"><strong>setYAxis</strong></a> (<a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> * axis) <br><em>Sets the primary vertical axis to</em> <em>axis</em> <em>and assigns it to the left side.</em></td>
+<td style="text-align: left;"><a href="#function-setyaxis"><strong>setYAxis</strong></a> (Axis * axis) <br><em>Sets the primary vertical axis to</em> <em>axis</em> <em>and assigns it to the left side.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: right;">Axis *</td>
 <td style="text-align: left;"><a href="#function-x2axis-22"><strong>x2Axis</strong></a> () const<br><em>Returns the secondary horizontal axis, or</em> <code>nullptr</code> <em>if not set.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: right;">Axis *</td>
 <td style="text-align: left;"><a href="#function-xaxis-22"><strong>xAxis</strong></a> () const<br><em>Returns the primary horizontal axis.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: right;">Axis *</td>
 <td style="text-align: left;"><a href="#function-y2axis-22"><strong>y2Axis</strong></a> () const<br><em>Returns the secondary vertical axis, or</em> <code>nullptr</code> <em>if not set.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: right;">Axis *</td>
 <td style="text-align: left;"><a href="#function-yaxis-22"><strong>yAxis</strong></a> () const<br><em>Returns the primary vertical axis.</em></td>
 </tr>
 <tr>

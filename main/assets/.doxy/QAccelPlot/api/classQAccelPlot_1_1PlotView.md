@@ -66,7 +66,7 @@ flowchart TB
 | ---: | :--- |
 | property QColor | [**axesAreaColor**](classQAccelPlot_1_1PlotView.md#property-axesareacolor-12)  <br>_Background color of the axes surround area. Default:_ `Colors.dark.axesArea` _._ |
 | property [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1PlotView.md#property-border-12)  <br>_Frame inside the plot area's edges, e.g._ `border.width: 2` _. Default: transparent, width 0._ |
-| property QQmlListProperty&lt; [**Axis**](classQAccelPlot_1_1Axis.md) &gt; | [**extraAxes**](classQAccelPlot_1_1PlotView.md#property-extraaxes-12)  <br>_Additional axes beyond the primary four; each extra axis must supply its own side._  |
+| property QQmlListProperty&lt; Axis &gt; | [**extraAxes**](classQAccelPlot_1_1PlotView.md#property-extraaxes-12)  <br>_Additional axes beyond the primary four; each extra axis must supply its own side._  |
 | property [**Grid**](classQAccelPlot_1_1Grid.md) \* | [**grid**](classQAccelPlot_1_1PlotView.md#property-grid-12)  <br>_Read-only constant: grid configuration object._  |
 | property QQuickItem \* | [**overlay**](classQAccelPlot_1_1PlotView.md#property-overlay-12)  <br>_Read-only constant: item that fills the plot and is stacked above the series, the zoom rectangle, and the_ `Plot` _legend._ |
 | property qreal | [**padding**](classQAccelPlot_1_1PlotView.md#property-padding-12)  <br>_Uniform padding in pixels between the plot area and the canvas edge. Default: 24._  |
@@ -74,10 +74,10 @@ flowchart TB
 | property QRectF | [**plotRect**](classQAccelPlot_1_1PlotView.md#property-plotrect-12)  <br>_Read-only: plot area rectangle in item-local pixel coordinates._  |
 | property [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) \* | [**rectangleZoom**](classQAccelPlot_1_1PlotView.md#property-rectanglezoom-12)  <br>_Rectangle zoom configuration and selection state._  |
 | property QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**series**](classQAccelPlot_1_1PlotView.md#property-series-12)  <br>_Read-only: all registered plot series._  |
-| property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**x2Axis**](classQAccelPlot_1_1PlotView.md#property-x2axis-12)  <br>_Optional secondary horizontal axis; assigning it sets its side to_ `Axis.Top` _._ |
-| property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](classQAccelPlot_1_1PlotView.md#property-xaxis-12)  <br>_Primary horizontal axis; assigning it sets its side to_ `Axis.Bottom` _._ |
-| property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**y2Axis**](classQAccelPlot_1_1PlotView.md#property-y2axis-12)  <br>_Optional secondary vertical axis; assigning it sets its side to_ `Axis.Right` _._ |
-| property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](classQAccelPlot_1_1PlotView.md#property-yaxis-12)  <br>_Primary vertical axis; assigning it sets its side to_ `Axis.Left` _._ |
+| property Axis \* | [**x2Axis**](classQAccelPlot_1_1PlotView.md#property-x2axis-12)  <br>_Optional secondary horizontal axis; assigning it sets its side to_ `Axis.Top` _._ |
+| property Axis \* | [**xAxis**](classQAccelPlot_1_1PlotView.md#property-xaxis-12)  <br>_Primary horizontal axis; assigning it sets its side to_ `Axis.Bottom` _._ |
+| property Axis \* | [**y2Axis**](classQAccelPlot_1_1PlotView.md#property-y2axis-12)  <br>_Optional secondary vertical axis; assigning it sets its side to_ `Axis.Right` _._ |
+| property Axis \* | [**yAxis**](classQAccelPlot_1_1PlotView.md#property-yaxis-12)  <br>_Primary vertical axis; assigning it sets its side to_ `Axis.Left` _._ |
 
 
 
@@ -114,7 +114,7 @@ flowchart TB
 |  [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](#function-border-22) () const<br>_Returns the plot-area frame settings. The object is owned by the plot._  |
 |  Q\_INVOKABLE qreal | [**dataToPixelX**](#function-datatopixelx) (qreal dataValue) const<br>_Converts a horizontal data-space value to an item-local pixel X coordinate._  |
 |  Q\_INVOKABLE qreal | [**dataToPixelY**](#function-datatopixely) (qreal dataValue) const<br>_Converts a vertical data-space value to an item-local pixel Y coordinate._  |
-|  QQmlListProperty&lt; [**Axis**](classQAccelPlot_1_1Axis.md) &gt; | [**extraAxes**](#function-extraaxes-22) () <br>_Returns the QML list property for extra axes._  |
+|  QQmlListProperty&lt; Axis &gt; | [**extraAxes**](#function-extraaxes-22) () <br>_Returns the QML list property for extra axes._  |
 |  [**Grid**](classQAccelPlot_1_1Grid.md) \* | [**grid**](#function-grid-22) () const<br>_Returns the grid configuration object._  |
 |  Q\_INVOKABLE bool | [**isInsidePlotArea**](#function-isinsideplotarea) (qreal x, qreal y) const<br>_Returns_ `true` _if the item-local point (__x_ _,__y_ _) lies inside the plot area._ |
 |  QQuickItem \* | [**overlay**](#function-overlay-22) () const<br>_Returns the item that holds overlays drawn above the series._  |
@@ -129,14 +129,14 @@ flowchart TB
 |  void | [**setAxesAreaColor**](#function-setaxesareacolor) (const QColor & c) <br>_Sets the axes surround background color to_ _c_ _._ |
 |  void | [**setPadding**](#function-setpadding) (qreal p) <br>_Sets the canvas padding to_ _p_ _pixels._ |
 |  void | [**setPlotAreaColor**](#function-setplotareacolor) (const QColor & c) <br>_Sets the plot area background color to_ _c_ _._ |
-|  void | [**setX2Axis**](#function-setx2axis) ([**Axis**](classQAccelPlot_1_1Axis.md) \* axis) <br>_Sets the secondary horizontal axis to_ _axis_ _and assigns it to the top side._ |
-|  void | [**setXAxis**](#function-setxaxis) ([**Axis**](classQAccelPlot_1_1Axis.md) \* axis) <br>_Sets the primary horizontal axis to_ _axis_ _and assigns it to the bottom side._ |
-|  void | [**setY2Axis**](#function-sety2axis) ([**Axis**](classQAccelPlot_1_1Axis.md) \* axis) <br>_Sets the secondary vertical axis to_ _axis_ _and assigns it to the right side._ |
-|  void | [**setYAxis**](#function-setyaxis) ([**Axis**](classQAccelPlot_1_1Axis.md) \* axis) <br>_Sets the primary vertical axis to_ _axis_ _and assigns it to the left side._ |
-|  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**x2Axis**](#function-x2axis-22) () const<br>_Returns the secondary horizontal axis, or_ `nullptr` _if not set._ |
-|  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](#function-xaxis-22) () const<br>_Returns the primary horizontal axis._  |
-|  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**y2Axis**](#function-y2axis-22) () const<br>_Returns the secondary vertical axis, or_ `nullptr` _if not set._ |
-|  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](#function-yaxis-22) () const<br>_Returns the primary vertical axis._  |
+|  void | [**setX2Axis**](#function-setx2axis) (Axis \* axis) <br>_Sets the secondary horizontal axis to_ _axis_ _and assigns it to the top side._ |
+|  void | [**setXAxis**](#function-setxaxis) (Axis \* axis) <br>_Sets the primary horizontal axis to_ _axis_ _and assigns it to the bottom side._ |
+|  void | [**setY2Axis**](#function-sety2axis) (Axis \* axis) <br>_Sets the secondary vertical axis to_ _axis_ _and assigns it to the right side._ |
+|  void | [**setYAxis**](#function-setyaxis) (Axis \* axis) <br>_Sets the primary vertical axis to_ _axis_ _and assigns it to the left side._ |
+|  Axis \* | [**x2Axis**](#function-x2axis-22) () const<br>_Returns the secondary horizontal axis, or_ `nullptr` _if not set._ |
+|  Axis \* | [**xAxis**](#function-xaxis-22) () const<br>_Returns the primary horizontal axis._  |
+|  Axis \* | [**y2Axis**](#function-y2axis-22) () const<br>_Returns the secondary vertical axis, or_ `nullptr` _if not set._ |
+|  Axis \* | [**yAxis**](#function-yaxis-22) () const<br>_Returns the primary vertical axis._  |
 |  Q\_INVOKABLE bool | [**zoomToRect**](#function-zoomtorect) (const QRectF & rect) <br>_Zooms all attached axes to an item-local pixel rectangle and returns whether it was applied. Normalizes and clips the rectangle to plotRect; rejects selections smaller than rectangleZoom.minimumSize or ranges that are nonfinite, collapsed, or nonpositive on logarithmic axes. Does not require enabled._  |
 |   | [**~PlotView**](#function-plotview) () override<br>_Destroys the plot after disconnecting attached axis signals._  |
 

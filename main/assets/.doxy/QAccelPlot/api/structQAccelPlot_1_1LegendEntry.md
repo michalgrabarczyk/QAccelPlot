@@ -60,7 +60,7 @@ _How a legend draws one row of a series: its label, symbol, color, line, and mar
 | ---: | :--- |
 | property bool | [**antialiasing**](structQAccelPlot_1_1LegendEntry.md#property-antialiasing)  <br>_Whether the line and marker are antialiased._  |
 | property qreal | [**antialiasingFeather**](structQAccelPlot_1_1LegendEntry.md#property-antialiasingfeather)  <br>_Antialiasing feather width in pixels._  |
-| property QColor | [**color**](structQAccelPlot_1_1LegendEntry.md#property-color)  <br>_Color of the line, marker, or fill._  |
+| property QColor | [**color**](structQAccelPlot_1_1LegendEntry.md#property-color)  <br>_Color of the line, marker, or fill; of the up candle for the_ `Candle` _symbol._ |
 | property [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](structQAccelPlot_1_1LegendEntry.md#property-linestyle)  <br>_Line style, or null for a solid line. Owned by the series._  |
 | property qreal | [**lineWidth**](structQAccelPlot_1_1LegendEntry.md#property-linewidth)  <br>_Line width in pixels._  |
 | property bool | [**markerFilled**](structQAccelPlot_1_1LegendEntry.md#property-markerfilled)  <br>_Whether the marker is filled._  |
@@ -68,6 +68,7 @@ _How a legend draws one row of a series: its label, symbol, color, line, and mar
 | property qreal | [**markerSize**](structQAccelPlot_1_1LegendEntry.md#property-markersize)  <br>_Marker size in pixels._  |
 | property qreal | [**markerStrokeWidth**](structQAccelPlot_1_1LegendEntry.md#property-markerstrokewidth)  <br>_Outline width in pixels of a hollow marker._  |
 | property QML\_ANONYMOUSQString | [**name**](structQAccelPlot_1_1LegendEntry.md#property-name-12)  <br>_Row label, such as a category name. Empty labels the row with the series name._  |
+| property QColor | [**secondaryColor**](structQAccelPlot_1_1LegendEntry.md#property-secondarycolor)  <br>_Color of the down candle for the_ `Candle` _symbol; unused by the other symbols._ |
 | property [**PlotSeries::LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**symbol**](structQAccelPlot_1_1LegendEntry.md#property-symbol)  <br>_Symbol style._  |
 
 
@@ -77,6 +78,11 @@ _How a legend draws one row of a series: its label, symbol, color, line, and mar
 
 
 
+## Public Functions
+
+| Type | Name |
+| ---: | :--- |
+|  QColor | [**downCandleColor**](#function-downcandlecolor) () const<br>_Returns_ `secondaryColor` _, or_`color` _when_`secondaryColor` _is invalid._ |
 
 
 
@@ -181,14 +187,14 @@ Antialiasing feather width.
 
 ### property color {#property-color}
 
-_Color of the line, marker, or fill._ 
+_Color of the line, marker, or fill; of the up candle for the_ `Candle` _symbol._
 ```C++
 QColor QAccelPlot::LegendEntry::color;
 ```
 
 
 
-Line, marker, or fill color. 
+Line, marker, fill, or up candle color. 
 
 
         
@@ -315,11 +321,50 @@ QML_ANONYMOUSQString QAccelPlot::LegendEntry::name;
 
 
 
+### property secondaryColor {#property-secondarycolor}
+
+_Color of the down candle for the_ `Candle` _symbol; unused by the other symbols._
+```C++
+QColor QAccelPlot::LegendEntry::secondaryColor;
+```
+
+
+
+Down candle color, or invalid for `color`.
+
+
+Reads as `color` when the series sets no down candle color. 
+
+
+        
+
+<hr>
+
+
+
+
 ### property symbol {#property-symbol}
 
 _Symbol style._ 
 ```C++
 PlotSeries::LegendSymbol QAccelPlot::LegendEntry::symbol;
+```
+
+
+
+
+<hr>
+## Public Functions Documentation
+
+
+
+
+
+### function downCandleColor {#function-downcandlecolor}
+
+_Returns_ `secondaryColor` _, or_`color` _when_`secondaryColor` _is invalid._
+```C++
+QColor QAccelPlot::LegendEntry::downCandleColor () const
 ```
 
 

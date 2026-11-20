@@ -446,6 +446,8 @@
       
         
       
+        
+      
     
     
     
@@ -907,6 +909,34 @@
     
   
     Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
   
 
     
@@ -1464,6 +1494,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-modified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function modified
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-request" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1570,6 +1611,10 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-modified"><strong>modified</strong></a> (const <a href="../structQAccelPlot_1_1Internal_1_1InspectionSource/"><strong>InspectionSource</strong></a> &amp; source, int index) <br><em>Moves record</em> <em>index</em> <em>in a ready index to its value in__source</em> <em>; otherwise drops the index like</em><code>invalidate()</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-request"><strong>request</strong></a> () <br><em>Starts building an index unless one is ready or already in progress.</em></td>
 </tr>
 <tr>
@@ -1602,19 +1647,28 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-modified">function modified<a class="headerlink" href="#function-modified" title="Permanent link">&para;</a></h3>
+<p><em>Moves record</em> <em>index</em> <em>in a ready index to its value in__source</em> <em>; otherwise drops the index like</em><code>invalidate()</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionCache</span><span class="o">::</span><span class="n">modified</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-request">function request<a class="headerlink" href="#function-request" title="Permanent link">&para;</a></h3>
 <p><em>Starts building an index unless one is ready or already in progress.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionCache</span><span class="o">::</span><span class="n">request</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionCache</span><span class="o">::</span><span class="n">request</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-requested">function requested<a class="headerlink" href="#function-requested" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionCache</span><span class="o">::</span><span class="n">requested</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionCache</span><span class="o">::</span><span class="n">requested</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-inspectioncache">function ~InspectionCache<a class="headerlink" href="#function-inspectioncache" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionCache</span><span class="o">::~</span><span class="n">InspectionCache</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionCache</span><span class="o">::~</span><span class="n">InspectionCache</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 

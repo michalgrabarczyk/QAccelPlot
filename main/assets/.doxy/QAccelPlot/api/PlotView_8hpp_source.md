@@ -142,6 +142,7 @@ protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
 
 private:
+    friend class Axis;
     friend class PlotExporter;
     friend class PlotInspector;
 
@@ -152,6 +153,8 @@ private:
     static Axis* extraAxis(QQmlListProperty<Axis>* list, qsizetype index);
     static void clearExtraAxes(QQmlListProperty<Axis>* list);
 
+    // Emits mouseMoved() when something is connected; returns whether a handler accepted the event.
+    bool emitMouseMoved(const QSinglePointEvent& event);
     bool tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event);
     bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, qreal wheelSteps);
     void zoomAxisAtRatio(Axis* axis, qreal ratio, qreal wheelSteps);
@@ -185,6 +188,10 @@ private:
     QPointF lastMousePos_;
     // Key events go to the axis under the pointer.
     Internal::PointerTracker* pointer_{nullptr};
+    PlotMouseEvent mousePressEvent_{this};
+    PlotMouseEvent mouseReleaseEvent_{this};
+    PlotMouseEvent mouseDoubleClickEvent_{this};
+    PlotMouseEvent mouseMoveEvent_{this};
     qreal padding_{24.0};
     QRectF plotRect_;
     QColor plotAreaColor_{ColorPalette::dark().plotArea};

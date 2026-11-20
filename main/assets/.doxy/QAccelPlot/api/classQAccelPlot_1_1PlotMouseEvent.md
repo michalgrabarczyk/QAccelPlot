@@ -82,7 +82,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PlotMouseEvent**](#function-plotmouseevent-12) (QObject \* parent=nullptr) <br>_Constructs a_ [_**PlotMouseEvent**_](classQAccelPlot_1_1PlotMouseEvent.md) _with an optional_`parent` _._ |
+|   | [**PlotMouseEvent**](#function-plotmouseevent) (QObject \* parent=nullptr) <br>_Constructs a_ [_**PlotMouseEvent**_](classQAccelPlot_1_1PlotMouseEvent.md) _with an optional_`parent` _._ |
 |  Q\_INVOKABLE void | [**accept**](#function-accept) () <br>_Accepts the event, suppressing the plot's built-in handling._  |
 |  Qt::MouseButton | [**button**](#function-button-22) () const<br>_Returns the mouse button that caused the event;_ `Qt::NoButton` _for a move._ |
 |  Qt::MouseButtons | [**buttons**](#function-buttons-22) () const<br>_Returns the mouse buttons held down during the event._  |
@@ -130,7 +130,7 @@ An instance of this class is passed to each `PlotView` mouse signal and to `Axis
 
 **Note:**
 
-The object is owned by `QAccelPlot` and is destroyed after the signal — do not store a reference to it beyond the signal handler. 
+The object is owned by `QAccelPlot` and is reused across events — do not store a reference to it beyond the signal handler. 
 
 
 
@@ -235,7 +235,7 @@ qreal QAccelPlot::PlotMouseEvent::y;
 
 
 
-### function PlotMouseEvent {#function-plotmouseevent-12}
+### function PlotMouseEvent {#function-plotmouseevent}
 
 _Constructs a_ [_**PlotMouseEvent**_](classQAccelPlot_1_1PlotMouseEvent.md) _with an optional_`parent` _._
 ```C++

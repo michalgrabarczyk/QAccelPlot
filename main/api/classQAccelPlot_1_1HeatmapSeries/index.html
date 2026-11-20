@@ -446,6 +446,8 @@
       
         
       
+        
+      
     
     
     
@@ -907,6 +909,34 @@
     
   
     Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/candlesticks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Candlesticks
   
 
     
@@ -2997,7 +3027,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-appenddatapoint"><strong>appendDataPoint</strong></a> (const double * coordinates) <br><em>Appends one double data point and widens the data ranges by its valid coordinates.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-appenddatapoint"><strong>appendDataPoint</strong></a> (const double * coordinates) <br><em>Appends one double data point and widens the data ranges by its</em> <code>dataPointExtents()</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
@@ -3014,6 +3044,10 @@
 <tr>
 <td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1PlotSeries_1_1DataRanges/"><strong>DataRanges</strong></a></td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-computedataranges"><strong>computeDataRanges</strong></a> () const<br><em>Scans the records for their extents. The default implementation scans the data points.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1DataPointStore_1_1Extents/"><strong>DataPointStore::Extents</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-datapointextents"><strong>dataPointExtents</strong></a> (int index) const<br><em>Returns the extents stored data point</em> <em>index</em> <em>adds to the data ranges.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual int</td>
@@ -3049,7 +3083,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectiondatachanged"><strong>inspectionDataChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change=DataChange::Replaced) <br><em>Advances the data revision and refreshes the data queries. Call after every accepted record change.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectiondatachanged"><strong>inspectionDataChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change=DataChange::Replaced, int index=-1) <br><em>Advances the data revision and refreshes the data queries. Call after every accepted record change.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionDataPoint/"><strong>InspectionDataPoint</strong></a></td>
@@ -3089,7 +3123,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-notifydatapointschanged"><strong>notifyDataPointsChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change, int previousCount) <br><em>Finishes a change of the data points: data ranges,</em> <code>onDataPointsChanged()</code> <em>,</em><code>countChanged()</code> <em>, data queries, and a repaint.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-notifydatapointsreplaced"><strong>notifyDataPointsReplaced</strong></a> (int previousCount) <br><em>Finishes replacing all data points, after a series stored the new ones.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
@@ -3101,7 +3135,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-ondatapointschanged"><strong>onDataPointsChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change, int previousCount) <br><em>Called after the data points changed, before the data queries are refreshed. The default does nothing.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-ondatapointschanged"><strong>onDataPointsChanged</strong></a> (const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataUpdate/"><strong>DataUpdate</strong></a> &amp; dataUpdate) <br><em>Called after the data ranges reflect a change of the data points, before the data queries are refreshed. The default does nothing.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual bool</td>
@@ -3138,6 +3172,10 @@
 <tr>
 <td style="text-align: right;">virtual bool</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-supportseffect"><strong>supportsEffect</strong></a> (const <a href="../classQAccelPlot_1_1SeriesEffect/"><strong>SeriesEffect</strong></a> &amp; effect) const<br><em>Returns whether the series draws</em> <em>effect</em> <em>. The default draws none.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-updatedatarangeinputs"><strong>updateDataRangeInputs</strong></a> (const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataUpdate/"><strong>DataUpdate</strong></a> &amp; dataUpdate) <br><em>Updates what</em> <code>computeDataRanges()</code> <em>and</em><code>dataPointExtents()</code> <em>read after the data points changed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>

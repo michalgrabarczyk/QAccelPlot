@@ -52,6 +52,7 @@
 | Type | Name |
 | ---: | :--- |
 | class | [**FrontStarts**](classQAccelPlot_1_1Internal_1_1FrontStarts.md) <br>_When an eased reveal front reaches each share of the items._  |
+| struct | [**GrowViewport**](structQAccelPlot_1_1Internal_1_1GrowViewport.md) <br>_The viewport of the axis items grow along, which places a baseline the axis cannot show._  |
 | class | [**ItemClock**](classQAccelPlot_1_1Internal_1_1ItemClock.md) <br>_The start time and movement of each item of one group at the frame._  |
 | struct | [**ItemTiming**](structQAccelPlot_1_1Internal_1_1ItemTiming.md) <br>_The timing of the items of one group, as shares of the transition duration._  |
 | struct | [**TransitionFrameInput**](structQAccelPlot_1_1Internal_1_1TransitionFrameInput.md) <br>_The two sides of a transition and the steps of its slots at one frame._  |

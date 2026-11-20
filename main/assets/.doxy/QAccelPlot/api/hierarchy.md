@@ -19,10 +19,12 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**QAccelPlot::Internal::ItemClock**](classQAccelPlot_1_1Internal_1_1ItemClock.md) _The start time and movement of each item of one group at the frame._ 
 * **class** [**QAccelPlot::Internal::OpacityTimeline**](classQAccelPlot_1_1Internal_1_1OpacityTimeline.md) _The opacity of an item over the time since it started, built from opacity animations._ 
 * **class** [**QAccelPlot::Internal::OverlayChildren**](classQAccelPlot_1_1Internal_1_1OverlayChildren.md) _Objects declared inside an inspection tool in QML._ 
+* **class** [**QAccelPlot::Internal::RecordHitIndex**](classQAccelPlot_1_1Internal_1_1RecordHitIndex.md) _Finds the drawn record nearest to a pixel position, for series that draw one record per data point._ 
 * **class** [**QAccelPlot::Internal::RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md) _Vertices of a series that draws each rectangle as a quad positioned from a data texture._ 
 * **class** [**QAccelPlot::Internal::ResettableValue**](classQAccelPlot_1_1Internal_1_1ResettableValue.md) _A property value that is either set explicitly or follows a default._ 
 * **class** [**QAccelPlot::Internal::ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) _Rasterizes the painted items under a root item at a capture scale until destroyed._ 
 * **class** [**QAccelPlot::Internal::SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md) _Inspection queries that read a series' own buffer whose records are ordered along one axis._ 
+* **class** [**QAccelPlot::Internal::StoreTransition**](classQAccelPlot_1_1Internal_1_1StoreTransition.md) _Shows the runs of a_ `TransitionRunner` _as the drawn data points of a_`DataPointStore` _._
 * **class** [**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md) _Internal renderer responsible for building and updating QSGNode line geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._
 * **class** [**QAccelPlot::LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md) _Internal renderer responsible for building and updating QSGNode marker geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._
 * **class** [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md) _Owns a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _'s pre-built vertex bytes and the metadata required to use them safely._
@@ -67,6 +69,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::Internal::GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) _How the shaders draw a_ `Glow` _halo; see shaders/glow.glsl._
 * **struct** [**QAccelPlot::Internal::GlowUniforms**](structQAccelPlot_1_1Internal_1_1GlowUniforms.md) _The std140 uniform members of a_ `Glow` _halo,_`glowColor` _and_`glowParams` _, at a 16-byte aligned offset._
 * **struct** [**QAccelPlot::Internal::GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) _Sizes of one item grab._ 
+* **struct** [**QAccelPlot::Internal::GrowViewport**](structQAccelPlot_1_1Internal_1_1GrowViewport.md) _The viewport of the axis items grow along, which places a baseline the axis cannot show._ 
 * **struct** [**QAccelPlot::Internal::HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) _One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._
 * **struct** [**QAccelPlot::Internal::HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md) _How heatmap.frag maps an item-local pixel position_ _p_ _to a fractional cell coordinate along one dimension._
 * **struct** [**QAccelPlot::Internal::InspectionBounds**](structQAccelPlot_1_1Internal_1_1InspectionBounds.md) _Inclusive data-space region; infinite limits leave a dimension unbounded._ 
@@ -82,6 +85,8 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::Internal::ItemTiming**](structQAccelPlot_1_1Internal_1_1ItemTiming.md) _The timing of the items of one group, as shares of the transition duration._ 
 * **struct** [**QAccelPlot::Internal::ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) _How the shaders fade the oldest items under a_ `FadeTrail` _effect._
 * **struct** [**QAccelPlot::Internal::OpacitySegment**](structQAccelPlot_1_1Internal_1_1OpacitySegment.md) _One animation of item opacity, on the timeline of an item._ 
+* **struct** [**QAccelPlot::Internal::RecordFrame**](structQAccelPlot_1_1Internal_1_1RecordFrame.md) _What a series that draws one record per data point draws in a frame._ 
+* **struct** [**QAccelPlot::Internal::RecordHitIndex::Query**](structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query.md) _A record lookup around a pixel position._ 
 * **struct** [**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._ 
 * **struct** [**QAccelPlot::Internal::SummaryAccumulator**](structQAccelPlot_1_1Internal_1_1SummaryAccumulator.md) _Running data-point-weighted Y statistics that can be merged across disjoint data point sets._ 
 * **struct** [**QAccelPlot::Internal::TransitionFrameInput**](structQAccelPlot_1_1Internal_1_1TransitionFrameInput.md) _The two sides of a transition and the steps of its slots at one frame._ 
@@ -99,6 +104,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::PlotSeries::DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) _Data points passed to_ `setData()` _or_`setDataF()` _, already checked._
 * **struct** [**QAccelPlot::PlotSeries::DataPointWording**](structQAccelPlot_1_1PlotSeries_1_1DataPointWording.md) _Words used in the warnings about rejected data arguments._ 
 * **struct** [**QAccelPlot::PlotSeries::DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) _Extents of a series in both dimensions._ 
+* **struct** [**QAccelPlot::PlotSeries::DataUpdate**](structQAccelPlot_1_1PlotSeries_1_1DataUpdate.md) _A change of the data points, as passed to_ `updateDataRangeInputs()` _and_`onDataPointsChanged()` _._
 * **struct** [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md) _Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1_1LineCurvePointRenderer.md#function-paint) _, assembled on the main thread._
 * **struct** [**QAccelPlot::PointSpatialIndex::Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md) _Coordinate mapping applied before indexing._ 
 * **struct** [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md) _Placeholder vertex of a marker quad, shared with the main thread for vertex caches._ 
@@ -107,7 +113,11 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::BandEdgeRenderer::ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md) 
 * **struct** [**QAccelPlot::BandSeries::RenderView**](structQAccelPlot_1_1BandSeries_1_1RenderView.md) 
 * **struct** [**QAccelPlot::BandSeries::Span**](structQAccelPlot_1_1BandSeries_1_1Span.md) 
+* **struct** [**QAccelPlot::BarSeries::BarExtents**](structQAccelPlot_1_1BarSeries_1_1BarExtents.md) 
 * **struct** [**QAccelPlot::BarSeries::Bars**](structQAccelPlot_1_1BarSeries_1_1Bars.md) 
+* **struct** [**QAccelPlot::CandlestickSeries::AutoSpacing**](structQAccelPlot_1_1CandlestickSeries_1_1AutoSpacing.md) 
+* **struct** [**QAccelPlot::CandlestickSeries::CandleBoxes**](structQAccelPlot_1_1CandlestickSeries_1_1CandleBoxes.md) 
+* **struct** [**QAccelPlot::CandlestickSeries::PixelBox**](structQAccelPlot_1_1CandlestickSeries_1_1PixelBox.md) 
 * **struct** [**QAccelPlot::ColorBar::Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md) 
 * **struct** [**QAccelPlot::DataPointStore::Compacted**](structQAccelPlot_1_1DataPointStore_1_1Compacted.md) 
 * **struct** [**QAccelPlot::DataPointStore::Origin**](structQAccelPlot_1_1DataPointStore_1_1Origin.md) 
@@ -243,6 +253,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** **QSGMaterial**    
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
         * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
+        * **class** [**QAccelPlot::CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) _Material that draws candles from (x, open, high, low, close) data points in a data texture._ 
         * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
@@ -253,6 +264,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
         * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
+        * **class** [**QAccelPlot::CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) _Material that draws candles from (x, open, high, low, close) data points in a data texture._ 
         * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
@@ -263,6 +275,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
         * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
+        * **class** [**QAccelPlot::CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) _Material that draws candles from (x, open, high, low, close) data points in a data texture._ 
         * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
@@ -273,6 +286,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
         * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
+        * **class** [**QAccelPlot::CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) _Material that draws candles from (x, open, high, low, close) data points in a data texture._ 
         * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
@@ -283,6 +297,18 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
         * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
+        * **class** [**QAccelPlot::CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) _Material that draws candles from (x, open, high, low, close) data points in a data texture._ 
+        * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
+        * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
+            * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
+            * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
+        * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
+        * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for_ `LineCurve` _marker rendering._
+        * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
+            * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
+    * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
+        * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
+        * **class** [**QAccelPlot::CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) _Material that draws candles from (x, open, high, low, close) data points in a data texture._ 
         * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
@@ -294,6 +320,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**QAccelPlot::GradientFillMaterial**](classQAccelPlot_1_1GradientFillMaterial.md) _Scene-graph material that evaluates fill gradients per fragment._ 
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
         * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
+        * **class** [**QAccelPlot::CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) _Material that draws candles from (x, open, high, low, close) data points in a data texture._ 
         * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
@@ -305,6 +332,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**QAccelPlot::HeatmapMaterial**](classQAccelPlot_1_1HeatmapMaterial.md) _Material that colors each fragment by the value of the heatmap cell under it._ 
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
         * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
+        * **class** [**QAccelPlot::CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) _Material that draws candles from (x, open, high, low, close) data points in a data texture._ 
         * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
@@ -315,6 +343,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
         * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
+        * **class** [**QAccelPlot::CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) _Material that draws candles from (x, open, high, low, close) data points in a data texture._ 
         * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
@@ -325,6 +354,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
         * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
+        * **class** [**QAccelPlot::CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) _Material that draws candles from (x, open, high, low, close) data points in a data texture._ 
         * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
@@ -335,6 +365,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
         * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
+        * **class** [**QAccelPlot::CandlestickMaterial**](classQAccelPlot_1_1CandlestickMaterial.md) _Material that draws candles from (x, open, high, low, close) data points in a data texture._ 
         * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
@@ -346,6 +377,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** **QQuickItem**    
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._ 
+        * **class** [**QAccelPlot::CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md) _A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point._ 
         * **class** [**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
             * **class** [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._ 
             * **class** [**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._ 
@@ -355,6 +387,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._ 
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._ 
+        * **class** [**QAccelPlot::CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md) _A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point._ 
         * **class** [**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
             * **class** [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._ 
             * **class** [**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._ 
@@ -364,6 +397,17 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._ 
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._ 
+        * **class** [**QAccelPlot::CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md) _A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point._ 
+        * **class** [**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
+            * **class** [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._ 
+            * **class** [**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._ 
+            * **class** [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md) _A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._ 
+        * **class** [**QAccelPlot::ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md) _A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends._ 
+        * **class** [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md) _A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._ 
+        * **class** [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._ 
+    * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
+        * **class** [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._ 
+        * **class** [**QAccelPlot::CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md) _A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point._ 
         * **class** [**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
             * **class** [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._ 
             * **class** [**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._ 
@@ -374,6 +418,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md) _A QQuickItem that tracks a data-coordinate rectangle in pixel space._ 
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._ 
+        * **class** [**QAccelPlot::CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md) _A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point._ 
         * **class** [**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
             * **class** [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._ 
             * **class** [**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._ 
@@ -383,6 +428,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._ 
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._ 
+        * **class** [**QAccelPlot::CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md) _A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point._ 
         * **class** [**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
             * **class** [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._ 
             * **class** [**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._ 
@@ -397,6 +443,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**QAccelPlot::Internal::SelectionRectangle**](classQAccelPlot_1_1Internal_1_1SelectionRectangle.md) _Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._ 
+        * **class** [**QAccelPlot::CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md) _A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point._ 
         * **class** [**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
             * **class** [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._ 
             * **class** [**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._ 
@@ -406,6 +453,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._ 
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._ 
+        * **class** [**QAccelPlot::CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md) _A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point._ 
         * **class** [**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
             * **class** [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._ 
             * **class** [**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._ 
@@ -416,6 +464,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**QAccelPlot::PlotView**](classQAccelPlot_1_1PlotView.md) _The main plot canvas QML item — hosts axes, curves, and a grid._ 
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._ 
+        * **class** [**QAccelPlot::CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md) _A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point._ 
         * **class** [**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
             * **class** [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._ 
             * **class** [**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._ 
@@ -425,6 +474,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._ 
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._ 
+        * **class** [**QAccelPlot::CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md) _A hardware-accelerated QML item that draws candles: the open, high, low, and close of each data point._ 
         * **class** [**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
             * **class** [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._ 
             * **class** [**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._ 

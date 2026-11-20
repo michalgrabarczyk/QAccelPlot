@@ -28,6 +28,8 @@ qreal edgePixel(double value, const Axis& axis, qreal length);
 
 std::pair<qreal, qreal> widenedSpan(qreal a, qreal b, qreal minimumSize);
 
+qreal distanceToBox(qreal x, qreal y, const std::pair<qreal, qreal>& xs, const std::pair<qreal, qreal>& ys);
+
 } // namespace QAccelPlot::Internal
 ```
 

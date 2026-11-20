@@ -124,7 +124,7 @@ protected:
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     void onAxisScaleChanged() override;
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
 
 private:
     void onCategoriesChanged();

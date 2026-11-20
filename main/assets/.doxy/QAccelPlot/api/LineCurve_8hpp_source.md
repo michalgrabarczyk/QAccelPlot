@@ -108,7 +108,7 @@ protected:
     bool supportsEffect(const SeriesEffect& effect) const override;
     void applyDataPoints(DataPointInput&& input) override;
     void onAxisScaleChanged() override;
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
 
 signals:
     void colorChanged();

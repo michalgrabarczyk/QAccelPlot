@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1RecordHitIndex" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::RecordHitIndex</compoundname>
+    <includes local="no">RecordHitIndex.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query" prot="public">QAccelPlot::Internal::RecordHitIndex::Query</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1aced881f691a922a1ad6b281f8192b8d1" prot="public" static="no">
+        <type>std::function&lt; std::optional&lt; qreal &gt;(int index)&gt;</type>
+        <definition>using QAccelPlot::Internal::RecordHitIndex::Distance =  std::function&lt;std::optional&lt;qreal&gt;(int index)&gt;</definition>
+        <argsstring></argsstring>
+        <name>Distance</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::Distance</qualifiedname>
+        <briefdescription>
+<para>Returns the pixel distance from the query position to record <emphasis>index</emphasis>, or nullopt when it is not drawn. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="38" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1a28628e61fe997d4745992eaccf3f140b" prot="public" static="no">
+        <type>std::function&lt; std::optional&lt; std::pair&lt; double, double &gt; &gt;(int index)&gt;</type>
+        <definition>using QAccelPlot::Internal::RecordHitIndex::SpanAt =  std::function&lt;std::optional&lt;std::pair&lt;double, double&gt;&gt;(int index)&gt;</definition>
+        <argsstring></argsstring>
+        <name>SpanAt</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::SpanAt</qualifiedname>
+        <briefdescription>
+<para>Returns record <emphasis>index&apos;s</emphasis> (min, max) span along the position axis, or nullopt when it has none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="40" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1af1e1fdf5091263c5df71ff1488b5cf01" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::Internal::RecordHitIndex::rects_</definition>
+        <argsstring></argsstring>
+        <name>rects_</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::rects_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="60" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1a4619696c2413f8c1bd194d977d6e920b" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1SpatialGrid" kindref="compound">SpatialGrid</ref></type>
+        <definition>SpatialGrid QAccelPlot::Internal::RecordHitIndex::grid_</definition>
+        <argsstring></argsstring>
+        <name>grid_</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::grid_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="61" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1ae048d5469a80af55b460218dace15d27" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::RecordHitIndex::valid_</definition>
+        <argsstring></argsstring>
+        <name>valid_</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::valid_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="62" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" bodystart="62" bodyend="62"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1aff62b36c397fbfe6e10fb962eee64197" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::RecordHitIndex::invalidate</definition>
+        <argsstring>()</argsstring>
+        <name>invalidate</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::invalidate</qualifiedname>
+        <briefdescription>
+<para>Marks the spans out of date. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="43" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1aab3ffd6f7dab33ac8de4f78046bb8660" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::RecordHitIndex::valid</definition>
+        <argsstring>() const</argsstring>
+        <name>valid</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::valid</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> while the spans are up to date. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="45" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1aa50ecf56ef63cb481ebb0d24c1907108" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::RecordHitIndex::build</definition>
+        <argsstring>(int count, Qt::Orientation positionAxis, const SpanAt &amp;spanAt)</argsstring>
+        <name>build</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::build</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>Qt::Orientation</type>
+          <declname>positionAxis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1a28628e61fe997d4745992eaccf3f140b" kindref="member">SpanAt</ref> &amp;</type>
+          <declname>spanAt</declname>
+        </param>
+        <briefdescription>
+<para>Rebuilds the spans of <emphasis>count</emphasis> records along <emphasis>positionAxis</emphasis> from <emphasis>spanAt</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only the position axis is indexed. Records such as candles often reach across much of the other axis, which would push them past the grid&apos;s per-rectangle cell limit into its linear scan; the pixel distance test covers that axis instead. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="52" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1ada12df67930c5980108f84216fec8a62" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::RecordHitIndex::nearest</definition>
+        <argsstring>(const Query &amp;query, const Axis &amp;xAxis, const Axis &amp;yAxis, const QSizeF &amp;size, const Distance &amp;distance) const</argsstring>
+        <name>nearest</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::nearest</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query" kindref="compound">Query</ref> &amp;</type>
+          <declname>query</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> &amp;</type>
+          <declname>xAxis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> &amp;</type>
+          <declname>yAxis</declname>
+        </param>
+        <param>
+          <type>const QSizeF &amp;</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1aced881f691a922a1ad6b281f8192b8d1" kindref="member">Distance</ref> &amp;</type>
+          <declname>distance</declname>
+        </param>
+        <briefdescription>
+<para>Returns the record of <emphasis>query</emphasis> nearest to its position, or -1; on a tie, the one with the highest index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>xAxis</emphasis> and <emphasis>yAxis</emphasis> map the position of an item of <emphasis>size</emphasis> to data coordinates. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="57" column="9"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Finds the drawn record nearest to a pixel position, for series that draw one record per data point. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A spatial grid of the records&apos; data spans along their position axis narrows the candidates, and a pixel distance test picks among them. The spans are rebuilt lazily after <computeroutput><ref refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1aff62b36c397fbfe6e10fb962eee64197" kindref="member">invalidate()</ref></computeroutput>. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="27" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" bodystart="27" bodyend="63"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1aa50ecf56ef63cb481ebb0d24c1907108" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex</scope><name>build</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1aced881f691a922a1ad6b281f8192b8d1" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex</scope><name>Distance</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1a4619696c2413f8c1bd194d977d6e920b" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex</scope><name>grid_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1aff62b36c397fbfe6e10fb962eee64197" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex</scope><name>invalidate</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1ada12df67930c5980108f84216fec8a62" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex</scope><name>nearest</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1af1e1fdf5091263c5df71ff1488b5cf01" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex</scope><name>rects_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1a28628e61fe997d4745992eaccf3f140b" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex</scope><name>SpanAt</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1aab3ffd6f7dab33ac8de4f78046bb8660" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex</scope><name>valid</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1RecordHitIndex_1ae048d5469a80af55b460218dace15d27" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex</scope><name>valid_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

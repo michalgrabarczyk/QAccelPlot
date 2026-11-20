@@ -101,7 +101,7 @@ flowchart TB
 | signal void | [**baselineWidthChanged**](classQAccelPlot_1_1Axis.md#signal-baselinewidthchanged)  <br>_Emitted when the baselineWidth property changes._  |
 | signal void | [**dataMaxChanged**](classQAccelPlot_1_1Axis.md#signal-datamaxchanged)  <br>_Emitted when the dataMax property changes._  |
 | signal void | [**dataMinChanged**](classQAccelPlot_1_1Axis.md#signal-dataminchanged)  <br>_Emitted when the dataMin property changes._  |
-| signal void | [**doubleClicked**](classQAccelPlot_1_1Axis.md#signal-doubleclicked) ([**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) \* event) <br>_Emitted when the axis is double-clicked with the left button. Call_ `event->accept()` _to suppress built-in handling (rescale this axis to its data)._ |
+| signal void | [**doubleClicked**](classQAccelPlot_1_1Axis.md#signal-doubleclicked) ([**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) \* event) <br>_Emitted when the axis is double-clicked with the left button. Call_ `event->accept()` _to suppress built-in handling (rescale this axis to its data when it belongs to a_`PlotView` _)._ |
 | signal void | [**hoverColorChanged**](classQAccelPlot_1_1Axis.md#signal-hovercolorchanged)  <br>_Emitted when the hoverColor property changes._  |
 | signal void | [**hoveredChanged**](classQAccelPlot_1_1Axis.md#signal-hoveredchanged)  <br>_Emitted when the hovered property changes._  |
 | signal void | [**layoutSizeChanged**](classQAccelPlot_1_1Axis.md#signal-layoutsizechanged)  <br>_Emitted when the layoutSize property changes._  |
@@ -625,7 +625,7 @@ void QAccelPlot::Axis::dataMinChanged;
 
 ### signal doubleClicked {#signal-doubleclicked}
 
-_Emitted when the axis is double-clicked with the left button. Call_ `event->accept()` _to suppress built-in handling (rescale this axis to its data)._
+_Emitted when the axis is double-clicked with the left button. Call_ `event->accept()` _to suppress built-in handling (rescale this axis to its data when it belongs to a_`PlotView` _)._
 ```C++
 void QAccelPlot::Axis::doubleClicked;
 ```

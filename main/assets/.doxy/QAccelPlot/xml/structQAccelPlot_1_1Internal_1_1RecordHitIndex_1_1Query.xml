@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::RecordHitIndex::Query</compoundname>
+    <includes local="no">RecordHitIndex.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query_1a05503d209def1060ca5727e341da6987" prot="public" static="no" mutable="no">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::Internal::RecordHitIndex::Query::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::Query::position</qualifiedname>
+        <briefdescription>
+<para>Item position to look around. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="31" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query_1afb6f4afa882c50227daf4916715a04cd" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::RecordHitIndex::Query::radius</definition>
+        <argsstring></argsstring>
+        <name>radius</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::Query::radius</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Largest pixel distance of the found record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="32" column="15" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query_1a15e316071a7f846d95c86563dd5afd11" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::RecordHitIndex::Query::overhang</definition>
+        <argsstring></argsstring>
+        <name>overhang</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::Query::overhang</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Pixels a drawn record reaches past its span, such as half its minimum width. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="33" column="15" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query_1acbc618bde7e9cf19a3e67cf8c63b1478" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::RecordHitIndex::Query::drawnCount</definition>
+        <argsstring></argsstring>
+        <name>drawnCount</name>
+        <qualifiedname>QAccelPlot::Internal::RecordHitIndex::Query::drawnCount</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Records drawn; those at or above it are not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="34" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" bodystart="34" bodyend="34"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A record lookup around a pixel position. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" line="30" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RecordHitIndex.hpp" bodystart="30" bodyend="35"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query_1acbc618bde7e9cf19a3e67cf8c63b1478" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex::Query</scope><name>drawnCount</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query_1a15e316071a7f846d95c86563dd5afd11" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex::Query</scope><name>overhang</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query_1a05503d209def1060ca5727e341da6987" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex::Query</scope><name>position</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1RecordHitIndex_1_1Query_1afb6f4afa882c50227daf4916715a04cd" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RecordHitIndex::Query</scope><name>radius</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -37,6 +37,7 @@ public:
     ~InspectionCache() override;
 
     void invalidate();
+    void modified(const InspectionSource& source, int index);
     void request();
     [[nodiscard]] bool requested() const;
     [[nodiscard]] const InspectionIndex* index() const;

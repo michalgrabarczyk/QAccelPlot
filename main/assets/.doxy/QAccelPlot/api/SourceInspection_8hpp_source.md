@@ -28,6 +28,7 @@ public:
 
     void reset();
     void appended(int count);
+    void modified(int index);
     [[nodiscard]] std::size_t storageBytes() const;
 
     [[nodiscard]] InspectionHit nearestAlong(
