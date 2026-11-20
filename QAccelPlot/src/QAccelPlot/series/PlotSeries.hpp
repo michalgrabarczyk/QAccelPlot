@@ -292,14 +292,14 @@ protected:
         Modified, ///< \brief One record changed in place; the count and all other records are unchanged.
     };
 
-    /// \brief A change of the data points, as passed to \c onDataPointsStored().
+    /// \brief A change of the data points, as passed to \c updateDataRangeInputs() and \c onDataPointsChanged().
     struct DataUpdate {
         DataChange change{DataChange::Replaced}; ///< \brief How the data points changed.
         int previousCount{0};                    ///< \brief The data point count before the change.
         int index{-1};                           ///< \brief The appended or modified data point; -1 for \c DataChange::Replaced.
         /// \brief The \c columnCount() coordinates the modified data point had; \c nullptr unless \c DataChange::Modified.
         ///
-        /// Only valid during the call.
+        /// Only valid until \c onDataPointsChanged() returns.
         const double* previousCoordinates{nullptr};
     };
 
@@ -320,7 +320,8 @@ protected:
     /// \brief Appends one double data point and widens the data ranges by its \c dataPointExtents().
     ///
     /// Assumes the data ranges are the union of \c dataPointExtents() over every data point. A series
-    /// whose ranges also change in other ways, such as with the data point count, invalidates them itself.
+    /// whose other data points' extents also change, such as with the data point count, returns \c true
+    /// from \c updateDataRangeInputs().
     void appendDataPoint(const double* coordinates);
     /// \brief Returns whether \a index is the index of a stored data point; warns otherwise.
     bool validateDataPointIndex(int index) const;
@@ -336,19 +337,20 @@ protected:
     /// The default is its valid coordinates under the layout's range rule. A series that overrides
     /// \c computeDataRanges() and appends or replaces single data points overrides it to match.
     virtual DataPointStore::Extents dataPointExtents(int index) const;
-    /// \brief Finishes a change of the data points: data ranges, \c onDataPointsChanged(), \c countChanged(), data queries, and a repaint.
+    /// \brief Finishes replacing all data points, after a series stored the new ones.
     ///
-    /// A \c DataChange::Replaced change first calls \c onDataPointsStored() and invalidates the data ranges.
-    /// \a index is the modified data point of a \c DataChange::Modified change.
-    void notifyDataPointsChanged(DataChange change, int previousCount, int index = -1);
-    /// \brief Called after the data points changed, before the data ranges are invalidated or widened. The default does nothing.
+    /// Runs \c updateDataRangeInputs(), invalidates the data ranges, then runs \c onDataPointsChanged(),
+    /// emits \c countChanged(), refreshes the data queries, and repaints, as \c appendDataPoint() and
+    /// \c replaceDataPoint() do after their change.
+    void notifyDataPointsReplaced(int previousCount);
+    /// \brief Updates what \c computeDataRanges() and \c dataPointExtents() read after the data points changed.
     ///
-    /// Override to update caches that \c computeDataRanges() or \c dataPointExtents() read: a bound
-    /// axis with \c autoRescale reads the data ranges before \c onDataPointsChanged() runs. An override
-    /// that changes the extents of other data points calls \c invalidateDataRanges().
-    virtual void onDataPointsStored(const DataUpdate& update);
-    /// \brief Called after the data points changed, before the data queries are refreshed. The default does nothing.
-    virtual void onDataPointsChanged(DataChange change, int previousCount);
+    /// Runs before the data ranges are widened or rescanned; a bound axis with \c autoRescale reads them
+    /// right after. Returns \c true when the change moved the extents of data points other than
+    /// \c DataUpdate::index, so the data ranges are rescanned. The default does nothing and returns \c false.
+    virtual bool updateDataRangeInputs(const DataUpdate& dataUpdate);
+    /// \brief Called after the data ranges reflect a change of the data points, before the data queries are refreshed. The default does nothing.
+    virtual void onDataPointsChanged(const DataUpdate& dataUpdate);
 
     /// \brief Advances the data revision and refreshes the data queries. Call after every accepted record change.
     ///
@@ -459,6 +461,10 @@ private:
     void ensureDataRanges() const;
     // Returns whether replacing a data point of extents \a previous with one of extents \a replaced could shrink the data ranges.
     bool replacementMayShrinkDataRanges(const DataPointStore::Extents& previous, const DataPointStore::Extents& replaced) const;
+    // Brings everything that depends on the data points up to date after dataUpdate, in one fixed order.
+    // previousExtents are the dataPointExtents() a modified data point had.
+    void finishDataChange(const DataUpdate& dataUpdate, const DataPointStore::Extents& previousExtents = {});
+    void widenDataRanges(const DataPointStore::Extents& extents);
     void reportDataRangesChanged() const;
     void deliverTopmostHover(QHoverEvent* event);
     bool coveredBySeriesAbove(const QPointF& position) const;

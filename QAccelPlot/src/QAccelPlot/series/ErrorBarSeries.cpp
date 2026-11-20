@@ -411,7 +411,7 @@ void ErrorBarSeries::onAxisScaleChanged()
     update();
 }
 
-void ErrorBarSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, [[maybe_unused]] const int previousCount)
+void ErrorBarSeries::onDataPointsChanged([[maybe_unused]] const DataUpdate& dataUpdate)
 {
     hitIndex_->invalidate();
     if (hoveredIndex_ >= count()) {
@@ -489,7 +489,7 @@ void ErrorBarSeries::applyDoubleData(std::vector<double>&& data, const int dataP
     } else {
         discardTransition();
     }
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 TransitionRunner::Layout ErrorBarSeries::transitionLayout() const

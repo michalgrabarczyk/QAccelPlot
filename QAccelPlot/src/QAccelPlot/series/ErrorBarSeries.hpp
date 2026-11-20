@@ -261,7 +261,7 @@ protected:
     /// \brief Refreshes the hover lookup and repaints after a bound axis changes between linear and log scale.
     void onAxisScaleChanged() override;
     /// \brief Refreshes the hover lookup and the count after the data points changed.
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
 
 private:
     // A drawn error bar in data coordinates: its position across the bounds, shifted by the offset,

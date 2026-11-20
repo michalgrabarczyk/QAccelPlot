@@ -202,18 +202,24 @@ void CandlestickSeriesDataTest::spacingDefaultsToTheSmallestGap()
     auto candles = CandlestickSeries{};
     auto spy = QSignalSpy{&candles, &CandlestickSeries::spacingChanged};
     const auto ones = QList<qreal>{1, 1, 1, 1};
+    // Nothing read the spacing, so the new data has no spacing to announce.
     candles.setData(QList<qreal>{0, 2, 3, 7}, ones, ones, ones, ones);
-    QCOMPARE(spy.count(), 1);
+    QCOMPARE(spy.count(), 0);
     QCOMPARE(candles.spacing(), 1.0);
 
     // Gaps are taken in stored order, between finite x values, and zero gaps are ignored.
     candles.setData(QList<qreal>{5, kNaN, 4.5, 4.5, kInf, 7}, ones + ones, ones + ones, ones + ones, ones + ones);
+    QCOMPARE(spy.count(), 1);
     QCOMPARE(candles.spacing(), 0.5);
 
     // Appending lowers it in place.
     candles.appendData(7.25, 1, 1, 1, 1);
-    QCOMPARE(spy.count(), 3);
+    QCOMPARE(spy.count(), 2);
     QCOMPARE(candles.spacing(), 0.25);
+    // A candle that keeps the smallest gap leaves it unannounced.
+    candles.appendData(7.5, 1, 1, 1, 1);
+    candles.replaceData(6, 7.25, 2, 2, 2, 2);
+    QCOMPARE(spy.count(), 2);
 
     // Without a positive gap it falls back to 1.
     candles.setData(QList<qreal>{3, 3}, QList<qreal>{1, 1}, QList<qreal>{1, 1}, QList<qreal>{1, 1}, QList<qreal>{1, 1});

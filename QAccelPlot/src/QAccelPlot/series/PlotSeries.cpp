@@ -378,7 +378,7 @@ void PlotSeries::clearData()
 {
     const auto previousCount = dataPoints_.count();
     dataPoints_.clear();
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 std::optional<PlotSeries::DataExtent> PlotSeries::xDataRange() const
@@ -426,7 +426,7 @@ void PlotSeries::storeDataPoints(DataPointInput&& input)
     } else {
         dataPoints_.setFloat(std::move(input.floats), input.count);
     }
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 int PlotSeries::dataPointValueCount() const
@@ -489,18 +489,7 @@ void PlotSeries::appendDataPoint(const double* coordinates)
 {
     const auto previousCount = dataPoints_.count();
     dataPoints_.append(coordinates);
-    onDataPointsStored({DataChange::Appended, previousCount, previousCount});
-    // The new data point widens the current extents in O(1) instead of a rescan.
-    const auto extents = dataPointExtents(previousCount);
-    if (extents.x) {
-        extendXDataRange(extents.x->min);
-        extendXDataRange(extents.x->max);
-    }
-    if (extents.y) {
-        extendYDataRange(extents.y->min);
-        extendYDataRange(extents.y->max);
-    }
-    notifyDataPointsChanged(DataChange::Appended, previousCount);
+    finishDataChange({DataChange::Appended, previousCount, previousCount});
 }
 
 bool PlotSeries::validateDataPointIndex(const int index) const
@@ -517,27 +506,13 @@ bool PlotSeries::validateDataPointIndex(const int index) const
 void PlotSeries::replaceDataPoint(const int index, const double* coordinates)
 {
     Q_ASSERT(index >= 0 && index < dataPoints_.count());
-    const auto previous = dataPointExtents(index);
+    const auto previousExtents = dataPointExtents(index);
     auto previousCoordinates = QVarLengthArray<double, 8>(dataPoints_.columnCount());
     for (auto column = 0; column < previousCoordinates.size(); ++column) {
         previousCoordinates[column] = dataPoints_.value(index, column);
     }
     dataPoints_.replace(index, coordinates);
-    onDataPointsStored({DataChange::Modified, dataPoints_.count(), index, previousCoordinates.constData()});
-    const auto replaced = dataPointExtents(index);
-    if (replacementMayShrinkDataRanges(previous, replaced)) {
-        invalidateDataRanges();
-    } else {
-        if (replaced.x) {
-            extendXDataRange(replaced.x->min);
-            extendXDataRange(replaced.x->max);
-        }
-        if (replaced.y) {
-            extendYDataRange(replaced.y->min);
-            extendYDataRange(replaced.y->max);
-        }
-    }
-    notifyDataPointsChanged(DataChange::Modified, dataPoints_.count(), index);
+    finishDataChange({DataChange::Modified, dataPoints_.count(), index, previousCoordinates.constData()}, previousExtents);
 }
 
 DataPointStore::Extents PlotSeries::dataPointExtents(const int index) const
@@ -545,25 +520,17 @@ DataPointStore::Extents PlotSeries::dataPointExtents(const int index) const
     return dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
 }
 
-void PlotSeries::notifyDataPointsChanged(const DataChange change, const int previousCount, const int index)
+void PlotSeries::notifyDataPointsReplaced(const int previousCount)
 {
-    if (change == DataChange::Replaced) {
-        onDataPointsStored({change, previousCount});
-        invalidateDataRanges();
-    }
-    onDataPointsChanged(change, previousCount);
-    if (dataPoints_.count() != previousCount) {
-        emit countChanged();
-    }
-    inspectionDataChanged(change, index);
-    update();
+    finishDataChange({DataChange::Replaced, previousCount});
 }
 
-void PlotSeries::onDataPointsStored([[maybe_unused]] const DataUpdate& update)
+bool PlotSeries::updateDataRangeInputs([[maybe_unused]] const DataUpdate& dataUpdate)
 {
+    return false;
 }
 
-void PlotSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, [[maybe_unused]] const int previousCount)
+void PlotSeries::onDataPointsChanged([[maybe_unused]] const DataUpdate& dataUpdate)
 {
 }
 
@@ -843,6 +810,40 @@ bool PlotSeries::replacementMayShrinkDataRanges(const DataPointStore::Extents& p
               return leavesMin || leavesMax;
           };
     return leavesEdge(previous.x, replaced.x, xDataExtent_) || leavesEdge(previous.y, replaced.y, yDataExtent_);
+}
+
+void PlotSeries::finishDataChange(const DataUpdate& dataUpdate, const DataPointStore::Extents& previousExtents)
+{
+    const auto otherExtentsMoved = updateDataRangeInputs(dataUpdate);
+    if (otherExtentsMoved || dataUpdate.change == DataChange::Replaced) {
+        invalidateDataRanges();
+    } else {
+        // One data point changed, so its extents update the ranges in O(1) instead of a rescan.
+        const auto extents = dataPointExtents(dataUpdate.index);
+        if (replacementMayShrinkDataRanges(previousExtents, extents)) {
+            invalidateDataRanges();
+        } else {
+            widenDataRanges(extents);
+        }
+    }
+    onDataPointsChanged(dataUpdate);
+    if (dataPoints_.count() != dataUpdate.previousCount) {
+        emit countChanged();
+    }
+    inspectionDataChanged(dataUpdate.change, dataUpdate.index);
+    update();
+}
+
+void PlotSeries::widenDataRanges(const DataPointStore::Extents& extents)
+{
+    if (extents.x) {
+        extendXDataRange(extents.x->min);
+        extendXDataRange(extents.x->max);
+    }
+    if (extents.y) {
+        extendYDataRange(extents.y->min);
+        extendYDataRange(extents.y->max);
+    }
 }
 
 void PlotSeries::reportDataRangesChanged() const

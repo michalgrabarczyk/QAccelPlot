@@ -343,25 +343,22 @@ void BandSeries::onAxisRangeChanged()
     refreshHovered();
 }
 
-void BandSeries::onDataPointsStored(const DataUpdate& update)
+void BandSeries::onDataPointsChanged(const DataUpdate& dataUpdate)
 {
-    switch (update.change) {
+    switch (dataUpdate.change) {
     case DataChange::Replaced: {
         const auto points = dataPoints().view();
         xOrderBreaks_ = points.precise ? countXOrderBreaks(points.precise, points.count) : countXOrderBreaks(points.floats, points.count);
         break;
     }
     case DataChange::Appended:
-        xOrderBreaks_ += xOrderBreaksAround(update.index, value(update.index, 0));
+        xOrderBreaks_ += xOrderBreaksAround(dataUpdate.index, value(dataUpdate.index, 0));
         break;
     case DataChange::Modified:
-        xOrderBreaks_ += xOrderBreaksAround(update.index, value(update.index, 0)) - xOrderBreaksAround(update.index, update.previousCoordinates[0]);
+        xOrderBreaks_
+            += xOrderBreaksAround(dataUpdate.index, value(dataUpdate.index, 0)) - xOrderBreaksAround(dataUpdate.index, dataUpdate.previousCoordinates[0]);
         break;
     }
-}
-
-void BandSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, [[maybe_unused]] const int previousCount)
-{
     refreshHovered();
 }
 

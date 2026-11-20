@@ -332,7 +332,7 @@ protected:
     /// \brief Returns \c true for \c Glow.
     bool supportsEffect(const SeriesEffect& effect) const override;
     /// \brief Refreshes the vertices, the hover index, the count, and the value range after the bars changed.
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
     /// \brief Returns the span of the finite \c colorSource values while a colormap is assigned.
     ///
     /// Ranged bars contribute both edges for \c Position.

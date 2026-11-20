@@ -121,10 +121,8 @@ protected:
     void onAxisScaleChanged() override;
     /// \brief Re-tests the hover position when the viewport moves under the cursor.
     void onAxisRangeChanged() override;
-    /// \brief Updates the X order; an appended or modified data point checks only its neighbors.
-    void onDataPointsStored(const DataUpdate& update) override;
-    /// \brief Refreshes the hover state after the data points changed.
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    /// \brief Updates the X order and the hover state; an appended or modified data point checks only its neighbors.
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
 
 private:
     // The drawn band at one X: the smaller and larger interpolated value.

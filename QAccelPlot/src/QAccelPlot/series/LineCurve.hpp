@@ -182,7 +182,7 @@ protected:
     /// \brief Refreshes cached geometry when a bound axis changes between linear and log scale.
     void onAxisScaleChanged() override;
     /// \brief Refreshes the vertex cache and the hit-test chunks after the points changed.
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
 
 signals:
     /// \brief Emitted when the color property changes.

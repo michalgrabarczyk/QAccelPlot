@@ -398,7 +398,7 @@ void LineCurve::clearData()
     const auto previousCount = dataPoints().count();
     cancelRunningTransition();
     dataPoints().clear();
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 std::optional<LegendEntry> LineCurve::legendEntry() const
@@ -656,9 +656,9 @@ void LineCurve::onAxisScaleChanged()
     update();
 }
 
-void LineCurve::onDataPointsChanged(const DataChange change, [[maybe_unused]] const int previousCount)
+void LineCurve::onDataPointsChanged(const DataUpdate& dataUpdate)
 {
-    if (change == DataChange::Appended) {
+    if (dataUpdate.change == DataChange::Appended) {
         invalidateData();
         return;
     }
@@ -764,7 +764,7 @@ void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCou
     const auto previousCount = dataPoints().count();
     cancelRunningTransition();
     dataPoints().setFloat(std::move(newData), newPointCount);
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCount)
@@ -773,7 +773,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
     if (!transition_->animates(dataPoints().count(), newPointCount)) {
         cancelRunningTransition();
         dataPoints().setPrecise(std::move(newData), newPointCount);
-        notifyDataPointsChanged(DataChange::Replaced, previousCount);
+        notifyDataPointsReplaced(previousCount);
         return;
     }
     // Copied before the data changes: the transition starts from the points drawn now.
@@ -785,7 +785,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
     }
     dataPoints().setPrecise(std::move(newData), newPointCount);
     startTransition(std::move(from), drawn.count);
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 void LineCurve::applyFloatArray(const float* xyInterleaved, const int pointCount)
@@ -799,7 +799,7 @@ void LineCurve::applyFloatArray(const float* xyInterleaved, const int pointCount
     cancelRunningTransition();
     // Reuses the allocation of the stored points.
     dataPoints().assignFloat(xyInterleaved, pointCount);
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 const std::vector<float>& LineCurve::renderData() const

@@ -216,7 +216,7 @@ protected:
     /// \brief Repaints with the coordinates mapped for the new scale.
     void onAxisScaleChanged() override;
     /// \brief Refreshes the vertices, the hover index, and the count after the rectangles changed.
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
 
 private:
     void onCategoriesChanged();

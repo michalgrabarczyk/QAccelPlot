@@ -285,12 +285,10 @@ protected:
     bool supportsEffect(const SeriesEffect& effect) const override;
     /// \brief Refreshes the hover lookup and repaints after a bound axis changes between linear and log scale.
     void onAxisScaleChanged() override;
-    /// \brief Updates the default spacing before the data ranges are recomputed or widened.
-    ///
-    /// Invalidates the data ranges when an appended or modified data point changes the default spacing.
-    void onDataPointsStored(const DataUpdate& update) override;
-    /// \brief Refreshes the hover lookup and announces the default spacing after the data points changed.
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    /// \brief Updates the default spacing; returns \c true when an appended or modified data point changes it.
+    bool updateDataRangeInputs(const DataUpdate& dataUpdate) override;
+    /// \brief Refreshes the hover lookup, and announces the default spacing when the change moved it.
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
     /// \brief Returns the extents of the valid coordinates, with x widened by half a candle on each side.
     DataRanges computeDataRanges() const override;
     /// \brief Returns the extents data point \a index adds to \c computeDataRanges().
@@ -327,7 +325,7 @@ private:
     bool automaticSpacing() const;
     void ensureAutoSpacing() const;
     double halfCandleWidth() const;
-    void updateAutoSpacing(const DataUpdate& update);
+    void updateAutoSpacing(const DataUpdate& dataUpdate);
     // Returns the pixel boxes of drawn candle \a index, or nullopt when it is not drawn.
     std::optional<CandleBoxes> pixelBoxes(int index) const;
     // Pixel distance from \a position to drawn candle \a index, or nullopt when it is not drawn.
@@ -353,6 +351,8 @@ private:
     // NaN while the default spacing applies.
     qreal pinnedSpacing_{std::numeric_limits<qreal>::quiet_NaN()};
     mutable AutoSpacing autoSpacing_;
+    // Set while a data change moved the default spacing in effect, until onDataPointsChanged() announces it.
+    bool spacingChangePending_{false};
     qreal lineWidth_{1.0};
     qreal minimumWidth_{1.0};
     QColor hoverColor_;

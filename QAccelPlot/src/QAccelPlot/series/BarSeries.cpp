@@ -699,7 +699,7 @@ void BarSeries::applyBars(std::vector<double>&& data, const bool ranged, std::ve
     if (animate) {
         startTransition(std::move(drawn));
     }
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 void BarSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int barCount)
@@ -719,7 +719,7 @@ void BarSeries::applyFloatBars(std::vector<float>&& data, std::vector<int>&& cat
     setRanged(false);
     dataPoints().setFloat(std::move(data), barCount);
     dataPoints().setCategories(std::move(categories));
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 void BarSeries::setDataFFromArray(const float* data, const int barCount)
@@ -734,7 +734,7 @@ void BarSeries::setDataFFromArray(const float* data, const int barCount)
     setRanged(false);
     // Reuses the allocation of the stored bars.
     dataPoints().assignFloat(data, barCount);
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 bool BarSeries::supportsEffect(const SeriesEffect& effect) const
@@ -742,12 +742,12 @@ bool BarSeries::supportsEffect(const SeriesEffect& effect) const
     return qobject_cast<const Glow*>(&effect) != nullptr;
 }
 
-void BarSeries::onDataPointsChanged(const DataChange change, const int previousCount)
+void BarSeries::onDataPointsChanged(const DataUpdate& dataUpdate)
 {
-    // Vertex colors depend on the categories, but not on the coordinates. replaceBar() invalidates
-    // them itself when it changes a category.
-    const auto categoriesMayChange = change != DataChange::Modified && (vertexCacheHasCategories_ || hasCategories());
-    if (count() != previousCount || categoriesMayChange) {
+    // Vertex colors depend on the categories, but not on the coordinates. Of the data changes, only
+    // replacing all bars changes the categories.
+    const auto categoriesMayChange = dataUpdate.change == DataChange::Replaced && (vertexCacheHasCategories_ || hasCategories());
+    if (count() != dataUpdate.previousCount || categoriesMayChange) {
         vertexCache_->invalidate();
     }
     spatialGridValid_ = false;

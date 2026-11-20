@@ -467,32 +467,35 @@ void CandlestickSeries::onAxisScaleChanged()
     update();
 }
 
-void CandlestickSeries::onDataPointsStored(const DataUpdate& update)
+bool CandlestickSeries::updateDataRangeInputs(const DataUpdate& dataUpdate)
 {
+    // Nothing read the default spacing since it was last discarded and announced.
     if (!autoSpacing_.valid) {
-        return;
+        return false;
     }
     const auto previousSpacing = autoSpacing_.value();
-    updateAutoSpacing(update);
-    // PlotSeries invalidates the data ranges of replaced data itself.
-    if (!automaticSpacing() || update.change == DataChange::Replaced) {
-        return;
+    updateAutoSpacing(dataUpdate);
+    if (!automaticSpacing()) {
+        return false;
+    }
+    if (dataUpdate.change == DataChange::Replaced) {
+        // Discarded and scanned for only when read; PlotSeries rescans replaced data anyway.
+        spacingChangePending_ = true;
+        return false;
     }
     ensureAutoSpacing();
+    spacingChangePending_ = autoSpacing_.value() != previousSpacing;
     // The data ranges hold half a candle of the previous spacing around every candle.
-    if (autoSpacing_.value() != previousSpacing) {
-        invalidateDataRanges();
-    }
+    return spacingChangePending_;
 }
 
-void CandlestickSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, [[maybe_unused]] const int previousCount)
+void CandlestickSeries::onDataPointsChanged([[maybe_unused]] const DataUpdate& dataUpdate)
 {
     hitIndex_->invalidate();
     if (hoveredIndex_ >= count()) {
         setHoveredIndex(-1);
     }
-    if (automaticSpacing()) {
-        // Emitted without comparing, so the default spacing is only scanned for when read.
+    if (std::exchange(spacingChangePending_, false)) {
         emit spacingChanged();
     }
 }
@@ -565,22 +568,22 @@ double CandlestickSeries::halfCandleWidth() const
     return 0.5 * candleWidth_ * spacing();
 }
 
-void CandlestickSeries::updateAutoSpacing(const DataUpdate& update)
+void CandlestickSeries::updateAutoSpacing(const DataUpdate& dataUpdate)
 {
-    switch (update.change) {
+    switch (dataUpdate.change) {
     case DataChange::Replaced:
         autoSpacing_.valid = false;
         break;
     case DataChange::Appended:
-        if (autoSpacing_.count == update.previousCount) {
-            autoSpacing_.include(dataPoints().value(update.index, 0));
+        if (autoSpacing_.count == dataUpdate.previousCount) {
+            autoSpacing_.include(dataPoints().value(dataUpdate.index, 0));
             autoSpacing_.count = count();
         } else {
             autoSpacing_.valid = false;
         }
         break;
     case DataChange::Modified:
-        if (update.previousCoordinates[0] != dataPoints().value(update.index, 0)) {
+        if (dataUpdate.previousCoordinates[0] != dataPoints().value(dataUpdate.index, 0)) {
             autoSpacing_.valid = false;
         }
         break;
@@ -654,7 +657,7 @@ void CandlestickSeries::applyDoubleData(std::vector<double>&& data, const int da
     } else {
         discardTransition();
     }
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 TransitionRunner::Layout CandlestickSeries::transitionLayout() const
