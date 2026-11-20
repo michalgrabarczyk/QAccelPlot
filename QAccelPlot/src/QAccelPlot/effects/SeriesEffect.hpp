@@ -18,7 +18,7 @@ namespace QAccelPlot {
 /// | Effect | Series |
 /// |---|---|
 /// | \c GradientFill, \c GradientStroke | \c LineCurve |
-/// | \c Glow | \c LineCurve, \c PointCloud, \c BarSeries, \c ErrorBarSeries |
+/// | \c Glow | \c LineCurve, \c PointCloud, \c BarSeries, \c ErrorBarSeries, \c CandlestickSeries |
 /// | \c FadeTrail | \c LineCurve, \c PointCloud |
 ///
 /// \sa GradientFill, GradientStroke, Glow, FadeTrail, PlotSeries

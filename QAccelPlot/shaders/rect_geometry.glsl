@@ -20,14 +20,7 @@ vec2 cornerUV(int c) {
     return vec2(0.0, 1.0); // c == 5
 }
 
-#include "viewport_fraction.glsl"
-
-// Widens the pixel span from a to b around its center to at least minSize, keeping a and b in order.
-vec2 widenedSpan(float a, float b, float minSize) {
-    float grow = 0.5 * max(minSize - abs(b - a), 0.0);
-    float direction = a <= b ? 1.0 : -1.0;
-    return vec2(a - direction * grow, b + direction * grow);
-}
+#include "axis_pixel.glsl"
 
 // Returns the fill color of rectangle `index`, without the item opacity.
 vec4 rectFillColor(int index, vec4 vertexColor) {
@@ -37,24 +30,9 @@ vec4 rectFillColor(int index, vec4 vertexColor) {
 // Maps the edges of a rectangle, given as float bit patterns, to item-local pixel spans with
 // y growing downward. Each span is widened to the minimum size.
 void rectPixelSpans(uint x1Bits, uint y1Bits, uint x2Bits, uint y2Bits, out vec2 xs, out vec2 ys) {
-    bool logX = ubuf.logScaleX > 0.5;
-    bool logY = ubuf.logScaleY > 0.5;
-    vec2 dMin = ubuf.domainMin;
-    vec2 dMax = ubuf.domainMax;
-    if (logX) {
-        dMin.x = safeLog10(dMin.x);
-        dMax.x = safeLog10(dMax.x);
-    }
-    if (logY) {
-        dMin.y = safeLog10(dMin.y);
-        dMax.y = safeLog10(dMax.y);
-    }
-
-    vec2 size = ubuf.viewportSize;
-    xs = widenedSpan(viewportFraction(x1Bits, dMin.x, dMax.x, logX) * size.x,
-                     viewportFraction(x2Bits, dMin.x, dMax.x, logX) * size.x, ubuf.minimumSize.x);
-    ys = widenedSpan((1.0 - viewportFraction(y1Bits, dMin.y, dMax.y, logY)) * size.y,
-                     (1.0 - viewportFraction(y2Bits, dMin.y, dMax.y, logY)) * size.y, ubuf.minimumSize.y);
+    AxisMapping mapping = axisMapping(ubuf.domainMin, ubuf.domainMax, ubuf.viewportSize, bvec2(ubuf.logScaleX > 0.5, ubuf.logScaleY > 0.5));
+    xs = widenedSpan(axisPixel(mapping, x1Bits, 0), axisPixel(mapping, x2Bits, 0), ubuf.minimumSize.x);
+    ys = widenedSpan(axisPixel(mapping, y1Bits, 1), axisPixel(mapping, y2Bits, 1), ubuf.minimumSize.y);
 }
 
 // Pixels the quad extends past each edge with antialiasing, so edge pixels get partial coverage.

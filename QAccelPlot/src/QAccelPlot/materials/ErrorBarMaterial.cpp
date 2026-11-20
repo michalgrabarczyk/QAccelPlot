@@ -111,7 +111,7 @@ const QSGGeometry::AttributeSet& ErrorBarMaterial::attributeSet()
 int ErrorBarMaterial::compareExtra(const QSGMaterial* other) const
 {
     const auto* m = static_cast<const ErrorBarMaterial*>(other);
-    if (hoverColor != m->hoverColor) {
+    if (hoverColor.rgba() != m->hoverColor.rgba()) {
         return hoverColor.rgba() < m->hoverColor.rgba() ? -1 : 1;
     }
     const auto mine = std::array<float, 7>{hoveredIndex, lineWidth, capLength, offset, horizontal, errorBarCount, antialiasing};

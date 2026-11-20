@@ -195,6 +195,15 @@ void DataPointStore::setCategories(std::vector<int>&& categories)
     categories_ = std::move(categories);
 }
 
+void DataPointStore::setCategory(const int index, const int category)
+{
+    Q_ASSERT(index >= 0 && index < count_);
+    if (categories_.empty()) {
+        categories_.assign(static_cast<std::size_t>(count_), -1);
+    }
+    categories_[static_cast<std::size_t>(index)] = category;
+}
+
 void DataPointStore::append(const double* coordinates)
 {
     promoteToPrecise();

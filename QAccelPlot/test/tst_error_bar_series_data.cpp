@@ -230,6 +230,10 @@ void ErrorBarSeriesDataTest::hitTestFindsLinesAndCaps()
     QVERIFY(!bars.contains(center + QPointF{3, 0}));
 
     bars.setHoverRadius(6);
+    for (const auto radius : {kNaN, kInf}) {
+        bars.setHoverRadius(radius);
+        QCOMPARE(bars.hoverRadius(), 6.0);
+    }
     QCOMPARE(bars.errorBarIndexAt(center + QPointF{6.5, 0}), 0);
     QCOMPARE(bars.errorBarIndexAt(center + QPointF{7.5, 0}), -1);
     QCOMPARE(bars.errorBarIndexAt(top - QPointF{0, 6.5}), 0);

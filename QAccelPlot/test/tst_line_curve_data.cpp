@@ -517,6 +517,10 @@ void LineCurveDataTest::hoverRadiusLimitsLineHitTest()
     QVERIFY(!item.contains({50, 38}));
 
     curve.setHoverRadius(4.0);
+    for (const auto radius : {std::numeric_limits<qreal>::quiet_NaN(), std::numeric_limits<qreal>::infinity()}) {
+        curve.setHoverRadius(radius);
+        QCOMPARE(curve.hoverRadius(), 4.0);
+    }
     QVERIFY(item.contains({50, 47}));
     QVERIFY(!item.contains({50, 45}));
 

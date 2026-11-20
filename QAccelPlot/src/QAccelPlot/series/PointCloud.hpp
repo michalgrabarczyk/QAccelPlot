@@ -187,7 +187,7 @@ protected:
     /// \brief Rebuilds the hover index, because log dimensions map points differently.
     void onAxisScaleChanged() override;
     /// \brief Refreshes the hover index, the value range, and the count after the points changed.
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
     /// \brief Returns the span of the finite point values.
     std::optional<ValueSpan> scanValueRange() const override;
 

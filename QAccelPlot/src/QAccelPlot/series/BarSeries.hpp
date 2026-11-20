@@ -21,6 +21,7 @@
 
 #include <array>
 #include <memory>
+#include <optional>
 #include <vector>
 
 namespace QAccelPlot {
@@ -86,8 +87,8 @@ class BarMaterial;
 /// infinite, or at or below 0 on a log axis. Bars that change between ranged and
 /// (position, value) all enter. \c count, \c barAt(), the data ranges, hover, and inspection use
 /// the new data from the start of the animation. While a transition is enabled, the \c setDataF()
-/// overloads store doubles. Replacing, clearing, or cancelling a transition skips to the new data;
-/// \c clearData() runs the exit transition.
+/// overloads store doubles. \c replaceData() and replacing, clearing, or cancelling a transition skip
+/// to the new data; \c clearData() runs the exit transition.
 ///
 /// \par Limits
 /// Up to 16,777,216 (2^24) bars are drawn correctly, as the shader indexes bars in single precision.
@@ -221,6 +222,16 @@ public:
     /// \c value, and an optional \c category, and a missing \c from or \c to is NaN.
     Q_INVOKABLE void setData(const QVariantList& bars);
 
+    /// \brief Replaces bar \a index with (\a position, \a value), keeping its category. Triggers a redraw.
+    ///
+    /// An \a index out of range, or ranged bars, log a warning and change nothing.
+    Q_INVOKABLE void replaceData(int index, qreal position, qreal value);
+    /// \brief Like \c replaceData(\a index, \a position, \a value) and also sets the bar's category to \a category.
+    ///
+    /// \a category is a category \c value or \c name. Any other value leaves the bar without a
+    /// category and logs a warning.
+    Q_INVOKABLE void replaceData(int index, qreal position, qreal value, const QVariant& category);
+
     /// \brief Moves \a data and per-bar category values \a categories (empty, or exactly \a barCount) into the series.
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
 
@@ -316,10 +327,12 @@ protected:
     /// \brief Repaints with the coordinates mapped for the new scale.
     void onAxisScaleChanged() override;
     DataRanges computeDataRanges() const override;
+    /// \brief Returns the extents bar \a index adds to the data ranges, as \c computeDataRanges() includes them.
+    DataPointStore::Extents dataPointExtents(int index) const override;
     /// \brief Returns \c true for \c Glow.
     bool supportsEffect(const SeriesEffect& effect) const override;
     /// \brief Refreshes the vertices, the hover index, the count, and the value range after the bars changed.
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
     /// \brief Returns the span of the finite \c colorSource values while a colormap is assigned.
     ///
     /// Ranged bars contribute both edges for \c Position.
@@ -334,6 +347,16 @@ private:
         int stride{2};
     };
 
+    // The extents one bar adds to the data ranges along the position and value axes.
+    struct BarExtents {
+        std::optional<DataPointStore::Extent> position;
+        std::optional<DataPointStore::Extent> value;
+    };
+
+    // Returns whether bar \a index can be replaced by replaceData(); warns otherwise.
+    bool validateReplacedBar(int index) const;
+    // Replaces bar \a index, and its category when \a category is set.
+    void replaceBar(int index, qreal position, qreal value, std::optional<int> category);
     void onCategoriesChanged();
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount, int barValueCount = 2) const;
     // Switches between (position, value) and (from, to, value) bars; dropping the bars when it changes.
@@ -393,6 +416,8 @@ private:
     void ensureSpatialGrid() const;
     // Builds the vertices of the first \a barCount of the drawn bars.
     void buildVertexCache(int barCount);
+    // Returns the extents bar \a index adds to the data ranges; none for a bar that is not drawn.
+    BarExtents barExtents(int index, bool logPosition, bool logValue) const;
 
     Qt::Orientation orientation_{Qt::Vertical};
     qreal barWidth_{0.8};

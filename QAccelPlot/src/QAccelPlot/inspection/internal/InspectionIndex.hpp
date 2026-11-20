@@ -25,6 +25,11 @@ public:
     /// \brief Builds the tree from \a points; returns false when \a cancelled was set meanwhile.
     bool build(std::vector<Point>&& points, bool logX, bool logY, const std::atomic_bool& cancelled);
     [[nodiscard]] std::size_t storageBytes() const;
+    /// \brief Moves the indexed data point with source \a index to \a x, \a y in place.
+    ///
+    /// Node bounds and summaries along the point's path are recomputed, so queries stay exact; the
+    /// tree may only get less balanced. Returns false when the data point is not indexed.
+    bool movePoint(int index, double x, double y);
     /// \brief Returns the data point nearest to \a pixel along \a axis.
     [[nodiscard]] InspectionHit nearestAlong(const InspectionMetric& metric, InspectionAxis axis, double pixel, double radius) const;
     [[nodiscard]] InspectionHit nearest(const InspectionMetric& metric, const QPointF& position, double radius) const;
@@ -44,8 +49,15 @@ private:
         int maxIndex{-1};
     };
 
+    // Widens node's bounds, maximum index, and summary by point.
+    static void include(Node& node, const Point& point);
+
     void buildNodes(const std::atomic_bool& cancelled);
     int createNode(int first, int last, const std::atomic_bool& cancelled);
+    // Moves the entry for the point at position in order to where value sorts, before the point gets value.
+    void reorder(InspectionAxis axis, std::vector<int>& order, int position, double value);
+    // Recomputes the nodes containing position, from its leaf up to the root.
+    void refreshNodes(int position);
     // Fills order with the positions in points_ sorted by their coordinate along axis, then by source index.
     void sortOrder(InspectionAxis axis, std::vector<int>& order) const;
     const std::vector<int>& order(InspectionAxis axis) const;

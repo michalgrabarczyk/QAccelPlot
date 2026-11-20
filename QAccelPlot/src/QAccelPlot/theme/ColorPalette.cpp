@@ -70,6 +70,8 @@ ColorPalette* ColorPalette::createDark()
     p->seriesRose = QColor("#ff7f91");
     p->seriesYellow = QColor("#e8d35d");
     p->seriesMuted = QColor("#a9b8cc");
+    p->candleUp = QColor("#4cc790");
+    p->candleDown = QColor("#f0616d");
 
     p->annotationEvent = QColor("#ff727d");
     p->annotationPeak = QColor("#d9a3ff");
@@ -133,6 +135,8 @@ ColorPalette* ColorPalette::createLight()
     p->seriesRose = QColor("#bf3853");
     p->seriesYellow = QColor("#776500");
     p->seriesMuted = QColor("#526174");
+    p->candleUp = QColor("#0a8a5c");
+    p->candleDown = QColor("#cc3344");
 
     p->annotationEvent = QColor("#c63242");
     p->annotationPeak = QColor("#7d45b1");

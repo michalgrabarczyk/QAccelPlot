@@ -23,12 +23,30 @@ enum class TransitionKind {
     Grow,  ///< \brief \c GrowTransition: grows item values from a baseline.
 };
 
+/// \brief The viewport of the axis items grow along, which places a baseline the axis cannot show.
+struct GrowViewport {
+    double low{0.0};      ///< \brief Lower viewport edge.
+    double high{0.0};     ///< \brief Upper viewport edge.
+    bool logScale{false}; ///< \brief The axis is logarithmic.
+};
+
+/// \brief Returns the value that items drawn from \a baseline grow from in \a viewport.
+///
+/// It is \a baseline, or the viewport edge the items are drawn from when the axis cannot place
+/// it: an infinite baseline, or one at or below 0 on a log axis.
+double placeGrowBaseline(double baseline, const GrowViewport& viewport);
+
 /// \brief How a series' items animate.
 struct TransitionLayout {
     int stride{2};                    ///< \brief Values per item.
     std::vector<int> valueColumns{1}; ///< \brief Columns a \c GrowTransition grows.
     double baseline{0.0};             ///< \brief Value items grow from when the \c GrowTransition has no baseline.
     bool continuous{false};           ///< \brief A \c DrawTransition reveals the last item partway, as a line segment.
+    /// \brief Column whose value each item grows from when the \c GrowTransition has no baseline; -1 uses \c baseline.
+    ///
+    /// \c viewport places each item's value with \c placeGrowBaseline().
+    int baselineColumn{-1};
+    GrowViewport viewport{}; ///< \brief Viewport that places the values of \c baselineColumn.
 };
 
 /// \brief The state of one slot's transition at the frame.

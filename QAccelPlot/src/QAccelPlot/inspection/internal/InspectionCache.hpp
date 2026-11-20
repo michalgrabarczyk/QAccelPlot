@@ -30,6 +30,8 @@ public:
 
     /// \brief Drops the index, the request for one, and pending work.
     void invalidate();
+    /// \brief Moves record \a index in a ready index to its value in \a source; otherwise drops the index like \c invalidate().
+    void modified(const InspectionSource& source, int index);
     /// \brief Starts building an index unless one is ready or already in progress.
     void request();
     [[nodiscard]] bool requested() const;

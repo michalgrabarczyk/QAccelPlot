@@ -5,26 +5,26 @@
 #include "QAccelPlot/series/ErrorBarSeries.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
-#include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/Glow.hpp"
 #include "QAccelPlot/materials/ErrorBarMaterial.hpp"
+#include "QAccelPlot/series/internal/InterleavedData.hpp"
+#include "QAccelPlot/series/internal/RecordHitIndex.hpp"
+#include "QAccelPlot/series/internal/RecordNode.hpp"
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
 #include "QAccelPlot/series/internal/SeriesEffectList.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
+#include "QAccelPlot/series/internal/StoreTransition.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/transitions/TransitionRunner.hpp"
 
 #include <QHoverEvent>
 #include <QQuickWindow>
-#include <QSGGeometryNode>
 
 #include <algorithm>
 #include <array>
 #include <cmath>
-#include <cstring>
 #include <initializer_list>
-#include <limits>
 #include <utility>
 
 namespace QAccelPlot {
@@ -36,8 +36,6 @@ constexpr auto kStride = 4;
 constexpr auto kLowColumn = 2;
 constexpr auto kHighColumn = 3;
 constexpr auto kVertexBytesPerErrorBar = ErrorBarMaterial::kVerticesPerErrorBar * 4;
-constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
-constexpr auto kInf = std::numeric_limits<double>::infinity();
 
 // The bounds lie on the Y axis of vertical error bars and on the X axis of horizontal ones.
 std::vector<DataPointStore::Dimension> errorBarColumns(const Qt::Orientation orientation)
@@ -45,27 +43,6 @@ std::vector<DataPointStore::Dimension> errorBarColumns(const Qt::Orientation ori
     using Dimension = DataPointStore::Dimension;
     const auto bounds = orientation == Qt::Horizontal ? Dimension::X : Dimension::Y;
     return {Dimension::X, Dimension::Y, bounds, bounds};
-}
-
-template <typename List> std::size_t shortestLength(std::initializer_list<const List*> lists)
-{
-    auto length = std::numeric_limits<std::size_t>::max();
-    for (const auto* list : lists) {
-        length = std::min(length, static_cast<std::size_t>(list->size()));
-    }
-    return length;
-}
-
-// Interleaves the first min(sizes) values into (x, y, low, high) quadruples.
-template <typename List> std::vector<double> interleave(const List& xs, const List& ys, const List& lows, const List& highs)
-{
-    const auto count = shortestLength<List>({&xs, &ys, &lows, &highs});
-    auto data = std::vector<double>(count * kStride);
-    for (auto i = std::size_t{0}; i < count; ++i) {
-        const auto dataPoint = std::array<double, kStride>{xs[i], ys[i], lows[i], highs[i]};
-        std::copy(dataPoint.cbegin(), dataPoint.cend(), data.begin() + static_cast<std::ptrdiff_t>(i * kStride));
-    }
-    return data;
 }
 
 // Returns the bounds of \a value with \a minus below and \a plus above it, ignoring their signs.
@@ -78,58 +55,12 @@ std::array<double, 2> boundsAround(const double value, const double minus, const
 // y for vertical and around x for horizontal error bars.
 template <typename List> std::vector<double> interleaveErrors(const List& xs, const List& ys, const List& minuses, const List& pluses, const bool horizontal)
 {
-    const auto count = shortestLength<List>({&xs, &ys, &minuses, &pluses});
+    const auto count = Internal::shortestLength(xs, ys, minuses, pluses);
     auto data = std::vector<double>(count * kStride);
     for (auto i = std::size_t{0}; i < count; ++i) {
         const auto [low, high] = boundsAround(horizontal ? xs[i] : ys[i], minuses[i], pluses[i]);
         const auto dataPoint = std::array<double, kStride>{xs[i], ys[i], low, high};
         std::copy(dataPoint.cbegin(), dataPoint.cend(), data.begin() + static_cast<std::ptrdiff_t>(i * kStride));
-    }
-    return data;
-}
-
-// Error bars the vertex buffer holds room for: the next power of two, so appending one data point
-// at a time reallocates it only when the count crosses one.
-int reservedErrorBarCount(const int drawnCount)
-{
-    constexpr auto kMinReserved = 256;
-    auto reserved = kMinReserved;
-    while (reserved < drawnCount) {
-        reserved *= 2;
-    }
-    return reserved;
-}
-
-// Pixel distance from (\a u, \a v) to the box spanning \a us and \a vs; 0 inside.
-qreal distanceToBox(const qreal u, const qreal v, const std::pair<qreal, qreal>& us, const std::pair<qreal, qreal>& vs)
-{
-    const auto du = std::max({us.first - u, qreal{0.0}, u - us.second});
-    const auto dv = std::max({vs.first - v, qreal{0.0}, v - vs.second});
-    return std::hypot(du, dv);
-}
-
-QSGGeometryNode* createErrorBarNode()
-{
-    auto* geometry = new QSGGeometry(ErrorBarMaterial::attributeSet(), 0);
-    geometry->setDrawingMode(QSGGeometry::DrawTriangles);
-    // The buffer only changes with the reserved count; let the backend keep it in static GPU memory.
-    geometry->setVertexDataPattern(QSGGeometry::StaticPattern);
-    auto* node = new QSGGeometryNode;
-    node->setGeometry(geometry);
-    node->setFlag(QSGNode::OwnsGeometry);
-    node->setMaterial(new ErrorBarMaterial);
-    node->setFlag(QSGNode::OwnsMaterial);
-    return node;
-}
-
-// Copies the data points of \a view as doubles, for float and double data alike.
-std::vector<double> doubleData(const DataPointStore::View& view)
-{
-    auto data = std::vector<double>(static_cast<std::size_t>(view.count) * kStride);
-    for (auto index = 0; index < view.count; ++index) {
-        for (auto column = 0; column < kStride; ++column) {
-            data[static_cast<std::size_t>(index) * kStride + static_cast<std::size_t>(column)] = view.value(index, column);
-        }
     }
     return data;
 }
@@ -142,6 +73,8 @@ ErrorBarSeries::ErrorBarSeries(QQuickItem* parent)
     , color_(ColorPalette::dark().seriesPrimary)
     , hoverColor_(ColorPalette::dark().hover)
     , transition_(std::make_unique<TransitionRunner>(this))
+    , storeTransition_(std::make_unique<Internal::StoreTransition>(*transition_, dataPoints()))
+    , hitIndex_(std::make_unique<Internal::RecordHitIndex>())
 {
     setFlag(ItemHasContents, true);
     setAntialiasing(true);
@@ -259,11 +192,9 @@ qreal ErrorBarSeries::hoverRadius() const
 
 void ErrorBarSeries::setHoverRadius(const qreal radius)
 {
-    const auto clamped = std::max(radius, qreal{0.0});
-    if (nearlyEqual(hoverRadius_, clamped)) {
+    if (!Internal::assignNonNegative(hoverRadius_, radius)) {
         return;
     }
-    hoverRadius_ = clamped;
     emit hoverRadiusChanged();
     // Marks the item dirty so the window re-delivers hover at the cursor and updates hoveredIndex.
     update();
@@ -323,12 +254,12 @@ void ErrorBarSeries::replaceData(const int index, const qreal x, const qreal y, 
 
 void ErrorBarSeries::setData(const QList<qreal>& xs, const QList<qreal>& ys, const QList<qreal>& lows, const QList<qreal>& highs)
 {
-    applyInterleavedData(interleave(xs, ys, lows, highs));
+    applyInterleavedData(Internal::interleave({xs, ys, lows, highs}));
 }
 
 void ErrorBarSeries::setData(const std::vector<double>& xs, const std::vector<double>& ys, const std::vector<double>& lows, const std::vector<double>& highs)
 {
-    applyInterleavedData(interleave(xs, ys, lows, highs));
+    applyInterleavedData(Internal::interleave({xs, ys, lows, highs}));
 }
 
 void ErrorBarSeries::appendErrorData(const qreal x, const qreal y, const qreal error)
@@ -388,27 +319,12 @@ int ErrorBarSeries::errorBarIndexAt(const QPointF& position) const
     if (count() <= 0 || !xAxis() || !yAxis() || width() <= 0.0 || height() <= 0.0) {
         return -1;
     }
-    // Error bars within reach have their position within this many pixels of the cursor.
-    const auto reach = hoverRadius_ + 0.5 * std::max(lineWidth_, capLength_) + 1.0;
-    const auto x1 = xAxis()->pixelToCoord(position.x() - reach, width());
-    const auto x2 = xAxis()->pixelToCoord(position.x() + reach, width());
-    const auto y1 = yAxis()->pixelToCoord(position.y() - reach, height());
-    const auto y2 = yAxis()->pixelToCoord(position.y() + reach, height());
     ensureSpatialGrid();
-
+    // An error bar's line and caps reach past its position by half their width.
+    const auto overhang = 0.5 * std::max(lineWidth_, capLength_);
     const auto drawnCount = std::min(dataPoints().drawnView().count, renderCapacity_);
-    auto nearest = -1;
-    auto nearestDistance = hoverRadius_;
-    // Accepts no candidate, so that the grid offers each one in the box to find the nearest.
-    spatialGrid_.queryTopmost(std::min(x1, x2), std::min(y1, y2), std::max(x1, x2), std::max(y1, y2), [&](const int index) {
-        const auto distance = index < drawnCount ? pixelDistance(index, position) : std::nullopt;
-        if (distance && *distance <= hoverRadius_ && (nearest < 0 || *distance < nearestDistance || (*distance == nearestDistance && index > nearest))) {
-            nearest = index;
-            nearestDistance = *distance;
-        }
-        return false;
-    });
-    return nearest;
+    return hitIndex_->nearest({position, hoverRadius_, overhang, drawnCount}, *xAxis(), *yAxis(), size(),
+        [this, &position](const int index) { return pixelDistance(index, position); });
 }
 
 bool ErrorBarSeries::contains(const QPointF& point) const
@@ -445,33 +361,10 @@ QSGNode* ErrorBarSeries::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] Upda
     auto* window = this->window();
     updateRenderCapacity(Internal::recordCapacity(window, kStride, kVertexBytesPerErrorBar), count());
     const auto drawnCount = std::min(dataPoints().renderCount(), renderCapacity_);
-    if (drawnCount <= 0 || !xAxis() || !yAxis() || resolvePlotRect().isEmpty() || !window) {
-        delete oldNode;
-        return nullptr;
-    }
-    if (!Internal::supportsCustomShaderRendering(window)) {
-        static auto warned = false;
-        if (!warned) {
-            qCWarning(lcQAccelPlot)
-                << "ErrorBarSeries custom rendering requires a hardware scene graph backend. Skipping updatePaintNode on the software backend.";
-            warned = true;
-        }
-        delete oldNode;
-        return nullptr;
-    }
-
-    auto* node = oldNode ? static_cast<QSGGeometryNode*>(oldNode) : createErrorBarNode();
-    updateVertices(*node, drawnCount);
-
-    auto* material = static_cast<ErrorBarMaterial*>(node->material());
-    // A freshly created node owns a new material, so it always needs the data texture.
-    if (dataPoints().renderRevision() != uploadedRevision_ || !oldNode || !material->dataTexture) {
-        material->uploadTexture(window, dataPoints().renderData().data(), drawnCount * kStride);
-        uploadedRevision_ = dataPoints().renderRevision();
-    }
-    updateMaterial(*material, drawnCount);
-    node->markDirty(QSGNode::DirtyMaterial);
-    return node;
+    const auto drawable = drawnCount > 0 && xAxis() && yAxis() && !resolvePlotRect().isEmpty() && window;
+    const auto frame = Internal::RecordFrame{window, drawnCount, drawable, kStride, ErrorBarMaterial::kVerticesPerErrorBar, "ErrorBarSeries"};
+    return Internal::updateRecordNode<ErrorBarMaterial>(
+        oldNode, frame, dataPoints(), uploadedRevision_, [this, drawnCount](ErrorBarMaterial& material) { updateMaterial(material, drawnCount); });
 }
 
 void ErrorBarSeries::hoverEnterEvent(QHoverEvent* event)
@@ -512,13 +405,13 @@ bool ErrorBarSeries::supportsEffect(const SeriesEffect& effect) const
 void ErrorBarSeries::onAxisScaleChanged()
 {
     // Log scale changes which data points are drawn.
-    spatialGridValid_ = false;
+    hitIndex_->invalidate();
     update();
 }
 
-void ErrorBarSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, [[maybe_unused]] const int previousCount)
+void ErrorBarSeries::onDataPointsChanged([[maybe_unused]] const DataUpdate& dataUpdate)
 {
-    spatialGridValid_ = false;
+    hitIndex_->invalidate();
     if (hoveredIndex_ >= count()) {
         setHoveredIndex(-1);
     }
@@ -567,12 +460,13 @@ std::optional<qreal> ErrorBarSeries::pixelDistance(const int index, const QPoint
     const auto v = horizontal ? position.x() : position.y();
 
     const auto halfWidth = 0.5 * lineWidth_;
-    auto distance = distanceToBox(u, v, {across - halfWidth, across + halfWidth}, {std::min(start, end), std::max(start, end)});
+    auto distance = Internal::distanceToBox(u, v, {across - halfWidth, across + halfWidth}, {std::min(start, end), std::max(start, end)});
     if (capLength_ > 0.0) {
         const auto halfLength = 0.5 * std::max(capLength_, lineWidth_);
         for (const auto& [bound, capped] : {std::pair{start, bar->startCapped}, std::pair{end, bar->endCapped}}) {
             if (capped) {
-                distance = std::min(distance, distanceToBox(u, v, {across - halfLength, across + halfLength}, {bound - halfWidth, bound + halfWidth}));
+                distance
+                    = std::min(distance, Internal::distanceToBox(u, v, {across - halfLength, across + halfLength}, {bound - halfWidth, bound + halfWidth}));
             }
         }
     }
@@ -588,63 +482,43 @@ void ErrorBarSeries::applyInterleavedData(std::vector<double>&& data)
 void ErrorBarSeries::applyDoubleData(std::vector<double>&& data, const int dataPointCount)
 {
     const auto previousCount = count();
-    // Copied before the data changes: a transition starts from the error bars drawn now.
-    const auto drawnView = dataPoints().drawnView();
-    const auto drawn = doubleData(drawnView);
-    dataPoints().setPrecise(std::move(data), dataPointCount);
-    startTransition(drawn, drawnView.count);
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    if (storeTransition_->start(std::move(data), dataPointCount, transitionLayout())) {
+        advanceTransition();
+    } else {
+        discardTransition();
+    }
+    notifyDataPointsReplaced(previousCount);
 }
 
-void ErrorBarSeries::startTransition(const std::vector<double>& drawn, const int drawnCount)
+TransitionRunner::Layout ErrorBarSeries::transitionLayout() const
 {
     // The value and both bounds grow; the position stays.
     const auto vertical = orientation_ == Qt::Vertical;
     const auto valueColumns = vertical ? std::vector<int>{1, 2, 3} : std::vector<int>{0, 2, 3};
     const auto baseline = Internal::growBaseline(0.0, vertical ? yAxis() : xAxis());
-    if (!transition_->start(drawn, drawnCount, doubleData(dataPoints().view()), count(), TransitionRunner::Layout{kStride, valueColumns, baseline, false})) {
-        discardTransition();
-        return;
-    }
-    showTransitionFrame();
+    return TransitionRunner::Layout{kStride, valueColumns, baseline, false};
 }
 
 void ErrorBarSeries::advanceTransition()
 {
-    showTransitionFrame();
-}
-
-void ErrorBarSeries::showTransitionFrame()
-{
-    auto shownCount = 0;
-    transition_->advance(frameBuffer_, shownCount);
-    if (!transition_->pending()) {
-        endTransition();
-        return;
+    if (storeTransition_->advance()) {
+        hitIndex_->invalidate();
+        update();
     }
-    // Error bars the frame does not show, before they enter or after they exit, are not drawn.
-    const auto errorBarCount = transition_->frameCapacity();
-    frameBuffer_.resize(static_cast<std::size_t>(errorBarCount) * kStride, kNaN);
-    frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), errorBarCount);
-    spatialGridValid_ = false;
-    update();
 }
 
 void ErrorBarSeries::endTransition()
 {
-    if (!dataPoints().hasDrawn()) {
-        return;
+    if (storeTransition_->end()) {
+        hitIndex_->invalidate();
+        update();
     }
-    discardTransition();
-    update();
 }
 
 void ErrorBarSeries::discardTransition()
 {
-    transition_->cancel();
-    dataPoints().clearDrawn();
-    frameBuffer_ = std::vector<double>{};
-    spatialGridValid_ = false;
+    storeTransition_->discard();
+    hitIndex_->invalidate();
 }
 
 void ErrorBarSeries::setHoveredIndex(const int index)
@@ -660,44 +534,25 @@ void ErrorBarSeries::setHoveredIndex(const int index)
 
 void ErrorBarSeries::onGeometryChanged()
 {
-    spatialGridValid_ = false;
+    hitIndex_->invalidate();
     invalidateDataRanges();
     update();
 }
 
 void ErrorBarSeries::ensureSpatialGrid() const
 {
-    if (spatialGridValid_) {
+    if (hitIndex_->valid()) {
         return;
     }
-    // Only the position is indexed. Error bars often span much of the value axis, which would push
-    // them past the grid's per-item cell limit into its linear scan; the pixel test checks the rest.
     const auto horizontal = isHorizontal();
     const auto drawn = dataPoints().drawnView();
-    hitRects_.resize(static_cast<std::size_t>(drawn.count) * 4);
-    for (auto i = 0; i < drawn.count; ++i) {
-        auto rect = std::array<double, 4>{kNaN, kNaN, kNaN, kNaN};
-        if (const auto bar = dataBar(drawn, i)) {
-            rect = horizontal ? std::array<double, 4>{-kInf, bar->position, kInf, bar->position}
-                              : std::array<double, 4>{bar->position, -kInf, bar->position, kInf};
+    hitIndex_->build(drawn.count, horizontal ? Qt::Vertical : Qt::Horizontal, [&](const int index) -> std::optional<std::pair<double, double>> {
+        const auto bar = dataBar(drawn, index);
+        if (!bar) {
+            return std::nullopt;
         }
-        std::copy(rect.cbegin(), rect.cend(), hitRects_.begin() + static_cast<std::ptrdiff_t>(i) * 4);
-    }
-    spatialGrid_.build(hitRects_.data(), drawn.count);
-    spatialGridValid_ = true;
-}
-
-void ErrorBarSeries::updateVertices(QSGGeometryNode& node, const int drawnCount) const
-{
-    auto* geometry = node.geometry();
-    const auto vertexCount = reservedErrorBarCount(drawnCount) * ErrorBarMaterial::kVerticesPerErrorBar;
-    if (geometry->vertexCount() == vertexCount) {
-        return;
-    }
-    geometry->allocate(vertexCount);
-    // The shader derives everything from the vertex index; zeroing only avoids uploading uninitialized memory.
-    std::memset(geometry->vertexData(), 0, static_cast<std::size_t>(vertexCount) * static_cast<std::size_t>(geometry->sizeOfVertex()));
-    node.markDirty(QSGNode::DirtyGeometry);
+        return std::pair{bar->position, bar->position};
+    });
 }
 
 void ErrorBarSeries::updateMaterial(ErrorBarMaterial& material, const int drawnCount) const

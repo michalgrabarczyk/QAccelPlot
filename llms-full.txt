@@ -40,6 +40,7 @@ frame.
 - **Bands** — `BandSeries` for confidence intervals and envelopes
 - **Error bars** — `ErrorBarSeries` for symmetric and asymmetric errors,
   vertical or horizontal
+- **Candlesticks** — `CandlestickSeries` for candlestick and OHLC charts
 - **Layout** — secondary and extra axes, data-anchored QML overlays, and
   `RectangleSeries` for event spans and state timelines
 
@@ -382,6 +383,11 @@ can draw lines along both edges.
 point, along the Y axis or, with `orientation: Qt.Horizontal`, the X axis. It
 stores `(x, y, low, high)` quadruples and does not draw the values.
 
+`CandlestickSeries` draws the open, high, low, and close of each data point as
+a candle: a body over a wick, or an OHLC bar. It stores
+`(x, open, high, low, close)` quintuples; a candle's width is a fraction of the
+spacing between candles.
+
 `RectangleSeries` renders many data-space rectangles in one item, such as event
 spans and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color.
@@ -402,6 +408,7 @@ series beneath. The other hover properties depend on what the series draws:
 | `LineCurve` | The line within `hoverRadius`, a marker within its size | — | 10 | — (drawn lighter) |
 | `PointCloud` | The nearest point within `hoverRadius` of its center | Yes | 6 | — |
 | `ErrorBarSeries` | The nearest error bar within `hoverRadius` | Yes | 6 | `Colors.dark.hover` |
+| `CandlestickSeries` | The nearest candle within `hoverRadius` | Yes | 4 | No highlight |
 | `BarSeries`, `RectangleSeries` | A bar or rectangle | Yes | — | No highlight |
 | `BandSeries` | The band or an edge line | — | — | — |
 
@@ -414,6 +421,7 @@ on a line drawn over another series leaves hover to the series beneath.
 dash patterns, transitions, auto-ranging, and hover hit testing. For the other
 series, see [bands](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bands/#invalid-data-points),
 [error bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/error-bars/#invalid-data-points),
+[candlesticks](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/candlesticks/#invalid-data-points),
 [point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#invalid-points), and
 [bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/#invalid-bars).
 
@@ -856,6 +864,7 @@ Each recipe links to a complete runnable example.
 | [Histograms](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/histograms/) | Equal and uneven bins, counts or density, from QML or C++ |
 | [Bands](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bands/) | Confidence intervals and envelopes between a low and a high value, with edge lines |
 | [Error bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/error-bars/) | Symmetric and asymmetric errors, vertical and horizontal, on points and grouped bars |
+| [Candlesticks](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/candlesticks/) | Candlestick and OHLC charts, trading-time axes, volume bars, and live candles |
 | [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/) | Safe high-throughput worker-to-UI handoff |
 | [Exporting images](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/export/) | PNG, JPEG, and other raster files, the clipboard, and `QImage` capture |
 
@@ -1294,6 +1303,7 @@ Series smooth their edges with the `antialiasing` property every `Item` has.
 | `PointCloud` | `true` | markers |
 | `BandSeries` | `true` | edge lines |
 | `ErrorBarSeries` | `true` | lines and caps |
+| `CandlestickSeries` | `true` | bodies, wicks, and OHLC lines |
 | `RectangleSeries`, `BarSeries` | `false` | rectangles and their border |
 
 Rectangles and bars that touch, such as histogram bins, show faint seams with
@@ -1436,7 +1446,7 @@ QAccelPlot.LineCurve {
 
 | Effect | Series | Properties |
 |---|---|---|
-| `Glow` | `LineCurve`, `PointCloud`, `BarSeries`, `ErrorBarSeries` | `color` (default: the series color), `radius` in pixels, `intensity` |
+| `Glow` | `LineCurve`, `PointCloud`, `BarSeries`, `ErrorBarSeries`, `CandlestickSeries` | `color` (default: the series color; each candle's own color), `radius` in pixels, `intensity` |
 | `FadeTrail` | `LineCurve`, `PointCloud` | `length`: share of the items that fades, from the oldest; `minOpacity` of the oldest; `easing`: how the opacity rises, `Easing.InQuad` by default |
 
 - An effect a series does not support logs a warning and is ignored.
@@ -1539,10 +1549,11 @@ Each animated frame interpolates the data on the CPU: about 4 ms per million
 points, 6 ms with a stagger. Disable transitions for continuous high-rate
 updates.
 
-`BarSeries`, `PointCloud`, and `ErrorBarSeries` take the same transitions; see
-[bar charts](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/#animate-data-changes),
-[point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#animate-data-changes), and
-[error bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/error-bars/#animate-data-changes).
+`BarSeries`, `PointCloud`, `ErrorBarSeries`, and `CandlestickSeries` take the
+same transitions; see [bar charts](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/#animate-data-changes),
+[point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#animate-data-changes),
+[error bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/error-bars/#animate-data-changes), and
+[candlesticks](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/candlesticks/#animate-data-changes).
 
 Complete sources:
 
@@ -2427,6 +2438,10 @@ QAccelPlot.Plot {
 setData([{ position: 2020, value: 4 }, { position: 2021, value: 7 }])
 ```
 
+`replaceData(index, position, value)` replaces one bar in place, for example
+the latest bar of a live feed. It keeps the bar's category; pass a fourth
+`category` argument to change it. Ranged bars cannot be replaced this way.
+
 | Property | Default | Effect |
 | --- | --- | --- |
 | `barWidth` | 0.8 | Bar width in position-axis data units |
@@ -2563,7 +2578,8 @@ Set `enterTransition`, `updateTransition`, and `exitTransition`, as for a
 - Bars that change between ranged and (position, value) all enter.
 - `count`, `barAt()`, the data ranges, hover, and inspection use the new data
   from the start of the animation.
-- `clearData()` runs the exit transition.
+- `replaceData()` shows the new bar at once; `clearData()` runs the exit
+  transition.
 - While a transition is enabled, the float paths store doubles.
 
 ## Feed data from C++
@@ -3027,6 +3043,8 @@ Complete source: [`examples/data/export`](https://github.com/michalgrabarczyk/QA
   low and a high value at each X, with optional edge lines.
 - [`ErrorBarSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1ErrorBarSeries/) — capped lines
   from a low to a high bound at each data point, vertical or horizontal.
+- [`CandlestickSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1CandlestickSeries/) — the open,
+  high, low, and close of each data point as a candlestick or an OHLC bar.
 - [`RectangleSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1RectangleSeries/) — many data-space
   rectangles in one item: spans and state timelines.
 - [`BarSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1BarSeries/) — vertical, horizontal, and

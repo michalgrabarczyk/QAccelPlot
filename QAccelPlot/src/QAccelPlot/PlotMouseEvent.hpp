@@ -20,7 +20,7 @@ class PlotView;
 /// Mirrors the Qt \c QEvent API: call \c accept() in a handler to consume the event and suppress the
 /// built-in handling (dragging, double-click rescaling, etc.).
 ///
-/// \note The object is owned by \c QAccelPlot and is destroyed after the signal — do not
+/// \note The object is owned by \c QAccelPlot and is reused across events — do not
 /// store a reference to it beyond the signal handler.
 class PlotMouseEvent : public QObject {
     Q_OBJECT
@@ -68,8 +68,8 @@ private:
     friend class Axis;
     friend class PlotView;
 
-    /// \brief Constructs an unaccepted event that copies \p event, for a mouse signal about to be emitted.
-    explicit PlotMouseEvent(const QSinglePointEvent& event);
+    /// \brief Copies \p event and clears the acceptance before a mouse signal is emitted.
+    void reset(const QSinglePointEvent& event);
 
     Qt::MouseButton button_{Qt::NoButton};
     Qt::MouseButtons buttons_{Qt::NoButton};

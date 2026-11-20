@@ -333,6 +333,22 @@ void BarSeries::setData(const QVariantList& bars)
     }
 }
 
+void BarSeries::replaceData(const int index, const qreal position, const qreal value)
+{
+    if (!validateReplacedBar(index)) {
+        return;
+    }
+    replaceBar(index, position, value, std::nullopt);
+}
+
+void BarSeries::replaceData(const int index, const qreal position, const qreal value, const QVariant& category)
+{
+    if (!validateReplacedBar(index)) {
+        return;
+    }
+    replaceBar(index, position, value, categories_->table().dataPointCategory(category, "BarSeries", index).value_or(-1));
+}
+
 void BarSeries::setData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
 {
     if (!validateDataArguments(data.size(), categories.size(), barCount)) {
@@ -595,6 +611,30 @@ void BarSeries::onAxisScaleChanged()
     update();
 }
 
+bool BarSeries::validateReplacedBar(const int index) const
+{
+    if (!validateDataPointIndex(index)) {
+        return false;
+    }
+    if (valuesPerBar() == 3) {
+        qCWarning(lcQAccelPlot) << "BarSeries::replaceData() replaces (position, value) bars, not ranged bars";
+        return false;
+    }
+    return true;
+}
+
+void BarSeries::replaceBar(const int index, const qreal position, const qreal value, const std::optional<int> category)
+{
+    endTransition();
+    const auto previousCategory = hasCategories() ? dataPoints().categories()[static_cast<size_t>(index)] : -1;
+    if (category && *category != previousCategory) {
+        dataPoints().setCategory(index, *category);
+        vertexCache_->invalidate();
+    }
+    const auto bar = std::array<double, 2>{position, value};
+    replaceDataPoint(index, bar.data());
+}
+
 void BarSeries::onCategoriesChanged()
 {
     if (!drawnCategories().empty()) {
@@ -659,7 +699,7 @@ void BarSeries::applyBars(std::vector<double>&& data, const bool ranged, std::ve
     if (animate) {
         startTransition(std::move(drawn));
     }
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 void BarSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int barCount)
@@ -679,7 +719,7 @@ void BarSeries::applyFloatBars(std::vector<float>&& data, std::vector<int>&& cat
     setRanged(false);
     dataPoints().setFloat(std::move(data), barCount);
     dataPoints().setCategories(std::move(categories));
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 void BarSeries::setDataFFromArray(const float* data, const int barCount)
@@ -694,7 +734,7 @@ void BarSeries::setDataFFromArray(const float* data, const int barCount)
     setRanged(false);
     // Reuses the allocation of the stored bars.
     dataPoints().assignFloat(data, barCount);
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 bool BarSeries::supportsEffect(const SeriesEffect& effect) const
@@ -702,10 +742,12 @@ bool BarSeries::supportsEffect(const SeriesEffect& effect) const
     return qobject_cast<const Glow*>(&effect) != nullptr;
 }
 
-void BarSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, const int previousCount)
+void BarSeries::onDataPointsChanged(const DataUpdate& dataUpdate)
 {
-    // Vertex colors depend on the categories, but not on the coordinates.
-    if (count() != previousCount || vertexCacheHasCategories_ || hasCategories()) {
+    // Vertex colors depend on the categories, but not on the coordinates. Of the data changes, only
+    // replacing all bars changes the categories.
+    const auto categoriesMayChange = dataUpdate.change == DataChange::Replaced && (vertexCacheHasCategories_ || hasCategories());
+    if (count() != dataUpdate.previousCount || categoriesMayChange) {
         vertexCache_->invalidate();
     }
     spatialGridValid_ = false;
@@ -1038,54 +1080,75 @@ void BarSeries::buildVertexCache(const int barCount)
     vertexCacheHasCategories_ = !drawnCategories().empty();
 }
 
-PlotSeries::DataRanges BarSeries::computeDataRanges() const
+BarSeries::BarExtents BarSeries::barExtents(const int index, const bool logPosition, const bool logValue) const
 {
-    const auto* positionAxis = isHorizontal() ? yAxis() : xAxis();
-    const auto* valueAxis = isHorizontal() ? xAxis() : yAxis();
-    const auto logPosition = positionAxis && positionAxis->logScale();
-    const auto logValue = valueAxis && valueAxis->logScale();
-
     // A ranged bar contributes its two edges, any other bar its position.
-    auto positions = Extent{};
-    auto values = Extent{};
     const auto ranged = valuesPerBar() == 3;
-    for (auto i = 0; i < count(); ++i) {
-        const auto first = component(i, 0);
-        const auto last = ranged ? component(i, 1) : first;
-        const auto barValue = value(i);
-        if (std::isnan(first) || std::isnan(last) || std::isnan(barValue)) {
-            continue;
-        }
-        const auto firstPlaced = isPlaceable(first, logPosition);
-        const auto lastPlaced = isPlaceable(last, logPosition);
-        if (firstPlaced) {
-            positions.include(first);
-        }
-        if (lastPlaced) {
-            positions.include(last);
-        }
-        if ((firstPlaced || lastPlaced) && isPlaceable(barValue, logValue)) {
-            values.include(barValue);
+    const auto first = component(index, 0);
+    const auto last = ranged ? component(index, 1) : first;
+    const auto barValue = value(index);
+    if (std::isnan(first) || std::isnan(last) || std::isnan(barValue)) {
+        return {};
+    }
+    auto positions = Extent{};
+    for (const auto edge : {first, last}) {
+        if (isPlaceable(edge, logPosition)) {
+            positions.include(edge);
         }
     }
     if (positions.isEmpty()) {
         return {};
     }
-    if (isPlaceable(baselineValue_, logValue)) {
-        values.include(baselineValue_);
+    auto values = Extent{};
+    for (const auto bound : {barValue, baselineValue_}) {
+        if (isPlaceable(bound, logValue)) {
+            values.include(bound);
+        }
     }
 
-    auto positionMin = positions.min;
-    auto positionMax = positions.max;
+    auto extents = BarExtents{DataPointStore::Extent{positions.min, positions.max}, std::nullopt};
     if (!ranged) {
-        // Widen by half a bar so the outer bars are fully in view, unless that leaves a log axis' domain.
-        const auto widenedMin = positions.min + barOffset_ - 0.5 * barWidth_;
-        positionMin = isPlaceable(widenedMin, logPosition) ? widenedMin : positions.min;
-        positionMax = positions.max + barOffset_ + 0.5 * barWidth_;
+        // Widen by half a bar so the bar is fully in view, unless that leaves a log axis' domain.
+        const auto widenedMin = first + barOffset_ - 0.5 * barWidth_;
+        extents.position = DataPointStore::Extent{isPlaceable(widenedMin, logPosition) ? widenedMin : first, first + barOffset_ + 0.5 * barWidth_};
     }
-    const auto positionExtent = std::optional<DataExtent>{DataExtent{positionMin, positionMax}};
+    if (!values.isEmpty()) {
+        extents.value = DataPointStore::Extent{values.min, values.max};
+    }
+    return extents;
+}
+
+PlotSeries::DataRanges BarSeries::computeDataRanges() const
+{
+    const auto horizontal = isHorizontal();
+    const auto logPosition = horizontal ? logScaleY() : logScaleX();
+    const auto logValue = horizontal ? logScaleX() : logScaleY();
+    auto positions = Extent{};
+    auto values = Extent{};
+    for (auto i = 0; i < count(); ++i) {
+        const auto extents = barExtents(i, logPosition, logValue);
+        if (extents.position) {
+            positions.include(extents.position->min);
+            positions.include(extents.position->max);
+        }
+        if (extents.value) {
+            values.include(extents.value->min);
+            values.include(extents.value->max);
+        }
+    }
+    if (positions.isEmpty()) {
+        return {};
+    }
+    const auto positionExtent = std::optional<DataExtent>{DataExtent{positions.min, positions.max}};
     const auto valueExtent = values.isEmpty() ? std::optional<DataExtent>{} : DataExtent{values.min, values.max};
-    return isHorizontal() ? DataRanges{valueExtent, positionExtent} : DataRanges{positionExtent, valueExtent};
+    return horizontal ? DataRanges{valueExtent, positionExtent} : DataRanges{positionExtent, valueExtent};
+}
+
+DataPointStore::Extents BarSeries::dataPointExtents(const int index) const
+{
+    const auto horizontal = isHorizontal();
+    const auto extents = barExtents(index, horizontal ? logScaleY() : logScaleX(), horizontal ? logScaleX() : logScaleY());
+    return horizontal ? DataPointStore::Extents{extents.value, extents.position} : DataPointStore::Extents{extents.position, extents.value};
 }
 
 } // namespace QAccelPlot

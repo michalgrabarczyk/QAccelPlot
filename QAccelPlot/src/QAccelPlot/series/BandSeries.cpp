@@ -50,15 +50,22 @@ qreal fromAxisSpace(const qreal value, const bool logScale)
     return logScale ? std::pow(10.0, value) : value;
 }
 
-template <typename T> bool isAscending(const T* data, const int dataPointCount)
+// Returns whether a data point at x breaks the ascending X order after a data point at previousX.
+bool breaksXOrder(const double x, const double previousX)
 {
+    return std::isnan(x) || x < previousX;
+}
+
+template <typename T> int countXOrderBreaks(const T* data, const int dataPointCount)
+{
+    auto breaks = 0;
     for (auto i = std::size_t{0}; i < static_cast<std::size_t>(dataPointCount); ++i) {
-        const auto x = data[i * kStride];
-        if (std::isnan(x) || (i > 0 && x < data[(i - 1) * kStride])) {
-            return false;
+        const auto previousX = i > 0 ? static_cast<double>(data[(i - 1) * kStride]) : -std::numeric_limits<double>::infinity();
+        if (breaksXOrder(data[i * kStride], previousX)) {
+            ++breaks;
         }
     }
-    return true;
+    return breaks;
 }
 
 // Interleaves the first min(xs, lows, highs) values into (x, low, high) triples.
@@ -158,8 +165,6 @@ BandEdges* BandSeries::edges() const
 
 void BandSeries::appendData(const qreal x, const qreal low, const qreal high)
 {
-    const auto dataPointCount = dataPoints().count();
-    xAscending_ = xAscending_ && !std::isnan(x) && (dataPointCount == 0 || x >= value(dataPointCount - 1, 0));
     const auto dataPoint = std::array<double, kStride>{x, low, high};
     appendDataPoint(dataPoint.data());
 }
@@ -338,10 +343,21 @@ void BandSeries::onAxisRangeChanged()
     refreshHovered();
 }
 
-void BandSeries::onDataPointsChanged(const DataChange change, [[maybe_unused]] const int previousCount)
+void BandSeries::onDataPointsChanged(const DataUpdate& dataUpdate)
 {
-    if (change != DataChange::Appended) {
-        updateXAscending();
+    switch (dataUpdate.change) {
+    case DataChange::Replaced: {
+        const auto points = dataPoints().view();
+        xOrderBreaks_ = points.precise ? countXOrderBreaks(points.precise, points.count) : countXOrderBreaks(points.floats, points.count);
+        break;
+    }
+    case DataChange::Appended:
+        xOrderBreaks_ += xOrderBreaksAround(dataUpdate.index, value(dataUpdate.index, 0));
+        break;
+    case DataChange::Modified:
+        xOrderBreaks_
+            += xOrderBreaksAround(dataUpdate.index, value(dataUpdate.index, 0)) - xOrderBreaksAround(dataUpdate.index, dataUpdate.previousCoordinates[0]);
+        break;
     }
     refreshHovered();
 }
@@ -363,17 +379,21 @@ bool BandSeries::dataPointValid(const int index) const
         && isValidCoordinate(value(index, kHighComponent), logScaleY());
 }
 
-void BandSeries::updateXAscending()
+int BandSeries::xOrderBreaksAround(const int index, const double x) const
 {
-    const auto points = dataPoints().view();
-    xAscending_ = points.precise ? isAscending(points.precise, points.count) : isAscending(points.floats, points.count);
+    const auto previousX = index > 0 ? value(index - 1, 0) : -std::numeric_limits<double>::infinity();
+    auto breaks = breaksXOrder(x, previousX) ? 1 : 0;
+    if (index + 1 < dataPoints().count() && breaksXOrder(value(index + 1, 0), x)) {
+        ++breaks;
+    }
+    return breaks;
 }
 
 std::optional<BandSeries::Span> BandSeries::spanAt(const qreal x, const int dataPointCount) const
 {
     const auto logX = logScaleX();
     const auto logY = logScaleY();
-    if (!xAscending_ || !isValidCoordinate(x, logX)) {
+    if (xOrderBreaks_ > 0 || !isValidCoordinate(x, logX)) {
         return std::nullopt;
     }
     // First data point whose X is not below x.

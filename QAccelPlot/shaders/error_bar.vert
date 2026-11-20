@@ -50,7 +50,7 @@ layout(binding = 1) uniform sampler2D dataSampler;
 
 #include "data_texture.glsl"
 #include "math_utils.glsl"
-#include "viewport_fraction.glsl"
+#include "axis_pixel.glsl"
 #include "item_opacity.glsl"
 #include "glow.glsl"
 
@@ -70,20 +70,6 @@ void cull() {
 
 bool isLogAxis(int axis) {
     return (axis == 0 ? ubuf.logScaleX : ubuf.logScaleY) > 0.5;
-}
-
-// Maps the float bit pattern `bits` on `axis` (0 = X, 1 = Y) to an item pixel coordinate, with y
-// growing downward. Coordinates beyond the plot edge are clamped one viewport past it.
-float axisPixel(uint bits, int axis) {
-    bool logScale = isLogAxis(axis);
-    float dMin = axis == 0 ? ubuf.domainMin.x : ubuf.domainMin.y;
-    float dMax = axis == 0 ? ubuf.domainMax.x : ubuf.domainMax.y;
-    if (logScale) {
-        dMin = safeLog10(dMin);
-        dMax = safeLog10(dMax);
-    }
-    float fraction = viewportFraction(bits, dMin, dMax, logScale);
-    return axis == 0 ? fraction * ubuf.viewportSize.x : (1.0 - fraction) * ubuf.viewportSize.y;
 }
 
 // Whether a cap is drawn at a bound: finite, and positive on a log axis.
@@ -126,9 +112,10 @@ void main() {
     uint startBits = isNaNBits(lowBits) ? valueBits : lowBits;
     uint endBits = isNaNBits(highBits) ? valueBits : highBits;
 
-    float across = axisPixel(floatBitsToUint(position), positionAxis);
-    float start = axisPixel(startBits, valueAxis);
-    float end = axisPixel(endBits, valueAxis);
+    AxisMapping mapping = axisMapping(ubuf.domainMin, ubuf.domainMax, ubuf.viewportSize, bvec2(ubuf.logScaleX > 0.5, ubuf.logScaleY > 0.5));
+    float across = axisPixel(mapping, floatBitsToUint(position), positionAxis);
+    float start = axisPixel(mapping, startBits, valueAxis);
+    float end = axisPixel(mapping, endBits, valueAxis);
     float halfWidth = 0.5 * ubuf.lineWidth;
 
     // The part as spans across and along the bounds, in pixels.

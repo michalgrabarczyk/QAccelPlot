@@ -5,7 +5,6 @@
 #pragma once
 
 #include "QAccelPlot/series/PlotSeries.hpp"
-#include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/transitions/TransitionRunner.hpp"
 
 #include <QColor>
@@ -23,11 +22,14 @@
 #include <optional>
 #include <vector>
 
-class QSGGeometryNode;
-
 namespace QAccelPlot {
 
 class ErrorBarMaterial;
+
+namespace Internal {
+class RecordHitIndex;
+class StoreTransition;
+} // namespace Internal
 
 /// \brief A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends.
 ///
@@ -259,7 +261,7 @@ protected:
     /// \brief Refreshes the hover lookup and repaints after a bound axis changes between linear and log scale.
     void onAxisScaleChanged() override;
     /// \brief Refreshes the hover lookup and the count after the data points changed.
-    void onDataPointsChanged(DataChange change, int previousCount) override;
+    void onDataPointsChanged(const DataUpdate& dataUpdate) override;
 
 private:
     // A drawn error bar in data coordinates: its position across the bounds, shifted by the offset,
@@ -280,18 +282,16 @@ private:
     std::optional<qreal> pixelDistance(int index, const QPointF& position) const;
     void applyInterleavedData(std::vector<double>&& data);
     void applyDoubleData(std::vector<double>&& data, int dataPointCount);
-    // Starts animating from the \a drawnCount error bars in \a drawn to the stored ones.
-    void startTransition(const std::vector<double>& drawn, int drawnCount);
-    void advanceTransition();
+    // How the error bars animate.
+    TransitionRunner::Layout transitionLayout() const;
     // Draws the next frame of the running transition, or the data when it ends.
-    void showTransitionFrame();
+    void advanceTransition();
     // Shows the stored data points at once, when a transition was drawing others.
     void endTransition();
     void discardTransition();
     void setHoveredIndex(int index);
     void onGeometryChanged();
     void ensureSpatialGrid() const;
-    void updateVertices(QSGGeometryNode& node, int drawnCount) const;
     void updateMaterial(ErrorBarMaterial& material, int drawnCount) const;
 
     Qt::Orientation orientation_{Qt::Vertical};
@@ -303,14 +303,12 @@ private:
     qreal hoverRadius_{6.0};
     int hoveredIndex_{-1};
     std::unique_ptr<TransitionRunner> transition_;
-    // Frame buffer of the animation, recycled from frame to frame.
-    std::vector<double> frameBuffer_;
+    // Shows the runs of transition_ as the drawn data points.
+    std::unique_ptr<Internal::StoreTransition> storeTransition_;
     // Render revision of the data points last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
     // Data-space rectangles of the error bars that bound the hover candidates.
-    mutable std::vector<double> hitRects_;
-    mutable SpatialGrid spatialGrid_;
-    mutable bool spatialGridValid_{false};
+    std::unique_ptr<Internal::RecordHitIndex> hitIndex_;
 };
 
 } // namespace QAccelPlot

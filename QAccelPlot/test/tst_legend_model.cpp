@@ -33,6 +33,16 @@ PlotSeries* seriesAt(const LegendModel& model, const int row)
     return model.data(model.index(row), LegendModel::SeriesRole).value<PlotSeries*>();
 }
 
+void collectCandleSamples(QQuickItem* item, QList<QQuickItem*>& candles)
+{
+    if (item->property("candleColor").isValid()) {
+        candles.append(item);
+    }
+    for (auto* child : item->childItems()) {
+        collectCandleSamples(child, candles);
+    }
+}
+
 } // namespace
 
 class LegendModelTest : public QObject {
@@ -49,6 +59,7 @@ private slots:
     void qmlCategoriesFollowDeclarationsAndGeneratedLists();
     void destroyedSeriesLeaveTheModel();
     void plotLegendHidesWithoutEntries();
+    void candleSymbolWithoutDownColorUsesColor();
 };
 
 void LegendModelTest::listsSeriesWithAnEntry()
@@ -313,6 +324,29 @@ void LegendModelTest::plotLegendHidesWithoutEntries()
     curve->setVisible(false);
     QCOMPARE(model->count(), 0);
     QVERIFY(!legend->isVisible());
+}
+
+void LegendModelTest::candleSymbolWithoutDownColorUsesColor()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    component.setData(R"(
+        import QtQuick
+        import QAccelPlot
+        Item {
+            BarSeries { id: bars; color: "lime"; legendSymbol: PlotSeries.Candle }
+            Legend { model: LegendModel { series: [bars] } }
+        }
+    )",
+        QUrl{});
+    const auto root = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(root, qPrintable(component.errorString()));
+
+    auto candles = QList<QQuickItem*>{};
+    collectCandleSamples(qobject_cast<QQuickItem*>(root.get()), candles);
+    QCOMPARE(candles.size(), 2);
+    QCOMPARE(candles[0]->property("candleColor").value<QColor>(), QColor{Qt::green});
+    QCOMPARE(candles[1]->property("candleColor").value<QColor>(), QColor{Qt::green});
 }
 
 } // namespace QAccelPlot

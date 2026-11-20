@@ -39,6 +39,7 @@ frame.
 - **Bands** — `BandSeries` for confidence intervals and envelopes
 - **Error bars** — `ErrorBarSeries` for symmetric and asymmetric errors,
   vertical or horizontal
+- **Candlesticks** — `CandlestickSeries` for candlestick and OHLC charts
 - **Layout** — secondary and extra axes, data-anchored QML overlays, and
   `RectangleSeries` for event spans and state timelines
 

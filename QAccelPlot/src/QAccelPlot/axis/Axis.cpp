@@ -5,6 +5,7 @@
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/PlotMouseEvent.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/AxisLabel.hpp"
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
@@ -704,9 +705,10 @@ void Axis::mouseDoubleClickEvent(QMouseEvent* event)
         QQuickPaintedItem::mouseDoubleClickEvent(event);
         return;
     }
-    auto plotEvent = PlotMouseEvent{*event};
-    emit doubleClicked(&plotEvent);
-    if (!plotEvent.isAccepted()) {
+    doubleClickEvent_.reset(*event);
+    emit doubleClicked(&doubleClickEvent_);
+    const auto* plot = qobject_cast<PlotView*>(parentItem());
+    if (!doubleClickEvent_.isAccepted() && plot && plot->isAxisRegistered(this)) {
         rescaleToData();
     }
     // Consumed even when a handler accepted it, so the plot does not rescale all axes.

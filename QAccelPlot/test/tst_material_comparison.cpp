@@ -4,6 +4,7 @@
 //
 #include "QAccelPlot/materials/BandEdgeMaterial.hpp"
 #include "QAccelPlot/materials/BarMaterial.hpp"
+#include "QAccelPlot/materials/CandlestickMaterial.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/ErrorBarMaterial.hpp"
 #include "QAccelPlot/materials/LineMaterial.hpp"
@@ -58,6 +59,31 @@ private:
     bool* destroyed_;
 };
 
+namespace {
+
+/// \brief Returns \c true when \a field orders by color value, ignoring the color spec.
+template <typename Material> bool comparesColorValues(QColor Material::* field)
+{
+    const auto rgbRed = QColor::fromRgb(255, 0, 0);
+    const auto hsvRed = QColor::fromHsv(0, 255, 255);
+    const auto hslBlue = QColor::fromHsl(240, 255, 128);
+
+    auto rgb = Material{};
+    auto hsv = Material{};
+    rgb.*field = rgbRed;
+    hsv.*field = hsvRed;
+    if (rgbRed.rgba() != hsvRed.rgba() || rgb.compare(&hsv) != 0 || hsv.compare(&rgb) != 0) {
+        return false;
+    }
+
+    auto blue = Material{};
+    blue.*field = hslBlue;
+    const auto order = rgb.compare(&blue);
+    return order != 0 && blue.compare(&rgb) == -order;
+}
+
+} // namespace
+
 class MaterialComparisonTest : public QObject {
     Q_OBJECT
 
@@ -75,6 +101,8 @@ private slots:
     void pointCloudMaterialsCompareDataTextureIdentity();
     void barMaterialsCompareRectangleAndBarUniforms();
     void errorBarMaterialsCompareAntialiasing();
+    void candlestickMaterialsCompareStyleAndColors();
+    void materialsCompareColorValuesAcrossSpecs();
 };
 
 void MaterialComparisonTest::identicalLineMaterialsCompareEqual()
@@ -285,6 +313,37 @@ void MaterialComparisonTest::errorBarMaterialsCompareAntialiasing()
     aliased.antialiasing = 0.0f;
     QVERIFY(left.compare(&aliased) != 0);
     QVERIFY(aliased.compare(&left) == -left.compare(&aliased));
+}
+
+void MaterialComparisonTest::candlestickMaterialsCompareStyleAndColors()
+{
+    const auto left = CandlestickMaterial{};
+    QCOMPARE(left.compare(&left), 0);
+
+    auto ohlc = CandlestickMaterial{};
+    ohlc.ohlc = 1.0f;
+    QVERIFY(left.compare(&ohlc) != 0);
+    QVERIFY(ohlc.compare(&left) == -left.compare(&ohlc));
+
+    auto down = CandlestickMaterial{};
+    down.downColor = Qt::blue;
+    QVERIFY(left.compare(&down) != 0);
+    QVERIFY(down.compare(&left) == -left.compare(&down));
+
+    auto glowDown = CandlestickMaterial{};
+    glowDown.glowDownColor = Qt::blue;
+    QVERIFY(left.compare(&glowDown) != 0);
+}
+
+void MaterialComparisonTest::materialsCompareColorValuesAcrossSpecs()
+{
+    QVERIFY(comparesColorValues<LineMaterial>(&LineMaterial::color));
+    QVERIFY(comparesColorValues<ErrorBarMaterial>(&ErrorBarMaterial::hoverColor));
+    QVERIFY(comparesColorValues<BarMaterial>(&BarMaterial::borderColor));
+    QVERIFY(comparesColorValues<BarMaterial>(&BarMaterial::hoverColor));
+    QVERIFY(comparesColorValues<CandlestickMaterial>(&CandlestickMaterial::downColor));
+    QVERIFY(comparesColorValues<CandlestickMaterial>(&CandlestickMaterial::hoverColor));
+    QVERIFY(comparesColorValues<CandlestickMaterial>(&CandlestickMaterial::glowDownColor));
 }
 
 } // namespace QAccelPlot

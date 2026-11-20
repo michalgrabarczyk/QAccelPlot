@@ -79,6 +79,13 @@ Each executable is named after its example, for example
     Calibration measurements with asymmetric errors, animated between samples, and error bars on
     grouped bars. Recipe: [Error bars](cookbook/error-bars.md).
 
+-   ![Candlestick](assets/examples/candlestick.webp)
+
+    **[Candlestick](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/candlestick)**
+
+    Fifty thousand hourly candles with volume bars, a trading-time axis without gaps, a live last
+    candle, and a candlestick or OHLC style. Recipe: [Candlesticks](cookbook/candlesticks.md).
+
 -   ![Step Lines](assets/examples/step_lines.webp)
 
     **[Step Lines](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/step_lines)**

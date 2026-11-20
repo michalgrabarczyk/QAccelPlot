@@ -137,6 +137,14 @@ void SourceInspection::appended(const int count)
     blocks_[static_cast<std::size_t>((count - 1) / kBlockSize)].computed = false;
 }
 
+void SourceInspection::modified(const int index)
+{
+    const auto blockIndex = static_cast<std::size_t>(index / kBlockSize);
+    if (index >= 0 && blockIndex < blocks_.size()) {
+        blocks_[blockIndex].computed = false;
+    }
+}
+
 std::size_t SourceInspection::storageBytes() const
 {
     return blocks_.capacity() * sizeof(Block);

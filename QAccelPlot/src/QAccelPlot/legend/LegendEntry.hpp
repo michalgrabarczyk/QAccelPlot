@@ -28,8 +28,12 @@ struct LegendEntry {
     Q_PROPERTY(QString name MEMBER name CONSTANT)
     /// \brief Symbol style.
     Q_PROPERTY(PlotSeries::LegendSymbol symbol MEMBER symbol CONSTANT)
-    /// \brief Color of the line, marker, or fill.
+    /// \brief Color of the line, marker, or fill; of the up candle for the \c Candle symbol.
     Q_PROPERTY(QColor color MEMBER color CONSTANT)
+    /// \brief Color of the down candle for the \c Candle symbol; unused by the other symbols.
+    ///
+    /// Reads as \c color when the series sets no down candle color.
+    Q_PROPERTY(QColor secondaryColor READ downCandleColor CONSTANT)
     /// \brief Line width in pixels.
     Q_PROPERTY(qreal lineWidth MEMBER lineWidth CONSTANT)
     /// \brief Line style, or null for a solid line. Owned by the series.
@@ -50,7 +54,8 @@ struct LegendEntry {
 public:
     QString name;                                                    ///< \brief Row label, or empty for the series name.
     PlotSeries::LegendSymbol symbol{PlotSeries::LegendSymbol::Line}; ///< \brief Symbol style.
-    QColor color;                                                    ///< \brief Line, marker, or fill color.
+    QColor color;                                                    ///< \brief Line, marker, fill, or up candle color.
+    QColor secondaryColor;                                           ///< \brief Down candle color, or invalid for \c color.
     qreal lineWidth{1.0};                                            ///< \brief Line width in pixels.
     LineStyle* lineStyle{nullptr};                                   ///< \brief Line style, or null for solid.
     MarkerShape markerShape{MarkerShape::None};                      ///< \brief Marker shape.
@@ -59,6 +64,9 @@ public:
     qreal markerStrokeWidth{1.0};                                    ///< \brief Hollow marker outline width.
     bool antialiasing{true};                                         ///< \brief Whether antialiasing is on.
     qreal antialiasingFeather{1.0};                                  ///< \brief Antialiasing feather width.
+
+    /// \brief Returns \c secondaryColor, or \c color when \c secondaryColor is invalid.
+    QColor downCandleColor() const;
 };
 
 } // namespace QAccelPlot

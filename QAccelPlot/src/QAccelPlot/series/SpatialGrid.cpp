@@ -78,6 +78,49 @@ int SpatialGrid::queryTopmost(const double minX, const double minY, const double
     return best;
 }
 
+int SpatialGrid::queryNearest(const double minX, const double minY, const double maxX, const double maxY, const double maxDistance,
+    const std::function<std::optional<double>(int)>& distance) const
+{
+    if (cols_ <= 0 || rows_ <= 0 || std::isnan(minX) || std::isnan(minY) || std::isnan(maxX) || std::isnan(maxY)) {
+        return -1;
+    }
+
+    auto nearest = -1;
+    auto nearestDistance = maxDistance;
+    const auto measure = [&](const int index) {
+        const auto candidate = distance(index);
+        if (candidate && *candidate <= maxDistance && (nearest < 0 || *candidate < nearestDistance || (*candidate == nearestDistance && index > nearest))) {
+            nearest = index;
+            nearestDistance = *candidate;
+        }
+    };
+    const auto c0 = cellIndex(minX, minX_, cellW_, cols_);
+    const auto c1 = cellIndex(maxX, minX_, cellW_, cols_);
+    const auto r1 = cellIndex(maxY, minY_, cellH_, rows_);
+    for (auto r = cellIndex(minY, minY_, cellH_, rows_); r <= r1; ++r) {
+        for (auto c = c0; c <= c1; ++c) {
+            for (const auto index : cells_[static_cast<size_t>(r) * static_cast<size_t>(cols_) + static_cast<size_t>(c)]) {
+                const auto& bounds = itemBounds_[static_cast<size_t>(index)];
+                if (!bounds.overlaps(minX, minY, maxX, maxY)) {
+                    continue;
+                }
+                // A rectangle is listed in every cell it covers, so it is measured only in the cell where its overlap with the box starts.
+                const auto firstCell
+                    = cellIndex(std::max(bounds.minX, minX), minX_, cellW_, cols_) == c && cellIndex(std::max(bounds.minY, minY), minY_, cellH_, rows_) == r;
+                if (firstCell) {
+                    measure(index);
+                }
+            }
+        }
+    }
+    for (const auto index : largeItems_) {
+        if (itemBounds_[static_cast<size_t>(index)].overlaps(minX, minY, maxX, maxY)) {
+            measure(index);
+        }
+    }
+    return nearest;
+}
+
 int SpatialGrid::scanTopmost(const double* data, const int itemCount, const double minX, const double minY, const double maxX, const double maxY,
     const std::function<bool(int)>& accept, const int valuesPerItem)
 {

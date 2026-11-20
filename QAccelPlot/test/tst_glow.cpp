@@ -6,6 +6,7 @@
 #include "QAccelPlot/effects/FadeTrail.hpp"
 #include "QAccelPlot/effects/Glow.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
+#include "QAccelPlot/series/CandlestickSeries.hpp"
 #include "QAccelPlot/series/ErrorBarSeries.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
@@ -83,11 +84,12 @@ void GlowTest::haloSurroundsTheSeries_data()
     QTest::addColumn<int>("kind");
     QTest::addColumn<QPoint>("offset");
 
-    // A bar at x = 5, 20 pixels wide; a marker of radius 4; a vertical error bar; a horizontal line.
+    // A bar at x = 5, 20 pixels wide; a marker of radius 4; a vertical error bar; a horizontal line; a candle.
     QTest::newRow("bar") << 0 << QPoint{14, 0};
     QTest::newRow("point") << 1 << QPoint{8, 0};
     QTest::newRow("error bar") << 2 << QPoint{5, 0};
     QTest::newRow("line") << 3 << QPoint{0, 5};
+    QTest::newRow("candle") << 4 << QPoint{5, 0};
 }
 
 void GlowTest::haloSurroundsTheSeries()
@@ -113,6 +115,14 @@ void GlowTest::haloSurroundsTheSeries()
         errorBars->setCapLength(0.0);
         errorBars->setData(std::vector<double>{5.0, 5.0, 2.0, 8.0}, 1);
         series = std::move(errorBars);
+    } else if (kind == 4) {
+        // A candle as narrow as its wick.
+        auto candles = std::make_unique<CandlestickSeries>();
+        candles->setUpColor(Qt::red);
+        candles->setLineWidth(1.5);
+        candles->setSpacing(0.001);
+        candles->setData(std::vector<double>{5.0, 4.0, 8.0, 2.0, 6.0}, 1);
+        series = std::move(candles);
     } else {
         auto curve = std::make_unique<LineCurve>();
         curve->setColor(Qt::red);

@@ -351,7 +351,7 @@ void RectangleSeries::applyData(std::vector<double>&& data, std::vector<int>&& c
     const auto previousCount = count();
     dataPoints().setPrecise(std::move(data), rectCount);
     dataPoints().setCategories(std::move(categories));
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 void RectangleSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
@@ -359,13 +359,13 @@ void RectangleSeries::applyFloatData(std::vector<float>&& data, std::vector<int>
     const auto previousCount = count();
     dataPoints().setFloat(std::move(data), rectCount);
     dataPoints().setCategories(std::move(categories));
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
-void RectangleSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, const int previousCount)
+void RectangleSeries::onDataPointsChanged(const DataUpdate& dataUpdate)
 {
     // Vertex colors depend on the categories, but not on the coordinates.
-    if (count() != previousCount || vertexCacheHasCategories_ || hasCategories()) {
+    if (count() != dataUpdate.previousCount || vertexCacheHasCategories_ || hasCategories()) {
         vertexCache_->invalidate();
     }
     spatialGridValid_ = false;

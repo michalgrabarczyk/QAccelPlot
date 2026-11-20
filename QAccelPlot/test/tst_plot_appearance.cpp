@@ -9,8 +9,12 @@
 
 #include <QHoverEvent>
 #include <QMouseEvent>
+#include <QQmlComponent>
+#include <QQmlEngine>
 #include <QWheelEvent>
 #include <QtTest/QtTest>
+
+#include <memory>
 
 class TestablePlot final : public QAccelPlot::PlotView {
 public:
@@ -45,6 +49,7 @@ private slots:
     void acceptedReleaseEndsDrag();
     void horizontalOnlyWheelScrollDoesNotZoom();
     void mouseMovedFiresWhileHoveringWithoutButton();
+    void mouseMovedReachesQmlHandler();
     void mouseMovedReportsHeldButtons();
     void mouseMovedDoesNotFireTwiceWhileDragging();
     void tickOverlapChangeTriggersRelayout();
@@ -451,6 +456,28 @@ void TestPlotAppearance::mouseMovedFiresWhileHoveringWithoutButton()
 
     QCOMPARE(movedX, 40.0);
     QCOMPARE(movedButtons, static_cast<int>(Qt::NoButton));
+}
+
+void TestPlotAppearance::mouseMovedReachesQmlHandler()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    component.setData(R"(
+        import QAccelPlot as QAccelPlot
+        QAccelPlot.PlotView {
+            width: 200; height: 100
+            property real movedX: -1
+            onMouseMoved: (mouse) => { movedX = mouse.x }
+        }
+    )",
+        QUrl{});
+    auto plot = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(plot, qPrintable(component.errorString()));
+
+    auto hover = QAccelPlotTest::hoverEvent(QEvent::HoverMove, QPointF{40.0, 25.0}, QPointF{10.0, 25.0});
+    QCoreApplication::sendEvent(plot.get(), &hover);
+
+    QCOMPARE(plot->property("movedX").toReal(), 40.0);
 }
 
 void TestPlotAppearance::mouseMovedReportsHeldButtons()

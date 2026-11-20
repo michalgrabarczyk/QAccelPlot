@@ -154,11 +154,9 @@ qreal PointCloud::hoverRadius() const
 
 void PointCloud::setHoverRadius(const qreal radius)
 {
-    const auto clamped = std::max(radius, qreal{0.0});
-    if (nearlyEqual(hoverRadius_, clamped)) {
+    if (!Internal::assignNonNegative(hoverRadius_, radius)) {
         return;
     }
-    hoverRadius_ = clamped;
     emit hoverRadiusChanged();
     // Marks the item dirty so the window re-delivers hover at the cursor and updates hoveredIndex.
     update();
@@ -491,7 +489,7 @@ void PointCloud::applyFloatData(std::vector<float>&& xyInterleaved, std::vector<
     const auto previousCount = count();
     discardTransition();
     dataPoints().setFloat(std::move(xyInterleaved), pointCount, std::move(values));
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 void PointCloud::applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
@@ -506,12 +504,12 @@ void PointCloud::applyDoubleData(std::vector<double>&& xyInterleaved, std::vecto
     } else {
         discardTransition();
     }
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 void PointCloud::finishValueChange(const int previousCount)
 {
-    onDataPointsChanged(DataChange::Replaced, previousCount);
+    onDataPointsChanged({DataChange::Replaced, previousCount});
     inspectionDataChanged();
     update();
 }
@@ -536,7 +534,7 @@ void PointCloud::applyDataPoints(DataPointInput&& input)
     discardTransition();
     // Reuses the allocation of the stored points.
     dataPoints().assignFloat(input.floatArray, pointCount);
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    notifyDataPointsReplaced(previousCount);
 }
 
 bool PointCloud::supportsEffect(const SeriesEffect& effect) const
@@ -550,7 +548,7 @@ void PointCloud::onAxisScaleChanged()
     update();
 }
 
-void PointCloud::onDataPointsChanged([[maybe_unused]] const DataChange change, [[maybe_unused]] const int previousCount)
+void PointCloud::onDataPointsChanged([[maybe_unused]] const DataUpdate& dataUpdate)
 {
     invalidateSpatialIndex();
     updateValueRange();

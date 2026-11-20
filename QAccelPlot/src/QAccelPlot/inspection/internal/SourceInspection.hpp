@@ -27,6 +27,8 @@ public:
     void reset();
     /// \brief Updates cached statistics after one record was appended, giving \a count records.
     void appended(int count);
+    /// \brief Updates cached statistics after record \a index was replaced in place.
+    void modified(int index);
     /// \brief Returns the bytes held by cached statistics.
     [[nodiscard]] std::size_t storageBytes() const;
 

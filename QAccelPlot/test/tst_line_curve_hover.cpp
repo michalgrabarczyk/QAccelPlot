@@ -142,6 +142,8 @@ void LineCurveHoverTest::hoverRadiusChangeUpdatesHoveredIndex_data()
     QTest::addColumn<QString>("setData");
     QTest::newRow("PointCloud") << QStringLiteral("PointCloud") << QStringLiteral("setData([Qt.point(5, 5)])");
     QTest::newRow("ErrorBarSeries") << QStringLiteral("ErrorBarSeries") << QStringLiteral("setData([5], [5], [3], [7])");
+    // A candle one pixel wide, so only the radius reaches it.
+    QTest::newRow("CandlestickSeries") << QStringLiteral("CandlestickSeries") << QStringLiteral("spacing = 0.001, setData([5], [4], [6], [3], [5])");
 }
 
 void LineCurveHoverTest::hoverRadiusChangeUpdatesHoveredIndex()

@@ -11,6 +11,7 @@
 #include <QHoverEvent>
 #include <QKeyEvent>
 #include <QMouseEvent>
+#include <QPointer>
 #include <QQuickWindow>
 #include <QSignalSpy>
 #include <QWheelEvent>
@@ -158,6 +159,7 @@ private slots:
     void axisKeyL_togglesLogScale();
     void axisDoubleClick_emitsSignal();
     void axisDoubleClick_rescalesToData();
+    void axisDoubleClick_outsidePlotKeepsViewport();
     void acceptedAxisDoubleClickDoesNotRescale();
     void axisDoubleClick_eachEventStartsUnaccepted();
     void keyPress_isForwardedToAxisUnderPointer();
@@ -168,6 +170,7 @@ private slots:
     void escapeAndGrabLoss_areReported();
 
     void plotMouseEvent_eachEventStartsUnaccepted();
+    void plotMouseEvent_outlivesTheSignal();
 };
 
 void TestPlotInteraction::wheelMagnitudeIsIndependentOfEventCount_data()
@@ -673,6 +676,25 @@ void TestPlotInteraction::axisDoubleClick_rescalesToData()
     QCOMPARE(xAxis->viewportMax(), 25.0);
 }
 
+void TestPlotInteraction::axisDoubleClick_outsidePlotKeepsViewport()
+{
+    auto standalone = TestableAxis{};
+    auto plot = TestablePlot{};
+    auto* unregistered = new TestableAxis{&plot};
+    for (auto* axis : {&standalone, unregistered}) {
+        setViewport(axis, 0.0, 100.0);
+        axis->setDataRange(5.0, 25.0);
+
+        auto doubleClick = mouseEvent(QEvent::MouseButtonDblClick, {10.0, 10.0}, Qt::LeftButton, Qt::LeftButton);
+        doubleClick.ignore();
+        axis->mouseDoubleClickEvent(&doubleClick);
+
+        QVERIFY(doubleClick.isAccepted());
+        QCOMPARE(axis->viewportMin(), 0.0);
+        QCOMPARE(axis->viewportMax(), 100.0);
+    }
+}
+
 void TestPlotInteraction::acceptedAxisDoubleClickDoesNotRescale()
 {
     auto plot = TestablePlot{};
@@ -909,6 +931,30 @@ void TestPlotInteraction::plotMouseEvent_eachEventStartsUnaccepted()
     QCOMPARE(buttons, Qt::MouseButtons{Qt::RightButton});
     QCOMPARE(position, pos);
     QCOMPARE(modifiers, Qt::KeyboardModifiers{Qt::ShiftModifier});
+}
+
+void TestPlotInteraction::plotMouseEvent_outlivesTheSignal()
+{
+    auto plot = TestablePlot{};
+    plot.setSize({300.0, 200.0});
+    auto* xAxis = new TestableAxis{&plot};
+    plot.setXAxis(xAxis);
+    auto pressEvent = QPointer<QAccelPlot::PlotMouseEvent>{};
+    auto doubleClickEvent = QPointer<QAccelPlot::PlotMouseEvent>{};
+    connect(&plot, &QAccelPlot::PlotView::mousePressed, [&](QAccelPlot::PlotMouseEvent* event) { pressEvent = event; });
+    connect(xAxis, &QAccelPlot::Axis::doubleClicked, [&](QAccelPlot::PlotMouseEvent* event) { doubleClickEvent = event; });
+
+    const auto pos = QPointF{12.5, 30.0};
+    auto press = QMouseEvent{QEvent::MouseButtonPress, pos, pos, pos, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
+    plot.mousePressEvent(&press);
+    auto doubleClick = mouseEvent(QEvent::MouseButtonDblClick, pos, Qt::LeftButton, Qt::LeftButton);
+    xAxis->mouseDoubleClickEvent(&doubleClick);
+
+    // Queued connections receive the pointer after the handler returns, so the event must still exist.
+    QVERIFY(pressEvent);
+    QCOMPARE(pressEvent->x(), pos.x());
+    QVERIFY(doubleClickEvent);
+    QCOMPARE(doubleClickEvent->y(), pos.y());
 }
 
 QTEST_MAIN(TestPlotInteraction)

@@ -92,6 +92,7 @@ private slots:
     void appendDataExtendsSamplesAndRanges();
     void appendToFloatDataKeepsSamples();
     void replaceDataChangesOneSample();
+    void replaceDataTracksTheXOrder();
     void clearDataRemovesSamples();
     void valueAtInterpolatesBetweenSamples();
     void valueAtInterpolatesOnLogScales();
@@ -283,6 +284,59 @@ void BandSeriesDataTest::replaceDataChangesOneSample()
     QVERIFY(band.valueAt(0.5).isEmpty());
     band.replaceData(1, 1.0, 0.0, 1.0);
     QVERIFY(hasSpan(band.valueAt(0.5), 0.0, 1.0));
+}
+
+void BandSeriesDataTest::replaceDataTracksTheXOrder()
+{
+    // valueAt() answers only while the X values ascend.
+    const auto ascending = [](const BandSeries& band) { return !band.valueAt(0.0).isEmpty(); };
+    auto band = BandSeries{};
+    band.setData(QList<qreal>{0.0, 1.0, 2.0, 3.0, 4.0}, QList<qreal>{0.0, 0.0, 0.0, 0.0, 0.0}, QList<qreal>{1.0, 1.0, 1.0, 1.0, 1.0});
+
+    band.replaceData(2, 1.0, 0.0, 1.0);
+    QVERIFY(ascending(band));
+    band.replaceData(2, 3.0, 0.0, 1.0);
+    QVERIFY(ascending(band));
+
+    // Two breaks: mending one keeps the samples out of order, mending both restores it.
+    band.replaceData(0, 5.0, 0.0, 1.0);
+    band.replaceData(4, -1.0, 0.0, 1.0);
+    QVERIFY(!ascending(band));
+    band.replaceData(0, 0.0, 0.0, 1.0);
+    QVERIFY(!ascending(band));
+    band.replaceData(4, 4.0, 0.0, 1.0);
+    QVERIFY(ascending(band));
+
+    // A break mended by moving a neighbor instead of the sample that caused it.
+    band.replaceData(2, 0.5, 0.0, 1.0);
+    QVERIFY(!ascending(band));
+    band.replaceData(1, 0.25, 0.0, 1.0);
+    QVERIFY(ascending(band));
+
+    band.replaceData(3, kNaN, 0.0, 1.0);
+    QVERIFY(!ascending(band));
+    band.replaceData(4, kNaN, 0.0, 1.0);
+    band.replaceData(3, 3.0, 0.0, 1.0);
+    QVERIFY(!ascending(band));
+    band.replaceData(4, 4.0, 0.0, 1.0);
+    QVERIFY(ascending(band));
+
+    // Appending after a replacement keeps counting from the replaced order.
+    band.replaceData(4, 2.0, 0.0, 1.0);
+    band.appendData(5.0, 0.0, 1.0);
+    QVERIFY(!ascending(band));
+    band.replaceData(4, 4.0, 0.0, 1.0);
+    QVERIFY(ascending(band));
+    band.appendData(4.5, 0.0, 1.0);
+    QVERIFY(!ascending(band));
+    band.replaceData(5, 4.25, 0.0, 1.0);
+    QVERIFY(ascending(band));
+
+    band.setDataF(std::vector<float>{0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 2.0f, 0.0f, 1.0f}, 3);
+    band.replaceData(1, 3.0, 0.0, 1.0);
+    QVERIFY(!ascending(band));
+    band.replaceData(1, 1.0, 0.0, 1.0);
+    QVERIFY(ascending(band));
 }
 
 void BandSeriesDataTest::clearDataRemovesSamples()

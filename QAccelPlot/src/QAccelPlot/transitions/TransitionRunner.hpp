@@ -32,7 +32,7 @@ namespace QAccelPlot {
 /// The runner asks for a frame once per rendered frame while it is active. The request comes on
 /// the GUI thread from \c QQuickWindow::afterAnimating, before the scene graph syncs, so
 /// \c DataTransition::runningChanged reaches QML there and the frame renders the new step.
-/// \c LineCurve, \c BarSeries, \c PointCloud, and \c ErrorBarSeries animate through it.
+/// \c LineCurve, \c BarSeries, \c PointCloud, \c ErrorBarSeries, and \c CandlestickSeries animate through it.
 ///
 /// \par Usage
 /// - Forward the item's transition properties to the slot getters and setters, and their change

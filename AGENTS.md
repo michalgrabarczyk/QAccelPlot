@@ -90,7 +90,7 @@ QAccelPlot/
 │       │                           LineStroke (shared line ribbon helpers)
 │       ├── series/               — LineCurve, PointCloud, HeatmapSeries, RectangleSeries, BarSeries, BandSeries,
 │       │                           PlotSeries, ColormappedSeries (colormap and value range base),
-│       │                           ErrorBarSeries,
+│       │                           ErrorBarSeries, CandlestickSeries,
 │       │                           BandEdges (edges grouped property),
 │       │                           LineCurveVertexCache,
 │       │                           LineCurveGaps (gaps grouped property),

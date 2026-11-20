@@ -4,6 +4,7 @@
 #
 add_subdirectory(bar_chart)
 add_subdirectory(bands)
+add_subdirectory(candlestick)
 add_subdirectory(error_bars)
 add_subdirectory(heatmap)
 add_subdirectory(histogram)

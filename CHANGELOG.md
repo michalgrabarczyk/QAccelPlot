@@ -8,13 +8,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- `replaceData()` on `LineCurve`, `BandSeries`, and `ErrorBarSeries` replaces
-  one data point in place, for example to update the latest sample of a live
-  feed.
+- `replaceData()` on `LineCurve`, `BandSeries`, `ErrorBarSeries`, and
+  `BarSeries` replaces one data point in place, for example to update the
+  latest sample of a live feed.
 - Accepting the event passed to `Axis.doubleClicked` skips the axis rescale,
   as `PlotView.mouseDoubleClicked` does for the plot.
 - Assigning `undefined` to a property with a computed or automatic default,
   such as `Colormap.min` or `ticker.tickLabelColor`, restores that default.
+- Candlestick and OHLC charts via `CandlestickSeries`: candles from
+  `(x, open, high, low, close)` data, in `upColor` and `downColor`, as wide as
+  `candleWidth` times `spacing`. Includes a Candlestick example.
 
 ### Changed
 
@@ -29,6 +32,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   fixed, and an unset one follows the data range or the axis minimum. Delete the
   `valueMinSource`, `valueMaxSource`, and `baseline` lines; for
   `GradientFillBaseline.AxisMinimum`, leave `baselineValue` unset.
+
+### Fixed
+
+- `LineCurve`, `PointCloud`, and `ErrorBarSeries` ignore a NaN or infinite
+  `hoverRadius`, which turned hover off or searched every point on each mouse
+  move.
+- Series with the same color given in different color specs, such as
+  `Qt.hsla()` and `Qt.rgba()`, share a scene graph batch; their materials
+  compared unequal both ways, breaking the batch renderer's ordering.
 
 ## [0.6.0] — 2026-11-16
 

@@ -14,9 +14,10 @@ Item {
 
     readonly property bool isFillSymbol: entry.symbol === PlotSeries.Fill
     readonly property bool isMarkerSymbol: entry.symbol === PlotSeries.Marker
+    readonly property bool isCandleSymbol: entry.symbol === PlotSeries.Candle
     readonly property color curveColor: entry.color
     readonly property var curveLineStyle: entry.lineStyle
-    readonly property bool showLine: !isMarkerSymbol && (curveLineStyle ? curveLineStyle.showLine : true)
+    readonly property bool showLine: !isMarkerSymbol && !isCandleSymbol && (curveLineStyle ? curveLineStyle.showLine : true)
     readonly property int curveMarker: entry.markerShape
     // Marker-only series such as dense point clouds often use tiny markers; keep their swatch legible.
     readonly property real curveMarkerSize: isMarkerSymbol ? Math.min(Math.max(entry.markerSize, 3.5), 7) : entry.markerSize
@@ -70,6 +71,40 @@ Item {
         width: Math.max(0, root.width - 4)
         height: Math.max(0, root.height - 6)
         color: root.curveColor
+    }
+
+    // An up candle next to a down candle, each a body over a wick.
+    Repeater {
+        model: root.isCandleSymbol ? 2 : 0
+
+        delegate: Item {
+            id: candleSample
+
+            required property int index
+            readonly property bool up: index === 0
+            readonly property color candleColor: up ? root.curveColor : root.entry.secondaryColor
+            readonly property real candleWidth: 6
+            readonly property real gap: 3
+
+            x: (root.width - 2 * candleWidth - gap) / 2 + index * (candleWidth + gap)
+            y: 1
+            width: candleWidth
+            height: root.height - 2
+
+            Rectangle {
+                x: (parent.width - width) / 2
+                width: Math.max(1, root.curveLineWidth)
+                height: parent.height
+                color: candleSample.candleColor
+            }
+
+            Rectangle {
+                y: parent.height * (candleSample.up ? 0.35 : 0.2)
+                width: parent.width
+                height: parent.height * 0.45
+                color: candleSample.candleColor
+            }
+        }
     }
 
     LineCurve {

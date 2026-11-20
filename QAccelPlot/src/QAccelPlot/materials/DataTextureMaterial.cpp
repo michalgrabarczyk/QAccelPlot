@@ -34,7 +34,7 @@ DataTextureMaterial::DataTextureMaterial()
 int DataTextureMaterial::compare(const QSGMaterial* other) const
 {
     const auto* m = static_cast<const DataTextureMaterial*>(other);
-    if (color != m->color) {
+    if (color.rgba() != m->color.rgba()) {
         return color.rgba() < m->color.rgba() ? -1 : 1;
     }
     if (domainMin != m->domainMin) {

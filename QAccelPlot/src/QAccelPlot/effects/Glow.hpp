@@ -26,6 +26,7 @@ struct GlowStyle;
 /// | \c PointCloud | The markers |
 /// | \c BarSeries | The bars |
 /// | \c ErrorBarSeries | The error bars |
+/// | \c CandlestickSeries | Each candle, in its own color unless \c color is set |
 ///
 /// \sa SeriesEffect, FadeTrail
 class Glow : public SeriesEffect {

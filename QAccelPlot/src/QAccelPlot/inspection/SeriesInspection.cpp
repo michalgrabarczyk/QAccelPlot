@@ -76,6 +76,14 @@ bool appendKeepsOrder(const Internal::InspectionSource& source, const Internal::
     return isValidCoordinate(value, false) && (last == 0 || value >= source.coordinate(axis, last - 1));
 }
 
+// Whether the record at index of source, replaced in place, keeps its coordinates along axis non-decreasing.
+bool modificationKeepsOrder(const Internal::InspectionSource& source, const Internal::InspectionAxis axis, const int index)
+{
+    const auto value = source.coordinate(axis, index);
+    return isValidCoordinate(value, false) && (index == 0 || value >= source.coordinate(axis, index - 1))
+        && (index == source.count - 1 || value <= source.coordinate(axis, index + 1));
+}
+
 } // namespace
 
 struct SeriesInspection::Private : Internal::InspectionCache::Host {
@@ -425,6 +433,21 @@ void SeriesInspection::sourceChanged(const bool appended)
         d_->classified = false;
         d_->sorted.reset();
     }
+    emit statusChanged();
+}
+
+void SeriesInspection::sourceModified(const int index)
+{
+    const auto source = series_.inspectionSource();
+    if (index < 0 || index >= source.count) {
+        sourceChanged(false);
+        return;
+    }
+    d_->cache.modified(source, index);
+    // A replacement can restore an order, but only a full check could tell, so a lost order stays lost.
+    d_->sortedX = d_->sortedX && modificationKeepsOrder(source, Internal::InspectionAxis::X, index);
+    d_->sortedY = d_->sortedY && modificationKeepsOrder(source, Internal::InspectionAxis::Y, index);
+    d_->sorted.modified(index);
     emit statusChanged();
 }
 

@@ -115,6 +115,9 @@ private:
     explicit SeriesInspection(PlotSeries& series);
     Internal::InspectionMatching matching() const;
     void sourceChanged(bool appended);
+    // Keeps the order classification, cached statistics, and index after record index changed in place,
+    // as far as the new record allows.
+    void sourceModified(int index);
     void sourceInvalidated();
     // Returns Ready when a query can run now: one along the given axis, or an on-screen or region query otherwise.
     // A series that is not ordered as the query needs requests its index and reports Preparing until it is built.
