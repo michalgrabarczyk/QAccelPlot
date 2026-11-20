@@ -46,7 +46,7 @@ struct TransitionLayout {
     ///
     /// \c viewport places each item's value with \c placeGrowBaseline().
     int baselineColumn{-1};
-    GrowViewport viewport; ///< \brief Viewport that places the values of \c baselineColumn.
+    GrowViewport viewport{}; ///< \brief Viewport that places the values of \c baselineColumn.
 };
 
 /// \brief The state of one slot's transition at the frame.
