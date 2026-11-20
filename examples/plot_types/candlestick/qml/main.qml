@@ -21,6 +21,11 @@ Window {
     readonly property int visibleCount: 140
     // True until you pan or zoom: the plot follows the newest candle and fits the value axes.
     property bool autoFit: true
+    // True until you pan or zoom the volume axis itself: the example fits it to the visible candles.
+    property bool volumeAutoFit: true
+    // The volume axis range, kept when you pan or zoom the plot area.
+    property real volumeMin: 0
+    property real volumeMax: 1
     // True while the example moves the axes itself, so only your pans and zooms turn autoFit off.
     property bool movingAxes: false
     // The candle the readout shows: the hovered one, or the newest.
@@ -52,37 +57,55 @@ Window {
         return value === undefined ? "–" : value.toFixed(2);
     }
 
-    // Fits the price axis to the visible candles in the upper part of the plot, and the volume
-    // axis to their volume in the lower part.
+    // Fits the price axis to the visible candles in the upper part of the plot while autoFit is
+    // on, and the volume axis to their volume in the lower part while volumeAutoFit is on. Puts
+    // the volume axis back at volumeMin and volumeMax otherwise.
     function fitValueAxes() {
-        if (!autoFit) {
-            return;
-        }
         const extent = feed.extent(plot.xAxis.viewportMin, plot.xAxis.viewportMax);
-        if (extent.low === undefined) {
-            return;
-        }
-        const span = Math.max(extent.high - extent.low, 1e-6);
+        const hasCandles = extent.low !== undefined;
         movingAxes = true;
-        plot.yAxis.setViewportRange(extent.low - 0.4 * span, extent.high + 0.05 * span);
-        plot.y2Axis.setViewportRange(0, 4.5 * extent.volume);
+        if (autoFit && hasCandles) {
+            const span = Math.max(extent.high - extent.low, 1e-6);
+            plot.yAxis.setViewportRange(extent.low - 0.4 * span, extent.high + 0.05 * span);
+        }
+        if (volumeAutoFit && hasCandles) {
+            volumeMin = 0;
+            volumeMax = 4.5 * extent.volume;
+        }
+        plot.y2Axis.setViewportRange(volumeMin, volumeMax);
         movingAxes = false;
     }
 
-    // Shows the newest candles and turns autoFit back on.
+    // Handles your pan or zoom of \a axis. Panning or zooming the volume axis itself sets its
+    // range; panning or zooming the plot area stops following the newest candle and leaves the
+    // volume axis where it was.
+    function axisMoved(axis) {
+        // The volume axis stays hovered while you drag it, but not while you pan or zoom the plot area.
+        if (axis === plot.y2Axis && axis.hovered) {
+            volumeAutoFit = false;
+            volumeMin = axis.viewportMin;
+            volumeMax = axis.viewportMax;
+            return;
+        }
+        autoFit = false;
+        fitValueAxes();
+    }
+
+    // Shows the newest candles and turns autoFit and volumeAutoFit back on.
     function showNewest() {
         autoFit = true;
+        volumeAutoFit = true;
         movingAxes = true;
         plot.xAxis.setViewportRange(candles.count - visibleCount, candles.count + 4);
         movingAxes = false;
         fitValueAxes();
     }
 
-    // Turns autoFit off when you pan or zoom the axis, and back on when you double-click it.
+    // Reports your pans and zooms of the axis, and shows the newest candles when you double-click it.
     component AxisWatcher: Connections {
         function onRangeChanged() {
             if (!window.movingAxes) {
-                window.autoFit = false;
+                window.axisMoved(target);
             }
         }
 
