@@ -62,10 +62,15 @@ double decadeValue(const int mantissa, const int exponent)
     return exponent >= 0 ? mantissa * std::pow(10.0, exponent) : mantissa / std::pow(10.0, -exponent);
 }
 
+bool isStrictlyIncreasing(const std::vector<double>& edges)
+{
+    return edges.size() >= 2
+        && std::adjacent_find(edges.cbegin(), edges.cend(), [](const double low, const double high) { return !(low < high); }) == edges.cend();
+}
+
 bool areValidEdges(const std::vector<double>& edges)
 {
-    const auto valid = edges.size() >= 2 && std::isfinite(edges.front()) && std::isfinite(edges.back())
-        && std::adjacent_find(edges.cbegin(), edges.cend(), [](const double low, const double high) { return !(low < high); }) == edges.cend();
+    const auto valid = isStrictlyIncreasing(edges) && std::isfinite(edges.front()) && std::isfinite(edges.back());
     if (!valid) {
         qCWarning(lcQAccelPlot) << "Histogram needs at least two finite, strictly increasing edges";
     }
@@ -86,7 +91,7 @@ bool areUniformEdges(const std::vector<double>& edges)
     return true;
 }
 
-// Returns the range of the finite samples, widened when it is empty.
+// Returns the range of the finite samples, or 0 to 1 without any.
 template <typename Sample> std::pair<double, double> finiteRange(const Sample* samples, const std::size_t sampleCount)
 {
     auto min = std::numeric_limits<double>::infinity();
@@ -101,12 +106,17 @@ template <typename Sample> std::pair<double, double> finiteRange(const Sample* s
     if (min > max) {
         return {0.0, 1.0};
     }
-    if (min == max) {
-        // Half a unit is below the precision of very large values.
-        const auto margin = std::max(0.5, std::abs(min) * 1e-9);
-        return {min - margin, max + margin};
-    }
     return {min, max};
+}
+
+// Returns a finite range around min and max with room for binCount + 1 strictly increasing edges.
+std::pair<double, double> widenedRange(const double min, const double max, const int binCount)
+{
+    constexpr auto kLargest = std::numeric_limits<double>::max();
+    // Half a unit is below the precision of very large values.
+    const auto relativeMargin = std::max(1e-9, 4.0 * static_cast<double>(binCount) * std::numeric_limits<double>::epsilon());
+    const auto margin = std::max(0.5, std::max(std::abs(min), std::abs(max)) * relativeMargin);
+    return {std::max(min - margin, -kLargest), std::min(max + margin, kLargest)};
 }
 
 std::size_t uniformBin(const std::vector<double>& edges, const double sample, const double binsPerUnit)
@@ -322,12 +332,16 @@ QVariantList Histogram::bars() const
 
 template <typename Sample> Histogram Histogram::spanning(const Sample* samples, const std::size_t sampleCount, const int binCount)
 {
-    if (!hasSamples(samples, sampleCount)) {
+    if (!hasSamples(samples, sampleCount) || !isValidBinCount(binCount)) {
         return {};
     }
     const auto [min, max] = finiteRange(samples, sampleCount);
-    auto edges = linearEdges(min, max, binCount);
-    return edges.empty() ? Histogram{} : binned(samples, sampleCount, std::move(edges));
+    auto edges = min < max ? linearEdges(min, max, binCount) : std::vector<double>{};
+    if (!isStrictlyIncreasing(edges)) {
+        const auto [low, high] = widenedRange(min, max, binCount);
+        edges = linearEdges(low, high, binCount);
+    }
+    return binned(samples, sampleCount, std::move(edges));
 }
 
 template <typename Sample> Histogram Histogram::binned(const Sample* samples, const std::size_t sampleCount, std::vector<double> edges)
