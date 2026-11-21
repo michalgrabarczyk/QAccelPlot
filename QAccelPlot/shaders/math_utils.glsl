@@ -11,6 +11,13 @@ float safeLog10(float val) {
     return log(max(val, kMinPositiveNormalFloat)) / log(10.0);
 }
 
+// Signed gradient range: a reversed range keeps its sign, and equal bounds make a step.
+// The threshold is a normal float because GPUs may flush a denormal one to zero.
+float nonZeroGradientRange(float minimum, float maximum) {
+    float range = maximum - minimum;
+    return abs(range) < 1e-37 ? 1e-12 : range;
+}
+
 // Returns true when the IEEE 754 bit pattern encodes a finite value.
 // NaN and +/-Inf have every exponent bit set. Testing the integer bits keeps
 // the check reliable when shader compilers assume floats are never NaN or Inf

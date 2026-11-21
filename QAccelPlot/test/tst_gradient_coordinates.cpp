@@ -14,6 +14,8 @@ class TestGradientCoordinates : public QObject {
 private slots:
     void verticalCoordinate_remainsUnboundedUntilFragmentSampling();
     void verticalCoordinate_interpolationReachesMaximumAtConfiguredValue();
+    void reversedRange_mapsValuesInReverseOrder();
+    void zeroRange_keepsValuesOnEitherSideOfTheStep();
 };
 
 void TestGradientCoordinates::verticalCoordinate_remainsUnboundedUntilFragmentSampling()
@@ -39,6 +41,26 @@ void TestGradientCoordinates::verticalCoordinate_interpolationReachesMaximumAtCo
 
     QVERIFY(qAbs(coordinateAtMaximum) < 1e-6f);
     QCOMPARE(std::clamp(curveCoordinate, 0.0f, 1.0f), 0.0f);
+}
+
+void TestGradientCoordinates::reversedRange_mapsValuesInReverseOrder()
+{
+    using QAccelPlot::Internal::unboundedGradientCoordinate;
+
+    QCOMPARE(unboundedGradientCoordinate(Qt::Horizontal, 100.0, 100.0, 0.0), 0.0f);
+    QCOMPARE(unboundedGradientCoordinate(Qt::Horizontal, 25.0, 100.0, 0.0), 0.75f);
+    QCOMPARE(unboundedGradientCoordinate(Qt::Horizontal, 0.0, 100.0, 0.0), 1.0f);
+    QCOMPARE(unboundedGradientCoordinate(Qt::Vertical, 100.0, 100.0, 0.0), 1.0f);
+    QCOMPARE(unboundedGradientCoordinate(Qt::Vertical, 25.0, 100.0, 0.0), 0.25f);
+}
+
+void TestGradientCoordinates::zeroRange_keepsValuesOnEitherSideOfTheStep()
+{
+    using QAccelPlot::Internal::unboundedGradientCoordinate;
+
+    QCOMPARE(unboundedGradientCoordinate(Qt::Horizontal, 5.0, 5.0, 5.0), 0.0f);
+    QVERIFY(unboundedGradientCoordinate(Qt::Horizontal, 4.0, 5.0, 5.0) < 0.0f);
+    QVERIFY(unboundedGradientCoordinate(Qt::Horizontal, 6.0, 5.0, 5.0) > 1.0f);
 }
 
 QTEST_GUILESS_MAIN(TestGradientCoordinates)

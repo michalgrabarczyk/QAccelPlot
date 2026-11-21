@@ -92,6 +92,9 @@ private slots:
     void strokeBoundsAreUnsetByDefaultAndReset();
     void fillBoundsAreUnsetByDefaultAndReset();
     void fillBaselineIsUnsetByDefaultAndReset();
+    void fixedMinAboveData_doesNotReverseRange();
+    void fixedMaxBelowData_doesNotReverseRange();
+    void fixedReversedBounds_areKept();
 };
 
 void TestGradientValueRange::strokeFixedMinDataRangeMax_keepsFixedMin()
@@ -170,6 +173,37 @@ void TestGradientValueRange::fillBaselineIsUnsetByDefaultAndReset()
     QVERIFY(!fill.payload().baselineValue.has_value());
     fill.resetBaselineValue();
     QCOMPARE(spy.count(), 2);
+}
+
+void TestGradientValueRange::fixedMinAboveData_doesNotReverseRange()
+{
+    auto payload = GradientColorPayload{};
+    payload.gradientValueMin = kDataMax + 1.0;
+    Internal::resolveGradientValueRange(payload, kDataMin, kDataMax);
+
+    QCOMPARE(payload.gradientValueMin, std::optional<qreal>{kDataMax + 1.0});
+    QCOMPARE(payload.gradientValueMax, std::optional<qreal>{kDataMax + 1.0});
+}
+
+void TestGradientValueRange::fixedMaxBelowData_doesNotReverseRange()
+{
+    auto payload = GradientColorPayload{};
+    payload.gradientValueMax = kDataMin - 1.0;
+    Internal::resolveGradientValueRange(payload, kDataMin, kDataMax);
+
+    QCOMPARE(payload.gradientValueMin, std::optional<qreal>{kDataMin - 1.0});
+    QCOMPARE(payload.gradientValueMax, std::optional<qreal>{kDataMin - 1.0});
+}
+
+void TestGradientValueRange::fixedReversedBounds_areKept()
+{
+    auto payload = GradientColorPayload{};
+    payload.gradientValueMin = kDataMax;
+    payload.gradientValueMax = kDataMin;
+    Internal::resolveGradientValueRange(payload, kDataMin, kDataMax);
+
+    QCOMPARE(payload.gradientValueMin, std::optional<qreal>{kDataMax});
+    QCOMPARE(payload.gradientValueMax, std::optional<qreal>{kDataMin});
 }
 
 QTEST_GUILESS_MAIN(TestGradientValueRange)
