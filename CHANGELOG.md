@@ -41,6 +41,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Series with the same color given in different color specs, such as
   `Qt.hsla()` and `Qt.rgba()`, share a scene graph batch; their materials
   compared unequal both ways, breaking the batch renderer's ordering.
+- A `HeatmapSeries` with a cell edge at zero no longer rescales a log axis to
+  start near `1e-17`.
 
 ## [0.6.0] — 2026-11-16
 
