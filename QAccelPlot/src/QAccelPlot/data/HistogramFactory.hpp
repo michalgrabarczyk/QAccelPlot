@@ -34,6 +34,8 @@ namespace QAccelPlot {
 ///
 /// C++ code uses the static functions of Histogram instead.
 ///
+/// A bin count must be from 1 to 1,000,000. Other values log a warning and give an empty result.
+///
 /// \sa Histogram
 class HistogramFactory : public QObject {
     Q_OBJECT

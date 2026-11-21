@@ -55,6 +55,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `Histogram.fromSamples()` with a bin count no longer returns an empty
   histogram for nearly equal samples, such as `0.1 + 0.2` and `0.3`.
 - `BarSeries` data ranges on a log position axis account for `barOffset`.
+- `Histogram` rejects bin counts above 1,000,000 with a warning instead of
+  terminating the application.
 
 ## [0.6.0] — 2026-11-16
 
