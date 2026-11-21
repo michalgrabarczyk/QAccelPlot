@@ -305,6 +305,7 @@ void BarSeries::setData(const QVariantList& bars)
     const auto stride = ranged ? size_t{3} : size_t{2};
     auto data = std::vector<double>(static_cast<size_t>(bars.size()) * stride);
     auto categories = std::vector<int>(static_cast<size_t>(bars.size()), -1);
+    auto uncategorized = std::vector<bool>(static_cast<size_t>(bars.size()), true);
     auto anyCategory = false;
     for (qsizetype i = 0; i < bars.size(); ++i) {
         const auto& bar = bars[i];
@@ -320,16 +321,18 @@ void BarSeries::setData(const QVariantList& bars)
         values[stride - 1] = numberOr(isObject ? map.value(QStringLiteral("value")) : bar, kNaN);
         if (const auto category = categories_->table().dataPointCategory(map.value(QStringLiteral("category")), "BarSeries", i)) {
             categories[static_cast<size_t>(i)] = *category;
+            uncategorized[static_cast<size_t>(i)] = false;
             anyCategory = true;
         }
     }
     if (!anyCategory) {
         categories.clear();
+        uncategorized.clear();
     }
     if (ranged) {
-        applyRangedData(std::move(data), std::move(categories), static_cast<int>(bars.size()));
+        applyRangedData(std::move(data), std::move(categories), static_cast<int>(bars.size()), std::move(uncategorized));
     } else {
-        applyData(std::move(data), std::move(categories), static_cast<int>(bars.size()));
+        applyData(std::move(data), std::move(categories), static_cast<int>(bars.size()), std::move(uncategorized));
     }
 }
 
@@ -338,7 +341,7 @@ void BarSeries::replaceData(const int index, const qreal position, const qreal v
     if (!validateReplacedBar(index)) {
         return;
     }
-    replaceBar(index, position, value, std::nullopt);
+    replaceBar(index, position, value);
 }
 
 void BarSeries::replaceData(const int index, const qreal position, const qreal value, const QVariant& category)
@@ -346,7 +349,9 @@ void BarSeries::replaceData(const int index, const qreal position, const qreal v
     if (!validateReplacedBar(index)) {
         return;
     }
-    replaceBar(index, position, value, categories_->table().dataPointCategory(category, "BarSeries", index).value_or(-1));
+    endTransition();
+    setBarCategory(index, categories_->table().dataPointCategory(category, "BarSeries", index));
+    replaceBar(index, position, value);
 }
 
 void BarSeries::setData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
@@ -433,12 +438,15 @@ void BarSeries::setDataPointCategories(const QVariantList& categories)
         return;
     }
     auto values = std::vector<int>(static_cast<size_t>(categories.size()), -1);
+    auto uncategorized = std::vector<bool>(static_cast<size_t>(categories.size()), false);
     for (qsizetype i = 0; i < categories.size(); ++i) {
-        values[static_cast<size_t>(i)] = categories_->table().dataPointCategory(categories[i], "BarSeries", i).value_or(-1);
+        const auto category = categories_->table().dataPointCategory(categories[i], "BarSeries", i);
+        values[static_cast<size_t>(i)] = category.value_or(-1);
+        uncategorized[static_cast<size_t>(i)] = !category.has_value();
     }
-    dataPoints().setCategories(std::move(values));
+    dataPoints().setCategories(std::move(values), std::move(uncategorized));
     if (showsTransitionFrame()) {
-        transitionCategories_ = transitionCategories(transitionCategories_, drawnBarCount());
+        updateTransitionCategories(transitionCategories_, transitionUncategorized_, drawnBarCount());
     }
     vertexCache_->invalidate();
     inspectionDataChanged();
@@ -458,9 +466,9 @@ QVariantMap BarSeries::barAt(const int index) const
         bar.insert(QStringLiteral("position"), component(index, 0));
     }
     if (hasCategories()) {
-        const auto category = dataPoints().categories()[static_cast<size_t>(index)];
-        bar.insert(QStringLiteral("category"), category);
-        const auto name = categories_->table().name(category);
+        const auto category = dataPoints().category(index);
+        bar.insert(QStringLiteral("category"), category.value_or(-1));
+        const auto name = category ? categories_->table().name(*category) : QString{};
         if (!name.isEmpty()) {
             bar.insert(QStringLiteral("categoryName"), name);
         }
@@ -623,16 +631,24 @@ bool BarSeries::validateReplacedBar(const int index) const
     return true;
 }
 
-void BarSeries::replaceBar(const int index, const qreal position, const qreal value, const std::optional<int> category)
+void BarSeries::replaceBar(const int index, const qreal position, const qreal value)
 {
     endTransition();
-    const auto previousCategory = hasCategories() ? dataPoints().categories()[static_cast<size_t>(index)] : -1;
-    if (category && *category != previousCategory) {
-        dataPoints().setCategory(index, *category);
-        vertexCache_->invalidate();
-    }
     const auto bar = std::array<double, 2>{position, value};
     replaceDataPoint(index, bar.data());
+}
+
+void BarSeries::setBarCategory(const int index, const std::optional<int> category)
+{
+    if (dataPoints().category(index) == category) {
+        return;
+    }
+    if (category) {
+        dataPoints().setCategory(index, *category);
+    } else {
+        dataPoints().clearCategory(index);
+    }
+    vertexCache_->invalidate();
 }
 
 void BarSeries::onCategoriesChanged()
@@ -660,14 +676,14 @@ bool BarSeries::validateDataArguments(const std::size_t valueCount, const std::s
     return true;
 }
 
-void BarSeries::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
+void BarSeries::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount, std::vector<bool>&& uncategorized)
 {
-    applyBars(std::move(data), false, std::move(categories), barCount, animatesBars(false, barCount));
+    applyBars(std::move(data), false, std::move(categories), barCount, animatesBars(false, barCount), std::move(uncategorized));
 }
 
-void BarSeries::applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
+void BarSeries::applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount, std::vector<bool>&& uncategorized)
 {
-    applyBars(std::move(data), true, std::move(categories), barCount, animatesBars(true, barCount));
+    applyBars(std::move(data), true, std::move(categories), barCount, animatesBars(true, barCount), std::move(uncategorized));
 }
 
 bool BarSeries::animatesBars(const bool ranged, const int barCount) const
@@ -684,7 +700,8 @@ void BarSeries::setRanged(const bool ranged)
     }
 }
 
-void BarSeries::applyBars(std::vector<double>&& data, const bool ranged, std::vector<int>&& categories, const int barCount, const bool animate)
+void BarSeries::applyBars(
+    std::vector<double>&& data, const bool ranged, std::vector<int>&& categories, const int barCount, const bool animate, std::vector<bool>&& uncategorized)
 {
     // Copied before the data changes: a transition starts from the bars drawn now.
     auto drawn = animate ? drawnBars() : Bars{};
@@ -695,7 +712,7 @@ void BarSeries::applyBars(std::vector<double>&& data, const bool ranged, std::ve
     }
     setRanged(ranged);
     dataPoints().setPrecise(std::move(data), barCount);
-    dataPoints().setCategories(std::move(categories));
+    dataPoints().setCategories(std::move(categories), std::move(uncategorized));
     if (animate) {
         startTransition(std::move(drawn));
     }
@@ -807,11 +824,11 @@ std::vector<double> BarSeries::storedBars() const
 BarSeries::Bars BarSeries::drawnBars() const
 {
     if (!showsTransitionFrame()) {
-        return Bars{storedBars(), dataPoints().categories(), count(), valuesPerBar()};
+        return Bars{storedBars(), dataPoints().categories(), dataPoints().uncategorized(), count(), valuesPerBar()};
     }
     const auto drawn = dataPoints().drawnView();
     const auto size = static_cast<size_t>(drawn.count) * static_cast<size_t>(drawn.stride);
-    return Bars{std::vector<double>(drawn.precise, drawn.precise + size), transitionCategories_, drawn.count, drawn.stride};
+    return Bars{std::vector<double>(drawn.precise, drawn.precise + size), transitionCategories_, transitionUncategorized_, drawn.count, drawn.stride};
 }
 
 int BarSeries::drawnBarCount() const
@@ -822,6 +839,18 @@ int BarSeries::drawnBarCount() const
 const std::vector<int>& BarSeries::drawnCategories() const
 {
     return showsTransitionFrame() ? transitionCategories_ : dataPoints().categories();
+}
+
+std::optional<int> BarSeries::drawnCategory(const int index) const
+{
+    if (!showsTransitionFrame()) {
+        return dataPoints().category(index);
+    }
+    const auto position = static_cast<size_t>(index);
+    if (position >= transitionCategories_.size() || transitionUncategorized_[position]) {
+        return std::nullopt;
+    }
+    return transitionCategories_[position];
 }
 
 std::vector<int> BarSeries::transitionCategories(const std::vector<int>& previous, const int transitionBarCount) const
@@ -838,6 +867,29 @@ std::vector<int> BarSeries::transitionCategories(const std::vector<int>& previou
     return categories;
 }
 
+std::vector<bool> BarSeries::transitionUncategorized(
+    const std::size_t barCount, const std::vector<int>& previous, const std::vector<bool>& previousUncategorized) const
+{
+    auto uncategorized = std::vector<bool>(barCount, true);
+    for (auto index = std::size_t{0}; index < barCount; ++index) {
+        if (index < static_cast<size_t>(count())) {
+            uncategorized[index] = !dataPoints().category(static_cast<int>(index)).has_value();
+        } else if (index < previous.size()) {
+            uncategorized[index] = index < previousUncategorized.size() && previousUncategorized[index];
+        }
+    }
+    return uncategorized;
+}
+
+void BarSeries::updateTransitionCategories(const std::vector<int>& previous, const std::vector<bool>& previousUncategorized, const int transitionBarCount)
+{
+    // Built first: the arguments can be the members assigned here.
+    auto categories = transitionCategories(previous, transitionBarCount);
+    auto uncategorized = transitionUncategorized(categories.size(), previous, previousUncategorized);
+    transitionCategories_ = std::move(categories);
+    transitionUncategorized_ = std::move(uncategorized);
+}
+
 void BarSeries::startTransition(Bars&& drawn)
 {
     const auto stride = valuesPerBar();
@@ -851,7 +903,7 @@ void BarSeries::startTransition(Bars&& drawn)
         endTransition();
         return;
     }
-    transitionCategories_ = transitionCategories(drawn.categories, transition_->frameCapacity());
+    updateTransitionCategories(drawn.categories, drawn.uncategorized, transition_->frameCapacity());
     vertexCache_->invalidate();
     showTransitionFrame();
 }
@@ -885,6 +937,7 @@ void BarSeries::endTransition()
     }
     dataPoints().clearDrawn();
     transitionCategories_.clear();
+    transitionUncategorized_.clear();
     frameBuffer_ = std::vector<double>{};
     vertexCache_->invalidate();
     update();
@@ -951,8 +1004,8 @@ bool BarSeries::hasCategories() const
 
 QColor BarSeries::barColor(const int index) const
 {
-    const auto& categories = drawnCategories();
-    const auto categoryColor = categories.empty() ? QColor{} : categories_->table().color(categories[static_cast<size_t>(index)]);
+    const auto category = drawnCategory(index);
+    const auto categoryColor = category ? categories_->table().color(*category) : QColor{};
     return categoryColor.isValid() ? categoryColor : color_;
 }
 

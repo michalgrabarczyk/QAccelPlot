@@ -119,10 +119,14 @@ public:
     void setAttributes(std::vector<float>&& attributes);
     /// \brief Replaces the categories: empty, or one per data point.
     ///
-    /// Replacing the data points drops the categories; appending gives the new data point -1.
-    void setCategories(std::vector<int>&& categories);
-    /// \brief Sets the category of data point \a index to \a category; the others get -1 when there were no categories.
+    /// \a uncategorized is empty when every data point has its category, or holds one flag per data
+    /// point, set for those without one. Replacing the data points drops the categories; an appended
+    /// data point has no category.
+    void setCategories(std::vector<int>&& categories, std::vector<bool>&& uncategorized = {});
+    /// \brief Sets the category of data point \a index to \a category; the others have none when there were no categories.
     void setCategory(int index, int category);
+    /// \brief Leaves data point \a index without a category.
+    void clearCategory(int index);
     /// \brief Appends one double data point of \c columnCount() coordinates; promotes float data first.
     ///
     /// The render data grows in place when nothing else it depends on has changed.
@@ -153,8 +157,14 @@ public:
     [[nodiscard]] AttributeView attributes() const noexcept;
     /// \brief Returns attribute \a which of data point \a index; NaN without attributes.
     [[nodiscard]] float attribute(int index, int which = 0) const noexcept;
-    /// \brief Returns the stored categories: empty, or one per data point.
+    /// \brief Returns the stored categories: empty, or one per data point, -1 for those without a category.
+    ///
+    /// -1 can also be a real category; \c category() tells them apart.
     [[nodiscard]] const std::vector<int>& categories() const noexcept;
+    /// \brief Returns the flags of the data points without a category: empty, or one per data point.
+    [[nodiscard]] const std::vector<bool>& uncategorized() const noexcept;
+    /// \brief Returns the category of data point \a index, or \c std::nullopt when it has none.
+    [[nodiscard]] std::optional<int> category(int index) const noexcept;
 
     /// \brief Returns the extents of data points [\a first, \a last) under the layout's range rule.
     ///
@@ -253,6 +263,8 @@ private:
     std::vector<float> floats_;     // renderStride() floats per data point; the render data of float input
     std::vector<float> attributes_; // attributeCount floats per data point of double input
     std::vector<int> categories_;
+    // Every int is a valid category, so data points without one are flagged here. Empty when none is.
+    std::vector<bool> uncategorized_;
 
     std::vector<double> drawn_; // renderStride() doubles per data point
     int drawnCount_{0};

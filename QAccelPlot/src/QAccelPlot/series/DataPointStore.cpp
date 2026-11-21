@@ -189,10 +189,12 @@ void DataPointStore::setAttributes(std::vector<float>&& attributes)
     dataPointsChanged();
 }
 
-void DataPointStore::setCategories(std::vector<int>&& categories)
+void DataPointStore::setCategories(std::vector<int>&& categories, std::vector<bool>&& uncategorized)
 {
     Q_ASSERT(categories.empty() || categories.size() == static_cast<std::size_t>(count_));
+    Q_ASSERT(uncategorized.empty() || uncategorized.size() == categories.size());
     categories_ = std::move(categories);
+    uncategorized_ = std::move(uncategorized);
 }
 
 void DataPointStore::setCategory(const int index, const int category)
@@ -200,8 +202,25 @@ void DataPointStore::setCategory(const int index, const int category)
     Q_ASSERT(index >= 0 && index < count_);
     if (categories_.empty()) {
         categories_.assign(static_cast<std::size_t>(count_), -1);
+        uncategorized_.assign(static_cast<std::size_t>(count_), true);
     }
     categories_[static_cast<std::size_t>(index)] = category;
+    if (!uncategorized_.empty()) {
+        uncategorized_[static_cast<std::size_t>(index)] = false;
+    }
+}
+
+void DataPointStore::clearCategory(const int index)
+{
+    Q_ASSERT(index >= 0 && index < count_);
+    if (categories_.empty()) {
+        return;
+    }
+    if (uncategorized_.empty()) {
+        uncategorized_.assign(static_cast<std::size_t>(count_), false);
+    }
+    categories_[static_cast<std::size_t>(index)] = -1;
+    uncategorized_[static_cast<std::size_t>(index)] = true;
 }
 
 void DataPointStore::append(const double* coordinates)
@@ -215,7 +234,11 @@ void DataPointStore::append(const double* coordinates)
         attributes_.insert(attributes_.end(), static_cast<std::size_t>(layout_.attributeCount), std::numeric_limits<float>::quiet_NaN());
     }
     if (!categories_.empty()) {
+        if (uncategorized_.empty()) {
+            uncategorized_.assign(categories_.size(), false);
+        }
         categories_.push_back(-1);
+        uncategorized_.push_back(true);
     }
     ++count_;
     compacted_.valid = false;
@@ -340,6 +363,20 @@ float DataPointStore::attribute(const int index, const int which) const noexcept
 const std::vector<int>& DataPointStore::categories() const noexcept
 {
     return categories_;
+}
+
+const std::vector<bool>& DataPointStore::uncategorized() const noexcept
+{
+    return uncategorized_;
+}
+
+std::optional<int> DataPointStore::category(const int index) const noexcept
+{
+    const auto position = static_cast<std::size_t>(index);
+    if (position >= categories_.size() || (!uncategorized_.empty() && uncategorized_[position])) {
+        return std::nullopt;
+    }
+    return categories_[position];
 }
 
 DataPointStore::Extents DataPointStore::extents(const bool logScaleX, const bool logScaleY, const int first, const int last) const
@@ -635,6 +672,9 @@ void DataPointStore::dataPointsChanged()
 {
     if (categories_.size() != static_cast<std::size_t>(count_)) {
         categories_.clear();
+    }
+    if (categories_.empty()) {
+        uncategorized_.clear();
     }
     if (hasDrawn_ && drawn_.size() != static_cast<std::size_t>(drawnCount_) * static_cast<std::size_t>(renderStride())) {
         drawn_.clear();

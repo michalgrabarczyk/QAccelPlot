@@ -343,6 +343,8 @@ private:
     struct Bars {
         std::vector<double> values;
         std::vector<int> categories;
+        // Flags the bars without a category; empty when every bar in categories has one.
+        std::vector<bool> uncategorized;
         int count{0};
         int stride{2};
     };
@@ -355,18 +357,20 @@ private:
 
     // Returns whether bar \a index can be replaced by replaceData(); warns otherwise.
     bool validateReplacedBar(int index) const;
-    // Replaces bar \a index, and its category when \a category is set.
-    void replaceBar(int index, qreal position, qreal value, std::optional<int> category);
+    // Replaces the coordinates of bar \a index, keeping its category.
+    void replaceBar(int index, qreal position, qreal value);
+    // Gives bar \a index the category \a category, or none.
+    void setBarCategory(int index, std::optional<int> category);
     void onCategoriesChanged();
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount, int barValueCount = 2) const;
     // Switches between (position, value) and (from, to, value) bars; dropping the bars when it changes.
     void setRanged(bool ranged);
-    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
-    void applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
+    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int barCount, std::vector<bool>&& uncategorized = {});
+    void applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, int barCount, std::vector<bool>&& uncategorized = {});
     // True when replacing the bars with barCount bars, ranged or not, may start a transition.
     bool animatesBars(bool ranged, int barCount) const;
     // Replaces the bars, animating from the drawn ones when \a animate is set.
-    void applyBars(std::vector<double>&& data, bool ranged, std::vector<int>&& categories, int barCount, bool animate);
+    void applyBars(std::vector<double>&& data, bool ranged, std::vector<int>&& categories, int barCount, bool animate, std::vector<bool>&& uncategorized = {});
     void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
     // Replaces the bars with float data, without a transition.
     void applyFloatBars(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
@@ -379,9 +383,15 @@ private:
     Bars drawnBars() const;
     int drawnBarCount() const;
     const std::vector<int>& drawnCategories() const;
+    // Returns the category of drawn bar \a index, or std::nullopt when it has none.
+    std::optional<int> drawnCategory(int index) const;
     // Returns one category per transition bar: those of the data, then those of \a previous for the bars
     // that exit. Empty when no bar has a category.
     std::vector<int> transitionCategories(const std::vector<int>& previous, int transitionBarCount) const;
+    // Returns the flags of the \a barCount transition bars without a category, read like transitionCategories().
+    std::vector<bool> transitionUncategorized(std::size_t barCount, const std::vector<int>& previous, const std::vector<bool>& previousUncategorized) const;
+    // Sets the categories of the transition bars from the data and from \a previous for the bars that exit.
+    void updateTransitionCategories(const std::vector<int>& previous, const std::vector<bool>& previousUncategorized, int transitionBarCount);
     // Animates from \a drawn to the data.
     void startTransition(Bars&& drawn);
     void advanceTransition();
@@ -434,6 +444,8 @@ private:
     // Categories of the bars drawn while a transition runs: the new bars, then the removed ones
     // that shrink away. Empty when no bar has one.
     std::vector<int> transitionCategories_;
+    // One flag per entry of transitionCategories_, set for the bars without a category.
+    std::vector<bool> transitionUncategorized_;
     // The previous transition frame, reused for the next one.
     std::vector<double> frameBuffer_;
     // Render revision of the bars last uploaded to the GPU.
