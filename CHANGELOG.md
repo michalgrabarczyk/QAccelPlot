@@ -49,6 +49,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   render too dark.
 - Series no longer draw corrupted data on GPUs with a maximum texture size
   below 8192.
+- A `HeatmapSeries` with a cell edge at zero no longer rescales a log axis to
+  start near `1e-17`.
 
 ## [0.6.0] — 2026-11-16
 

@@ -69,6 +69,7 @@ private slots:
     void unsetBoundsUseIndexSpace();
     void boundsAreReportedAsDataRanges();
     void logAxisRangeStartsAboveZero();
+    void logAxisRangeSkipsEdgeRoundedFromZero();
     void logSpacingNeedsPositiveEdges();
     void logSpacingRecordsUseGeometricCenters();
     void recordAtPositionOnLogAxes();
@@ -400,6 +401,32 @@ void HeatmapSeriesDataTest::logAxisRangeStartsAboveZero()
     rig.xAxis.setLogScale(false);
     QCOMPARE(rig.heatmap.xDataRange()->min, -8.0);
     QCOMPARE(rig.heatmap.xDataRange()->max, 0.0);
+}
+
+void HeatmapSeriesDataTest::logAxisRangeSkipsEdgeRoundedFromZero()
+{
+    auto rig = InspectableHeatmap{};
+    rig.heatmap.setValues(std::vector<float>(100, 1.0f), 10, 10);
+    rig.heatmap.setXMin(-0.3);
+    rig.heatmap.setXMax(0.7);
+    rig.heatmap.setYMin(-0.3);
+    rig.heatmap.setYMax(0.7);
+    rig.xAxis.setViewportMin(1.0);
+    rig.yAxis.setViewportMin(1.0);
+    rig.xAxis.setLogScale(true);
+    rig.yAxis.setLogScale(true);
+
+    rig.xAxis.rescaleToData();
+    rig.yAxis.rescaleToData();
+    QCOMPARE(rig.xAxis.viewportMin(), 0.1);
+    QCOMPARE(rig.xAxis.viewportMax(), 0.7);
+    QCOMPARE(rig.yAxis.viewportMin(), 0.1);
+    QCOMPARE(rig.yAxis.viewportMax(), 0.7);
+
+    // An edge that is small but truly above zero stays the start of the range.
+    rig.heatmap.setXMin(-0.2999);
+    rig.heatmap.setXMax(0.7001);
+    QVERIFY(std::abs(rig.heatmap.xDataRange()->min - 1e-4) < 1e-9);
 }
 
 void HeatmapSeriesDataTest::logSpacingNeedsPositiveEdges()

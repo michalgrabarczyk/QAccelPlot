@@ -15,6 +15,8 @@ namespace QAccelPlot::Internal {
 namespace {
 
 constexpr auto kLn10 = 2.302585092994045684;
+// Fraction of a cell within which a computed edge is zero: rounding can leave it slightly positive.
+constexpr auto kZeroEdgeTolerance = 1e-9;
 
 } // namespace
 
@@ -60,7 +62,7 @@ std::optional<std::pair<double, double>> HeatmapGridDimension::dataExtent(const 
     const auto cellSize = (high - low) / count;
     const auto edgeIndex = std::floor(-low / cellSize) + 1.0;
     auto edge = low + edgeIndex * cellSize;
-    if (edge <= 0.0) {
+    if (edge <= kZeroEdgeTolerance * cellSize) {
         edge = low + (edgeIndex + 1.0) * cellSize;
     }
     return std::pair{std::min(edge, high), high};
