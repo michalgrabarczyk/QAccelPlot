@@ -221,7 +221,7 @@ protected:
 private:
     void onCategoriesChanged();
     bool validateCategories(std::size_t categoryCount, int rectCount) const;
-    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
+    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount, std::vector<bool>&& uncategorized = {});
     void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
     // Returns edge \a component (0 = x1, 1 = y1, 2 = x2, 3 = y2) of rectangle \a index.
     double coordinate(int index, int component) const;

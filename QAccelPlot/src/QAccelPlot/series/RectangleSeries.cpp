@@ -167,6 +167,7 @@ void RectangleSeries::setData(const QVariantList& rects)
     const auto categoryKey = QStringLiteral("category");
     auto data = std::vector<double>(static_cast<size_t>(rects.size()) * keys.size());
     auto categories = std::vector<int>(static_cast<size_t>(rects.size()), -1);
+    auto uncategorized = std::vector<bool>(static_cast<size_t>(rects.size()), true);
     auto anyCategory = false;
     for (qsizetype i = 0; i < rects.size(); ++i) {
         const auto map = rects[i].toMap();
@@ -179,13 +180,15 @@ void RectangleSeries::setData(const QVariantList& rects)
         }
         if (const auto category = categories_->table().dataPointCategory(map.value(categoryKey), "RectangleSeries", i)) {
             categories[static_cast<size_t>(i)] = *category;
+            uncategorized[static_cast<size_t>(i)] = false;
             anyCategory = true;
         }
     }
     if (!anyCategory) {
         categories.clear();
+        uncategorized.clear();
     }
-    applyData(std::move(data), std::move(categories), static_cast<int>(rects.size()));
+    applyData(std::move(data), std::move(categories), static_cast<int>(rects.size()), std::move(uncategorized));
 }
 
 void RectangleSeries::setData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
@@ -252,10 +255,13 @@ void RectangleSeries::setDataPointCategories(const QVariantList& categories)
         return;
     }
     auto values = std::vector<int>(static_cast<size_t>(categories.size()), -1);
+    auto uncategorized = std::vector<bool>(static_cast<size_t>(categories.size()), false);
     for (qsizetype i = 0; i < categories.size(); ++i) {
-        values[static_cast<size_t>(i)] = categories_->table().dataPointCategory(categories[i], "RectangleSeries", i).value_or(-1);
+        const auto category = categories_->table().dataPointCategory(categories[i], "RectangleSeries", i);
+        values[static_cast<size_t>(i)] = category.value_or(-1);
+        uncategorized[static_cast<size_t>(i)] = !category.has_value();
     }
-    dataPoints().setCategories(std::move(values));
+    dataPoints().setCategories(std::move(values), std::move(uncategorized));
     vertexCache_->invalidate();
     inspectionDataChanged();
     update();
@@ -272,9 +278,9 @@ QVariantMap RectangleSeries::rectangleAt(const int index) const
         rect.insert(keys[k], coordinate(index, static_cast<int>(k)));
     }
     if (hasCategories()) {
-        const auto category = dataPoints().categories()[static_cast<size_t>(index)];
-        rect.insert(QStringLiteral("category"), category);
-        const auto name = categories_->table().name(category);
+        const auto category = dataPoints().category(index);
+        rect.insert(QStringLiteral("category"), category.value_or(-1));
+        const auto name = category ? categories_->table().name(*category) : QString{};
         if (!name.isEmpty()) {
             rect.insert(QStringLiteral("categoryName"), name);
         }
@@ -346,11 +352,11 @@ bool RectangleSeries::validateCategories(const std::size_t categoryCount, const 
     return true;
 }
 
-void RectangleSeries::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
+void RectangleSeries::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount, std::vector<bool>&& uncategorized)
 {
     const auto previousCount = count();
     dataPoints().setPrecise(std::move(data), rectCount);
-    dataPoints().setCategories(std::move(categories));
+    dataPoints().setCategories(std::move(categories), std::move(uncategorized));
     notifyDataPointsReplaced(previousCount);
 }
 
@@ -388,7 +394,8 @@ bool RectangleSeries::hasCategories() const
 
 QColor RectangleSeries::rectangleColor(const int index) const
 {
-    const auto categoryColor = hasCategories() ? categories_->table().color(dataPoints().categories()[static_cast<size_t>(index)]) : QColor{};
+    const auto category = dataPoints().category(index);
+    const auto categoryColor = category ? categories_->table().color(*category) : QColor{};
     return categoryColor.isValid() ? categoryColor : color_;
 }
 
