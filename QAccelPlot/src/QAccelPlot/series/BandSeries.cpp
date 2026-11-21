@@ -8,6 +8,7 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/internal/MaxTextureSize.hpp"
 #include "QAccelPlot/materials/BandMaterial.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"

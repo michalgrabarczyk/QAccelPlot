@@ -17,8 +17,8 @@ namespace QAccelPlot {
 
 namespace {
 
-// With QACCELPLOT_MAX_TEXTURE_SIZE=1 the 8192-float-wide data texture holds 2730 samples.
-constexpr auto kCapacity = 2730;
+// With QACCELPLOT_MAX_TEXTURE_SIZE=64 the 64 x 64 data texture holds 1365 samples.
+constexpr auto kCapacity = 1365;
 constexpr auto kSampleCount = 4000;
 constexpr auto kSize = 100;
 
@@ -57,7 +57,7 @@ void BandSeriesCapacityTest::dataPointsBeyondCapacityAreNotDrawnOrHovered()
     band.setYAxis(&yAxis);
     band.setPlotRect({0, 0, kSize, kSize});
     band.setColor(Qt::white);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BandSeries has 4000 data points but draws at most 2730.*"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BandSeries has 4000 data points but draws at most 1365.*"));
     band.setDataF(std::move(data), kSampleCount);
 
     window.show();
@@ -74,7 +74,7 @@ void BandSeriesCapacityTest::dataPointsBeyondCapacityAreNotDrawnOrHovered()
 
 int main(int argc, char* argv[])
 {
-    qputenv("QACCELPLOT_MAX_TEXTURE_SIZE", "1");
+    qputenv("QACCELPLOT_MAX_TEXTURE_SIZE", "64");
     qputenv("QT_ENABLE_HIGHDPI_SCALING", "0");
     auto app = QGuiApplication{argc, argv};
     auto test = QAccelPlot::BandSeriesCapacityTest{};

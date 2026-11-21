@@ -8,6 +8,7 @@
 #include "QAccelPlot/export/internal/GrabSize.hpp"
 #include "QAccelPlot/export/internal/ImageFile.hpp"
 #include "QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp"
+#include "QAccelPlot/internal/MaxTextureSize.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
 #include <QClipboard>
