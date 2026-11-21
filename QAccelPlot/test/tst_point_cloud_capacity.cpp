@@ -17,8 +17,8 @@ namespace QAccelPlot {
 
 namespace {
 
-// With QACCELPLOT_MAX_TEXTURE_SIZE=1 the 8192-float-wide data texture holds 4096 XY points.
-constexpr auto kCapacity = 4096;
+// With QACCELPLOT_MAX_TEXTURE_SIZE=64 the 64 x 64 data texture holds 2048 XY points.
+constexpr auto kCapacity = 2048;
 constexpr auto kPointCount = 6000;
 constexpr auto kSize = 100;
 
@@ -56,7 +56,7 @@ void PointCloudCapacityTest::pointsBeyondCapacityAreNotHovered()
     cloud.setYAxis(&yAxis);
     cloud.setPlotRect({0, 0, kSize, kSize});
     cloud.setColor(Qt::white);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud has 6000 points but draws at most 4096.*"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud has 6000 points but draws at most 2048.*"));
     cloud.setDataF(std::move(data), kPointCount);
 
     window.show();
@@ -74,7 +74,7 @@ void PointCloudCapacityTest::pointsBeyondCapacityAreNotHovered()
 
 int main(int argc, char* argv[])
 {
-    qputenv("QACCELPLOT_MAX_TEXTURE_SIZE", "1");
+    qputenv("QACCELPLOT_MAX_TEXTURE_SIZE", "64");
     qputenv("QT_ENABLE_HIGHDPI_SCALING", "0");
     auto app = QGuiApplication{argc, argv};
     auto test = QAccelPlot::PointCloudCapacityTest{};

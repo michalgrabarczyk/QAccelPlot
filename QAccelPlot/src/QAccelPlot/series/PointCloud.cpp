@@ -11,6 +11,7 @@
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/FadeTrail.hpp"
 #include "QAccelPlot/effects/Glow.hpp"
+#include "QAccelPlot/internal/MaxTextureSize.hpp"
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
