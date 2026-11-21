@@ -53,7 +53,8 @@ class HeatmapMaterial;
 ///
 /// \par Invalid cells
 /// Cells with a non-finite value, and cells with a value at or below zero under a log-scale colormap,
-/// are transparent. Non-finite values do not count toward the value range.
+/// are transparent. Non-finite values do not count toward the value range. Under a log-scale
+/// colormap, neither do values at or below zero or subnormal values.
 ///
 /// \par Logarithmic axes and spacing
 /// \c xSpacing and \c ySpacing space the cells evenly in data or in log10, independently of the

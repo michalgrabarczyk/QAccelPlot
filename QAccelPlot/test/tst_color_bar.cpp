@@ -232,6 +232,7 @@ private slots:
     void gesturesAreIgnoredWithoutColormap();
     void sharedColormapMovesEverySeries();
     void keysHeatmapSeries();
+    void keysLogHeatmapWithZeroCell();
     void keysBarSeries();
     void qmlInteractiveColorBar();
     void onlyInteractiveBarKeepsEventsFromPlot();
@@ -817,6 +818,19 @@ void ColorBarTest::keysHeatmapSeries()
     QVERIFY(std::isnan(heatmap.colormap()->min()));
     QCOMPARE(heatmap.dataValueMin(), 2.0);
     QCOMPARE(heatmap.dataValueMax(), 6.0);
+}
+
+void ColorBarTest::keysLogHeatmapWithZeroCell()
+{
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
+    auto heatmap = HeatmapSeries{};
+    heatmap.colormap()->setLogScale(true);
+    heatmap.setValues(std::vector<float>{0.0f, 1.0f, 10.0f, 100.0f}, 2, 2);
+    scene.bar.setSeries(&heatmap);
+    QVERIFY(!scene.render().isNull());
+
+    // Log placement over 1..100 puts 10 at the middle of the bar.
+    QCOMPARE(scene.bar.valueToPixel(10.0, 100.0), 50.0);
 }
 
 void ColorBarTest::keysBarSeries()

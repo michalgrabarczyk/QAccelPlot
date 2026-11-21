@@ -29,6 +29,8 @@ constexpr auto kNaN = std::numeric_limits<qreal>::quiet_NaN();
 constexpr auto kQuadVertexCount = 4;
 // The fragment shader locates cells in single precision, which counts exactly up to 2^24.
 constexpr auto kMaxShaderCellsPerDimension = 1 << 24;
+// GPUs without subnormal support read anything smaller as zero, which the log shader rejects as a bound.
+constexpr auto kSmallestLogBound = std::numeric_limits<float>::min();
 
 QSGGeometryNode* createHeatmapNode()
 {
@@ -369,11 +371,12 @@ void HeatmapSeries::onAxisScaleChanged()
 
 std::optional<ColormappedSeries::ValueSpan> HeatmapSeries::scanValueRange() const
 {
+    const auto logScale = colormap() && colormap()->logScale();
     auto minimum = std::numeric_limits<qreal>::max();
     auto maximum = std::numeric_limits<qreal>::lowest();
     const auto end = values_.cbegin() + cellCount();
     for (auto value = values_.cbegin(); value != end; ++value) {
-        if (!std::isfinite(*value)) {
+        if (!std::isfinite(*value) || (logScale && *value < kSmallestLogBound)) {
             continue;
         }
         minimum = std::min(minimum, static_cast<qreal>(*value));
