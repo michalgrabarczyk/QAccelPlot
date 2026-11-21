@@ -107,6 +107,7 @@ private slots:
     void removedBarsShrinkToTheBaseline();
     void removedBarsKeepTheirCategoryColor();
     void categoriesSetDuringAnAnimationApply();
+    void categoriesSetAsATransitionStartsApply();
     void drawShowsBarsInOrder();
     void fadedEnterStartsTransparent();
     void fadeAtFullStaggerStartsTransparent();
@@ -265,6 +266,36 @@ void BarSeriesTransitionsTest::categoriesSetDuringAnAnimationApply()
     scene_.bars->setDataPointCategories({-1, 0});
 
     QTRY_VERIFY(shows({{2.0, 3.5, Qt::red}, {7.0, 3.5, Qt::blue}, {7.0, 4.5, Qt::black}}));
+    scene_.bars->setEnterTransition(nullptr);
+}
+
+void BarSeriesTransitionsTest::categoriesSetAsATransitionStartsApply()
+{
+    static constexpr auto kNewBarCount = 10;
+    auto morph = HeldHalfway<MorphTransition>{};
+    auto grow = HeldHalfway<GrowTransition>{};
+    scene_.bars->setCategories({new Category{0, QString{}, Qt::blue, scene_.bars.get()}});
+    scene_.bars->setData(std::vector<double>{0.5, 8.0, 1.5, 8.0, 2.5, 8.0}, 3);
+    scene_.bars->setUpdateTransition(&morph);
+    scene_.bars->setEnterTransition(&grow);
+    scene_.bars->setData(std::vector<double>{0.5, 6.0, 1.5, 6.0, 2.5, 6.0}, 3);
+    QVERIFY(morph.running());
+    QObject::connect(&grow, &DataTransition::runningChanged, scene_.bars.get(), [this, &grow] {
+        if (grow.running()) {
+            scene_.bars->setDataPointCategories(QVariantList(kNewBarCount, QVariant{0}));
+        }
+    });
+
+    auto newBars = std::vector<double>{};
+    for (auto i = 0; i < kNewBarCount; ++i) {
+        newBars.insert(newBars.end(), {i + 0.5, 8.0});
+    }
+    scene_.bars->setData(std::move(newBars), kNewBarCount);
+
+    QVERIFY(grow.running());
+    QCOMPARE(scene_.bars->barAt(kNewBarCount - 1).value(QStringLiteral("category")).toInt(), 0);
+    QTRY_VERIFY(shows({{0.5, 1.0, Qt::blue}, {9.5, 3.5, Qt::blue}, {9.5, 4.5, Qt::black}}));
+    scene_.bars->setUpdateTransition(nullptr);
     scene_.bars->setEnterTransition(nullptr);
 }
 

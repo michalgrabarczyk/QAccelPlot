@@ -830,7 +830,8 @@ std::vector<int> BarSeries::transitionCategories(const std::vector<int>& previou
     if (current.empty() && previous.empty()) {
         return {};
     }
-    auto categories = std::vector<int>(static_cast<size_t>(transitionBarCount), -1);
+    // A runningChanged handler can get here with new data while the old, smaller frame is drawn.
+    auto categories = std::vector<int>(std::max(static_cast<size_t>(transitionBarCount), current.size()), -1);
     std::copy(current.cbegin(), current.cend(), categories.begin());
     for (auto index = static_cast<size_t>(count()); index < std::min(previous.size(), categories.size()); ++index) {
         categories[index] = previous[index];
