@@ -51,6 +51,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   below 8192.
 - A `HeatmapSeries` with a cell edge at zero no longer rescales a log axis to
   start near `1e-17`.
+- `Glow` no longer fills the inside of hollow markers.
 
 ## [0.6.0] — 2026-11-16
 

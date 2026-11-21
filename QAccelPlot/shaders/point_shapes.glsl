@@ -137,21 +137,26 @@ float shapeSDF(vec2 uv, int shape, float markerSize) {
     return sdCircle(p);
 }
 
-// Coverage in [0, 1] for a marker, given the signed distance in pixels.
+// Signed distance in pixels to what the marker draws, given the distance to its shape.
 // Hollow markers draw a ring of strokeWidth inside the outline, so the marker
-// keeps its size. Like lines, strokes thinner than 1 px draw 1 px wide with
-// proportionally reduced alpha. With antialiasing, coverage ramps linearly
-// across `feather` pixels centred on the shape edge.
+// keeps its size. Like lines, strokes thinner than 1 px draw 1 px wide.
+float markerDrawnDistance(float shapeDistancePx, int shape, bool antialiasing, float strokeWidth, bool filled) {
+    if (filled || isLineShape(shape)) {
+        return shapeDistancePx;
+    }
+    float width = max(strokeWidth, 0.0);
+    float drawnWidth = antialiasing ? max(width, 1.0) : width;
+    return abs(shapeDistancePx + drawnWidth * 0.5) - drawnWidth * 0.5;
+}
+
+// Coverage in [0, 1] for a marker, given the signed distance from markerDrawnDistance.
+// Strokes thinner than 1 px have proportionally reduced alpha. With antialiasing,
+// coverage ramps linearly across `feather` pixels centred on the drawn edge.
 float markerAlpha(float distancePx, int shape, bool antialiasing, float feather, float strokeWidth, bool filled) {
     float coverage = 1.0;
 
-    if (!filled && !isLineShape(shape)) {
-        float width = max(strokeWidth, 0.0);
-        float drawnWidth = antialiasing ? max(width, 1.0) : width;
-        distancePx = abs(distancePx + drawnWidth * 0.5) - drawnWidth * 0.5;
-        if (antialiasing) {
-            coverage = clamp(width, 0.0, 1.0);
-        }
+    if (antialiasing && !filled && !isLineShape(shape)) {
+        coverage = clamp(strokeWidth, 0.0, 1.0);
     }
 
     if (antialiasing) {
