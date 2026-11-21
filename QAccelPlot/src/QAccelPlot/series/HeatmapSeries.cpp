@@ -72,6 +72,21 @@ std::optional<PlotSeries::DataExtent> dataExtent(const Internal::HeatmapGridDime
     return PlotSeries::DataExtent{extent->first, extent->second};
 }
 
+// Returns the pixel of the center of cell \a index. When a log axis cannot place that center, returns
+// the middle of the part of the cell above zero that the viewport shows. \a hoveredPixel lies in the cell.
+qreal cellCenterPixel(const Axis& axis, const Internal::HeatmapGridDimension& dimension, const int index, const qreal hoveredPixel, const qreal length)
+{
+    const auto center = dimension.cellCenter(index);
+    if (!axis.logScale() || center > 0.0) {
+        return axis.coordToPixel(center, length);
+    }
+    // Rounding can leave the computed edge at or below a hovered value just above zero.
+    const auto cellHigh = std::max(center + std::abs(dimension.to - dimension.from) / dimension.count / 2.0, axis.pixelToCoord(hoveredPixel, length));
+    const auto visibleHigh = std::min(cellHigh, std::max(axis.viewportMin(), axis.viewportMax()));
+    const auto visibleLow = std::min({visibleHigh, axis.viewportMin(), axis.viewportMax()});
+    return (axis.coordToPixel(visibleLow, length) + axis.coordToPixel(visibleHigh, length)) / 2.0;
+}
+
 } // namespace
 
 HeatmapSeries::HeatmapSeries(QQuickItem* parent)
@@ -348,8 +363,8 @@ InspectionDataPoint HeatmapSeries::inspectionDataPointAt(const QPointF& position
     result.x = center.x();
     result.y = center.y();
     result.value = valueAt(row, column);
-    result.pixelX = xAxis()->coordToPixel(center.x(), width());
-    result.pixelY = yAxis()->coordToPixel(center.y(), height());
+    result.pixelX = cellCenterPixel(*xAxis(), xDimension(), column, position.x(), width());
+    result.pixelY = cellCenterPixel(*yAxis(), yDimension(), row, position.y(), height());
     result.distance = QLineF{position, QPointF{result.pixelX, result.pixelY}}.length();
     return result;
 }
