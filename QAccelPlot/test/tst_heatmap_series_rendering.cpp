@@ -182,6 +182,7 @@ private slots:
     void cellsFollowTheViewport();
     void colormapChangesRecolorTheCells();
     void logNormLeavesNonPositiveCellsTransparent();
+    void logNormResolvesUnsetBoundsFromPositiveCells();
     void newValuesAndExtentRedrawTheGrid();
     void linearCellsOnLogAxes();
     void linearCellsClipAtZeroOnLogAxis();
@@ -259,6 +260,20 @@ void HeatmapSeriesRenderingTest::logNormLeavesNonPositiveCellsTransparent()
     const auto image = scene_->grab();
     QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 3.5)), Qt::black));
     QVERIFY(isColor(image.pixelColor(scene_->pixel(6.5, 3.5)), Qt::blue));
+}
+
+void HeatmapSeriesRenderingTest::logNormResolvesUnsetBoundsFromPositiveCells()
+{
+    auto* heatmap = scene_->heatmap();
+    heatmap->colormap()->setRange(std::numeric_limits<qreal>::quiet_NaN(), std::numeric_limits<qreal>::quiet_NaN());
+    heatmap->colormap()->setLogScale(true);
+    // Row 0 (y 2..5) holds 0 and 1, row 1 (y 5..8) holds 10 and 100.
+    heatmap->setValues({0.0f, 1.0f, 10.0f, 100.0f}, 2, 2);
+    const auto image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 3.5)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(6.5, 3.5)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 6.5)), QColor{128, 0, 128}));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(6.5, 6.5)), Qt::blue));
 }
 
 void HeatmapSeriesRenderingTest::newValuesAndExtentRedrawTheGrid()

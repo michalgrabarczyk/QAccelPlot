@@ -74,6 +74,10 @@ private slots:
     void recordAtPositionOnLogAxes();
     void valueRangeSkipsNonFiniteValues();
     void valueRangeFollowsColormapBounds();
+    void logValueRangeSkipsNonPositiveValues();
+    void logValueRangeWithoutPositiveValuesIsTheDefault();
+    void logValueRangeSkipsSubnormalValues();
+    void sharedLogColormapResolvesPerSeries();
     void recordsDescribeCells();
     void recordAtPositionFindsTheCell();
     void nonFiniteCellsAreStillRecords();
@@ -512,6 +516,58 @@ void HeatmapSeriesDataTest::valueRangeFollowsColormapBounds()
     heatmap.setColormap(&shared);
     QCOMPARE(heatmap.dataValueMin(), 0.0);
     QCOMPARE(heatmap.dataValueMax(), 100.0);
+}
+
+void HeatmapSeriesDataTest::logValueRangeSkipsNonPositiveValues()
+{
+    auto heatmap = HeatmapSeries{};
+    heatmap.setValues({0.0f, 1.0f, 10.0f, 100.0f}, 2, 2);
+    QCOMPARE(heatmap.dataValueMin(), 0.0);
+    QCOMPARE(heatmap.dataValueMax(), 100.0);
+
+    auto rangeSpy = QSignalSpy{&heatmap, &ColormappedSeries::valueRangeChanged};
+    heatmap.colormap()->setLogScale(true);
+    QCOMPARE(heatmap.dataValueMin(), 1.0);
+    QCOMPARE(heatmap.dataValueMax(), 100.0);
+    QCOMPARE(rangeSpy.count(), 1);
+
+    heatmap.colormap()->setLogScale(false);
+    QCOMPARE(heatmap.dataValueMin(), 0.0);
+    QCOMPARE(rangeSpy.count(), 2);
+}
+
+void HeatmapSeriesDataTest::logValueRangeWithoutPositiveValuesIsTheDefault()
+{
+    auto heatmap = HeatmapSeries{};
+    heatmap.colormap()->setLogScale(true);
+    heatmap.setValues({-5.0f, 0.0f, kNaN, -1.0f}, 2, 2);
+    QCOMPARE(heatmap.dataValueMin(), 0.0);
+    QCOMPARE(heatmap.dataValueMax(), 1.0);
+}
+
+void HeatmapSeriesDataTest::logValueRangeSkipsSubnormalValues()
+{
+    auto heatmap = HeatmapSeries{};
+    heatmap.colormap()->setLogScale(true);
+    heatmap.setValues({std::numeric_limits<float>::denorm_min(), 2.0f, 4.0f, 8.0f}, 2, 2);
+    QCOMPARE(heatmap.dataValueMin(), 2.0);
+    QCOMPARE(heatmap.dataValueMax(), 8.0);
+}
+
+void HeatmapSeriesDataTest::sharedLogColormapResolvesPerSeries()
+{
+    auto shared = Colormap{};
+    shared.setLogScale(true);
+    auto first = HeatmapSeries{};
+    auto second = HeatmapSeries{};
+    first.setColormap(&shared);
+    second.setColormap(&shared);
+    first.setValues({0.0f, 1.0f, 10.0f, 100.0f}, 2, 2);
+    second.setValues({-3.0f, 5.0f, 50.0f, 500.0f}, 2, 2);
+    QCOMPARE(first.dataValueMin(), 1.0);
+    QCOMPARE(first.dataValueMax(), 100.0);
+    QCOMPARE(second.dataValueMin(), 5.0);
+    QCOMPARE(second.dataValueMax(), 500.0);
 }
 
 void HeatmapSeriesDataTest::recordsDescribeCells()
