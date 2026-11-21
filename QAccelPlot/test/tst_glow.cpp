@@ -5,6 +5,7 @@
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/FadeTrail.hpp"
 #include "QAccelPlot/effects/Glow.hpp"
+#include "QAccelPlot/linestyles/NoLine.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/series/CandlestickSeries.hpp"
 #include "QAccelPlot/series/ErrorBarSeries.hpp"
@@ -45,6 +46,8 @@ private slots:
     void haloSurroundsTheSeries_data();
     void haloSurroundsTheSeries();
     void haloTakesItsOwnColor();
+    void hollowMarkerHaloFollowsItsRing_data();
+    void hollowMarkerHaloFollowsItsRing();
     void disabledGlowDrawsNoHalo();
     void fadedLineDoesNotShowItsHalo();
     void tightBendsDoNotStackHalos();
@@ -159,6 +162,60 @@ void GlowTest::haloTakesItsOwnColor()
 
     QTRY_VERIFY(pixelAt(5.0, 5.0, {8, 0}).green() > 20);
     QCOMPARE(pixelAt(5.0, 5.0, {8, 0}).red(), 0);
+}
+
+void GlowTest::hollowMarkerHaloFollowsItsRing_data()
+{
+    QTest::addColumn<bool>("pointCloud");
+    QTest::addColumn<bool>("antialiased");
+
+    QTest::newRow("LineCurve") << false << true;
+    QTest::newRow("LineCurve, no antialiasing") << false << false;
+    QTest::newRow("PointCloud") << true << true;
+    QTest::newRow("PointCloud, no antialiasing") << true << false;
+}
+
+void GlowTest::hollowMarkerHaloFollowsItsRing()
+{
+    QFETCH(bool, pointCloud);
+    QFETCH(bool, antialiased);
+
+    auto series = std::unique_ptr<PlotSeries>{};
+    auto* marker = static_cast<SeriesMarker*>(nullptr);
+    if (pointCloud) {
+        auto cloud = std::make_unique<PointCloud>();
+        cloud->setColor(Qt::red);
+        cloud->setData(std::vector<double>{5.0, 5.0}, 1);
+        marker = cloud->marker();
+        series = std::move(cloud);
+    } else {
+        auto curve = std::make_unique<LineCurve>();
+        curve->setColor(Qt::red);
+        curve->setLineStyle(new NoLine{curve.get()});
+        curve->setData(std::vector<double>{5.0, 5.0}, 1);
+        marker = curve->marker();
+        series = std::move(curve);
+    }
+    series->setAntialiasing(antialiased);
+    marker->setShape(MarkerShape::Circle);
+    marker->setSize(10.0);
+    marker->setFilled(false);
+    marker->setStrokeWidth(1.0);
+    place(*series);
+
+    // The red ring spans radii 9 to 10; the green halo reaches 2 pixels to either side of it.
+    auto glow = Glow{};
+    glow.setColor(Qt::green);
+    glow.setRadius(2.0);
+    glow.setIntensity(0.5);
+    auto effects = series->effects();
+    effects.append(&effects, &glow);
+
+    QTRY_VERIFY(pixelAt(5.0, 5.0, {10, 0}).green() > 20);
+    QVERIFY(pixelAt(5.0, 5.0, {9, 0}).red() > 150);
+    QVERIFY(pixelAt(5.0, 5.0, {8, 0}).green() > 20);
+    QCOMPARE(pixelAt(5.0, 5.0, {5, 0}).green(), 0);
+    QCOMPARE(pixelAt(5.0, 5.0).green(), 0);
 }
 
 void GlowTest::disabledGlowDrawsNoHalo()

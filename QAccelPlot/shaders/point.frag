@@ -44,16 +44,18 @@ layout(binding = 2) uniform sampler2D gradientSampler;
 
 void main() {
     float alpha;
-    // Distance outside the marker shape, where a glow draws its halo.
+    // Distance outside what the marker draws, where a glow draws its halo.
     float distancePx = 0.0;
     if (ubuf.shapeType == kPixel) {
         // point.vert sizes the quad to exactly one pixel.
         alpha = 1.0;
     } else {
         bool antialiasing = ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0;
-        distancePx = shapeSDF(v_uv, ubuf.shapeType, ubuf.markerSize) * ubuf.markerSize;
+        bool filled = ubuf.markerFilled >= 0.5;
+        float shapeDistancePx = shapeSDF(v_uv, ubuf.shapeType, ubuf.markerSize) * ubuf.markerSize;
+        distancePx = markerDrawnDistance(shapeDistancePx, ubuf.shapeType, antialiasing, ubuf.markerStrokeWidth, filled);
         alpha = markerAlpha(distancePx, ubuf.shapeType, antialiasing, ubuf.antialiasingFeather,
-                            ubuf.markerStrokeWidth, ubuf.markerFilled >= 0.5);
+                            ubuf.markerStrokeWidth, filled);
     }
     bool glow = ubuf.shapeType != kPixel && glowActive(ubuf.glowParams.xy);
 
