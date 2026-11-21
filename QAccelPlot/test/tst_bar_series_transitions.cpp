@@ -271,7 +271,7 @@ void BarSeriesTransitionsTest::categoriesSetDuringAnAnimationApply()
 
 void BarSeriesTransitionsTest::categoriesSetAsATransitionStartsApply()
 {
-    constexpr auto kNewBarCount = 10;
+    static constexpr auto kNewBarCount = 10;
     auto morph = HeldHalfway<MorphTransition>{};
     auto grow = HeldHalfway<GrowTransition>{};
     scene_.bars->setCategories({new Category{0, QString{}, Qt::blue, scene_.bars.get()}});
