@@ -45,6 +45,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   its positive cells when other cells are at or below zero.
 - `BarSeries.setDataPointCategories()` no longer corrupts memory when called
   from a transition's `onRunningChanged` as new bars are set.
+- Translucent `GradientFill`, `GradientStroke`, and colormap colors no longer
+  render too dark.
 
 ## [0.6.0] — 2026-11-16
 

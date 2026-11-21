@@ -74,7 +74,10 @@ void GradientTexture::upload(QQuickWindow* window, const std::vector<GradientSto
         image_.setPixelColor(x, 0, evaluateGradient(stops, position));
     }
 
-    auto* replacement = window->createTextureFromImage(image_);
+    // The shaders premultiply the sampled color, and Qt uploads this format without converting it.
+    auto straightAlpha = image_;
+    straightAlpha.reinterpretAsFormat(QImage::Format_RGBA8888_Premultiplied);
+    auto* replacement = window->createTextureFromImage(straightAlpha);
     if (!replacement) {
         return;
     }
