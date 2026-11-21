@@ -1082,16 +1082,15 @@ void BarSeries::buildVertexCache(const int barCount)
 
 BarSeries::BarExtents BarSeries::barExtents(const int index, const bool logPosition, const bool logValue) const
 {
-    // A ranged bar contributes its two edges, any other bar its position.
-    const auto ranged = valuesPerBar() == 3;
-    const auto first = component(index, 0);
-    const auto last = ranged ? component(index, 1) : first;
+    const auto span = positionSpan(index);
     const auto barValue = value(index);
-    if (std::isnan(first) || std::isnan(last) || std::isnan(barValue)) {
+    if (std::isnan(span[0]) || std::isnan(barValue)) {
         return {};
     }
+    // A bar starting below a log axis' domain is fitted from its center, if that is inside.
+    const auto center = valuesPerBar() == 3 ? span[0] : component(index, 0) + barOffset_;
     auto positions = Extent{};
-    for (const auto edge : {first, last}) {
+    for (const auto edge : {span[0], center, span[1]}) {
         if (isPlaceable(edge, logPosition)) {
             positions.include(edge);
         }
@@ -1107,11 +1106,6 @@ BarSeries::BarExtents BarSeries::barExtents(const int index, const bool logPosit
     }
 
     auto extents = BarExtents{DataPointStore::Extent{positions.min, positions.max}, std::nullopt};
-    if (!ranged) {
-        // Widen by half a bar so the bar is fully in view, unless that leaves a log axis' domain.
-        const auto widenedMin = first + barOffset_ - 0.5 * barWidth_;
-        extents.position = DataPointStore::Extent{isPlaceable(widenedMin, logPosition) ? widenedMin : first, first + barOffset_ + 0.5 * barWidth_};
-    }
     if (!values.isEmpty()) {
         extents.value = DataPointStore::Extent{values.min, values.max};
     }
