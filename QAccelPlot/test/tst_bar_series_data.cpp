@@ -67,6 +67,8 @@ private slots:
     void invalidBarsAreExcludedFromRanges();
     void horizontalBarsSwapTheAxes();
     void logValueAxisExcludesNonPositiveValues();
+    void logPositionAxisUsesTheOffsetBarEdges_data();
+    void logPositionAxisUsesTheOffsetBarEdges();
     void dataBoundsReplaceTheRangeScan();
     void propertiesClampAndNotify();
     void epochPositionsAreUploadedRelativeToAnOrigin();
@@ -469,6 +471,56 @@ void BarSeriesDataTest::logValueAxisExcludesNonPositiveValues()
     QCOMPARE(yAxis.dataMin(), -5.0);
 }
 
+void BarSeriesDataTest::logPositionAxisUsesTheOffsetBarEdges_data()
+{
+    QTest::addColumn<bool>("horizontal");
+    QTest::addColumn<double>("firstPosition");
+    QTest::addColumn<double>("offset");
+    QTest::addColumn<double>("width");
+    QTest::addColumn<double>("positionMin");
+    QTest::addColumn<double>("positionMax");
+    QTest::addColumn<double>("valueMax");
+
+    // The first bar has the largest value, so valueMax shows whether it counts.
+    QTest::newRow("offset into the domain") << false << 0.0 << 1.0 << 0.8 << 0.6 << 3.4 << 100.0;
+    QTest::newRow("offset out of the domain") << false << 1.0 << -1.5 << 0.4 << 0.3 << 1.7 << 3.0;
+    QTest::newRow("center inside, left edge outside") << false << 1.0 << -0.9 << 0.4 << 0.1 << 2.3 << 100.0;
+    QTest::newRow("center outside, right edge inside") << false << 1.0 << -1.1 << 0.4 << 0.1 << 2.1 << 100.0;
+    QTest::newRow("horizontal, offset into the domain") << true << 0.0 << 1.0 << 0.8 << 0.6 << 3.4 << 100.0;
+    QTest::newRow("horizontal, offset out of the domain") << true << 1.0 << -1.5 << 0.4 << 0.3 << 1.7 << 3.0;
+}
+
+void BarSeriesDataTest::logPositionAxisUsesTheOffsetBarEdges()
+{
+    QFETCH(bool, horizontal);
+    QFETCH(double, firstPosition);
+    QFETCH(double, offset);
+    QFETCH(double, width);
+    QFETCH(double, positionMin);
+    QFETCH(double, positionMax);
+    QFETCH(double, valueMax);
+
+    auto positionAxis = Axis{};
+    auto valueAxis = Axis{};
+    positionAxis.setViewportMin(1.0);
+    positionAxis.setViewportMax(1000.0);
+    positionAxis.setLogScale(true);
+    auto bars = BarSeries{};
+    bars.setOrientation(horizontal ? Qt::Horizontal : Qt::Vertical);
+    bars.setBarOffset(offset);
+    bars.setBarWidth(width);
+    bars.setXAxis(horizontal ? &valueAxis : &positionAxis);
+    bars.setYAxis(horizontal ? &positionAxis : &valueAxis);
+    bars.setData(std::vector<double>{firstPosition, 100.0, firstPosition + 1.0, 2.0, firstPosition + 2.0, 3.0}, 3);
+
+    QCOMPARE(positionAxis.dataMin(), positionMin);
+    QCOMPARE(positionAxis.dataMax(), positionMax);
+    QCOMPARE(valueAxis.dataMax(), valueMax);
+
+    positionAxis.rescaleToData();
+    QVERIFY2(positionAxis.viewportMin() > 0.01, qPrintable(QString::number(positionAxis.viewportMin())));
+}
+
 void BarSeriesDataTest::dataBoundsReplaceTheRangeScan()
 {
     auto xAxis = Axis{};
@@ -668,6 +720,10 @@ void BarSeriesDataTest::rangedBarsOnALogPositionAxisSkipNonPositiveEdges()
     auto bars = BarSeries{};
     bars.setXAxis(&xAxis);
     bars.setRangedData(std::vector<double>{0.0, 1.0, 3.0, 1.0, 10.0, 5.0, 10.0, 100.0, 2.0}, 3);
+    QCOMPARE(xAxis.dataMin(), 1.0);
+    QCOMPARE(xAxis.dataMax(), 100.0);
+
+    bars.setBarOffset(-5.0);
     QCOMPARE(xAxis.dataMin(), 1.0);
     QCOMPARE(xAxis.dataMax(), 100.0);
 }
