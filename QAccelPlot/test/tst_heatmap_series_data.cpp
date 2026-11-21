@@ -79,6 +79,7 @@ private slots:
     void nonFiniteCellsAreStillRecords();
     void infiniteEdgesHaveNoCells();
     void dataPointAtPositionReportsTheCellCenter();
+    void dataPointWithNonPositiveCenterOnLogAxis();
 };
 
 void HeatmapSeriesDataTest::defaultsRenderWithOwnColormap()
@@ -633,6 +634,69 @@ void HeatmapSeriesDataTest::dataPointAtPositionReportsTheCellCenter()
     const auto invalidCell = inspection->dataPointAtPosition({25.0, 50.0});
     QCOMPARE(invalidCell.status, InspectionStatus::Ready);
     QVERIFY(std::isnan(invalidCell.value));
+}
+
+void HeatmapSeriesDataTest::dataPointWithNonPositiveCenterOnLogAxis()
+{
+    auto rig = InspectableHeatmap{};
+    // Cells span -4..2 and 2..8 in both dimensions, on log axes showing 1..10.
+    rig.heatmap.setValues({1.0f, 2.0f, 3.0f, 4.0f}, 2, 2);
+    rig.heatmap.setXMin(-4.0);
+    rig.heatmap.setXMax(8.0);
+    rig.heatmap.setYMin(-4.0);
+    rig.heatmap.setYMax(8.0);
+    rig.xAxis.setViewportRange(1.0, 10.0);
+    rig.xAxis.setLogScale(true);
+    rig.yAxis.setViewportRange(1.0, 10.0);
+    rig.yAxis.setLogScale(true);
+    auto* inspection = rig.heatmap.inspection();
+    const auto edgePixels = 100.0 * std::log10(2.0);
+
+    // The marker sits at the middle of the visible part of cell 0, and the data keeps the true center.
+    const auto clipped = inspection->dataPointAtPosition({10.0, 90.0});
+    QCOMPARE(clipped.status, InspectionStatus::Ready);
+    QCOMPARE(clipped.index, 0);
+    QCOMPARE(clipped.x, -1.0);
+    QCOMPARE(clipped.y, -1.0);
+    QCOMPARE(clipped.pixelY, 100.0 - edgePixels / 2.0);
+    QCOMPARE(clipped.pixelX, edgePixels / 2.0);
+    QCOMPARE(clipped.distance, std::hypot(edgePixels / 2.0 - 10.0, 10.0 - edgePixels / 2.0));
+
+    // A positive center is placed directly.
+    const auto positive = inspection->dataPointAtPosition({60.0, 20.0});
+    QCOMPARE(positive.index, 3);
+    QCOMPARE(positive.pixelX, 100.0 * std::log10(5.0));
+    QCOMPARE(positive.pixelY, 100.0 - 100.0 * std::log10(5.0));
+
+    // The viewport ends inside the cell, so the whole axis is its visible part.
+    rig.yAxis.setViewportRange(1.0, 1.5);
+    QCOMPARE(inspection->dataPointAtPosition({10.0, 90.0}).pixelY, 50.0);
+
+    // Row 1 spans 2..-4 when the edges are descending.
+    rig.yAxis.setViewportRange(1.0, 10.0);
+    rig.heatmap.setYMin(8.0);
+    rig.heatmap.setYMax(-4.0);
+    const auto descending = inspection->dataPointAtPosition({10.0, 90.0});
+    QCOMPARE(descending.index, 2);
+    QCOMPARE(descending.pixelY, 100.0 - edgePixels / 2.0);
+
+    // Below a viewport that excludes the cell, the marker sits at the cell's nearest placeable edge.
+    rig.heatmap.setYMin(-4.0);
+    rig.heatmap.setYMax(8.0);
+    rig.yAxis.setViewportRange(10.0, 100.0);
+    const auto offscreen = inspection->dataPointAtPosition({10.0, 190.0});
+    QCOMPARE(offscreen.index, 0);
+    QCOMPARE(offscreen.pixelY, 200.0 - edgePixels);
+
+    // Rounding puts data just above zero in column 0, whose computed upper edge is exactly 0.
+    rig.heatmap.setValues({1.0f, 2.0f, 3.0f, 4.0f, 5.0f}, 5, 1);
+    rig.heatmap.setXMin(-0.3);
+    rig.heatmap.setXMax(1.2);
+    rig.xAxis.setViewportRange(1e-30, 1e-20);
+    rig.yAxis.setViewportRange(1.0, 10.0);
+    const auto rounded = inspection->dataPointAtPosition({50.0, 50.0});
+    QCOMPARE(rounded.index, 0);
+    QCOMPARE(rounded.pixelX, 25.0);
 }
 
 } // namespace QAccelPlot
