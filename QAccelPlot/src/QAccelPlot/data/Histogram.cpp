@@ -19,6 +19,7 @@ namespace QAccelPlot {
 namespace {
 
 constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
+constexpr auto kMaxBinCount = 1'000'000;
 
 bool hasSamples(const void* samples, const std::size_t sampleCount)
 {
@@ -33,6 +34,10 @@ bool isValidBinCount(const int binCount)
 {
     if (binCount < 1) {
         qCWarning(lcQAccelPlot) << "Histogram bin count must be at least 1:" << binCount;
+        return false;
+    }
+    if (binCount > kMaxBinCount) {
+        qCWarning(lcQAccelPlot).nospace() << "Histogram bin count must be at most " << kMaxBinCount << ": " << binCount;
         return false;
     }
     return true;
