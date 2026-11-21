@@ -71,7 +71,7 @@ void main() {
     // right, while vertical position 0 is the top (largest visible Y value).
     vec2 p = vertex.dataPosition;
     float gradientValue = ubuf.gradientParameters.x < 0.5 ? p.x : p.y;
-    float gradientRange = max(ubuf.gradientParameters.z - ubuf.gradientParameters.y, 1e-6);
+    float gradientRange = nonZeroGradientRange(ubuf.gradientParameters.y, ubuf.gradientParameters.z);
     // Preserve values outside [0, 1] through raster interpolation. Clamping at
     // vertices would stretch the palette across an entire segment that crosses
     // a configured gradient boundary. The fragment shader clamps before sampling.

@@ -53,7 +53,7 @@ void main() {
     // Same palette coordinate as gradient_line.vert: horizontal runs left to right,
     // while vertical position 0 is the top (largest Y value).
     float gradientValue = ubuf.gradientDirection < 0.5 ? marker.dataPosition.x : marker.dataPosition.y;
-    float gradientRange = max(ubuf.gradientValueMax - ubuf.gradientValueMin, 1e-6);
+    float gradientRange = nonZeroGradientRange(ubuf.gradientValueMin, ubuf.gradientValueMax);
     float normalizedGradient = (gradientValue - ubuf.gradientValueMin) / gradientRange;
     v_gradientCoordinate = ubuf.gradientDirection < 0.5 ? normalizedGradient : 1.0 - normalizedGradient;
 }
