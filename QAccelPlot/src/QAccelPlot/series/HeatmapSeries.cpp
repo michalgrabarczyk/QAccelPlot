@@ -8,6 +8,7 @@
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/axis/AxisMapping.hpp"
+#include "QAccelPlot/internal/MaxTextureSize.hpp"
 #include "QAccelPlot/materials/HeatmapMaterial.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/internal/HeatmapGrid.hpp"
