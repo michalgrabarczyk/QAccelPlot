@@ -18,6 +18,7 @@ private slots:
     void generatedEdgesAreAccepted();
     void fromCountsGivesBars();
     void invalidEdgesGiveAnEmptyHistogram();
+    void binCountAboveMaximumIsRejected();
 
 private:
     QString call(const char* function) const;
@@ -83,6 +84,13 @@ void TestHistogramQml::initTestCase()
                 const histogram = QAccelPlot.Histogram.fromSamples(samples, [2, 1]);
                 return [histogram.binCount, histogram.bars().length, histogram.density().binCount].join("|");
             }
+            function oversizedBinCount() {
+                const binCount = 2000000000;
+                return [QAccelPlot.Histogram.fromSamples(samples, binCount).binCount,
+                    QAccelPlot.Histogram.fromSamples(samples, binCount, 0, 4).binCount,
+                    QAccelPlot.Histogram.linearEdges(0, 4, binCount).length,
+                    QAccelPlot.Histogram.logEdges(1, 4, binCount).length].join("|");
+            }
         }
     )",
         QUrl{});
@@ -119,6 +127,14 @@ void TestHistogramQml::invalidEdgesGiveAnEmptyHistogram()
 {
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("Histogram needs at least two finite, strictly increasing edges"));
     QCOMPARE(call("invalidEdges"), QStringLiteral("0|0|0"));
+}
+
+void TestHistogramQml::binCountAboveMaximumIsRejected()
+{
+    for (auto i = 0; i < 4; ++i) {
+        QTest::ignoreMessage(QtWarningMsg, QRegularExpression("Histogram bin count must be at most 1000000: 2000000000"));
+    }
+    QCOMPARE(call("oversizedBinCount"), QStringLiteral("0|0|0|0"));
 }
 
 QString TestHistogramQml::call(const char* function) const

@@ -2680,9 +2680,9 @@ at each power of ten, so draw them as density.
 | On an edge | The bin above it; the last bin includes its upper edge |
 | NaN, or outside the edges | No bin |
 
-Invalid edges or a bin count below 1 give an empty histogram (`binCount` 0)
-and a logged warning. A histogram exposes `binCount`, `edges`, `values`,
-`total`, `uniform`, and `binWidth`, which is NaN for uneven bins.
+Invalid edges or a bin count outside 1 to 1,000,000 give an empty histogram
+(`binCount` 0) and a logged warning. A histogram exposes `binCount`, `edges`,
+`values`, `total`, `uniform`, and `binWidth`, which is NaN for uneven bins.
 
 ## C++
 
