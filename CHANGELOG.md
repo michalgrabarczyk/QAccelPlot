@@ -41,6 +41,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Series with the same color given in different color specs, such as
   `Qt.hsla()` and `Qt.rgba()`, share a scene graph batch; their materials
   compared unequal both ways, breaking the batch renderer's ordering.
+- `Histogram.fromSamples()` with a bin count no longer returns an empty
+  histogram for nearly equal samples, such as `0.1 + 0.2` and `0.3`.
 
 ## [0.6.0] — 2026-11-16
 
