@@ -20,6 +20,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstring>
+#include <optional>
 
 namespace QAccelPlot {
 
@@ -43,6 +44,26 @@ float normalizedGradientFillValue(const GradientFillPayload& gradientPayload, co
     // The fragment shader clamps the interpolated coordinate immediately before
     // sampling, preserving endpoint-color saturation beyond the configured range.
     return Internal::unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax);
+}
+
+// Returns the mapping of a fill whose gradient runs along a log axis, or nothing on a linear axis.
+std::optional<Internal::LogGradientMapping> logFillMapping(const GradientFillPayload& gradientPayload, const Axis* xAxis, const Axis* yAxis)
+{
+    if (!(gradientPayload.direction == Qt::Horizontal ? xAxis : yAxis)->logScale()) {
+        return std::nullopt;
+    }
+    return Internal::logGradientMapping(
+        gradientPayload.direction, gradientPayload.gradientValueMin.value_or(0.0), gradientPayload.gradientValueMax.value_or(1.0));
+}
+
+// Returns the gradient value of a fill vertex. It must be linear in pixels, so a log axis interpolates log values.
+float gradientFillVertexValue(
+    const GradientFillPayload& gradientPayload, const std::optional<Internal::LogGradientMapping>& logMapping, const qreal dataX, const qreal dataY)
+{
+    if (!logMapping) {
+        return normalizedGradientFillValue(gradientPayload, dataX, dataY);
+    }
+    return Internal::logGradientValue(gradientPayload.direction == Qt::Horizontal ? dataX : dataY, logMapping->reference);
 }
 
 LineMaterial* createLineMaterial(const bool gradientStroke, const bool dashed)
@@ -87,11 +108,13 @@ int fillVertexCount(const FillSamples& samples)
 }
 
 void assembleFillVertices(QSGGeometry* geometry, const FillSamples& samples, Axis* xAxis, Axis* yAxis, const qreal width, const qreal height,
-    const GradientFillPayload& gradientFillPayload)
+    const GradientFillPayload& gradientFillPayload, const std::optional<Internal::LogGradientMapping>& logMapping)
 {
     auto* vertices = static_cast<GradientFillVertex*>(geometry->vertexData());
     const auto baselineData = gradientFillPayload.baselineValue.value_or(yAxis->viewportMin());
     const auto baselinePixel = static_cast<float>(yAxis->coordToPixel(baselineData, height));
+    // A non-positive baseline has no log value, so it takes the value of the height it is drawn at.
+    const auto baselineValue = yAxis->logScale() && baselineData <= 0.0 ? yAxis->pixelToCoord(baselinePixel, height) : baselineData;
 
     auto written = int{0};
     auto nextPoint = std::size_t{0};
@@ -112,10 +135,10 @@ void assembleFillVertices(QSGGeometry* geometry, const FillSamples& samples, Axi
             const auto xPixel = static_cast<float>(xAxis->coordToPixel(px, width));
             const auto yPixel = static_cast<float>(yAxis->coordToPixel(py, height));
 
-            const auto normalizedCurve = normalizedGradientFillValue(gradientFillPayload, px, py);
-            const auto normalizedBaseline = normalizedGradientFillValue(gradientFillPayload, px, baselineData);
-            vertices[written++] = {xPixel, baselinePixel, normalizedBaseline};
-            vertices[written++] = {xPixel, yPixel, normalizedCurve};
+            const auto curveGradient = gradientFillVertexValue(gradientFillPayload, logMapping, px, py);
+            const auto baselineGradient = gradientFillVertexValue(gradientFillPayload, logMapping, px, baselineValue);
+            vertices[written++] = {xPixel, baselinePixel, baselineGradient};
+            vertices[written++] = {xPixel, yPixel, curveGradient};
         }
         if (runStartVertex > 0) {
             vertices[runStartVertex + 1] = vertices[runStartVertex + 2];
@@ -355,11 +378,15 @@ void LineCurveLineRenderer::updateFillGeometry(QSGGeometryNode* fillNode, const 
         fillNode->geometry()->allocate(vertexCount);
     }
     if (samples && vertexCount > 0) {
-        assembleFillVertices(
-            fillNode->geometry(), *samples, params.xAxis, params.yAxis, params.viewportSize.x(), params.viewportSize.y(), params.gradientFillPayload);
+        const auto logMapping = logFillMapping(params.gradientFillPayload, params.xAxis, params.yAxis);
+        assembleFillVertices(fillNode->geometry(), *samples, params.xAxis, params.yAxis, params.viewportSize.x(), params.viewportSize.y(),
+            params.gradientFillPayload, logMapping);
         fillNode->markDirty(QSGNode::DirtyGeometry);
         auto* material = static_cast<GradientFillMaterial*>(fillNode->material());
         material->opacity = params.gradientFillPayload.opacity;
+        material->logGradient = logMapping.has_value();
+        material->logGradientScale = logMapping ? logMapping->scale : 0.0f;
+        material->logGradientOffset = logMapping ? logMapping->offset : 0.0f;
         material->gradientTexture.upload(params.window, params.gradientFillPayload.stops);
         fillNode->markDirty(QSGNode::DirtyMaterial);
     }

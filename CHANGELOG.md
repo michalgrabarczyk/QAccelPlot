@@ -35,6 +35,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- `GradientFill` and `GradientStroke` give one data value one color between
+  points on a log axis.
 - `LineCurve`, `PointCloud`, and `ErrorBarSeries` ignore a NaN or infinite
   `hoverRadius`, which turned hover off or searched every point on each mouse
   move.

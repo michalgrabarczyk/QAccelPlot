@@ -46,6 +46,24 @@ layout(std140, binding = 0) uniform buf {
 
 layout(binding = 2) uniform sampler2D gradientSampler;
 
+#include "gradient_log.glsl"
+
+// Returns the palette coordinate of the fragment.
+float gradientCoordinate() {
+    bool horizontal = ubuf.gradientParameters.x < 0.5;
+    if ((horizontal ? ubuf.logScaleX : ubuf.logScaleY) < 0.5) {
+        return v_gradientCoordinate;
+    }
+    float valueMin = ubuf.gradientParameters.y;
+    float valueMax = ubuf.gradientParameters.z;
+    float gradientRange = max(valueMax - valueMin, 1e-6);
+    float reference = logGradientReference(valueMin, valueMax);
+    float scale = reference / gradientRange;
+    float offset = (reference - valueMin) / gradientRange;
+    return horizontal ? logGradientCoordinate(v_gradientCoordinate, scale, offset)
+                      : logGradientCoordinate(v_gradientCoordinate, -scale, 1.0 - offset);
+}
+
 void main() {
     // Gap discard: the fragment belongs to a triangle bridging an invalid sample.
     if (v_validWeight < 0.0) {
@@ -81,7 +99,7 @@ void main() {
         alpha = outsideDistance <= 0.0 ? 1.0 : 0.0;
     }
 
-    vec4 gradientColor = texture(gradientSampler, vec2(clamp(v_gradientCoordinate, 0.0, 1.0), 0.5));
+    vec4 gradientColor = texture(gradientSampler, vec2(clamp(gradientCoordinate(), 0.0, 1.0), 0.5));
     float strokeAlpha = gradientColor.a * alpha;
     vec4 stroke = vec4(gradientColor.rgb * strokeAlpha, strokeAlpha);
     fragColor = withGlow(stroke, outsideDistance, ubuf.glowColor, ubuf.glowParams.xy, ubuf.opacity * v_itemOpacity);

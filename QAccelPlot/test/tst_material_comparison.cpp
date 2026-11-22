@@ -7,6 +7,7 @@
 #include "QAccelPlot/materials/CandlestickMaterial.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/ErrorBarMaterial.hpp"
+#include "QAccelPlot/materials/GradientFillMaterial.hpp"
 #include "QAccelPlot/materials/LineMaterial.hpp"
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
 #include "QAccelPlot/materials/PointMaterial.hpp"
@@ -102,6 +103,7 @@ private slots:
     void barMaterialsCompareRectangleAndBarUniforms();
     void errorBarMaterialsCompareAntialiasing();
     void candlestickMaterialsCompareStyleAndColors();
+    void gradientFillMaterialsCompareLogMapping();
     void materialsCompareColorValuesAcrossSpecs();
 };
 
@@ -333,6 +335,23 @@ void MaterialComparisonTest::candlestickMaterialsCompareStyleAndColors()
     auto glowDown = CandlestickMaterial{};
     glowDown.glowDownColor = Qt::blue;
     QVERIFY(left.compare(&glowDown) != 0);
+}
+
+void MaterialComparisonTest::gradientFillMaterialsCompareLogMapping()
+{
+    const auto left = GradientFillMaterial{};
+    auto logGradient = GradientFillMaterial{};
+    logGradient.logGradient = true;
+    QVERIFY(left.compare(&logGradient) != 0);
+    QCOMPARE(logGradient.compare(&left), -left.compare(&logGradient));
+
+    auto scale = GradientFillMaterial{};
+    scale.logGradientScale = 2.0f;
+    QVERIFY(left.compare(&scale) != 0);
+
+    auto offset = GradientFillMaterial{};
+    offset.logGradientOffset = 0.5f;
+    QVERIFY(left.compare(&offset) != 0);
 }
 
 void MaterialComparisonTest::materialsCompareColorValuesAcrossSpecs()

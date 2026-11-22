@@ -12,6 +12,7 @@ layout(location = 0) out float v_gradientCoordinate;
 layout(std140, binding = 0) uniform buf {
     mat4 matrix;
     vec4 parameters;
+    vec4 logGradient;
 } ubuf;
 
 void main()
