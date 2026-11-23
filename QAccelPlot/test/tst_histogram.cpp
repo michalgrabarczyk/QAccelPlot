@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <cfenv>
 #include <cmath>
+#include <functional>
 #include <limits>
 #include <random>
 #include <vector>
@@ -56,6 +57,9 @@ private slots:
     void nanAndOutOfRangeSamplesAreNotCounted();
     void binCountSpansTheFiniteSamples();
     void equalSamplesWidenTheRange();
+    void nearlyEqualSamplesWidenTheRange_data();
+    void nearlyEqualSamplesWidenTheRange();
+    void narrowRangeWithDistinctEdgesIsKept();
     void noFiniteSamplesUseTheUnitRange();
     void explicitRangeSetsTheEdges();
     void uniformBinningAgreesWithTheEdges();
@@ -153,6 +157,49 @@ void HistogramTest::equalSamplesWidenTheRange()
     const auto wide = Histogram::fromSamples(large.data(), large.size(), 2);
     QCOMPARE(wide.binCount(), 2);
     QCOMPARE(wide.total(), 2.0);
+}
+
+void HistogramTest::nearlyEqualSamplesWidenTheRange_data()
+{
+    constexpr auto kLargest = std::numeric_limits<double>::max();
+    QTest::addColumn<double>("first");
+    QTest::addColumn<double>("second");
+    QTest::addColumn<int>("binCount");
+    QTest::newRow("rounded-sum") << 0.1 + 0.2 << 0.3 << 10;
+    QTest::newRow("adjacent") << 1.0 << std::nextafter(1.0, kInf) << 10;
+    QTest::newRow("negative") << -0.3 << std::nextafter(-0.3, -kInf) << 10;
+    QTest::newRow("large") << 1e18 << std::nextafter(1e18, kInf) << 10;
+    QTest::newRow("subnormal") << 0.0 << std::numeric_limits<double>::denorm_min() << 10;
+    QTest::newRow("largest") << kLargest << std::nextafter(kLargest, 0.0) << 10;
+    QTest::newRow("lowest") << -kLargest << std::nextafter(-kLargest, 0.0) << 10;
+    QTest::newRow("equal-largest") << kLargest << kLargest << 10;
+    QTest::newRow("many-bins") << 1.0 << std::nextafter(1.0, kInf) << 1000;
+}
+
+void HistogramTest::nearlyEqualSamplesWidenTheRange()
+{
+    QFETCH(double, first);
+    QFETCH(double, second);
+    QFETCH(int, binCount);
+    const auto samples = Values{first, second};
+    const auto histogram = Histogram::fromSamples(samples.data(), samples.size(), binCount);
+    QCOMPARE(histogram.binCount(), binCount);
+    QCOMPARE(histogram.total(), 2.0);
+    const auto& edges = histogram.edges();
+    QVERIFY(std::adjacent_find(edges.cbegin(), edges.cend(), std::greater_equal<>{}) == edges.cend());
+    QVERIFY(edges.front() <= std::min(first, second));
+    QVERIFY(edges.back() >= std::max(first, second));
+}
+
+void HistogramTest::narrowRangeWithDistinctEdgesIsKept()
+{
+    const auto high = 1.0 + 64.0 * std::numeric_limits<double>::epsilon();
+    const auto samples = Values{1.0, high};
+    const auto histogram = Histogram::fromSamples(samples.data(), samples.size(), 4);
+    QCOMPARE(histogram.binCount(), 4);
+    QVERIFY(histogram.edges().front() == 1.0);
+    QVERIFY(histogram.edges().back() == high);
+    QCOMPARE(histogram.total(), 2.0);
 }
 
 void HistogramTest::noFiniteSamplesUseTheUnitRange()

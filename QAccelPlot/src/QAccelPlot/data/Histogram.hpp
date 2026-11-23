@@ -55,7 +55,8 @@ class Histogram {
 public:
     /// \brief Counts \a sampleCount \a samples into \a binCount equal bins spanning the finite samples.
     ///
-    /// The range is 0 to 1 without finite samples, and widens by 0.5 on each side when all samples are equal.
+    /// The range is 0 to 1 without finite samples, and widens by at least 0.5 on each side when the samples are too
+    /// close for \a binCount distinct bins.
     static Histogram fromSamples(const double* samples, std::size_t sampleCount, int binCount);
     /// \brief Counts \a sampleCount \a samples into \a binCount equal bins from \a min to \a max.
     static Histogram fromSamples(const double* samples, std::size_t sampleCount, int binCount, double min, double max);

@@ -52,6 +52,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - A `HeatmapSeries` with a cell edge at zero no longer rescales a log axis to
   start near `1e-17`.
 - `Glow` no longer fills the inside of hollow markers.
+- `Histogram.fromSamples()` with a bin count no longer returns an empty
+  histogram for nearly equal samples, such as `0.1 + 0.2` and `0.3`.
 
 ## [0.6.0] — 2026-11-16
 
