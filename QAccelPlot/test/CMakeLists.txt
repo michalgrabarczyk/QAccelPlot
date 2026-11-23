@@ -41,6 +41,10 @@ target_include_directories(tst_math_utils PRIVATE "${CMAKE_SOURCE_DIR}/QAccelPlo
 add_qaccelplot_test(tst_gradient_coordinates core tst_gradient_coordinates.cpp)
 add_qaccelplot_test(tst_gradient_value_range core tst_gradient_value_range.cpp)
 add_qaccelplot_test(tst_gradient_effect_threads core tst_gradient_effect_threads.cpp)
+add_qaccelplot_test(tst_gradient_log_interpolation core tst_gradient_log_interpolation.cpp)
+# Renders a QML scene, so it needs the QML module plugin.
+target_link_libraries(tst_gradient_log_interpolation PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_gradient_log_interpolation)
 add_qaccelplot_test(tst_line_curve_data      core tst_line_curve_data.cpp)
 add_qaccelplot_test(tst_line_curve_gaps      core tst_line_curve_gaps.cpp)
 add_qaccelplot_test(tst_line_curve_rendering core tst_line_curve_rendering.cpp)

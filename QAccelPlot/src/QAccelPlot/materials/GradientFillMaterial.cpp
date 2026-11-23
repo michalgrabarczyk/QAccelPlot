@@ -14,9 +14,10 @@ namespace QAccelPlot {
 struct GradientFillUbo {
     float matrix[16];
     float parameters[4];
+    float logGradient[4];
 };
 
-static_assert(sizeof(GradientFillUbo) == 80);
+static_assert(sizeof(GradientFillUbo) == 96);
 
 class GradientFillShader : public QSGMaterialShader {
 public:
@@ -38,6 +39,9 @@ public:
         std::memcpy(ubo.matrix, matrix.constData(), sizeof(ubo.matrix));
         ubo.parameters[0] = material->opacity;
         ubo.parameters[1] = state.opacity();
+        ubo.logGradient[0] = material->logGradient ? 1.0f : 0.0f;
+        ubo.logGradient[1] = material->logGradientScale;
+        ubo.logGradient[2] = material->logGradientOffset;
         std::memcpy(buffer->data(), &ubo, sizeof(ubo));
         return true;
     }
@@ -71,6 +75,15 @@ int GradientFillMaterial::compare(const QSGMaterial* other) const
     const auto* material = static_cast<const GradientFillMaterial*>(other);
     if (opacity != material->opacity) {
         return opacity < material->opacity ? -1 : 1;
+    }
+    if (logGradient != material->logGradient) {
+        return logGradient ? 1 : -1;
+    }
+    if (logGradientScale != material->logGradientScale) {
+        return logGradientScale < material->logGradientScale ? -1 : 1;
+    }
+    if (logGradientOffset != material->logGradientOffset) {
+        return logGradientOffset < material->logGradientOffset ? -1 : 1;
     }
     const auto textureKey = gradientTexture.comparisonKey();
     const auto otherTextureKey = material->gradientTexture.comparisonKey();

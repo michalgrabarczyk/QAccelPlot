@@ -20,6 +20,9 @@ public:
     int compare(const QSGMaterial* other) const override;
 
     float opacity{1.0f};
+    bool logGradient{false};       ///< The vertex coordinate is a log value, see Internal::LogGradientMapping.
+    float logGradientScale{0.0f};  ///< Internal::LogGradientMapping::scale.
+    float logGradientOffset{0.0f}; ///< Internal::LogGradientMapping::offset.
     GradientTexture gradientTexture;
 };
 

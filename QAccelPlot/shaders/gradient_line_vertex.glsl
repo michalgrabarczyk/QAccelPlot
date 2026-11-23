@@ -47,6 +47,7 @@ layout(binding = 1) uniform sampler2D dataSampler;
 #include "math_utils.glsl"
 #include "line_geometry.glsl"
 #include "item_opacity.glsl"
+#include "gradient_log.glsl"
 
 void main() {
     LineVertexInput vertexInput = lineVertexInput();
@@ -77,4 +78,10 @@ void main() {
     // a configured gradient boundary. The fragment shader clamps before sampling.
     float normalizedGradient = (gradientValue - ubuf.gradientParameters.y) / gradientRange;
     v_gradientCoordinate = ubuf.gradientParameters.x < 0.5 ? normalizedGradient : 1.0 - normalizedGradient;
+
+    // The fragment shader converts this log ratio to the palette coordinate.
+    if ((ubuf.gradientParameters.x < 0.5 ? ubuf.logScaleX : ubuf.logScaleY) > 0.5) {
+        float ratio = gradientValue / logGradientReference(ubuf.gradientParameters.y, ubuf.gradientParameters.z);
+        v_gradientCoordinate = safeLog10(floatIsFinite(ratio) ? ratio : 1.0e38);
+    }
 }
