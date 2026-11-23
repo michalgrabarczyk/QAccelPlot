@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-11-20 21:52:13</td>
+      <td>2026-11-23 08:22:14</td>
     </tr>
   </table>
 </div>
@@ -70,15 +70,15 @@
       <th>Call count</th>
       <th>Block coverage</th>
     </tr>
-    <tr><td><a href="#l33">QAccelPlot::Internal::(anonymous namespace)::gpuMaxTextureSize(QQuickWindow*) (line 33)</a></td><td>called 1718 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l33">QAccelPlot::Internal::(anonymous namespace)::gpuMaxTextureSize(QQuickWindow*) (line 33)</a></td><td>called 1720 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l83">QAccelPlot::Internal::assignNonNegative(double&amp;, double) (line 83)</a></td><td>called 104 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l76">QAccelPlot::Internal::clampAntialiasingFeather(double) (line 76)</a></td><td>called 67 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l103">QAccelPlot::Internal::growBaseline(double, QAccelPlot::Axis const*) (line 103)</a></td><td>called 105 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l93">QAccelPlot::Internal::growViewport(QAccelPlot::Axis const*) (line 93)</a></td><td>called 116 times</td><td>80.0%</td></tr>
-    <tr><td><a href="#l48">QAccelPlot::Internal::hoverEnabled() (line 48)</a></td><td>called 946 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l61">QAccelPlot::Internal::maxTextureSize(QQuickWindow*) (line 61)</a></td><td>called 1718 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l48">QAccelPlot::Internal::hoverEnabled() (line 48)</a></td><td>called 947 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l61">QAccelPlot::Internal::maxTextureSize(QQuickWindow*) (line 61)</a></td><td>called 1720 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l68">QAccelPlot::Internal::recordCapacity(QQuickWindow*, int, int) (line 68)</a></td><td>called 985 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l55">QAccelPlot::Internal::supportsCustomShaderRendering(QQuickWindow const*) (line 55)</a></td><td>called 1635 times</td><td>91.0%</td></tr>
+    <tr><td><a href="#l55">QAccelPlot::Internal::supportsCustomShaderRendering(QQuickWindow const*) (line 55)</a></td><td>called 1637 times</td><td>91.0%</td></tr>
   </table>
 </details>
 
@@ -320,7 +320,7 @@
       <td class="lineno"><a id="l33" href="#l33">33</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1718</td>
+      <td class="linecount coveredLine">1720</td>
       <td class="src coveredLine"><span class="kt">int</span><span class="w"> </span><span class="nf">gpuMaxTextureSize</span><span class="p">([[</span><span class="na">maybe_unused</span><span class="p">]]</span><span class="w"> </span><span class="n">QQuickWindow</span><span class="o">*</span><span class="w"> </span><span class="n">window</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -390,7 +390,7 @@
       <td class="lineno"><a id="l43" href="#l43">43</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1718</td>
+      <td class="linecount coveredLine">1720</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">kFallbackMaxTextureSize</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -425,7 +425,7 @@
       <td class="lineno"><a id="l48" href="#l48">48</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">946</td>
+      <td class="linecount coveredLine">947</td>
       <td class="src coveredLine"><span class="kt">bool</span><span class="w"> </span><span class="nf">hoverEnabled</span><span class="p">()</span></td>
     </tr>
     <tr class="source-line">
@@ -439,14 +439,14 @@
       <td class="lineno"><a id="l50" href="#l50">50</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">946</td>
+      <td class="linecount coveredLine">947</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">isInteger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l51" href="#l51">51</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">946</td>
+      <td class="linecount coveredLine">947</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qEnvironmentVariableIntValue</span><span class="p">(</span><span class="s">"QACCELPLOT_HOVER_ENABLED"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">isInteger</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -456,13 +456,13 @@
           <summary class="linebranchSummary">3/4</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 0 taken 3 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 943 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 944 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
             <div class="takenBranch">&check; Branch 3 taken 3 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">946</td>
+      <td class="linecount partialCoveredLine">947</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">!</span><span class="n">isInteger</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -483,7 +483,7 @@
       <td class="lineno"><a id="l55" href="#l55">55</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1635</td>
+      <td class="linecount coveredLine">1637</td>
       <td class="src coveredLine"><span class="kt">bool</span><span class="w"> </span><span class="nf">supportsCustomShaderRendering</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QQuickWindow</span><span class="o">*</span><span class="w"> </span><span class="n">window</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -499,12 +499,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 1635 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 1637 times.</div>
             <div class="notTakenBranch">&cross; Branch 1 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">1635</td>
+      <td class="linecount partialCoveredLine">1637</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">rendererInterface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">window</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">window</span><span class="o">-&gt;</span><span class="n">rendererInterface</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -513,14 +513,14 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">3/4</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 1635 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 1637 times.</div>
             <div class="notTakenBranch">&cross; Branch 1 not taken.</div>
-            <div class="takenBranch">&check; Branch 3 taken 1616 times.</div>
+            <div class="takenBranch">&check; Branch 3 taken 1618 times.</div>
             <div class="takenBranch">&check; Branch 4 taken 19 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">1635</td>
+      <td class="linecount partialCoveredLine">1637</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">rendererInterface</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">rendererInterface</span><span class="o">-&gt;</span><span class="n">graphicsApi</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">QSGRendererInterface</span><span class="o">::</span><span class="n">Software</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -541,7 +541,7 @@
       <td class="lineno"><a id="l61" href="#l61">61</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1718</td>
+      <td class="linecount coveredLine">1720</td>
       <td class="src coveredLine"><span class="kt">int</span><span class="w"> </span><span class="nf">maxTextureSize</span><span class="p">(</span><span class="n">QQuickWindow</span><span class="o">*</span><span class="w"> </span><span class="n">window</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -558,20 +558,20 @@
           <summary class="linebranchSummary">3/4</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 0 taken 38 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 1680 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 1682 times.</div>
             <div class="takenBranch">&check; Branch 3 taken 38 times.</div>
             <div class="notTakenBranch">&cross; Branch 4 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">1718</td>
+      <td class="linecount partialCoveredLine">1720</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">overrideSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qEnvironmentVariableIntValue</span><span class="p">(</span><span class="s">"QACCELPLOT_MAX_TEXTURE_SIZE"</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l64" href="#l64">64</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1718</td>
+      <td class="linecount coveredLine">1720</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">gpuSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gpuMaxTextureSize</span><span class="p">(</span><span class="n">window</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -581,11 +581,11 @@
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 0 taken 19 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 1699 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 1701 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">1718</td>
+      <td class="linecount coveredLine">1720</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">overrideSize</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">overrideSize</span><span class="p">,</span><span class="w"> </span><span class="n">gpuSize</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">gpuSize</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
