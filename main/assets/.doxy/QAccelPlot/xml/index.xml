@@ -4190,7 +4190,7 @@
     <member refid="ItemFade_8hpp_1a0d48c4d14a27d6b91b52cedbe80138a9" kind="variable"><name>kFadeStartSamples</name></member>
     <member refid="ItemFade_8hpp_1a5d2c6f82dbffb8c91cb4806f245db07b" kind="variable"><name>kFadeGroupCount</name></member>
     <member refid="ItemFade_8hpp_1a29dc58b6e55e6d74e7cf6773b0197359" kind="variable"><name>kTrailEasingSamples</name></member>
-    <member refid="DataTextureLayout_8hpp_1a6b4094e09b5bc41bc01b37bb87b2e9bd" kind="variable"><name>kDataTextureWidth</name></member>
+    <member refid="DataTextureLayout_8hpp_1aa523d61bb71183dac60ba026fba1fcad" kind="variable"><name>kMaxDataTextureWidth</name></member>
     <member refid="AxisLabelLayout_8hpp_1ac6ae6229e1ede73a7d80e87c9327b1f0" kind="function"><name>rotatedBoundingSize</name></member>
     <member refid="AxisLabelLayout_8hpp_1a7c86f36107c400ec6ae0a515f41ba259" kind="function"><name>axisLabelCenter</name></member>
     <member refid="RangeGesture_8hpp_1a390751056142cf5002a19cd6b5dd9741" kind="function"><name>pannedRange</name></member>
@@ -4211,8 +4211,10 @@
     <member refid="ItemFade_8hpp_1a82f8e67f1c7ec939587d6109a23029ee" kind="function"><name>compactedFadeGroup</name></member>
     <member refid="ItemFade_8hpp_1a6b4ef62618706e8707f5f152a0c43131" kind="function"><name>compareItemFades</name></member>
     <member refid="ItemFade_8hpp_1a41951954e524ec178fa5f630b85f904f" kind="function"><name>compareItemTrails</name></member>
-    <member refid="DataTextureLayout_8hpp_1a5c264763c864fb6d047f69120859f093" kind="function"><name>dataTextureHeight</name></member>
-    <member refid="DataTextureLayout_8hpp_1a05b5caf9207764121231f1e6a2660b03" kind="function"><name>dataTextureItemCapacity</name></member>
+    <member refid="MaxTextureSize_8hpp_1aa6ae5dce39f0d0f413c54cf6cf325998" kind="function"><name>maxTextureSize</name></member>
+    <member refid="DataTextureLayout_8hpp_1abd7746c889e72f64bdc8fc77bb61c070" kind="function"><name>dataTextureWidth</name></member>
+    <member refid="DataTextureLayout_8hpp_1a4b2a95b9f5f79aa3c00baeb96ffd4017" kind="function"><name>dataTextureHeight</name></member>
+    <member refid="DataTextureLayout_8hpp_1aba8c16cdfb80c63b20f2e08de96d0fbf" kind="function"><name>dataTextureItemCapacity</name></member>
     <member refid="DataTextureUpload_8hpp_1a34c4e72c0d34cdd9856c3cf49319b322" kind="function"><name>uploadDataTexture</name></member>
     <member refid="DataTextureUploadTotals_8hpp_1a862cbd7d070a0d9d7e73b4dc377910b3" kind="function"><name>recordDataTextureUpload</name></member>
     <member refid="DataTextureUploadTotals_8hpp_1a3a2e0e8f73c92f4cb8070f22e5bb2640" kind="function"><name>dataTextureUploadTotals</name></member>
@@ -4234,7 +4236,6 @@
     <member refid="RectGeometry_8hpp_1a7417b8e192c478fef96635a5d4bef01c" kind="function"><name>distanceToBox</name></member>
     <member refid="SeriesSupport_8hpp_1aa0d65f61e140a98b727f1649918c3566" kind="function"><name>hoverEnabled</name></member>
     <member refid="SeriesSupport_8hpp_1ac34e08413bb3b53ff8e1154bf2c494dc" kind="function"><name>supportsCustomShaderRendering</name></member>
-    <member refid="SeriesSupport_8hpp_1aa6ae5dce39f0d0f413c54cf6cf325998" kind="function"><name>maxTextureSize</name></member>
     <member refid="SeriesSupport_8hpp_1a1115a2b55eeca9e9b1f936432726572f" kind="function"><name>recordCapacity</name></member>
     <member refid="SeriesSupport_8hpp_1a4d22277096776b7ab88ec04d5a44ae88" kind="function"><name>clampAntialiasingFeather</name></member>
     <member refid="SeriesSupport_8hpp_1a0dc34270b91cbc5c5a63d964fcd721dc" kind="function"><name>assignNonNegative</name></member>
@@ -4396,6 +4397,8 @@
   <compound refid="GlowStyle_8hpp" kind="file"><name>GlowStyle.hpp</name>
   </compound>
   <compound refid="ItemFade_8hpp" kind="file"><name>ItemFade.hpp</name>
+  </compound>
+  <compound refid="MaxTextureSize_8hpp" kind="file"><name>MaxTextureSize.hpp</name>
   </compound>
   <compound refid="OutlinedRectangle_8hpp" kind="file"><name>OutlinedRectangle.hpp</name>
   </compound>

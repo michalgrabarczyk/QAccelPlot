@@ -220,18 +220,17 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="19" column="22" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="19" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="DataTextureLayout_8hpp_1a6b4094e09b5bc41bc01b37bb87b2e9bd" prot="public" static="no" constexpr="yes" mutable="no">
+      <memberdef kind="variable" id="DataTextureLayout_8hpp_1aa523d61bb71183dac60ba026fba1fcad" prot="public" static="no" constexpr="yes" mutable="no">
         <type>int</type>
-        <definition>int QAccelPlot::Internal::kDataTextureWidth</definition>
+        <definition>int QAccelPlot::Internal::kMaxDataTextureWidth</definition>
         <argsstring></argsstring>
-        <name>kDataTextureWidth</name>
-        <qualifiedname>QAccelPlot::Internal::kDataTextureWidth</qualifiedname>
+        <name>kMaxDataTextureWidth</name>
+        <qualifiedname>QAccelPlot::Internal::kMaxDataTextureWidth</qualifiedname>
         <initializer>{8192}</initializer>
         <briefdescription>
-<para>Number of floats stored per data texture row, one float per RGBA8 texel. </para>
+<para>Largest number of floats stored per data texture row, one float per RGBA8 texel. </para>
         </briefdescription>
         <detaileddescription>
-<para>data_texture.glsl reads the width from the bound texture, so this is the only definition. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -746,47 +745,91 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="82" column="6" declfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" declline="82" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="DataTextureLayout_8hpp_1a5c264763c864fb6d047f69120859f093" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="MaxTextureSize_8hpp_1aa6ae5dce39f0d0f413c54cf6cf325998" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::maxTextureSize</definition>
+        <argsstring>(QQuickWindow *window)</argsstring>
+        <name>maxTextureSize</name>
+        <qualifiedname>QAccelPlot::Internal::maxTextureSize</qualifiedname>
+        <param>
+          <type>QQuickWindow *</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+<para>Returns the largest texture width and height, in pixels, that <emphasis>window&apos;s</emphasis> GPU supports. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Falls back to 8192 when the RHI cannot be queried (Qt older than 6.6, or a build without the private Qt API). <computeroutput>QACCELPLOT_MAX_TEXTURE_SIZE</computeroutput> lowers the result, for example to exercise capacity limits in tests. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/MaxTextureSize.hpp" line="18" column="5" declfile="QAccelPlot/src/QAccelPlot/internal/MaxTextureSize.hpp" declline="18" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="DataTextureLayout_8hpp_1abd7746c889e72f64bdc8fc77bb61c070" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::dataTextureWidth</definition>
+        <argsstring>(const int maxTextureSize)</argsstring>
+        <name>dataTextureWidth</name>
+        <qualifiedname>QAccelPlot::Internal::dataTextureWidth</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>maxTextureSize</declname>
+        </param>
+        <briefdescription>
+<para>Returns the floats per data texture row on a GPU with texture limit <emphasis>maxTextureSize</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>data_texture.glsl reads the width from the bound texture, so it follows this value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="19" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" bodystart="19" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="DataTextureLayout_8hpp_1a4b2a95b9f5f79aa3c00baeb96ffd4017" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
         <definition>int QAccelPlot::Internal::dataTextureHeight</definition>
-        <argsstring>(const int floatCount)</argsstring>
+        <argsstring>(const int floatCount, const int width)</argsstring>
         <name>dataTextureHeight</name>
         <qualifiedname>QAccelPlot::Internal::dataTextureHeight</qualifiedname>
         <param>
           <type>const int</type>
           <declname>floatCount</declname>
         </param>
+        <param>
+          <type>const int</type>
+          <declname>width</declname>
+        </param>
         <briefdescription>
-<para>Returns the number of data texture rows needed to store <emphasis>floatCount</emphasis> floats. </para>
+<para>Returns the number of rows of <emphasis>width</emphasis> floats needed to store <emphasis>floatCount</emphasis> floats. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="17" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" bodystart="17" bodyend="20"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="25" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" bodystart="25" bodyend="28"/>
       </memberdef>
-      <memberdef kind="function" id="DataTextureLayout_8hpp_1a05b5caf9207764121231f1e6a2660b03" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="DataTextureLayout_8hpp_1aba8c16cdfb80c63b20f2e08de96d0fbf" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>qint64</type>
         <definition>qint64 QAccelPlot::Internal::dataTextureItemCapacity</definition>
-        <argsstring>(const int maxHeight, const int floatsPerItem)</argsstring>
+        <argsstring>(const int maxTextureSize, const int floatsPerItem)</argsstring>
         <name>dataTextureItemCapacity</name>
         <qualifiedname>QAccelPlot::Internal::dataTextureItemCapacity</qualifiedname>
         <param>
           <type>const int</type>
-          <declname>maxHeight</declname>
+          <declname>maxTextureSize</declname>
         </param>
         <param>
           <type>const int</type>
           <declname>floatsPerItem</declname>
         </param>
         <briefdescription>
-<para>Returns how many items of <emphasis>floatsPerItem</emphasis> floats fit in a data texture at most <emphasis>maxHeight</emphasis> rows tall. </para>
+<para>Returns how many items of <emphasis>floatsPerItem</emphasis> floats fit in a data texture on a GPU with texture limit <emphasis>maxTextureSize</emphasis>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="23" column="18" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" bodystart="23" bodyend="26"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="31" column="18" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" bodystart="31" bodyend="34"/>
       </memberdef>
       <memberdef kind="function" id="DataTextureUpload_8hpp_1a34c4e72c0d34cdd9856c3cf49319b322" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1288,26 +1331,6 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="23" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="23" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="SeriesSupport_8hpp_1aa6ae5dce39f0d0f413c54cf6cf325998" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int QAccelPlot::Internal::maxTextureSize</definition>
-        <argsstring>(QQuickWindow *window)</argsstring>
-        <name>maxTextureSize</name>
-        <qualifiedname>QAccelPlot::Internal::maxTextureSize</qualifiedname>
-        <param>
-          <type>QQuickWindow *</type>
-          <declname>window</declname>
-        </param>
-        <briefdescription>
-<para>Returns the largest texture width and height, in pixels, that <emphasis>window&apos;s</emphasis> GPU supports. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Falls back to 8192, supported by every target GPU, when the RHI cannot be queried (Qt older than 6.6, or a build without the private Qt API). <computeroutput>QACCELPLOT_MAX_TEXTURE_SIZE</computeroutput> lowers the result, for example to exercise capacity limits in tests. </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="30" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="30" declcolumn="5"/>
-      </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1a1115a2b55eeca9e9b1f936432726572f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
         <definition>int QAccelPlot::Internal::recordCapacity</definition>
@@ -1334,7 +1357,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="37" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="37" declcolumn="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="30" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="30" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1a4d22277096776b7ab88ec04d5a44ae88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1353,7 +1376,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="40" column="7" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="40" declcolumn="7"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="33" column="7" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="33" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1a0dc34270b91cbc5c5a63d964fcd721dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1377,7 +1400,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="45" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="45" declcolumn="6"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="38" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="38" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1ae0d3157a533e0d97e23a2829017f80c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1GrowViewport" kindref="compound">GrowViewport</ref></type>
@@ -1396,7 +1419,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="48" column="14" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="48" declcolumn="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="41" column="14" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="41" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1a4415b1f9588a64676a5ce8c4726806d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -1420,7 +1443,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="55" column="8" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="55" declcolumn="8"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="48" column="8" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="48" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="StepPath_8hpp_1a6f2f7ff4a80785b5d31e9313e7434119" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>int</type>

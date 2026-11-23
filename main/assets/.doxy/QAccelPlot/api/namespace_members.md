@@ -30,6 +30,7 @@
 * **dataTextureHeight** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureItemCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureUploadTotals** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **dataTextureWidth** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **distanceToBox** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **distanceToInterval** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
@@ -73,10 +74,10 @@
 
 ## k
 
-* **kDataTextureWidth** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **kFadeCurveSamples** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **kFadeGroupCount** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **kFadeStartSamples** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **kMaxDataTextureWidth** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **kTrailEasingSamples** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **keptItemsChanged** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **kMaxDashPatternSize** ([**QAccelPlot**](namespaceQAccelPlot.md))

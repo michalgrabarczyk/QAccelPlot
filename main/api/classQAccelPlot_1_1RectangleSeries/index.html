@@ -3099,7 +3099,7 @@
 <p>Set <code>antialiasing</code> to smooth edges that fall between pixels. It is off by default because rectangles that touch then show faint seams.</p>
 <p>**
 **</p>
-<p>Up to 16,777,216 (2^24) rectangles are drawn correctly. The shader indexes rectangles in single precision, and at that count the data texture reaches 8192 rows, the size every GPU supports.</p>
+<p>At most 16,777,216 (2^24) rectangles are drawn, because the shader indexes them in single precision, and fewer on GPUs whose maximum texture size is below 8192.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-border-12">property border<a class="headerlink" href="#property-border-12" title="Permanent link">&para;</a></h3>

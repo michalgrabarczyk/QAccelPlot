@@ -71,6 +71,7 @@ Here is a list of all files with brief descriptions:
             * **dir** [**internal**](dir_78f1acf6f1aae410b1e370fefb18a5f4.md)     
                 * **file** [**GlowStyle.hpp**](GlowStyle_8hpp.md)     
                 * **file** [**ItemFade.hpp**](ItemFade_8hpp.md)     
+                * **file** [**MaxTextureSize.hpp**](MaxTextureSize_8hpp.md)     
                 * **file** [**OutlinedRectangle.hpp**](OutlinedRectangle_8hpp.md)     
                 * **file** [**PointerTracker.hpp**](PointerTracker_8hpp.md)     
                 * **file** [**RectangleZoomOverlay.hpp**](RectangleZoomOverlay_8hpp.md)     

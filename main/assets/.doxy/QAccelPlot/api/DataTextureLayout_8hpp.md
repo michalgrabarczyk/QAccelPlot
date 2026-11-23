@@ -18,6 +18,7 @@
 
 
 * `#include <QtCore/qglobal.h>`
+* `#include <algorithm>`
 
 
 

@@ -109,10 +109,10 @@
 
 | Type | Name |
 | ---: | :--- |
-|  int | [**kDataTextureWidth**](#variable-kdatatexturewidth)   = `{8192}`<br>_Number of floats stored per data texture row, one float per RGBA8 texel._  |
 |  int | [**kFadeCurveSamples**](#variable-kfadecurvesamples)   = `32`<br>_Number of opacity samples over the timeline of an item._  |
 |  int | [**kFadeGroupCount**](#variable-kfadegroupcount)   = `2`<br>_Most transition groups that fade at once: the kept items, and the added or removed ones._  |
 |  int | [**kFadeStartSamples**](#variable-kfadestartsamples)   = `16`<br>_Number of samples of the start times of the items along an eased reveal front._  |
+|  int | [**kMaxDataTextureWidth**](#variable-kmaxdatatexturewidth)   = `{8192}`<br>_Largest number of floats stored per data texture row, one float per RGBA8 texel._  |
 |  int | [**kTrailEasingSamples**](#variable-ktraileasingsamples)   = `16`<br>_Number of samples of the_ `FadeTrail` _easing curve._ |
 
 
@@ -143,9 +143,10 @@
 |  int | [**compareItemFades**](#function-compareitemfades) (const [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) & left, const [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) & right) noexcept<br>_Orders_ _left_ _and__right_ _for_`QSGMaterial::compare()` _: negative, 0, or positive._ |
 |  int | [**compareItemTrails**](#function-compareitemtrails) (const [**ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) & left, const [**ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) & right) noexcept<br>_Orders_ _left_ _and__right_ _for_`QSGMaterial::compare()` _: negative, 0, or positive._ |
 |  QSGGeometryNode \* | [**createRecordNode**](#function-createrecordnode) (const QSGGeometry::AttributeSet & attributes, QSGMaterial \* material) <br>_Returns an empty triangle node of_ _attributes_ _that owns its geometry and__material_ _._ |
-|  int | [**dataTextureHeight**](#function-datatextureheight) (const int floatCount) <br>_Returns the number of data texture rows needed to store_ _floatCount_ _floats._ |
-|  qint64 | [**dataTextureItemCapacity**](#function-datatextureitemcapacity) (const int maxHeight, const int floatsPerItem) <br>_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture at most__maxHeight_ _rows tall._ |
+|  int | [**dataTextureHeight**](#function-datatextureheight) (const int floatCount, const int width) <br>_Returns the number of rows of_ _width_ _floats needed to store__floatCount_ _floats._ |
+|  qint64 | [**dataTextureItemCapacity**](#function-datatextureitemcapacity) (const int maxTextureSize, const int floatsPerItem) <br>_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture on a GPU with texture limit__maxTextureSize_ _._ |
 |  [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) | [**dataTextureUploadTotals**](#function-datatextureuploadtotals) () <br>_Returns the totals since the last reset. Thread-safe._  |
+|  int | [**dataTextureWidth**](#function-datatexturewidth) (const int maxTextureSize) <br>_Returns the floats per data texture row on a GPU with texture limit_ _maxTextureSize_ _._ |
 |  qreal | [**distanceToBox**](#function-distancetobox) (qreal x, qreal y, const std::pair&lt; qreal, qreal &gt; & xs, const std::pair&lt; qreal, qreal &gt; & ys) <br>_Returns the pixel distance from (_ _x_ _,__y_ _) to the box spanning__xs_ _and__ys_ _; 0 inside._ |
 |  double | [**distanceToInterval**](#function-distancetointerval) (double position, double a, double b) noexcept<br>_Returns the signed distance from_ _position_ _to the closed interval between__a_ _and__b_ _._ |
 |  qreal | [**edgePixel**](#function-edgepixel) (double value, const [**Axis**](classQAccelPlot_1_1Axis.md) & axis, qreal length) <br>_Maps rectangle edge_ _value_ _on__axis_ _to item pixels along an item side__length_ _pixels long._ |
@@ -284,25 +285,6 @@ enum QAccelPlot::Internal::TransitionKind {
 
 
 
-### variable kDataTextureWidth {#variable-kdatatexturewidth}
-
-_Number of floats stored per data texture row, one float per RGBA8 texel._ 
-```C++
-int QAccelPlot::Internal::kDataTextureWidth;
-```
-
-
-
-data\_texture.glsl reads the width from the bound texture, so this is the only definition. 
-
-
-        
-
-<hr>
-
-
-
-
 ### variable kFadeCurveSamples {#variable-kfadecurvesamples}
 
 _Number of opacity samples over the timeline of an item._ 
@@ -338,6 +320,21 @@ int QAccelPlot::Internal::kFadeGroupCount;
 _Number of samples of the start times of the items along an eased reveal front._ 
 ```C++
 int QAccelPlot::Internal::kFadeStartSamples;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable kMaxDataTextureWidth {#variable-kmaxdatatexturewidth}
+
+_Largest number of floats stored per data texture row, one float per RGBA8 texel._ 
+```C++
+int QAccelPlot::Internal::kMaxDataTextureWidth;
 ```
 
 
@@ -544,10 +541,11 @@ For series whose shader derives every vertex from its index and reads the data p
 
 ### function dataTextureHeight {#function-datatextureheight}
 
-_Returns the number of data texture rows needed to store_ _floatCount_ _floats._
+_Returns the number of rows of_ _width_ _floats needed to store__floatCount_ _floats._
 ```C++
 int QAccelPlot::Internal::dataTextureHeight (
-    const int floatCount
+    const int floatCount,
+    const int width
 ) 
 ```
 
@@ -561,10 +559,10 @@ int QAccelPlot::Internal::dataTextureHeight (
 
 ### function dataTextureItemCapacity {#function-datatextureitemcapacity}
 
-_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture at most__maxHeight_ _rows tall._
+_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture on a GPU with texture limit__maxTextureSize_ _._
 ```C++
 qint64 QAccelPlot::Internal::dataTextureItemCapacity (
-    const int maxHeight,
+    const int maxTextureSize,
     const int floatsPerItem
 ) 
 ```
@@ -586,6 +584,27 @@ DataTextureUploadTotals QAccelPlot::Internal::dataTextureUploadTotals ()
 
 
 
+
+<hr>
+
+
+
+
+### function dataTextureWidth {#function-datatexturewidth}
+
+_Returns the floats per data texture row on a GPU with texture limit_ _maxTextureSize_ _._
+```C++
+int QAccelPlot::Internal::dataTextureWidth (
+    const int maxTextureSize
+) 
+```
+
+
+
+data\_texture.glsl reads the width from the bound texture, so it follows this value. 
+
+
+        
 
 <hr>
 
@@ -912,7 +931,7 @@ int QAccelPlot::Internal::maxTextureSize (
 
 
 
-Falls back to 8192, supported by every target GPU, when the RHI cannot be queried (Qt older than 6.6, or a build without the private Qt API). `QACCELPLOT_MAX_TEXTURE_SIZE` lowers the result, for example to exercise capacity limits in tests. 
+Falls back to 8192 when the RHI cannot be queried (Qt older than 6.6, or a build without the private Qt API). `QACCELPLOT_MAX_TEXTURE_SIZE` lowers the result, for example to exercise capacity limits in tests. 
 
 
         

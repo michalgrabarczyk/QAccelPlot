@@ -368,7 +368,7 @@ A data point is invalid when `x`, `low`, or `high` is NaN or ±Inf, or is not st
 **
 **
 
-At most 16,777,216 (2^24) data points are drawn, fewer on GPUs whose maximum texture size is below 6144. Data points beyond the limit are not drawn, and a warning is logged once.
+At most 16,777,216 (2^24) data points are drawn. GPUs with a maximum texture size below 8192 may draw fewer. Data points beyond the limit are not drawn, and a warning is logged once.
 
 
 

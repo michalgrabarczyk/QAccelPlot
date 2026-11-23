@@ -2614,7 +2614,7 @@
 <p>A data point is invalid when <code>x</code>, <code>low</code>, or <code>high</code> is NaN or ±Inf, or is not strictly positive on a log-scale axis. The fill and the edge lines leave a gap at invalid data points. Auto-ranging skips invalid values one by one.</p>
 <p>**
 **</p>
-<p>At most 16,777,216 (2^24) data points are drawn, fewer on GPUs whose maximum texture size is below 6144. Data points beyond the limit are not drawn, and a warning is logged once.</p>
+<p>At most 16,777,216 (2^24) data points are drawn. GPUs with a maximum texture size below 8192 may draw fewer. Data points beyond the limit are not drawn, and a warning is logged once.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1BandEdges/"><strong>BandEdges</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-color-12">property color<a class="headerlink" href="#property-color-12" title="Permanent link">&para;</a></h3>

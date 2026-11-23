@@ -30,6 +30,7 @@
 * **dataTextureHeight** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureItemCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureUploadTotals** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **dataTextureWidth** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **distanceToBox** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **distanceToInterval** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 

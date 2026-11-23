@@ -918,7 +918,7 @@
 </simplesect>
 <simplesect kind="par"><title>Invalid data points</title><para>A data point is invalid when <computeroutput>x</computeroutput>, <computeroutput>low</computeroutput>, or <computeroutput>high</computeroutput> is NaN or ±Inf, or is not strictly positive on a log-scale axis. The fill and the edge lines leave a gap at invalid data points. Auto-ranging skips invalid values one by one.</para>
 </simplesect>
-<simplesect kind="par"><title>Limits</title><para>At most 16,777,216 (2^24) data points are drawn, fewer on GPUs whose maximum texture size is below 6144. Data points beyond the limit are not drawn, and a warning is logged once.</para>
+<simplesect kind="par"><title>Limits</title><para>At most 16,777,216 (2^24) data points are drawn. GPUs with a maximum texture size below 8192 may draw fewer. Data points beyond the limit are not drawn, and a warning is logged once.</para>
 </simplesect>
 <simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1BandEdges" kindref="compound">BandEdges</ref> </para>
 </simplesect>

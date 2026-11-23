@@ -16,18 +16,25 @@
 
 #include <QtCore/qglobal.h>
 
+#include <algorithm>
+
 namespace QAccelPlot::Internal {
 
-constexpr int kDataTextureWidth{8192};
+constexpr int kMaxDataTextureWidth{8192};
 
-constexpr int dataTextureHeight(const int floatCount)
+constexpr int dataTextureWidth(const int maxTextureSize)
 {
-    return (floatCount + kDataTextureWidth - 1) / kDataTextureWidth;
+    return std::min(kMaxDataTextureWidth, maxTextureSize);
 }
 
-constexpr qint64 dataTextureItemCapacity(const int maxHeight, const int floatsPerItem)
+constexpr int dataTextureHeight(const int floatCount, const int width)
 {
-    return static_cast<qint64>(kDataTextureWidth) * maxHeight / floatsPerItem;
+    return (floatCount + width - 1) / width;
+}
+
+constexpr qint64 dataTextureItemCapacity(const int maxTextureSize, const int floatsPerItem)
+{
+    return static_cast<qint64>(dataTextureWidth(maxTextureSize)) * maxTextureSize / floatsPerItem;
 }
 
 } // namespace QAccelPlot::Internal

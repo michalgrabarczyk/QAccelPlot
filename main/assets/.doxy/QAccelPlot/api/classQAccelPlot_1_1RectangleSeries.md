@@ -406,7 +406,7 @@ Set `antialiasing` to smooth edges that fall between pixels. It is off by defaul
 **
 **
 
-Up to 16,777,216 (2^24) rectangles are drawn correctly. The shader indexes rectangles in single precision, and at that count the data texture reaches 8192 rows, the size every GPU supports.
+At most 16,777,216 (2^24) rectangles are drawn, because the shader indexes them in single precision, and fewer on GPUs whose maximum texture size is below 8192.
 
 
 
