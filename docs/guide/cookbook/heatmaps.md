@@ -107,7 +107,8 @@ These cells are transparent:
 - cells with a non-finite value, such as `NaN` for missing data;
 - under a `logScale` colormap, cells with a value at or below zero.
 
-Non-finite values do not count toward the value range.
+Non-finite values do not count toward the value range. Under a `logScale`
+colormap, neither do values at or below zero or subnormal values.
 
 ## Show a color bar
 
