@@ -441,7 +441,7 @@ static Histogram QAccelPlot::Histogram::fromSamples (
 
 
 
-The range is 0 to 1 without finite samples, and widens by 0.5 on each side when all samples are equal. 
+The range is 0 to 1 without finite samples, and widens by at least 0.5 on each side when the samples are too close for _binCount_ distinct bins. 
 
 
         
