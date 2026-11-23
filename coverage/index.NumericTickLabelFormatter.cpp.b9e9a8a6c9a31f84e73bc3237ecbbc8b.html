@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-11-23 08:32:16</td>
+      <td>2026-11-23 09:38:12</td>
     </tr>
   </table>
 </div>
@@ -70,10 +70,10 @@
       <th>Call count</th>
       <th>Block coverage</th>
     </tr>
-    <tr><td><a href="#l38">QAccelPlot::(anonymous namespace)::decimalsForStep(double) (line 38)</a></td><td>called 3483 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l38">QAccelPlot::(anonymous namespace)::decimalsForStep(double) (line 38)</a></td><td>called 3567 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l15">QAccelPlot::(anonymous namespace)::powerOfTen(int) (line 15)</a></td><td>called 90 times</td><td>73.0%</td></tr>
-    <tr><td><a href="#l67">QAccelPlot::NumericTickLabelFormatter::NumericTickLabelFormatter(QObject*) (line 67)</a></td><td>called 1703 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l72">QAccelPlot::NumericTickLabelFormatter::doFormat(double, double) const (line 72)</a></td><td>called 3483 times</td><td>83.0%</td></tr>
+    <tr><td><a href="#l67">QAccelPlot::NumericTickLabelFormatter::NumericTickLabelFormatter(QObject*) (line 67)</a></td><td>called 1717 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l72">QAccelPlot::NumericTickLabelFormatter::doFormat(double, double) const (line 72)</a></td><td>called 3567 times</td><td>83.0%</td></tr>
     <tr><td><a href="#l85">QAccelPlot::NumericTickLabelFormatter::doFormatLogTick(double) const (line 85)</a></td><td>called 91 times</td><td>83.0%</td></tr>
   </table>
 </details>
@@ -393,7 +393,7 @@
       <td class="lineno"><a id="l38" href="#l38">38</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3483</td>
+      <td class="linecount coveredLine">3567</td>
       <td class="src coveredLine"><span class="kt">int</span><span class="w"> </span><span class="nf">decimalsForStep</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">tickStep</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -409,16 +409,16 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">6/6</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 3480 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 3564 times.</div>
             <div class="takenBranch">&check; Branch 1 taken 3 times.</div>
             <div class="takenBranch">&check; Branch 3 taken 1 times.</div>
-            <div class="takenBranch">&check; Branch 4 taken 3479 times.</div>
+            <div class="takenBranch">&check; Branch 4 taken 3563 times.</div>
             <div class="takenBranch">&check; Branch 5 taken 4 times.</div>
-            <div class="takenBranch">&check; Branch 6 taken 3479 times.</div>
+            <div class="takenBranch">&check; Branch 6 taken 3563 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">3483</td>
+      <td class="linecount coveredLine">3567</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">tickStep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">isfinite</span><span class="p">(</span><span class="n">tickStep</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -488,7 +488,7 @@
       <td class="lineno"><a id="l50" href="#l50">50</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3479</td>
+      <td class="linecount coveredLine">3563</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">leadingDigitDecimals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="o">-</span><span class="n">std</span><span class="o">::</span><span class="n">floor</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">log10</span><span class="p">(</span><span class="n">tickStep</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">kRelativeTolerance</span><span class="p">)));</span></td>
     </tr>
     <tr class="source-line">
@@ -516,14 +516,14 @@
       <td class="lineno"><a id="l54" href="#l54">54</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3479</td>
+      <td class="linecount coveredLine">3563</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">maxDecimals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">leadingDigitDecimals</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">kMaxExtraDecimals</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l55" href="#l55">55</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3479</td>
+      <td class="linecount coveredLine">3563</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qreal</span><span class="p">{</span><span class="mf">1.0</span><span class="p">};</span></td>
     </tr>
     <tr class="source-line">
@@ -532,19 +532,19 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 6210 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 6294 times.</div>
             <div class="takenBranch">&check; Branch 1 taken 1 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">6211</td>
+      <td class="linecount coveredLine">6295</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">decimals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">decimals</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">maxDecimals</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">decimals</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mf">10.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l57" href="#l57">57</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">6210</td>
+      <td class="linecount coveredLine">6294</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tickStep</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">scale</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -553,19 +553,19 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 3478 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 3562 times.</div>
             <div class="takenBranch">&check; Branch 2 taken 2732 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">6210</td>
+      <td class="linecount coveredLine">6294</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">scaled</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">round</span><span class="p">(</span><span class="n">scaled</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">scaled</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">kRelativeTolerance</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l59" href="#l59">59</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3478</td>
+      <td class="linecount coveredLine">3562</td>
       <td class="src coveredLine"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">decimals</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -621,14 +621,14 @@
       <td class="lineno"><a id="l67" href="#l67">67</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1703</td>
+      <td class="linecount coveredLine">1717</td>
       <td class="src coveredLine"><span class="n">NumericTickLabelFormatter</span><span class="o">::</span><span class="n">NumericTickLabelFormatter</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l68" href="#l68">68</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1703</td>
+      <td class="linecount coveredLine">1717</td>
       <td class="src coveredLine"><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">TickLabelFormatter</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -642,7 +642,7 @@
       <td class="lineno"><a id="l70" href="#l70">70</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1703</td>
+      <td class="linecount coveredLine">1717</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
@@ -656,7 +656,7 @@
       <td class="lineno"><a id="l72" href="#l72">72</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3483</td>
+      <td class="linecount coveredLine">3567</td>
       <td class="src coveredLine"><span class="n">QString</span><span class="w"> </span><span class="nf">NumericTickLabelFormatter::doFormat</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">tickStep</span><span class="p">)</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
@@ -670,14 +670,14 @@
       <td class="lineno"><a id="l74" href="#l74">74</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3483</td>
+      <td class="linecount coveredLine">3567</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">precision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">decimalsForStep</span><span class="p">(</span><span class="n">tickStep</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l75" href="#l75">75</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3483</td>
+      <td class="linecount coveredLine">3567</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QString</span><span class="o">::</span><span class="n">number</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="sc">'f'</span><span class="p">,</span><span class="w"> </span><span class="n">precision</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -707,20 +707,20 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">8/10</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 3 taken 3483 times.</div>
+            <div class="takenBranch">&check; Branch 3 taken 3567 times.</div>
             <div class="notTakenBranch">&cross; Branch 4 not taken.</div>
             <div class="takenBranch">&check; Branch 5 taken 241 times.</div>
-            <div class="takenBranch">&check; Branch 6 taken 3242 times.</div>
+            <div class="takenBranch">&check; Branch 6 taken 3326 times.</div>
             <div class="takenBranch">&check; Branch 8 taken 241 times.</div>
             <div class="notTakenBranch">&cross; Branch 9 not taken.</div>
             <div class="takenBranch">&check; Branch 10 taken 1 times.</div>
             <div class="takenBranch">&check; Branch 11 taken 240 times.</div>
             <div class="takenBranch">&check; Branch 12 taken 1 times.</div>
-            <div class="takenBranch">&check; Branch 13 taken 3482 times.</div>
+            <div class="takenBranch">&check; Branch 13 taken 3566 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">3483</td>
+      <td class="linecount partialCoveredLine">3567</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="n">startsWith</span><span class="p">(</span><span class="n">QLatin1Char</span><span class="p">(</span><span class="sc">'-'</span><span class="p">))</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="n">toDouble</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -748,7 +748,7 @@
       <td class="lineno"><a id="l82" href="#l82">82</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3483</td>
+      <td class="linecount coveredLine">3567</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">text</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
