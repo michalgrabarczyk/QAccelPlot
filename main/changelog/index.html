@@ -2244,6 +2244,8 @@
 <li>Series with the same color given in different color specs, such as
   <code>Qt.hsla()</code> and <code>Qt.rgba()</code>, share a scene graph batch; their materials
   compared unequal both ways, breaking the batch renderer's ordering.</li>
+<li>A <code>HeatmapSeries</code> with a <code>logScale</code> colormap and an unset bound keeps drawing
+  its positive cells when other cells are at or below zero.</li>
 </ul>
 <h2 id="060-2026-11-16">[0.6.0] — 2026-11-16<a class="headerlink" href="#060-2026-11-16" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>

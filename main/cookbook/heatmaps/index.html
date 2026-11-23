@@ -1751,7 +1751,8 @@ range. Nothing is drawn while <code>colormap</code> is null.</p>
 <li>cells with a non-finite value, such as <code>NaN</code> for missing data;</li>
 <li>under a <code>logScale</code> colormap, cells with a value at or below zero.</li>
 </ul>
-<p>Non-finite values do not count toward the value range.</p>
+<p>Non-finite values do not count toward the value range. Under a <code>logScale</code>
+colormap, neither do values at or below zero or subnormal values.</p>
 <h2 id="show-a-color-bar">Show a color bar<a class="headerlink" href="#show-a-color-bar" title="Permanent link">&para;</a></h2>
 <p>A <a href="../../api/classQAccelPlot_1_1ColorBar/"><code>ColorBar</code></a> keys a heatmap as it keys a point cloud; see
 <a href="../point-clouds/#show-a-color-bar">Show a color bar</a>:</p>
