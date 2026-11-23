@@ -47,6 +47,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   from a transition's `onRunningChanged` as new bars are set.
 - Translucent `GradientFill`, `GradientStroke`, and colormap colors no longer
   render too dark.
+- Series no longer draw corrupted data on GPUs with a maximum texture size
+  below 8192.
 
 ## [0.6.0] — 2026-11-16
 

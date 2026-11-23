@@ -24,8 +24,8 @@ namespace QAccelPlot {
 namespace {
 
 constexpr auto kSize = 100;
-// With QACCELPLOT_MAX_TEXTURE_SIZE=1 the data texture holds 8192 floats.
-constexpr auto kTextureFloats = 8192;
+// With QACCELPLOT_MAX_TEXTURE_SIZE=64 the 64 x 64 data texture holds 4096 floats.
+constexpr auto kTextureFloats = 4096;
 
 // A 100 px window whose series map the data range [0, 1] onto it.
 struct Scene {
@@ -159,7 +159,7 @@ void SeriesCapacityTest::linePointsBeyondCapacityAreNotDrawnOrHovered()
     scene.add(curve);
     curve.setColor(Qt::white);
     curve.setLineWidth(6.0);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve has 6000 points but draws at most 4096.*"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve has 6000 points but draws at most 2048.*"));
     curve.setDataF(std::move(data), kPointCount);
 
     scene.window.show();
@@ -196,7 +196,7 @@ void SeriesCapacityTest::rectanglesBeyondCapacityAreNotDrawnOrHovered()
     auto rectangles = RectangleSeries{};
     scene.add(rectangles);
     rectangles.setColor(Qt::white);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries has 3000 rectangles but draws at most 2048.*"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries has 3000 rectangles but draws at most 1024.*"));
     rectangles.setDataF(std::move(data), kRectangleCount);
 
     scene.window.show();
@@ -228,7 +228,7 @@ void SeriesCapacityTest::barsBeyondCapacityAreNotDrawnOrHovered()
     scene.add(bars);
     bars.setColor(Qt::white);
     bars.setBarWidth(0.3);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries has 6000 bars but draws at most 4096.*"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries has 6000 bars but draws at most 2048.*"));
     bars.setDataF(std::move(data), kBarCount);
 
     scene.window.show();
@@ -248,7 +248,7 @@ void SeriesCapacityTest::heatmapBeyondCapacityIsNotDrawn()
     if (scene.isSoftware()) {
         QSKIP("Custom materials require a hardware scene graph backend");
     }
-    // One float per cell: the data texture holds 8192 cells.
+    // One float per cell: the data texture holds 4096 cells.
     constexpr auto kOverSide = 100;
     constexpr auto kUnderSide = 50;
     auto heatmap = HeatmapSeries{};
@@ -260,7 +260,7 @@ void SeriesCapacityTest::heatmapBeyondCapacityIsNotDrawn()
     scene.window.show();
     QVERIFY(QTest::qWaitForWindowExposed(&scene.window));
 
-    QTest::ignoreMessage(QtWarningMsg, "HeatmapSeries has 10000 cells but draws at most 8192 ; the series is not drawn.");
+    QTest::ignoreMessage(QtWarningMsg, "HeatmapSeries has 10000 cells but draws at most 4096 ; the series is not drawn.");
     heatmap.setValues(std::vector<float>(kOverSide * kOverSide, 1.0f), kOverSide, kOverSide);
     QCOMPARE(scene.window.grabWindow().pixel(50, 50), qRgb(0, 0, 0));
 
@@ -274,8 +274,8 @@ void SeriesCapacityTest::warnsEachTimeDataOutgrowsCapacity()
     if (scene.isSoftware()) {
         QSKIP("Custom materials require a hardware scene graph backend");
     }
-    constexpr auto kOverCapacity = 5000;
-    constexpr auto kUnderCapacity = 3000;
+    constexpr auto kOverCapacity = 3000;
+    constexpr auto kUnderCapacity = 1500;
     auto curve = LineCurve{};
     scene.add(curve);
     scene.window.show();
@@ -329,7 +329,7 @@ void SeriesCapacityTest::eachSeriesWarnsAboutItsOwnData()
 
 int main(int argc, char* argv[])
 {
-    qputenv("QACCELPLOT_MAX_TEXTURE_SIZE", "1");
+    qputenv("QACCELPLOT_MAX_TEXTURE_SIZE", "64");
     qputenv("QT_ENABLE_HIGHDPI_SCALING", "0");
     auto app = QGuiApplication{argc, argv};
     auto test = QAccelPlot::SeriesCapacityTest{};

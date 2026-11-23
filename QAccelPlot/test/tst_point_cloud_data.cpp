@@ -658,10 +658,11 @@ void PointCloudDataTest::dataTextureCapacityFollowsTextureHeight()
     QCOMPARE(Internal::dataTextureItemCapacity(8192, kWithValues), qint64{22'369'621});
     QCOMPARE(Internal::dataTextureItemCapacity(8192, kWithoutValues), qint64{33'554'432});
     QCOMPARE(Internal::dataTextureItemCapacity(16384, kWithValues), qint64{44'739'242});
-    QCOMPARE(Internal::dataTextureHeight(1), 1);
-    QCOMPARE(Internal::dataTextureHeight(Internal::kDataTextureWidth), 1);
-    QCOMPARE(Internal::dataTextureHeight(Internal::kDataTextureWidth + 1), 2);
-    QCOMPARE(Internal::dataTextureHeight(10'000'000 * kWithValues), 3663);
+    constexpr auto kWidth = Internal::kMaxDataTextureWidth;
+    QCOMPARE(Internal::dataTextureHeight(1, kWidth), 1);
+    QCOMPARE(Internal::dataTextureHeight(kWidth, kWidth), 1);
+    QCOMPARE(Internal::dataTextureHeight(kWidth + 1, kWidth), 2);
+    QCOMPARE(Internal::dataTextureHeight(10'000'000 * kWithValues, kWidth), 3663);
 }
 
 } // namespace QAccelPlot

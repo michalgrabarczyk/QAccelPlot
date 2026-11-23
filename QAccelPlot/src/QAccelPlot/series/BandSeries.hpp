@@ -46,7 +46,7 @@ namespace QAccelPlot {
 /// values one by one.
 ///
 /// \par Limits
-/// At most 16,777,216 (2^24) data points are drawn, fewer on GPUs whose maximum texture size is below 6144.
+/// At most 16,777,216 (2^24) data points are drawn. GPUs with a maximum texture size below 8192 may draw fewer.
 /// Data points beyond the limit are not drawn, and a warning is logged once.
 ///
 /// \sa LineCurve, BandEdges

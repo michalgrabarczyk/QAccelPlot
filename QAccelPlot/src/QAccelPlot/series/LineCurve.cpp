@@ -12,6 +12,7 @@
 #include "QAccelPlot/effects/GradientStroke.hpp"
 #include "QAccelPlot/effects/internal/GradientCoordinates.hpp"
 #include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
+#include "QAccelPlot/internal/MaxTextureSize.hpp"
 #include "QAccelPlot/legend/LegendEntry.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
