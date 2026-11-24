@@ -2258,6 +2258,8 @@
 <li><code>Histogram.fromSamples()</code> with a bin count no longer returns an empty
   histogram for nearly equal samples, such as <code>0.1 + 0.2</code> and <code>0.3</code>.</li>
 <li><code>BarSeries</code> data ranges on a log position axis account for <code>barOffset</code>.</li>
+<li><code>Histogram</code> rejects bin counts above 1,000,000 with a warning instead of
+  terminating the application.</li>
 </ul>
 <h2 id="060-2026-11-16">[0.6.0] — 2026-11-16<a class="headerlink" href="#060-2026-11-16" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>

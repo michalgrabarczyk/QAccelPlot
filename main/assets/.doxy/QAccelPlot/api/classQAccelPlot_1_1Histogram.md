@@ -128,6 +128,9 @@ _Samples counted into bins, convertible to_ `BarSeries` _data._[More...](#detail
 A bin spans from its lower edge up to, but not including, its upper edge; the last bin also includes its upper edge. NaN samples and samples outside the edges are not counted.
 
 
+A `binCount` argument must be from 1 to 1,000,000. Other values log a warning and give an empty result.
+
+
 The functions are stateless, so a histogram can be built on a worker thread and its data passed to `postData()`.
 
 

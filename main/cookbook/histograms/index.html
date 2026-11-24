@@ -1701,9 +1701,9 @@ at each power of ten, so draw them as density.</p>
 </tr>
 </tbody>
 </table>
-<p>Invalid edges or a bin count below 1 give an empty histogram (<code>binCount</code> 0)
-and a logged warning. A histogram exposes <code>binCount</code>, <code>edges</code>, <code>values</code>,
-<code>total</code>, <code>uniform</code>, and <code>binWidth</code>, which is NaN for uneven bins.</p>
+<p>Invalid edges or a bin count outside 1 to 1,000,000 give an empty histogram
+(<code>binCount</code> 0) and a logged warning. A histogram exposes <code>binCount</code>, <code>edges</code>,
+<code>values</code>, <code>total</code>, <code>uniform</code>, and <code>binWidth</code>, which is NaN for uneven bins.</p>
 <h2 id="c">C++<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QAccelPlot/data/Histogram.hpp&gt;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>

@@ -129,6 +129,9 @@ QAccelPlot.BarSeries {
 C++ code uses the static functions of [**Histogram**](classQAccelPlot_1_1Histogram.md) instead.
 
 
+A bin count must be from 1 to 1,000,000. Other values log a warning and give an empty result.
+
+
 
 
 **See also:** [**Histogram**](classQAccelPlot_1_1Histogram.md) 
