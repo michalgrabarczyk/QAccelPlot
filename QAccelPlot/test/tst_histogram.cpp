@@ -15,6 +15,9 @@
 #include <random>
 #include <vector>
 
+using BinBuilder = int (*)(int);
+Q_DECLARE_METATYPE(BinBuilder)
+
 namespace QAccelPlot {
 
 namespace {
@@ -42,6 +45,46 @@ double area(const Histogram& histogram)
 void expectWarning(const char* pattern)
 {
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QString::fromLatin1(pattern)));
+}
+
+constexpr auto kMaximumBinCount = 1'000'000;
+
+template <typename Sample> int binsSpanningSamples(const int binCount)
+{
+    const auto samples = std::vector<Sample>{Sample{1}, Sample{2}};
+    return Histogram::fromSamples(samples.data(), samples.size(), binCount).binCount();
+}
+
+template <typename Sample> int binsInRange(const int binCount)
+{
+    const auto samples = std::vector<Sample>{Sample{1}, Sample{2}};
+    return Histogram::fromSamples(samples.data(), samples.size(), binCount, 0.0, 4.0).binCount();
+}
+
+int binsBetween(const std::vector<double>& edges)
+{
+    return edges.empty() ? 0 : static_cast<int>(edges.size()) - 1;
+}
+
+int linearEdgeBins(const int binCount)
+{
+    return binsBetween(Histogram::linearEdges(0.0, 4.0, binCount));
+}
+
+int logEdgeBins(const int binCount)
+{
+    return binsBetween(Histogram::logEdges(1.0, 4.0, binCount));
+}
+
+void addBinBuilderRows(const int binCount)
+{
+    const auto addRow = [binCount](const char* name, const BinBuilder builder) { QTest::addRow("%s-%d", name, binCount) << builder << binCount; };
+    addRow("double-samples", binsSpanningSamples<double>);
+    addRow("double-range", binsInRange<double>);
+    addRow("float-samples", binsSpanningSamples<float>);
+    addRow("float-range", binsInRange<float>);
+    addRow("linear-edges", linearEdgeBins);
+    addRow("log-edges", logEdgeBins);
 }
 
 }
@@ -76,6 +119,10 @@ private slots:
     void decadeEdgesFollowLogAxisTicks();
     void decadeEdgesKeepTheRangeEnds();
     void edgeBuildersRejectInvalidArguments();
+    void binCountAboveMaximumIsRejected_data();
+    void binCountAboveMaximumIsRejected();
+    void maximumBinCountIsAccepted_data();
+    void maximumBinCountIsAccepted();
     void densityDividesByTotalAndBinWidth();
     void densityAreaIsOne();
     void densityOfNoSamplesIsZero();
@@ -408,6 +455,36 @@ void HistogramTest::edgeBuildersRejectInvalidArguments()
     QVERIFY(Histogram::logEdges(kNaN, 1.0, 4).empty());
     expectWarning("Histogram logarithmic edges need a positive minimum: 0");
     QVERIFY(Histogram::logEdges(0.0, 1.0, 4).empty());
+}
+
+void HistogramTest::binCountAboveMaximumIsRejected_data()
+{
+    QTest::addColumn<BinBuilder>("builder");
+    QTest::addColumn<int>("binCount");
+    addBinBuilderRows(2'000'000'000);
+    addBinBuilderRows(kMaximumBinCount + 1);
+}
+
+void HistogramTest::binCountAboveMaximumIsRejected()
+{
+    QFETCH(BinBuilder, builder);
+    QFETCH(int, binCount);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("Histogram bin count must be at most %1: %2").arg(kMaximumBinCount).arg(binCount)));
+    QCOMPARE(builder(binCount), 0);
+}
+
+void HistogramTest::maximumBinCountIsAccepted_data()
+{
+    QTest::addColumn<BinBuilder>("builder");
+    QTest::addColumn<int>("binCount");
+    addBinBuilderRows(kMaximumBinCount);
+}
+
+void HistogramTest::maximumBinCountIsAccepted()
+{
+    QFETCH(BinBuilder, builder);
+    QFETCH(int, binCount);
+    QCOMPARE(builder(binCount), binCount);
 }
 
 void HistogramTest::densityDividesByTotalAndBinWidth()
