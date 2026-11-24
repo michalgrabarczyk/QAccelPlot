@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-11-24 20:18:07</td>
+      <td>2026-11-24 20:21:50</td>
     </tr>
   </table>
 </div>
@@ -71,7 +71,7 @@
       <th>Block coverage</th>
     </tr>
     <tr><td><a href="#l20">QAccelPlot::(anonymous namespace)::evaluateGradient(std::vector&lt;QAccelPlot::GradientStopData, std::allocator&lt;QAccelPlot::GradientStopData&gt; &gt; const&amp;, float) (line 20)</a></td><td>called 57344 times</td><td>89.0%</td></tr>
-    <tr><td><a href="#l92">QAccelPlot::GradientTexture::commit(QSGMaterialShader::RenderState&amp;, QSGTexture**) (line 92)</a></td><td>called 1523 times</td><td>80.0%</td></tr>
+    <tr><td><a href="#l92">QAccelPlot::GradientTexture::commit(QSGMaterialShader::RenderState&amp;, QSGTexture**) (line 92)</a></td><td>called 1525 times</td><td>80.0%</td></tr>
     <tr><td><a href="#l108">QAccelPlot::GradientTexture::comparisonKey() const (line 108)</a></td><td>called 14 times</td><td>67.0%</td></tr>
     <tr><td><a href="#l113">QAccelPlot::GradientTexture::matches(std::vector&lt;QAccelPlot::GradientStopData, std::allocator&lt;QAccelPlot::GradientStopData&gt; &gt; const&amp;) const (line 113)</a></td><td>called 619 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l52">QAccelPlot::GradientTexture::neutralStops() (line 52)</a></td><td>called 492 times</td><td>71.0%</td></tr>
@@ -919,7 +919,7 @@
       <td class="lineno"><a id="l92" href="#l92">92</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1523</td>
+      <td class="linecount coveredLine">1525</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="n">GradientTexture</span><span class="o">::</span><span class="n">commit</span><span class="p">(</span><span class="n">QSGMaterialShader</span><span class="o">::</span><span class="n">RenderState</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">QSGTexture</span><span class="o">**</span><span class="w"> </span><span class="n">texture</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -936,11 +936,11 @@
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
             <div class="notTakenBranch">&cross; Branch 0 not taken.</div>
-            <div class="takenBranch">&check; Branch 1 taken 1523 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 1525 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">1523</td>
+      <td class="linecount partialCoveredLine">1525</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">texture_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -968,14 +968,14 @@
       <td class="lineno"><a id="l98" href="#l98">98</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1523</td>
+      <td class="linecount coveredLine">1525</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">rhi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">rhi</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l99" href="#l99">99</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1523</td>
+      <td class="linecount coveredLine">1525</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">updates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">resourceUpdateBatch</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
@@ -984,14 +984,14 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/4</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 1523 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 1525 times.</div>
             <div class="notTakenBranch">&cross; Branch 1 not taken.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
-            <div class="takenBranch">&check; Branch 3 taken 1523 times.</div>
+            <div class="takenBranch">&check; Branch 3 taken 1525 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">1523</td>
+      <td class="linecount partialCoveredLine">1525</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">rhi</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">updates</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -1019,14 +1019,14 @@
       <td class="lineno"><a id="l104" href="#l104">104</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1523</td>
+      <td class="linecount coveredLine">1525</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">texture_</span><span class="o">-&gt;</span><span class="n">commitTextureOperations</span><span class="p">(</span><span class="n">rhi</span><span class="p">,</span><span class="w"> </span><span class="n">updates</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l105" href="#l105">105</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1523</td>
+      <td class="linecount coveredLine">1525</td>
       <td class="src coveredLine"><span class="w">    </span><span class="o">*</span><span class="n">texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">texture_</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
