@@ -735,6 +735,7 @@ void Axis::updatePolish()
     // Runs on the GUI thread before the scene graph sync. Tick labels are formatted here rather than in
     // paint(), because a formatter's tickLabel JS callback must run on the QML engine's thread.
     ticks_ = AxisTickPainter::computeTicks(viewportMin_, viewportMax_, logScale_, ticker_);
+    label_->setUnitText(ticks_.unitText);
 }
 
 void Axis::componentComplete()
@@ -774,10 +775,10 @@ qreal Axis::defaultLabelRotation() const
 
 void Axis::paintLabel(QPainter* painter, const QRectF& r, const qreal axisX, const qreal axisY) const
 {
-    const auto text = label_->text();
-    if (text.isEmpty() || labelItem_) {
+    if (label_->text().isEmpty() || labelItem_) {
         return;
     }
+    const auto text = label_->paintedText();
     const auto font = label_->font();
     const auto textSize = QFontMetricsF(font, painter->device()).size(0, text);
     auto params = Internal::AxisLabelLayoutParams{};
@@ -844,6 +845,7 @@ void Axis::connectLabel()
     connect(label_, &AxisLabel::fontChanged, this, repaint);
     connect(label_, &AxisLabel::colorChanged, this, repaint);
     connect(label_, &AxisLabel::paddingChanged, this, repaint);
+    connect(label_, &AxisLabel::unitTextChanged, this, repaint);
     connect(label_, &AxisLabel::alignmentChanged, this, repaint);
     connect(label_, &AxisLabel::rotationChanged, this, repaint);
     connect(label_, &AxisLabel::offsetChanged, this, repaint);

@@ -77,7 +77,9 @@ QAccelPlot/
 │       ├── export/               — PlotExporter (raster image export),
 │       │                           internal/ (grab sizing, painted-item texture scaling, image file writing)
 │       ├── formatters/           — DateTimeTickLabelFormatter, NumericTickLabelFormatter,
-│       │                           TextTickLabelFormatter, TickLabelFormatter (base/JS callback)
+│       │                           TextTickLabelFormatter, TickLabelFormatter (base/JS callback),
+│       │                           UnitTickLabelFormatter (automatic SI unit prefix),
+│       │                           internal/ (numeric label text, unit prefixes)
 │       ├── grid/                 — Grid, GridNode
 │       ├── inspection/           — SeriesInspection (per-series data queries), InspectionResult (query value types),
 │       │                           PlotInspector, SelectionTool, InspectionRowModel,

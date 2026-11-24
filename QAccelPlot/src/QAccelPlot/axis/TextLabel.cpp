@@ -86,4 +86,26 @@ void TextLabel::setPadding(const qreal padding)
     emit paddingChanged();
 }
 
+QString TextLabel::unitText() const
+{
+    return unitText_;
+}
+
+void TextLabel::setUnitText(const QString& unitText)
+{
+    if (unitText_ == unitText) {
+        return;
+    }
+    unitText_ = unitText;
+    emit unitTextChanged();
+}
+
+QString TextLabel::paintedText() const
+{
+    if (unitText_.isEmpty()) {
+        return text_;
+    }
+    return QStringLiteral("%1 (%2)").arg(text_, unitText_);
+}
+
 } // namespace QAccelPlot

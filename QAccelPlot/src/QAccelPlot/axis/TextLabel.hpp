@@ -29,6 +29,12 @@ class TextLabel : public QObject {
     Q_PROPERTY(QColor color READ color WRITE setColor RESET resetColor NOTIFY colorChanged)
     /// \brief Gap in pixels between the title and the axis or color strip. Default: 30 on an Axis, 6 on a ColorBar.
     Q_PROPERTY(qreal padding READ padding WRITE setPadding NOTIFY paddingChanged)
+    /// \brief Prefixed unit the tick label formatter chose for the visible range, such as "mm". Read-only.
+    ///
+    /// An Axis updates it whenever it computes its ticks. It is empty when the formatter shows no unit, as with every
+    /// built-in formatter except \c UnitTickLabelFormatter. While it is set, the Axis paints its title as
+    /// "text (unitText)", such as "Distance (mm)". A \c delegate can bind to it.
+    Q_PROPERTY(QString unitText READ unitText NOTIFY unitTextChanged)
 
 public:
     /// \brief Constructs a label with the default \a color and \a padding, owned by \a parent.
@@ -58,6 +64,14 @@ public:
     /// \brief Sets the gap between the title and the axis or color strip to \a padding pixels.
     void setPadding(qreal padding);
 
+    /// \brief Returns the prefixed unit chosen for the visible range, or an empty string for none.
+    QString unitText() const;
+    /// \brief Sets the prefixed unit to \a unitText. Called by the owning Axis when its ticks change.
+    void setUnitText(const QString& unitText);
+
+    /// \brief Returns the title text combined with the unit text, such as "Distance (mm)", or \c text() without unit text.
+    QString paintedText() const;
+
 signals:
     /// \brief Emitted when the text property changes.
     void textChanged();
@@ -67,12 +81,15 @@ signals:
     void colorChanged();
     /// \brief Emitted when the padding property changes.
     void paddingChanged();
+    /// \brief Emitted when the unitText property changes.
+    void unitTextChanged();
 
 private:
     QString text_;
     QFont font_;
     Internal::ResettableValue<QColor> color_;
     qreal padding_;
+    QString unitText_;
 };
 
 } // namespace QAccelPlot

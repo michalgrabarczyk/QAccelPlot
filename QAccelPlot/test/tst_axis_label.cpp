@@ -4,7 +4,10 @@
 //
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/axis/AxisLabel.hpp"
+#include "QAccelPlot/axis/AxisTickPainter.hpp"
+#include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/axis/internal/AxisLabelLayout.hpp"
+#include "QAccelPlot/formatters/UnitTickLabelFormatter.hpp"
 
 #include <QImage>
 #include <QPainter>
@@ -66,6 +69,29 @@ std::optional<std::pair<int, int>> inkRows(const QImage& image, const QColor& ba
     return std::make_pair(*first, last);
 }
 
+class PolishableAxis final : public Axis {
+public:
+    using Axis::Axis;
+    using Axis::updatePolish;
+};
+
+/// \brief Paints \a axis with only its axis label visible, in black on white.
+QImage paintLabelOnly(PolishableAxis& axis)
+{
+    axis.ticker()->setTickColor(Qt::white);
+    axis.ticker()->setSubtickColor(Qt::white);
+    axis.ticker()->setTickLabelColor(Qt::white);
+    axis.setBaselineColor(Qt::white);
+    axis.label()->setColor(Qt::black);
+    axis.updatePolish();
+    auto image = QImage{axis.size().toSize(), QImage::Format_ARGB32};
+    image.fill(Qt::white);
+    auto painter = QPainter{&image};
+    axis.paint(&painter);
+    painter.end();
+    return image;
+}
+
 } // namespace
 
 class AxisLabelTest : public QObject {
@@ -82,6 +108,10 @@ private slots:
     void resetRestoresTheSideRotation();
     void paintedLabelFollowsAlignment();
     void delegateReplacesThePaintedLabel();
+    void unitTextFollowsTheViewport();
+    void axesSharingAFormatterKeepTheirOwnPrefix();
+    void paintedLabelShowsThePrefixedUnit();
+    void qmlAxisTakesAUnitFormatter();
 };
 
 void AxisLabelTest::rotatedBoxSwapsSidesAtRightAngles()
@@ -242,6 +272,112 @@ void AxisLabelTest::delegateReplacesThePaintedLabel()
     QVERIFY(label->setProperty("delegate", QVariant::fromValue<QQmlComponent*>(nullptr)));
     QCoreApplication::sendPostedEvents(nullptr, QEvent::DeferredDelete);
     QVERIFY(second.isNull());
+}
+
+void AxisLabelTest::unitTextFollowsTheViewport()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    auto axis = PolishableAxis{nullptr, Axis::Bottom};
+    axis.ticker()->setTickLabelFormatter(&formatter);
+    auto spy = QSignalSpy{axis.label(), &AxisLabel::unitTextChanged};
+    QVERIFY(axis.label()->unitText().isEmpty());
+
+    axis.setViewportRange(0.0, 0.004);
+    axis.updatePolish();
+    QCOMPARE(axis.label()->unitText(), QStringLiteral("mm"));
+    QCOMPARE(axis.label()->property("unitText").toString(), QStringLiteral("mm"));
+    QCOMPARE(spy.count(), 1);
+
+    axis.setViewportRange(0.0, 0.003);
+    axis.updatePolish();
+    QCOMPARE(spy.count(), 1);
+
+    axis.setViewportRange(0.0, 4e-6);
+    axis.updatePolish();
+    QCOMPARE(axis.label()->unitText(), QStringLiteral("µm"));
+    QCOMPARE(spy.count(), 2);
+
+    axis.setViewportRange(0.0, 4000.0);
+    axis.updatePolish();
+    QCOMPARE(axis.label()->unitText(), QStringLiteral("km"));
+    QCOMPARE(spy.count(), 3);
+
+    axis.ticker()->resetTickLabelFormatter();
+    axis.updatePolish();
+    QVERIFY(axis.label()->unitText().isEmpty());
+    QCOMPARE(spy.count(), 4);
+}
+
+void AxisLabelTest::axesSharingAFormatterKeepTheirOwnPrefix()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    auto zoomedIn = PolishableAxis{nullptr, Axis::Bottom};
+    auto zoomedOut = PolishableAxis{nullptr, Axis::Left};
+    zoomedIn.ticker()->setTickLabelFormatter(&formatter);
+    zoomedOut.ticker()->setTickLabelFormatter(&formatter);
+
+    zoomedIn.setViewportRange(0.0, 4e-9);
+    zoomedOut.setViewportRange(0.0, 4000.0);
+    zoomedIn.updatePolish();
+    zoomedOut.updatePolish();
+
+    QCOMPARE(zoomedIn.label()->unitText(), QStringLiteral("nm"));
+    QCOMPARE(zoomedOut.label()->unitText(), QStringLiteral("km"));
+}
+
+void AxisLabelTest::paintedLabelShowsThePrefixedUnit()
+{
+    const auto size = QSizeF{300.0, 60.0};
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    auto withUnit = PolishableAxis{nullptr, Axis::Bottom};
+    withUnit.setSize(size);
+    withUnit.setViewportRange(0.0, 0.004);
+    withUnit.ticker()->setTickLabelFormatter(&formatter);
+    withUnit.label()->setText(QStringLiteral("Distance"));
+    auto reference = PolishableAxis{nullptr, Axis::Bottom};
+    reference.setSize(size);
+    reference.setViewportRange(0.0, 0.004);
+    reference.label()->setText(QStringLiteral("Distance (mm)"));
+    auto textOnly = PolishableAxis{nullptr, Axis::Bottom};
+    textOnly.setSize(size);
+    textOnly.setViewportRange(0.0, 0.004);
+    textOnly.label()->setText(QStringLiteral("Distance"));
+
+    const auto painted = paintLabelOnly(withUnit);
+
+    QVERIFY(inkRows(painted, Qt::white));
+    QCOMPARE(painted, paintLabelOnly(reference));
+    QVERIFY(painted != paintLabelOnly(textOnly));
+}
+
+void AxisLabelTest::qmlAxisTakesAUnitFormatter()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    component.setData(R"(
+        import QtQuick
+        import QAccelPlot as QAccelPlot
+        QAccelPlot.Axis {
+            viewportMin: 0; viewportMax: 0.004
+            label.text: "Distance"
+            ticker.tickLabelFormatter: QAccelPlot.UnitTickLabelFormatter {
+                unit: "m"
+                prefixMode: QAccelPlot.UnitTickLabelFormatter.LargestMagnitude
+            }
+        }
+    )",
+        QUrl{});
+    auto object = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(object, qPrintable(component.errorString()));
+    const auto* axis = qobject_cast<Axis*>(object.get());
+    QVERIFY(axis);
+    const auto* formatter = qobject_cast<UnitTickLabelFormatter*>(axis->ticker()->tickLabelFormatter());
+    QVERIFY(formatter);
+    QCOMPARE(formatter->unit(), QStringLiteral("m"));
+    QCOMPARE(AxisTickPainter::computeTicks(axis->viewportMin(), axis->viewportMax(), false, axis->ticker()).unitText, QStringLiteral("mm"));
 }
 
 } // namespace QAccelPlot
