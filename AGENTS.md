@@ -317,3 +317,13 @@ Each example describes itself with `ExampleHeader`:
   when a bullet applies to one tab only. Leave out default pan, zoom, and reset
   unless they behave differently; leave out the list when there is nothing
   else to do.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in GitHub Issues for `michalgrabarczyk/QAccelPlot` (via the `gh` CLI). See `docs/agents/issue-tracker.md`.
+
+### Domain docs
+
+Single-context: one `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
