@@ -4,6 +4,10 @@ A hardware-accelerated Qt Quick plotting library: series of data drawn against a
 
 ## Language
 
+**Axis label**:
+The text beside an axis or color bar naming the quantity it shows, with its unit, such as "Distance (mm)". Distinct from the tick labels.
+_Avoid_: axis title, title
+
 **Body**:
 The filled part of a candle in the candlestick style, spanning from its open to its close.
 
@@ -26,6 +30,16 @@ _Avoid_: bar (alone)
 **Sample**:
 A raw input value that a histogram counts into a bin.
 _Avoid_: data point (for histogram input)
+
+**Tick label**:
+The text at a major tick giving its value.
+
+**Unit**:
+The base unit of the values an axis or color bar shows, written without a prefix, such as "m" or "s". The data is always in this unit.
+
+**Unit prefix**:
+The SI prefix a value is written with, such as "m" (milli) in "12.3 mm". An axis or color bar either shares one unit prefix across its tick labels, chosen from the visible range and usually shown in the axis label ("Distance (mm)"), or gives each tick label its own ("500 mm, 1 m").
+_Avoid_: display prefix, multiplier, SI scale
 
 **Up candle / Down candle**:
 A candle whose close is at or above its open is an up candle; one whose close is below its open is a down candle.
