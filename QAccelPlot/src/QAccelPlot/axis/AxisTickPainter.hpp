@@ -58,7 +58,8 @@ public:
     /// \brief Returns the visible ticks, subticks and formatted labels for the \a viewportMin to \a viewportMax range.
     ///
     /// Uses log-scale placement when \a logScale is set and both bounds are positive. Labels are produced by
-    /// \a ticker's formatter, which may invoke a QML/JS callback, so this must be called on the formatter's thread.
+    /// \a ticker's formatter from the whole set of visible major ticks, together with the axis-wide unit text. The
+    /// formatter may invoke a QML/JS callback, so this must be called on the formatter's thread.
     static AxisTicks computeTicks(qreal viewportMin, qreal viewportMax, bool logScale, const AxisTicker* ticker);
 
     /// \brief Returns the visible tick and subtick values for the \a viewportMin to \a viewportMax range, without labels.

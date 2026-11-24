@@ -26,6 +26,7 @@ struct AxisTick {
 struct AxisTicks {
     QList<qreal> subtickValues; ///< \brief Data-space values of the visible subticks.
     QList<AxisTick> majorTicks; ///< \brief Visible major ticks with their labels.
+    QString unitText;           ///< \brief Unit text the formatter chose for the axis label; empty for none.
 };
 
 /// \brief The visible tick and subtick values for one axis viewport, without labels.

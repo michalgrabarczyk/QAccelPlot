@@ -115,6 +115,28 @@ protected:
     }
 };
 
+// Labels a whole tick set at once: "t0", "t1", ... with the unit text "u".
+class TickSetRecordingFormatter final : public QAccelPlot::TickLabelFormatter {
+public:
+    mutable QList<QAccelPlot::TickSet> tickSets;
+
+protected:
+    QString doFormat(qreal, qreal) const override
+    {
+        return QStringLiteral("per-tick");
+    }
+
+    QAccelPlot::TickSetLabels doFormatTicks(const QAccelPlot::TickSet& tickSet) const override
+    {
+        tickSets.append(tickSet);
+        auto result = QAccelPlot::TickSetLabels{{}, QStringLiteral("u")};
+        for (auto i = 0; i < tickSet.values.size(); ++i) {
+            result.labels.append(QStringLiteral("t%1").arg(i));
+        }
+        return result;
+    }
+};
+
 class ThreadRecordingTickLabelFormatter final : public QAccelPlot::TickLabelFormatter {
 public:
     QList<QThread*> formatThreads() const
@@ -295,6 +317,12 @@ private slots:
     void computeTicks_nullTickerIsEmpty();
     void computeTicks_degenerateViewportIsEmpty_data();
     void computeTicks_degenerateViewportIsEmpty();
+    void computeTicks_formatterSeesLinearTickSet();
+    void computeTicks_formatterSeesLogTickSet();
+    void computeTicks_carriesFormatterLabelsAndUnitText();
+    void computeTicks_existingFormattersHaveNoUnitText_data();
+    void computeTicks_existingFormattersHaveNoUnitText();
+    void axis_keepsUnitTextOfLatestTicks();
     void axis_formatsTickLabelsOnGuiThread();
     void axis_paintsTitleOnEverySide_data();
     void axis_paintsTitleOnEverySide();
@@ -886,6 +914,101 @@ void TestAxisTickPainter::computeTicks_degenerateViewportIsEmpty()
 
     QVERIFY(ticks.majorTicks.isEmpty());
     QVERIFY(ticks.subtickValues.isEmpty());
+}
+
+void TestAxisTickPainter::computeTicks_formatterSeesLinearTickSet()
+{
+    auto formatter = TickSetRecordingFormatter{};
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickCount(4);
+    ticker.setTickLabelFormatter(&formatter);
+
+    QAccelPlot::AxisTickPainter::computeTicks(-1.0, 7.0, false, &ticker);
+
+    QCOMPARE(formatter.tickSets.size(), 1);
+    const auto& tickSet = formatter.tickSets.first();
+    QCOMPARE(tickSet.values, (QList<qreal>{0.0, 2.0, 4.0, 6.0}));
+    QCOMPARE(tickSet.viewportMin, -1.0);
+    QCOMPARE(tickSet.viewportMax, 7.0);
+    QCOMPARE(tickSet.step, 2.0);
+    QCOMPARE(tickSet.logScale, false);
+}
+
+void TestAxisTickPainter::computeTicks_formatterSeesLogTickSet()
+{
+    auto formatter = TickSetRecordingFormatter{};
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickLabelFormatter(&formatter);
+
+    QAccelPlot::AxisTickPainter::computeTicks(500.0, 0.5, true, &ticker);
+
+    QCOMPARE(formatter.tickSets.size(), 1);
+    const auto& tickSet = formatter.tickSets.first();
+    QCOMPARE(tickSet.values, (QList<qreal>{1.0, 10.0, 100.0}));
+    QCOMPARE(tickSet.viewportMin, 0.5);
+    QCOMPARE(tickSet.viewportMax, 500.0);
+    QCOMPARE(tickSet.step, 0.0);
+    QCOMPARE(tickSet.logScale, true);
+}
+
+void TestAxisTickPainter::computeTicks_carriesFormatterLabelsAndUnitText()
+{
+    auto formatter = TickSetRecordingFormatter{};
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickCount(4);
+    ticker.setTickLabelFormatter(&formatter);
+
+    const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(-1.0, 7.0, false, &ticker);
+
+    auto labels = QStringList{};
+    for (const auto& tick : ticks.majorTicks) {
+        labels.append(tick.label);
+    }
+    QCOMPARE(labels, (QStringList{QStringLiteral("t0"), QStringLiteral("t1"), QStringLiteral("t2"), QStringLiteral("t3")}));
+    QCOMPARE(ticks.majorTicks.at(1).value, 2.0);
+    QCOMPARE(ticks.unitText, QStringLiteral("u"));
+}
+
+void TestAxisTickPainter::computeTicks_existingFormattersHaveNoUnitText_data()
+{
+    QTest::addColumn<bool>("logScale");
+    QTest::addColumn<bool>("textLabels");
+    QTest::newRow("numeric-linear") << false << false;
+    QTest::newRow("numeric-log") << true << false;
+    QTest::newRow("text") << false << true;
+}
+
+void TestAxisTickPainter::computeTicks_existingFormattersHaveNoUnitText()
+{
+    QFETCH(bool, logScale);
+    QFETCH(bool, textLabels);
+    auto text = QAccelPlot::TextTickLabelFormatter{};
+    text.setLabels({QStringLiteral("a"), QStringLiteral("b"), QStringLiteral("c")});
+    auto ticker = QAccelPlot::AxisTicker{};
+    if (textLabels) {
+        ticker.setTickLabelFormatter(&text);
+    }
+
+    const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(1.0, 100.0, logScale, &ticker);
+
+    QVERIFY(!ticks.majorTicks.isEmpty());
+    QVERIFY(ticks.unitText.isEmpty());
+}
+
+void TestAxisTickPainter::axis_keepsUnitTextOfLatestTicks()
+{
+    auto formatter = TickSetRecordingFormatter{};
+    auto axis = PolishableAxis{nullptr, QAccelPlot::Axis::Bottom};
+    axis.updatePolish();
+    QVERIFY(axis.unitText().isEmpty());
+
+    axis.ticker()->setTickLabelFormatter(&formatter);
+    axis.updatePolish();
+    QCOMPARE(axis.unitText(), QStringLiteral("u"));
+
+    axis.ticker()->resetTickLabelFormatter();
+    axis.updatePolish();
+    QVERIFY(axis.unitText().isEmpty());
 }
 
 void TestAxisTickPainter::axis_formatsTickLabelsOnGuiThread()

@@ -7,6 +7,7 @@
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
 #include "QAccelPlot/axis/ColorBar.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
+#include "QAccelPlot/formatters/TickLabelFormatter.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/series/HeatmapSeries.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
@@ -52,6 +53,20 @@ public:
     using ColorBar::mousePressEvent;
     using ColorBar::mouseReleaseEvent;
     using ColorBar::wheelEvent;
+};
+
+// Labels every tick set with the unit text "u".
+class UnitTextFormatter final : public TickLabelFormatter {
+protected:
+    QString doFormat([[maybe_unused]] qreal value, [[maybe_unused]] qreal tickStep) const override
+    {
+        return {};
+    }
+
+    TickSetLabels doFormatTicks(const TickSet& tickSet) const override
+    {
+        return {QStringList(tickSet.values.size(), QString{}), QStringLiteral("u")};
+    }
 };
 
 QMouseEvent mouseEvent(const QEvent::Type type, const QPointF& pos, const Qt::MouseButton button, const Qt::MouseButtons buttons)
@@ -211,6 +226,7 @@ private slots:
     void tickLabelWidthFixesImplicitWidth();
     void tickLabelsAreClippedToTickLabelWidth();
     void drawsTitleBesideTickLabels();
+    void keepsUnitTextOfLatestTicks();
     void qmlColorBarInsidePlot();
     void pixelToValueInvertsValueToPixel();
     void gesturesAreIgnoredUnlessInteractive();
@@ -480,6 +496,22 @@ void ColorBarTest::drawsTitleBesideTickLabels()
     scene.bar.label()->setColor(Qt::white);
     scene.bar.label()->setText(QStringLiteral("Value"));
     QVERIFY(hasContentFrom(scene.render(), titleColumn));
+}
+
+void ColorBarTest::keepsUnitTextOfLatestTicks()
+{
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
+    auto formatter = UnitTextFormatter{};
+    QVERIFY(!scene.render().isNull());
+    QVERIFY(scene.bar.unitText().isEmpty());
+
+    scene.bar.ticker()->setTickLabelFormatter(&formatter);
+    QVERIFY(!scene.render().isNull());
+    QCOMPARE(scene.bar.unitText(), QStringLiteral("u"));
+
+    scene.bar.setSeries(nullptr);
+    QVERIFY(!scene.render().isNull());
+    QVERIFY(scene.bar.unitText().isEmpty());
 }
 
 void ColorBarTest::qmlColorBarInsidePlot()

@@ -234,6 +234,11 @@ AxisTicker* ColorBar::ticker() const
     return ticker_;
 }
 
+QString ColorBar::unitText() const
+{
+    return ticks_.unitText;
+}
+
 void ColorBar::rescaleToData()
 {
     if (auto* const colormap = seriesColormap()) {

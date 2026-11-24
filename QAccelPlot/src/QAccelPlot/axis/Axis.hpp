@@ -174,6 +174,11 @@ public:
     /// \brief Returns the tick configuration object.
     AxisTicker* ticker() const;
 
+    /// \brief Returns the unit text the tick label formatter chose for the latest tick computation.
+    ///
+    /// Updated on the GUI thread when the axis is polished. Empty when the formatter shows no unit in the axis label.
+    QString unitText() const;
+
     /// \brief Returns \c true when log scale is active.
     bool logScale() const;
     /// \brief Sets log-scale mode to \a on.

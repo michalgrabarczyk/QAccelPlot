@@ -320,6 +320,11 @@ AxisTicker* Axis::ticker() const
     return ticker_;
 }
 
+QString Axis::unitText() const
+{
+    return ticks_.unitText;
+}
+
 bool Axis::logScale() const
 {
     return logScale_;

@@ -137,6 +137,12 @@ public:
     /// \brief Returns the tick configuration object. The object is owned by the color bar.
     AxisTicker* ticker() const;
 
+    /// \brief Returns the unit text the tick label formatter chose for the latest tick computation.
+    ///
+    /// Updated on the GUI thread when the bar is polished. Empty when the bar has no ticks or the formatter shows
+    /// no unit in the axis label.
+    QString unitText() const;
+
     /// \brief Unsets the colormap's \c min and \c max, so the range is resolved from the data again.
     Q_INVOKABLE void rescaleToData();
 
