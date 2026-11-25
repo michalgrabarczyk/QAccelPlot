@@ -23,10 +23,10 @@ QStringList tickLabels(const AxisTicks& ticks)
     return labels;
 }
 
-AxisTicks computeTicks(UnitTickLabelFormatter& formatter, const qreal viewportMin, const qreal viewportMax)
+AxisTicks computeTicks(UnitTickLabelFormatter& formatter, const qreal viewportMin, const qreal viewportMax, const int tickCount = 5)
 {
     auto ticker = AxisTicker{};
-    ticker.setTickCount(5);
+    ticker.setTickCount(tickCount);
     ticker.setTickLabelFormatter(&formatter);
     return AxisTickPainter::computeTicks(viewportMin, viewportMax, false, &ticker);
 }
@@ -95,6 +95,18 @@ private slots:
     void tickLabelsPositionKeepsTheUnitInFormatValue();
     void unitPositionDefaultsToAxisLabel();
     void unitPositionChangeEmitsFormatChanged();
+    void perTickPrefixPicksAPrefixForEachTick();
+    void perTickPrefixFollowsEachTickValue_data();
+    void perTickPrefixFollowsEachTickValue();
+    void perTickPrefixSnapsToTheAllowedPrefixes_data();
+    void perTickPrefixSnapsToTheAllowedPrefixes();
+    void perTickPrefixWritesLogDecadesAsPlainNumbers_data();
+    void perTickPrefixWritesLogDecadesAsPlainNumbers();
+    void perTickPrefixPassesEachPrefixedValueToTheTickLabelCallback();
+    void perTickPrefixWritesTheUnitOnTickLabelsAtEitherUnitPosition_data();
+    void perTickPrefixWritesTheUnitOnTickLabelsAtEitherUnitPosition();
+    void perTickPrefixGivesEachFormattedValueItsOwnPrefix_data();
+    void perTickPrefixGivesEachFormattedValueItsOwnPrefix();
 };
 
 void UnitTickLabelFormatterTest::sharedPrefixFollowsVisibleRange_data()
@@ -715,6 +727,154 @@ void UnitTickLabelFormatterTest::unitPositionChangeEmitsFormatChanged()
     QCOMPARE(formatter.unitPosition(), UnitTickLabelFormatter::AxisLabel);
     QCOMPARE(positionSpy.count(), 2);
     QCOMPARE(formatSpy.count(), 2);
+}
+
+void UnitTickLabelFormatterTest::perTickPrefixPicksAPrefixForEachTick()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    QVERIFY(formatter.setProperty("prefixMode", QStringLiteral("PerTick")));
+
+    const auto ticks = computeTicks(formatter, 0.5, 1.5, 2);
+
+    QCOMPARE(tickLabels(ticks), (QStringList{"500 mm", "1.0 m", "1.5 m"}));
+    QCOMPARE(ticks.unitText, QString{});
+}
+
+void UnitTickLabelFormatterTest::perTickPrefixFollowsEachTickValue_data()
+{
+    QTest::addColumn<qreal>("viewportMin");
+    QTest::addColumn<qreal>("viewportMax");
+    QTest::addColumn<QStringList>("labels");
+    QTest::newRow("zero in the prefix of the step") << 0.0 << 0.004 << QStringList{"0 mm", "2 mm", "4 mm"};
+    QTest::newRow("negative ticks") << -1500.0 << -500.0 << QStringList{"-1.5 km", "-1.0 km", "-500 m"};
+    QTest::newRow("across zero") << -0.5 << 0.5 << QStringList{"-500 mm", "0 mm", "500 mm"};
+    QTest::newRow("micrometers") << 0.0 << 4e-6 << QStringList{"0 \u00B5m", "2 \u00B5m", "4 \u00B5m"};
+}
+
+void UnitTickLabelFormatterTest::perTickPrefixFollowsEachTickValue()
+{
+    QFETCH(qreal, viewportMin);
+    QFETCH(qreal, viewportMax);
+    QFETCH(QStringList, labels);
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setPrefixMode(UnitTickLabelFormatter::PerTick);
+
+    const auto ticks = computeTicks(formatter, viewportMin, viewportMax, 2);
+
+    QCOMPARE(tickLabels(ticks), labels);
+    QCOMPARE(ticks.unitText, QString{});
+}
+
+void UnitTickLabelFormatterTest::perTickPrefixSnapsToTheAllowedPrefixes_data()
+{
+    QTest::addColumn<QStringList>("allowedPrefixes");
+    QTest::addColumn<qreal>("viewportMin");
+    QTest::addColumn<qreal>("viewportMax");
+    QTest::addColumn<QStringList>("labels");
+    QTest::newRow("no milli") << QStringList{"", "k"} << 0.5 << 1.5 << QStringList{"0.5 m", "1.0 m", "1.5 m"};
+    QTest::newRow("zero without the bare unit") << QStringList{"m", "k"} << 0.0 << 0.004 << QStringList{"0 mm", "2 mm", "4 mm"};
+    QTest::newRow("prefixing off") << QStringList{} << 0.0 << 0.004 << QStringList{"0.000 m", "0.002 m", "0.004 m"};
+}
+
+void UnitTickLabelFormatterTest::perTickPrefixSnapsToTheAllowedPrefixes()
+{
+    QFETCH(QStringList, allowedPrefixes);
+    QFETCH(qreal, viewportMin);
+    QFETCH(qreal, viewportMax);
+    QFETCH(QStringList, labels);
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setPrefixMode(UnitTickLabelFormatter::PerTick);
+    formatter.setAllowedPrefixes(allowedPrefixes);
+
+    const auto ticks = computeTicks(formatter, viewportMin, viewportMax, 2);
+
+    QCOMPARE(tickLabels(ticks), labels);
+    QCOMPARE(ticks.unitText, QString{});
+}
+
+void UnitTickLabelFormatterTest::perTickPrefixWritesLogDecadesAsPlainNumbers_data()
+{
+    QTest::addColumn<QStringList>("allowedPrefixes");
+    QTest::addColumn<QStringList>("labels");
+    QTest::newRow("milli and the bare unit") << QStringList{"", "m"} << QStringList{"1 mm", "10 mm", "100 mm", "1 m"};
+    QTest::newRow("bare unit only") << QStringList{""} << QStringList{"0.001 m", "0.01 m", "0.1 m", "1 m"};
+}
+
+void UnitTickLabelFormatterTest::perTickPrefixWritesLogDecadesAsPlainNumbers()
+{
+    QFETCH(QStringList, allowedPrefixes);
+    QFETCH(QStringList, labels);
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setPrefixMode(UnitTickLabelFormatter::PerTick);
+    formatter.setAllowedPrefixes(allowedPrefixes);
+
+    const auto ticks = computeLogTicks(formatter, 1e-3, 1.0);
+
+    QCOMPARE(tickLabels(ticks), labels);
+    QCOMPARE(ticks.unitText, QString{});
+}
+
+void UnitTickLabelFormatterTest::perTickPrefixPassesEachPrefixedValueToTheTickLabelCallback()
+{
+    auto engine = QJSEngine{};
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setPrefixMode(UnitTickLabelFormatter::PerTick);
+    formatter.setTickLabel(engine.evaluate(QStringLiteral("(function(value, tickStep) { return value + '|' + tickStep; })")));
+
+    const auto ticks = computeTicks(formatter, 0.5, 1.5, 2);
+
+    QCOMPARE(tickLabels(ticks), (QStringList{"500|500 mm", "1|0.5 m", "1.5|0.5 m"}));
+}
+
+void UnitTickLabelFormatterTest::perTickPrefixWritesTheUnitOnTickLabelsAtEitherUnitPosition_data()
+{
+    QTest::addColumn<UnitTickLabelFormatter::UnitPosition>("unitPosition");
+    QTest::newRow("axis label") << UnitTickLabelFormatter::AxisLabel;
+    QTest::newRow("tick labels") << UnitTickLabelFormatter::TickLabels;
+}
+
+void UnitTickLabelFormatterTest::perTickPrefixWritesTheUnitOnTickLabelsAtEitherUnitPosition()
+{
+    QFETCH(UnitTickLabelFormatter::UnitPosition, unitPosition);
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setPrefixMode(UnitTickLabelFormatter::PerTick);
+    formatter.setUnitPosition(unitPosition);
+
+    const auto ticks = computeTicks(formatter, 0.5, 1.5, 2);
+
+    QCOMPARE(tickLabels(ticks), (QStringList{"500 mm", "1.0 m", "1.5 m"}));
+    QCOMPARE(ticks.unitText, QString{});
+}
+
+void UnitTickLabelFormatterTest::perTickPrefixGivesEachFormattedValueItsOwnPrefix_data()
+{
+    QTest::addColumn<qreal>("value");
+    QTest::addColumn<qreal>("resolution");
+    QTest::addColumn<QString>("text");
+    QTest::newRow("micrometers") << 4.5e-6 << 1e-7 << QStringLiteral("4.5 \u00B5m");
+    QTest::newRow("millimeters") << 0.0123 << 1e-4 << QStringLiteral("12.3 mm");
+    QTest::newRow("negative") << -0.0123 << 1e-4 << QStringLiteral("-12.3 mm");
+    QTest::newRow("kilometers") << 1500.0 << 1.0 << QStringLiteral("1.500 km");
+    QTest::newRow("zero in the prefix of the resolution") << 0.0 << 1e-4 << QStringLiteral("0 \u00B5m");
+    QTest::newRow("floating-point noise around zero") << 1e-20 << 1e-4 << QStringLiteral("0 \u00B5m");
+}
+
+void UnitTickLabelFormatterTest::perTickPrefixGivesEachFormattedValueItsOwnPrefix()
+{
+    QFETCH(qreal, value);
+    QFETCH(qreal, resolution);
+    QFETCH(QString, text);
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setPrefixMode(UnitTickLabelFormatter::PerTick);
+
+    QCOMPARE(formatter.formatValue(value, resolution, TickSetFormat{-3}), text);
 }
 
 } // namespace QAccelPlot

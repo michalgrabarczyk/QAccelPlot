@@ -27,7 +27,8 @@ namespace QAccelPlot {
 /// axis sharing one formatter picks its own.
 ///
 /// With \c unitPosition \c TickLabels, each tick label carries the prefixed unit instead ("0 mm", "1 mm") and the
-/// axis label shows only its text.
+/// axis label shows only its text. With \c prefixMode \c PerTick, each tick label picks its own prefix and carries
+/// it: "500 mm, 1.0 m, 1.5 m".
 ///
 /// A \c tickLabel callback receives the value and the tick step in the prefixed unit; on a logarithmic axis the
 /// tick step is the value itself. Its result replaces only the number: with \c unitPosition \c TickLabels the
@@ -68,6 +69,8 @@ class UnitTickLabelFormatter : public TickLabelFormatter {
     /// and with micro as "µ" (U+00B5). Assign \c undefined to restore the default.
     Q_PROPERTY(QStringList allowedPrefixes READ allowedPrefixes WRITE setAllowedPrefixes RESET resetAllowedPrefixes NOTIFY allowedPrefixesChanged)
     /// \brief Where the prefixed unit is written. Default: \c AxisLabel.
+    ///
+    /// Ignored with \c prefixMode \c PerTick, which always writes the unit on the tick labels.
     Q_PROPERTY(UnitPosition unitPosition READ unitPosition WRITE setUnitPosition NOTIFY unitPositionChanged)
 
 public:
@@ -80,6 +83,15 @@ public:
         Fixed,
         /// \brief The result of \c prefixCallback, shared by all tick labels.
         Custom,
+        /// \brief The \c LargestMagnitude rule applied to each tick label and each \c formatValue() readout on its
+        /// own, such as "500 mm, 1.0 m, 1.5 m".
+        ///
+        /// The unit is always on the tick labels, whatever \c unitPosition says, and \c label.unitText is empty.
+        /// Decimals follow the tick step in each label's own prefix. A zero tick takes the prefix of the tick step,
+        /// as in "0 mm, 2 mm, 4 mm", and a zero readout the prefix of its resolution. On a logarithmic axis each
+        /// decade is a plain number in its own prefix: "1 mm, 10 mm, 100 mm, 1 m". \c allowedPrefixes applies to
+        /// each label, and \c prefixCallback is not called.
+        PerTick,
     };
     Q_ENUM(PrefixMode)
 
@@ -150,15 +162,17 @@ protected:
     /// \brief Returns a decade tick as a superscript power of ten, for example "10²" for 100.
     QString doFormatLogTick(qreal value) const override;
     /// \brief Returns the tick labels in the shared unit prefix of \a tickSet, with the prefixed unit as unit text or
-    /// on each tick label, as \c unitPosition says.
+    /// on each tick label, as \c unitPosition says, or each in its own prefix with \c prefixMode \c PerTick.
     TickSetLabels doFormatTicks(const TickSet& tickSet) const override;
-    /// \brief Returns \a value in the unit prefix of \a tickSetFormat, followed by a space and the prefixed unit,
-    /// such as "12.3 mm".
+    /// \brief Returns \a value in the unit prefix of \a tickSetFormat, or in its own prefix with \c prefixMode
+    /// \c PerTick, followed by a space and the prefixed unit, such as "12.3 mm".
     QString doFormatValue(qreal value, qreal resolution, const TickSetFormat& tickSetFormat) const override;
 
 private:
     void applyAllowedPrefixes(const QList<Internal::UnitPrefix>& prefixes);
     Internal::UnitPrefix sharedPrefix(const TickSet& tickSet) const;
+    Internal::UnitPrefix ownPrefix(qreal value, qreal precision) const;
+    TickSetLabels perTickLabels(const TickSet& tickSet) const;
     std::optional<Internal::UnitPrefix> callPrefixCallback(const TickSet& tickSet) const;
 
     QString unit_;

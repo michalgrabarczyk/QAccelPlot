@@ -133,6 +133,8 @@ private slots:
     void unitOnTickLabelsLeavesTheAxisLabelText();
     void switchingUnitPositionMovesTheUnit();
     void qmlAxisPutsTheUnitOnTickLabels();
+    void perTickPrefixLeavesTheAxisLabelText();
+    void qmlAxisGivesEachTickLabelItsOwnPrefix();
 };
 
 void AxisLabelTest::rotatedBoxSwapsSidesAtRightAngles()
@@ -609,6 +611,55 @@ void AxisLabelTest::qmlAxisPutsTheUnitOnTickLabels()
         labels.append(tick.label);
     }
     QCOMPARE(labels, (QStringList{"0 mm", "2 mm", "4 mm"}));
+    QVERIFY(ticks.unitText.isEmpty());
+}
+
+void AxisLabelTest::perTickPrefixLeavesTheAxisLabelText()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setPrefixMode(UnitTickLabelFormatter::PerTick);
+    auto axis = labeledAxis(QStringLiteral("Distance"));
+    axis->ticker()->setTickLabelFormatter(&formatter);
+    const auto reference = labeledAxis(QStringLiteral("Distance"));
+
+    const auto painted = paintLabelOnly(*axis);
+
+    QVERIFY(axis->label()->unitText().isEmpty());
+    QVERIFY(inkRows(painted, Qt::white));
+    QCOMPARE(painted, paintLabelOnly(*reference));
+}
+
+void AxisLabelTest::qmlAxisGivesEachTickLabelItsOwnPrefix()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    component.setData(R"(
+        import QtQuick
+        import QAccelPlot as QAccelPlot
+        QAccelPlot.Axis {
+            viewportMin: 0.5; viewportMax: 1.5
+            label.text: "Distance"
+            ticker.tickCount: 2
+            ticker.tickLabelFormatter: QAccelPlot.UnitTickLabelFormatter {
+                unit: "m"
+                prefixMode: QAccelPlot.UnitTickLabelFormatter.PerTick
+            }
+        }
+    )",
+        QUrl{});
+    auto object = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(object, qPrintable(component.errorString()));
+    const auto* axis = qobject_cast<Axis*>(object.get());
+    QVERIFY(axis);
+
+    const auto ticks = AxisTickPainter::computeTicks(axis->viewportMin(), axis->viewportMax(), false, axis->ticker());
+
+    auto labels = QStringList{};
+    for (const auto& tick : ticks.majorTicks) {
+        labels.append(tick.label);
+    }
+    QCOMPARE(labels, (QStringList{"500 mm", "1.0 m", "1.5 m"}));
     QVERIFY(ticks.unitText.isEmpty());
 }
 

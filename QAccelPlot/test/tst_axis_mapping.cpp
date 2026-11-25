@@ -59,6 +59,7 @@ private slots:
     void formatValue_nonFinite_isEmpty();
     void formatValue_unitFormatter_writesTheAxisPrefixAndUnit();
     void formatValue_unitFormatter_followsThePrefixAfterZooming();
+    void formatValue_perTickPrefix_givesEachValueItsOwnPrefix();
 };
 
 // ---------------------------------------------------------------------------
@@ -381,6 +382,20 @@ void TestAxisMapping::formatValue_unitFormatter_followsThePrefixAfterZooming()
 
     axis->setViewportRange(0.0, 4.0);
     QCOMPARE(axis->formatValue(1.23456, 700.0), QStringLiteral("1.2346 m"));
+}
+
+void TestAxisMapping::formatValue_perTickPrefix_givesEachValueItsOwnPrefix()
+{
+    auto formatter = QAccelPlot::UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setPrefixMode(QAccelPlot::UnitTickLabelFormatter::PerTick);
+    const auto axis = makeHorizontalAxis(0.0, 2.0);
+    axis->ticker()->setTickLabelFormatter(&formatter);
+    QCOMPARE(axis->formatValue(0.0123, 700.0), QStringLiteral("12.3 mm"));
+    QCOMPARE(axis->formatValue(1.5, 700.0), QStringLiteral("1.5000 m"));
+
+    axis->setViewportRange(0.0, 0.002);
+    QCOMPARE(axis->formatValue(4.5e-6, 700.0), QStringLiteral("4.5 \u00B5m"));
 }
 
 QTEST_MAIN(TestAxisMapping)

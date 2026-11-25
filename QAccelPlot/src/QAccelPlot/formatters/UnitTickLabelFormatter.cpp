@@ -158,6 +158,9 @@ QString UnitTickLabelFormatter::doFormatLogTick(const qreal value) const
 
 TickSetLabels UnitTickLabelFormatter::doFormatTicks(const TickSet& tickSet) const
 {
+    if (prefixMode_ == PerTick) {
+        return perTickLabels(tickSet);
+    }
     const auto onTickLabels = unitPosition_ == TickLabels;
     if (tickSet.values.isEmpty()) {
         return TickSetLabels{{}, onTickLabels ? QString{} : unit_, {}};
@@ -177,7 +180,7 @@ TickSetLabels UnitTickLabelFormatter::doFormatTicks(const TickSet& tickSet) cons
 
 QString UnitTickLabelFormatter::doFormatValue(const qreal value, const qreal resolution, const TickSetFormat& tickSetFormat) const
 {
-    const auto prefix = Internal::prefixWithExponent(tickSetFormat.prefixExponent, allowedPrefixes_);
+    const auto prefix = prefixMode_ == PerTick ? ownPrefix(value, resolution) : Internal::prefixWithExponent(tickSetFormat.prefixExponent, allowedPrefixes_);
     const auto number = format(Internal::toPrefix(value, prefix), Internal::toPrefix(resolution, prefix));
     return withUnit(number, prefix.symbol + unit_);
 }
@@ -207,6 +210,26 @@ Internal::UnitPrefix UnitTickLabelFormatter::sharedPrefix(const TickSet& tickSet
     }
     const auto largestTick = std::max(std::abs(tickSet.values.front()), std::abs(tickSet.values.back()));
     return Internal::largestMagnitudePrefix(largestTick, allowedPrefixes_);
+}
+
+Internal::UnitPrefix UnitTickLabelFormatter::ownPrefix(const qreal value, const qreal precision) const
+{
+    // A value within half the precision of zero, such as a zero tick, takes the prefix of the precision.
+    const auto magnitude = std::abs(value) < precision / 2.0 ? precision : std::abs(value);
+    return Internal::largestMagnitudePrefix(magnitude, allowedPrefixes_);
+}
+
+TickSetLabels UnitTickLabelFormatter::perTickLabels(const TickSet& tickSet) const
+{
+    auto result = TickSetLabels{};
+    result.labels.reserve(tickSet.values.size());
+    for (const auto value : tickSet.values) {
+        const auto prefix = ownPrefix(value, tickSet.step);
+        const auto prefixedValue = Internal::toPrefix(value, prefix);
+        const auto number = format(prefixedValue, tickSet.logScale ? prefixedValue : Internal::toPrefix(tickSet.step, prefix));
+        result.labels.append(withUnit(number, prefix.symbol + unit_));
+    }
+    return result;
 }
 
 std::optional<Internal::UnitPrefix> UnitTickLabelFormatter::callPrefixCallback(const TickSet& tickSet) const
