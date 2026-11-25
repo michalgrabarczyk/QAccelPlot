@@ -130,6 +130,9 @@ private slots:
     void emptyUnitPaintsThePrefixAlone();
     void withoutUnitTextNothingIsPaintedForEmptyText();
     void delegateBindsToTheUnitText();
+    void unitOnTickLabelsLeavesTheAxisLabelText();
+    void switchingUnitPositionMovesTheUnit();
+    void qmlAxisPutsTheUnitOnTickLabels();
 };
 
 void AxisLabelTest::rotatedBoxSwapsSidesAtRightAngles()
@@ -532,6 +535,81 @@ void AxisLabelTest::delegateBindsToTheUnitText()
     axis->setViewportRange(0.0, 4e-6);
 
     QTRY_COMPARE(title->property("text").toString(), QStringLiteral("Distance in µm"));
+}
+
+void AxisLabelTest::unitOnTickLabelsLeavesTheAxisLabelText()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setUnitPosition(UnitTickLabelFormatter::TickLabels);
+    auto axis = labeledAxis(QStringLiteral("Distance"));
+    axis->ticker()->setTickLabelFormatter(&formatter);
+    const auto reference = labeledAxis(QStringLiteral("Distance"));
+
+    const auto painted = paintLabelOnly(*axis);
+
+    QVERIFY(axis->label()->unitText().isEmpty());
+    QVERIFY(inkRows(painted, Qt::white));
+    QCOMPARE(painted, paintLabelOnly(*reference));
+    QCOMPARE(axis->formatValue(0.0012345, 700.0), QStringLiteral("1.2345 mm"));
+}
+
+void AxisLabelTest::switchingUnitPositionMovesTheUnit()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    auto axis = labeledAxis(QStringLiteral("Distance"));
+    axis->ticker()->setTickLabelFormatter(&formatter);
+    axis->updatePolish();
+    QCOMPARE(axis->label()->unitText(), QStringLiteral("mm"));
+    auto spy = QSignalSpy{axis->label(), &AxisLabel::unitTextChanged};
+    const auto textOnly = labeledAxis(QStringLiteral("Distance"));
+    const auto withUnit = labeledAxis(QStringLiteral("Distance (mm)"));
+
+    formatter.setUnitPosition(UnitTickLabelFormatter::TickLabels);
+
+    QCOMPARE(paintLabelOnly(*axis), paintLabelOnly(*textOnly));
+    QVERIFY(axis->label()->unitText().isEmpty());
+    QCOMPARE(spy.count(), 1);
+
+    formatter.setUnitPosition(UnitTickLabelFormatter::AxisLabel);
+
+    QCOMPARE(paintLabelOnly(*axis), paintLabelOnly(*withUnit));
+    QCOMPARE(axis->label()->unitText(), QStringLiteral("mm"));
+    QCOMPARE(spy.count(), 2);
+}
+
+void AxisLabelTest::qmlAxisPutsTheUnitOnTickLabels()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    component.setData(R"(
+        import QtQuick
+        import QAccelPlot as QAccelPlot
+        QAccelPlot.Axis {
+            viewportMin: 0; viewportMax: 0.004
+            label.text: "Distance"
+            ticker.tickCount: 2
+            ticker.tickLabelFormatter: QAccelPlot.UnitTickLabelFormatter {
+                unit: "m"
+                unitPosition: QAccelPlot.UnitTickLabelFormatter.TickLabels
+            }
+        }
+    )",
+        QUrl{});
+    auto object = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(object, qPrintable(component.errorString()));
+    const auto* axis = qobject_cast<Axis*>(object.get());
+    QVERIFY(axis);
+
+    const auto ticks = AxisTickPainter::computeTicks(axis->viewportMin(), axis->viewportMax(), false, axis->ticker());
+
+    auto labels = QStringList{};
+    for (const auto& tick : ticks.majorTicks) {
+        labels.append(tick.label);
+    }
+    QCOMPARE(labels, (QStringList{"0 mm", "2 mm", "4 mm"}));
+    QVERIFY(ticks.unitText.isEmpty());
 }
 
 } // namespace QAccelPlot

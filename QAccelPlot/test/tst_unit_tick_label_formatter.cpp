@@ -88,6 +88,13 @@ private slots:
     void logAxisSnapsToTheAllowedPrefixes_data();
     void logAxisSnapsToTheAllowedPrefixes();
     void logAxisTickLabelCallbackReceivesPrefixedValues();
+    void tickLabelsPositionWritesTheUnitOnEachTick();
+    void tickLabelsPositionWritesTheUnitAfterLogDecades();
+    void tickLabelsPositionAddsNothingWithoutAPrefixedUnit();
+    void tickLabelsPositionAppendsTheUnitToTickLabelCallbackResults();
+    void tickLabelsPositionKeepsTheUnitInFormatValue();
+    void unitPositionDefaultsToAxisLabel();
+    void unitPositionChangeEmitsFormatChanged();
 };
 
 void UnitTickLabelFormatterTest::sharedPrefixFollowsVisibleRange_data()
@@ -618,6 +625,96 @@ void UnitTickLabelFormatterTest::logAxisTickLabelCallbackReceivesPrefixedValues(
 
     QCOMPARE(tickLabels(ticks), (QStringList{"0.01|0.01", "0.1|0.1", "1|1"}));
     QCOMPARE(ticks.unitText, QStringLiteral("mm"));
+}
+
+void UnitTickLabelFormatterTest::tickLabelsPositionWritesTheUnitOnEachTick()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setUnitPosition(UnitTickLabelFormatter::TickLabels);
+
+    const auto ticks = computeTicks(formatter, 0.0, 0.004);
+
+    QCOMPARE(tickLabels(ticks), (QStringList{"0 mm", "1 mm", "2 mm", "3 mm", "4 mm"}));
+    QCOMPARE(ticks.unitText, QString{});
+}
+
+void UnitTickLabelFormatterTest::tickLabelsPositionWritesTheUnitAfterLogDecades()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setUnitPosition(UnitTickLabelFormatter::TickLabels);
+
+    const auto ticks = computeLogTicks(formatter, 1e-6, 1e-3);
+
+    QCOMPARE(tickLabels(ticks),
+        (QStringList{
+            QStringLiteral("10\u207B\u00B3 mm"), QStringLiteral("10\u207B\u00B2 mm"), QStringLiteral("10\u207B\u00B9 mm"), QStringLiteral("10\u2070 mm")}));
+    QCOMPARE(ticks.unitText, QString{});
+}
+
+void UnitTickLabelFormatterTest::tickLabelsPositionAddsNothingWithoutAPrefixedUnit()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnitPosition(UnitTickLabelFormatter::TickLabels);
+
+    const auto ticks = computeTicks(formatter, 0.0, 4.0);
+
+    QCOMPARE(tickLabels(ticks), (QStringList{"0", "1", "2", "3", "4"}));
+    QCOMPARE(ticks.unitText, QString{});
+}
+
+void UnitTickLabelFormatterTest::tickLabelsPositionAppendsTheUnitToTickLabelCallbackResults()
+{
+    auto engine = QJSEngine{};
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setUnitPosition(UnitTickLabelFormatter::TickLabels);
+    formatter.setTickLabel(engine.evaluate(QStringLiteral("(function(value, tickStep) { return '~' + value; })")));
+    auto ticker = AxisTicker{};
+    ticker.setTickCount(2);
+    ticker.setTickLabelFormatter(&formatter);
+
+    const auto ticks = AxisTickPainter::computeTicks(0.0, 0.004, false, &ticker);
+
+    QCOMPARE(tickLabels(ticks), (QStringList{"~0 mm", "~2 mm", "~4 mm"}));
+    QCOMPARE(ticks.unitText, QString{});
+}
+
+void UnitTickLabelFormatterTest::tickLabelsPositionKeepsTheUnitInFormatValue()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setUnitPosition(UnitTickLabelFormatter::TickLabels);
+
+    const auto ticks = computeTicks(formatter, 0.0, 0.02);
+
+    QCOMPARE(formatter.formatValue(0.0123, 0.0001, ticks.format), QStringLiteral("12.3 mm"));
+}
+
+void UnitTickLabelFormatterTest::unitPositionDefaultsToAxisLabel()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    auto formatSpy = QSignalSpy{&formatter, &TickLabelFormatter::formatChanged};
+
+    QCOMPARE(formatter.unitPosition(), UnitTickLabelFormatter::AxisLabel);
+    QVERIFY(formatter.setProperty("unitPosition", QStringLiteral("AxisLabel")));
+    QCOMPARE(formatSpy.count(), 0);
+}
+
+void UnitTickLabelFormatterTest::unitPositionChangeEmitsFormatChanged()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    auto positionSpy = QSignalSpy{&formatter, &UnitTickLabelFormatter::unitPositionChanged};
+    auto formatSpy = QSignalSpy{&formatter, &TickLabelFormatter::formatChanged};
+
+    QVERIFY(formatter.setProperty("unitPosition", QStringLiteral("TickLabels")));
+    formatter.setUnitPosition(UnitTickLabelFormatter::TickLabels);
+    formatter.setUnitPosition(UnitTickLabelFormatter::AxisLabel);
+
+    QCOMPARE(formatter.unitPosition(), UnitTickLabelFormatter::AxisLabel);
+    QCOMPARE(positionSpy.count(), 2);
+    QCOMPARE(formatSpy.count(), 2);
 }
 
 } // namespace QAccelPlot

@@ -26,8 +26,12 @@ namespace QAccelPlot {
 /// 0.000001–0.001 gives 10^-3 to 10^0 with "Distance (mm)". The prefix depends only on the visible range, so each
 /// axis sharing one formatter picks its own.
 ///
+/// With \c unitPosition \c TickLabels, each tick label carries the prefixed unit instead ("0 mm", "1 mm") and the
+/// axis label shows only its text.
+///
 /// A \c tickLabel callback receives the value and the tick step in the prefixed unit; on a logarithmic axis the
-/// tick step is the value itself.
+/// tick step is the value itself. Its result replaces only the number: with \c unitPosition \c TickLabels the
+/// prefixed unit is still appended, as in \c formatValue().
 ///
 /// \sa NumericTickLabelFormatter, TickLabelFormatter
 class UnitTickLabelFormatter : public TickLabelFormatter {
@@ -63,6 +67,8 @@ class UnitTickLabelFormatter : public TickLabelFormatter {
     /// Reads back the prefixes in effect, sorted by ascending power of ten, without duplicates or unknown symbols,
     /// and with micro as "µ" (U+00B5). Assign \c undefined to restore the default.
     Q_PROPERTY(QStringList allowedPrefixes READ allowedPrefixes WRITE setAllowedPrefixes RESET resetAllowedPrefixes NOTIFY allowedPrefixesChanged)
+    /// \brief Where the prefixed unit is written. Default: \c AxisLabel.
+    Q_PROPERTY(UnitPosition unitPosition READ unitPosition WRITE setUnitPosition NOTIFY unitPositionChanged)
 
 public:
     /// \brief Rule that picks the unit prefix.
@@ -76,6 +82,17 @@ public:
         Custom,
     };
     Q_ENUM(PrefixMode)
+
+    /// \brief Where the prefixed unit is written.
+    enum UnitPosition {
+        /// \brief The axis label shows the prefixed unit through \c label.unitText, and the tick labels show only
+        /// numbers.
+        AxisLabel,
+        /// \brief Each tick label is followed by a space and the prefixed unit, such as "10 mm", or "10^3 mm" on a
+        /// logarithmic axis, and \c label.unitText is empty. An empty prefixed unit adds nothing.
+        TickLabels,
+    };
+    Q_ENUM(UnitPosition)
 
     /// \brief Constructs a UnitTickLabelFormatter with the given \a parent.
     explicit UnitTickLabelFormatter(QObject* parent = nullptr);
@@ -108,6 +125,11 @@ public:
     /// \brief Restores every power-of-1000 prefix from quecto to quetta, and the bare unit.
     void resetAllowedPrefixes();
 
+    /// \brief Returns where the prefixed unit is written.
+    UnitPosition unitPosition() const;
+    /// \brief Sets where the prefixed unit is written to \a position.
+    void setUnitPosition(UnitPosition position);
+
 signals:
     /// \brief Emitted when the unit property changes.
     void unitChanged();
@@ -119,13 +141,16 @@ signals:
     void prefixCallbackChanged();
     /// \brief Emitted when the allowedPrefixes property changes.
     void allowedPrefixesChanged();
+    /// \brief Emitted when the unitPosition property changes.
+    void unitPositionChanged();
 
 protected:
     /// \brief Returns a numeric string for \a value, precision matched to \a tickStep.
     QString doFormat(qreal value, qreal tickStep) const override;
     /// \brief Returns a decade tick as a superscript power of ten, for example "10²" for 100.
     QString doFormatLogTick(qreal value) const override;
-    /// \brief Returns the tick labels in the shared unit prefix of \a tickSet, and the prefixed unit as unit text.
+    /// \brief Returns the tick labels in the shared unit prefix of \a tickSet, with the prefixed unit as unit text or
+    /// on each tick label, as \c unitPosition says.
     TickSetLabels doFormatTicks(const TickSet& tickSet) const override;
     /// \brief Returns \a value in the unit prefix of \a tickSetFormat, followed by a space and the prefixed unit,
     /// such as "12.3 mm".
@@ -141,6 +166,7 @@ private:
     Internal::UnitPrefix fixedPrefix_;
     QJSValue prefixCallback_;
     QList<Internal::UnitPrefix> allowedPrefixes_;
+    UnitPosition unitPosition_{AxisLabel};
 };
 
 } // namespace QAccelPlot

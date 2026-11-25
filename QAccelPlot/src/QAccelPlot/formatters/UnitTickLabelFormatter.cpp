@@ -26,6 +26,12 @@ QJSValue jsArray(QJSEngine& engine, const QList<qreal>& values)
     return array;
 }
 
+/// \brief Returns \a number followed by a space and \a prefixedUnit, or \a number alone when \a prefixedUnit is empty.
+QString withUnit(const QString& number, const QString& prefixedUnit)
+{
+    return prefixedUnit.isEmpty() ? number : number + QLatin1Char(' ') + prefixedUnit;
+}
+
 } // namespace
 
 UnitTickLabelFormatter::UnitTickLabelFormatter(QObject* parent)
@@ -125,6 +131,21 @@ void UnitTickLabelFormatter::resetAllowedPrefixes()
     applyAllowedPrefixes(Internal::defaultUnitPrefixes());
 }
 
+UnitTickLabelFormatter::UnitPosition UnitTickLabelFormatter::unitPosition() const
+{
+    return unitPosition_;
+}
+
+void UnitTickLabelFormatter::setUnitPosition(const UnitPosition position)
+{
+    if (unitPosition_ == position) {
+        return;
+    }
+    unitPosition_ = position;
+    emit unitPositionChanged();
+    emit formatChanged();
+}
+
 QString UnitTickLabelFormatter::doFormat(const qreal value, const qreal tickStep) const
 {
     return Internal::numericLabel(value, tickStep);
@@ -137,16 +158,19 @@ QString UnitTickLabelFormatter::doFormatLogTick(const qreal value) const
 
 TickSetLabels UnitTickLabelFormatter::doFormatTicks(const TickSet& tickSet) const
 {
+    const auto onTickLabels = unitPosition_ == TickLabels;
     if (tickSet.values.isEmpty()) {
-        return TickSetLabels{{}, unit_, {}};
+        return TickSetLabels{{}, onTickLabels ? QString{} : unit_, {}};
     }
     const auto prefix = sharedPrefix(tickSet);
+    const auto prefixedUnit = prefix.symbol + unit_;
     const auto step = Internal::toPrefix(tickSet.step, prefix);
-    auto result = TickSetLabels{{}, prefix.symbol + unit_, TickSetFormat{prefix.exponent}};
+    auto result = TickSetLabels{{}, onTickLabels ? QString{} : prefixedUnit, TickSetFormat{prefix.exponent}};
     result.labels.reserve(tickSet.values.size());
     for (const auto value : tickSet.values) {
         const auto prefixedValue = Internal::toPrefix(value, prefix);
-        result.labels.append(tickSet.logScale ? formatLogTick(prefixedValue) : format(prefixedValue, step));
+        const auto number = tickSet.logScale ? formatLogTick(prefixedValue) : format(prefixedValue, step);
+        result.labels.append(onTickLabels ? withUnit(number, prefixedUnit) : number);
     }
     return result;
 }
@@ -155,8 +179,7 @@ QString UnitTickLabelFormatter::doFormatValue(const qreal value, const qreal res
 {
     const auto prefix = Internal::prefixWithExponent(tickSetFormat.prefixExponent, allowedPrefixes_);
     const auto number = format(Internal::toPrefix(value, prefix), Internal::toPrefix(resolution, prefix));
-    const auto prefixedUnit = prefix.symbol + unit_;
-    return prefixedUnit.isEmpty() ? number : number + QLatin1Char(' ') + prefixedUnit;
+    return withUnit(number, prefix.symbol + unit_);
 }
 
 void UnitTickLabelFormatter::applyAllowedPrefixes(const QList<Internal::UnitPrefix>& prefixes)
