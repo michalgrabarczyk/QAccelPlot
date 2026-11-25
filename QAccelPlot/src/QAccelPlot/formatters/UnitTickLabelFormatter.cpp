@@ -137,17 +137,16 @@ QString UnitTickLabelFormatter::doFormatLogTick(const qreal value) const
 
 TickSetLabels UnitTickLabelFormatter::doFormatTicks(const TickSet& tickSet) const
 {
-    if (tickSet.logScale || tickSet.values.isEmpty()) {
-        auto result = TickLabelFormatter::doFormatTicks(tickSet);
-        result.unitText = unit_;
-        return result;
+    if (tickSet.values.isEmpty()) {
+        return TickSetLabels{{}, unit_, {}};
     }
     const auto prefix = sharedPrefix(tickSet);
     const auto step = Internal::toPrefix(tickSet.step, prefix);
     auto result = TickSetLabels{{}, prefix.symbol + unit_, TickSetFormat{prefix.exponent}};
     result.labels.reserve(tickSet.values.size());
     for (const auto value : tickSet.values) {
-        result.labels.append(format(Internal::toPrefix(value, prefix), step));
+        const auto prefixedValue = Internal::toPrefix(value, prefix);
+        result.labels.append(tickSet.logScale ? formatLogTick(prefixedValue) : format(prefixedValue, step));
     }
     return result;
 }

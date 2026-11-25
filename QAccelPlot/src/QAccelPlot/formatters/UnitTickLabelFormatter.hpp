@@ -19,13 +19,15 @@ namespace QAccelPlot {
 
 /// \brief Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix.
 ///
-/// The data stays in the base \c unit. On a linear axis all tick labels share one unit prefix chosen from the
-/// visible major ticks, and the axis label shows the prefixed unit: \c unit "m" over 0–0.004 gives the tick
-/// labels 0, 1, 2, 3, 4 and the axis label "Distance (mm)". Decimals follow the tick step in the prefixed unit,
-/// as with \c NumericTickLabelFormatter. The prefix depends only on the visible range, so each axis sharing one
-/// formatter picks its own.
+/// The data stays in the base \c unit. All tick labels share one unit prefix chosen from the visible major ticks,
+/// and the axis label shows the prefixed unit: \c unit "m" over 0–0.004 gives the tick labels 0, 1, 2, 3, 4 and
+/// the axis label "Distance (mm)". Decimals follow the tick step in the prefixed unit, as with
+/// \c NumericTickLabelFormatter. On a logarithmic axis the tick labels stay powers of ten in the prefixed unit:
+/// 0.000001–0.001 gives 10^-3 to 10^0 with "Distance (mm)". The prefix depends only on the visible range, so each
+/// axis sharing one formatter picks its own.
 ///
-/// A \c tickLabel callback receives the value and the tick step in the prefixed unit.
+/// A \c tickLabel callback receives the value and the tick step in the prefixed unit; on a logarithmic axis the
+/// tick step is the value itself.
 ///
 /// \sa NumericTickLabelFormatter, TickLabelFormatter
 class UnitTickLabelFormatter : public TickLabelFormatter {
@@ -47,7 +49,7 @@ class UnitTickLabelFormatter : public TickLabelFormatter {
     /// \c Custom. Default: \c undefined.
     ///
     /// Receives the visible range and an array of the visible major tick values, all in the base unit. Called on
-    /// the GUI thread once per tick computation of a linear axis. A result outside \c allowedPrefixes snaps as with
+    /// the GUI thread once per tick computation. A result outside \c allowedPrefixes snaps as with
     /// \c fixedPrefix. An exception, a result that is not a string, or an unknown symbol falls back to
     /// \c LargestMagnitude with a warning.
     Q_PROPERTY(QJSValue prefixCallback READ prefixCallback WRITE setPrefixCallback NOTIFY prefixCallbackChanged)

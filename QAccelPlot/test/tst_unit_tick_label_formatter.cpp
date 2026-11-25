@@ -31,6 +31,13 @@ AxisTicks computeTicks(UnitTickLabelFormatter& formatter, const qreal viewportMi
     return AxisTickPainter::computeTicks(viewportMin, viewportMax, false, &ticker);
 }
 
+AxisTicks computeLogTicks(UnitTickLabelFormatter& formatter, const qreal viewportMin, const qreal viewportMax)
+{
+    auto ticker = AxisTicker{};
+    ticker.setTickLabelFormatter(&formatter);
+    return AxisTickPainter::computeTicks(viewportMin, viewportMax, true, &ticker);
+}
+
 // Exposes formatter to engine as the global "formatter", as QML does, and sets its prefix callback from source.
 void setPrefixCallback(QJSEngine& engine, UnitTickLabelFormatter& formatter, const QString& source)
 {
@@ -75,6 +82,12 @@ private slots:
     void prefixCallbackIsUsedOnlyInCustomMode_data();
     void prefixCallbackIsUsedOnlyInCustomMode();
     void prefixCallbackChangeEmitsFormatChanged();
+    void logAxisSharesThePrefixOfTheLargestTick();
+    void logAxisScalesDecadesToTheFixedPrefix();
+    void logAxisPassesBaseUnitTicksToThePrefixCallback();
+    void logAxisSnapsToTheAllowedPrefixes_data();
+    void logAxisSnapsToTheAllowedPrefixes();
+    void logAxisTickLabelCallbackReceivesPrefixedValues();
 };
 
 void UnitTickLabelFormatterTest::sharedPrefixFollowsVisibleRange_data()
@@ -516,6 +529,95 @@ void UnitTickLabelFormatterTest::prefixCallbackChangeEmitsFormatChanged()
     QVERIFY(formatter.prefixCallback().isCallable());
     QCOMPARE(callbackSpy.count(), 1);
     QCOMPARE(formatSpy.count(), 1);
+}
+
+void UnitTickLabelFormatterTest::logAxisSharesThePrefixOfTheLargestTick()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+
+    const auto ticks = computeLogTicks(formatter, 1e-6, 1e-3);
+
+    QCOMPARE(tickLabels(ticks),
+        (QStringList{QStringLiteral("10\u207B\u00B3"), QStringLiteral("10\u207B\u00B2"), QStringLiteral("10\u207B\u00B9"), QStringLiteral("10\u2070")}));
+    QCOMPARE(ticks.unitText, QStringLiteral("mm"));
+    QCOMPARE(formatter.formatValue(2e-4, 1e-6, ticks.format), QStringLiteral("0.200 mm"));
+}
+
+void UnitTickLabelFormatterTest::logAxisScalesDecadesToTheFixedPrefix()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setPrefixMode(UnitTickLabelFormatter::Fixed);
+    formatter.setFixedPrefix(QStringLiteral("m"));
+
+    const auto ticks = computeLogTicks(formatter, 1e-6, 1.0);
+
+    QCOMPARE(tickLabels(ticks),
+        (QStringList{QStringLiteral("10\u207B\u00B3"), QStringLiteral("10\u207B\u00B2"), QStringLiteral("10\u207B\u00B9"), QStringLiteral("10\u2070"),
+            QStringLiteral("10\u00B9"), QStringLiteral("10\u00B2"), QStringLiteral("10\u00B3")}));
+    QCOMPARE(ticks.unitText, QStringLiteral("mm"));
+    QCOMPARE(formatter.formatValue(0.5, 0.001, ticks.format), QStringLiteral("500 mm"));
+}
+
+void UnitTickLabelFormatterTest::logAxisPassesBaseUnitTicksToThePrefixCallback()
+{
+    auto engine = QJSEngine{};
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setPrefixMode(UnitTickLabelFormatter::Custom);
+    setPrefixCallback(engine, formatter, QStringLiteral("(function(min, max, ticks) { calls.push([min, max, ticks.join(',')].join('|')); return 'k'; })"));
+    engine.globalObject().setProperty(QStringLiteral("calls"), engine.newArray());
+
+    const auto ticks = computeLogTicks(formatter, 10.0, 1000.0);
+
+    QCOMPARE(engine.evaluate(QStringLiteral("calls.join(';')")).toString(), QStringLiteral("10|1000|10,100,1000"));
+    QCOMPARE(tickLabels(ticks), (QStringList{QStringLiteral("10\u207B\u00B2"), QStringLiteral("10\u207B\u00B9"), QStringLiteral("10\u2070")}));
+    QCOMPARE(ticks.unitText, QStringLiteral("km"));
+}
+
+void UnitTickLabelFormatterTest::logAxisSnapsToTheAllowedPrefixes_data()
+{
+    QTest::addColumn<QStringList>("allowedPrefixes");
+    QTest::addColumn<QStringList>("labels");
+    QTest::addColumn<QString>("unitText");
+    QTest::newRow("centimeters") << QStringList{"m", "c", ""}
+                                 << QStringList{QStringLiteral("10\u207B\u00B9"), QStringLiteral("10\u2070"), QStringLiteral("10\u00B9")}
+                                 << QStringLiteral("cm");
+    QTest::newRow("below the smallest prefix") << QStringList{"",
+        "k"} << QStringList{QStringLiteral("10\u207B\u00B3"), QStringLiteral("10\u207B\u00B2"), QStringLiteral("10\u207B\u00B9")}
+                                               << QStringLiteral("m");
+    QTest::newRow("no prefixes") << QStringList{}
+                                 << QStringList{QStringLiteral("10\u207B\u00B3"), QStringLiteral("10\u207B\u00B2"), QStringLiteral("10\u207B\u00B9")}
+                                 << QStringLiteral("m");
+}
+
+void UnitTickLabelFormatterTest::logAxisSnapsToTheAllowedPrefixes()
+{
+    QFETCH(QStringList, allowedPrefixes);
+    QFETCH(QStringList, labels);
+    QFETCH(QString, unitText);
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setAllowedPrefixes(allowedPrefixes);
+
+    const auto ticks = computeLogTicks(formatter, 1e-3, 0.1);
+
+    QCOMPARE(tickLabels(ticks), labels);
+    QCOMPARE(ticks.unitText, unitText);
+}
+
+void UnitTickLabelFormatterTest::logAxisTickLabelCallbackReceivesPrefixedValues()
+{
+    auto engine = QJSEngine{};
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    formatter.setTickLabel(engine.evaluate(QStringLiteral("(function(value, tickStep) { return value + '|' + tickStep; })")));
+
+    const auto ticks = computeLogTicks(formatter, 1e-5, 1e-3);
+
+    QCOMPARE(tickLabels(ticks), (QStringList{"0.01|0.01", "0.1|0.1", "1|1"}));
+    QCOMPARE(ticks.unitText, QStringLiteral("mm"));
 }
 
 } // namespace QAccelPlot

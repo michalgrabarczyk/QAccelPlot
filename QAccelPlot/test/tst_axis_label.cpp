@@ -121,6 +121,7 @@ private slots:
     void delegateReplacesThePaintedLabel();
     void unitTextFollowsTheViewport();
     void axesSharingAFormatterKeepTheirOwnPrefix();
+    void logAxisSharesOnePrefix();
     void paintedLabelShowsThePrefixedUnit();
     void qmlAxisTakesAUnitFormatter();
     void customUnitFormatPaintsTheTextAndUnit();
@@ -344,6 +345,21 @@ void AxisLabelTest::axesSharingAFormatterKeepTheirOwnPrefix()
     QCOMPARE(zoomedOut.label()->unitText(), QStringLiteral("km"));
     QCOMPARE(zoomedIn.formatValue(1.23456e-9, 700.0), QStringLiteral("1.2346 nm"));
     QCOMPARE(zoomedOut.formatValue(1234.56, 700.0), QStringLiteral("1.2346 km"));
+}
+
+void AxisLabelTest::logAxisSharesOnePrefix()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    auto axis = PolishableAxis{nullptr, Axis::Bottom};
+    axis.ticker()->setTickLabelFormatter(&formatter);
+    axis.setLogScale(true);
+
+    axis.setViewportRange(1e-6, 1e-3);
+    axis.updatePolish();
+
+    QCOMPARE(axis.label()->unitText(), QStringLiteral("mm"));
+    QCOMPARE(axis.formatValue(2e-4, 700.0), QStringLiteral("0.2000 mm"));
 }
 
 void AxisLabelTest::paintedLabelShowsThePrefixedUnit()
