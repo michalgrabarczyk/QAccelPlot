@@ -57,6 +57,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `BarSeries` data ranges on a log position axis account for `barOffset`.
 - `Histogram` rejects bin counts above 1,000,000 with a warning instead of
   terminating the application.
+- Inspecting a `HeatmapSeries` cell whose center is at or below zero on a log
+  axis places the marker in the visible part of the cell, not at the plot edge.
 
 ## [0.6.0] — 2026-11-16
 
