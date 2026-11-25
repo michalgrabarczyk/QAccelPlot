@@ -249,6 +249,8 @@ private slots:
     void labelUnitTextFollowsTheValueRange();
     void tickLabelsFollowTheSharedPrefix();
     void paintedLabelShowsThePrefixedUnit();
+    void paintedLabelFollowsTheUnitFormat();
+    void emptyLabelTextPaintsTheUnitAlone();
     void qmlColorBarLabelExposesUnitText();
     void qmlColorBarInsidePlot();
     void pixelToValueInvertsValueToPixel();
@@ -574,6 +576,8 @@ void ColorBarTest::tickLabelsFollowTheSharedPrefix()
     auto unscaled = Scene{Qt::Horizontal, QSize{200, 60}};
     for (auto* const scene : {&withUnit, &reference, &unscaled}) {
         scene->bar.ticker()->setTickLabelColor(Qt::white);
+        // Hides the unit the axis label shows without text.
+        scene->bar.label()->setColor(Qt::black);
         scene->colormap.setRange(0.0, 0.004);
     }
 
@@ -612,6 +616,53 @@ void ColorBarTest::paintedLabelShowsThePrefixedUnit()
     QVERIFY(!painted.isNull());
     QCOMPARE(painted, reference.render());
     QVERIFY(painted != textOnly.render());
+}
+
+void ColorBarTest::paintedLabelFollowsTheUnitFormat()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    auto withUnit = Scene{Qt::Vertical, QSize{100, 200}};
+    withUnit.bar.ticker()->setTickLabelFormatter(&formatter);
+    withUnit.bar.label()->setText(QStringLiteral("Value"));
+    auto toMillimeters = ScaledFormatter{1e3};
+    auto reference = Scene{Qt::Vertical, QSize{100, 200}};
+    reference.bar.ticker()->setTickLabelFormatter(&toMillimeters);
+    reference.bar.label()->setText(QStringLiteral("Value [mm]"));
+    for (auto* const scene : {&withUnit, &reference}) {
+        scene->bar.label()->setColor(Qt::white);
+        scene->colormap.setRange(0.0, 0.004);
+    }
+    QVERIFY(!withUnit.render().isNull());
+
+    withUnit.bar.label()->setUnitFormat(QStringLiteral("%1 [%2]"));
+
+    QCOMPARE(withUnit.render(), reference.render());
+}
+
+void ColorBarTest::emptyLabelTextPaintsTheUnitAlone()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    auto unitOnly = Scene{Qt::Vertical, QSize{100, 200}};
+    unitOnly.bar.ticker()->setTickLabelFormatter(&formatter);
+    auto toMillimeters = ScaledFormatter{1e3};
+    auto reference = Scene{Qt::Vertical, QSize{100, 200}};
+    reference.bar.ticker()->setTickLabelFormatter(&toMillimeters);
+    reference.bar.label()->setText(QStringLiteral("mm"));
+    auto noTitle = Scene{Qt::Vertical, QSize{100, 200}};
+    noTitle.bar.ticker()->setTickLabelFormatter(&toMillimeters);
+    for (auto* const scene : {&unitOnly, &reference, &noTitle}) {
+        scene->bar.label()->setColor(Qt::white);
+        scene->colormap.setRange(0.0, 0.004);
+    }
+
+    const auto painted = unitOnly.render();
+
+    QVERIFY(!painted.isNull());
+    QCOMPARE(painted, reference.render());
+    QCOMPARE(unitOnly.bar.implicitWidth(), reference.bar.implicitWidth());
+    QVERIFY(painted != noTitle.render());
 }
 
 void ColorBarTest::qmlColorBarLabelExposesUnitText()

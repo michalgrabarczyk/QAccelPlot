@@ -111,6 +111,7 @@ ColorBar::ColorBar(QQuickItem* parent)
     connect(label_, &TextLabel::textChanged, this, &ColorBar::invalidate);
     connect(label_, &TextLabel::fontChanged, this, &ColorBar::invalidate);
     connect(label_, &TextLabel::paddingChanged, this, &ColorBar::invalidate);
+    connect(label_, &TextLabel::unitFormatChanged, this, &ColorBar::invalidate);
     connect(label_, &TextLabel::colorChanged, this, [this]() { update(); });
     invalidate();
 }
@@ -468,7 +469,7 @@ void ColorBar::captureColormap()
 
 void ColorBar::updateImplicitSize()
 {
-    const auto titleExtent = label_->text().isEmpty() ? qreal{0.0} : titlePadding() + titleThickness();
+    const auto titleExtent = label_->paintedText().isEmpty() ? qreal{0.0} : titlePadding() + titleThickness();
     const auto thickness = std::ceil(titleOffset() - titlePadding() + titleExtent);
     if (orientation_ == Qt::Vertical) {
         setImplicitSize(thickness, kDefaultLength);
@@ -587,11 +588,11 @@ void ColorBar::paintTicks(QPainter* painter) const
 
 void ColorBar::paintTitle(QPainter* painter) const
 {
-    if (label_->text().isEmpty()) {
+    const auto text = label_->paintedText();
+    if (text.isEmpty()) {
         return;
     }
     const auto& title = layout_.title;
-    const auto text = label_->paintedText();
     painter->save();
     painter->setFont(label_->font());
     painter->setPen(label_->color());

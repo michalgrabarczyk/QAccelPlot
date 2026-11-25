@@ -20,7 +20,7 @@ namespace QAccelPlot {
 class TextLabel : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
-    /// \brief Title text. Default: empty, which draws no title.
+    /// \brief Title text. Default: empty, which draws \c unitText alone, or no title without unit text.
     Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
     /// \brief Title font. Default: application default font.
     Q_PROPERTY(QFont font READ font WRITE setFont NOTIFY fontChanged)
@@ -33,8 +33,14 @@ class TextLabel : public QObject {
     ///
     /// The owning Axis or ColorBar updates it whenever it computes its ticks. It is empty when the formatter shows no
     /// unit, as with every built-in formatter except \c UnitTickLabelFormatter. While it is set, the owner paints its
-    /// title as "text (unitText)", such as "Distance (mm)". An Axis \c delegate can bind to it.
+    /// title with \c unitFormat, such as "Distance (mm)". An Axis \c delegate can bind to it.
     Q_PROPERTY(QString unitText READ unitText NOTIFY unitTextChanged)
+    /// \brief How the painted title combines \c text (\c %1) and \c unitText (\c %2). Default: "%1 (%2)".
+    ///
+    /// For example, "%1 [%2]" paints "Distance [mm]" and "%1 / %2" paints "Distance / mm". It applies only while
+    /// both \c text and \c unitText are set: an empty \c text paints \c unitText alone, and an empty \c unitText
+    /// paints \c text alone. Assign \c undefined to return to the default.
+    Q_PROPERTY(QString unitFormat READ unitFormat WRITE setUnitFormat RESET resetUnitFormat NOTIFY unitFormatChanged)
 
 public:
     /// \brief Constructs a label with the default \a color and \a padding, owned by \a parent.
@@ -69,7 +75,16 @@ public:
     /// \brief Sets the prefixed unit to \a unitText. Called by the owning Axis or ColorBar when its ticks change.
     void setUnitText(const QString& unitText);
 
-    /// \brief Returns the title text combined with the unit text, such as "Distance (mm)", or \c text() without unit text.
+    /// \brief Returns how the painted title combines the text and the unit text.
+    QString unitFormat() const;
+    /// \brief Sets how the painted title combines the text (\c %1) and the unit text (\c %2) to \a format.
+    void setUnitFormat(const QString& format);
+    /// \brief Restores the default unit format "%1 (%2)".
+    void resetUnitFormat();
+
+    /// \brief Returns the title text combined with the unit text by unitFormat(), such as "Distance (mm)".
+    ///
+    /// Returns the unit text alone for an empty text, and the text alone without unit text.
     QString paintedText() const;
 
 signals:
@@ -83,6 +98,8 @@ signals:
     void paddingChanged();
     /// \brief Emitted when the unitText property changes.
     void unitTextChanged();
+    /// \brief Emitted when the unitFormat property changes.
+    void unitFormatChanged();
 
 private:
     QString text_;
@@ -90,6 +107,7 @@ private:
     Internal::ResettableValue<QColor> color_;
     qreal padding_;
     QString unitText_;
+    Internal::ResettableValue<QString> unitFormat_;
 };
 
 } // namespace QAccelPlot

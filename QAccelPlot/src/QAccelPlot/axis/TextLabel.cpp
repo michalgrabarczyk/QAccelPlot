@@ -11,6 +11,7 @@ TextLabel::TextLabel(const QColor& color, const qreal padding, QObject* parent)
     : QObject(parent)
     , color_(color)
     , padding_(padding)
+    , unitFormat_(QStringLiteral("%1 (%2)"))
 {
 }
 
@@ -100,12 +101,34 @@ void TextLabel::setUnitText(const QString& unitText)
     emit unitTextChanged();
 }
 
+QString TextLabel::unitFormat() const
+{
+    return unitFormat_.value();
+}
+
+void TextLabel::setUnitFormat(const QString& format)
+{
+    if (unitFormat_.set(format)) {
+        emit unitFormatChanged();
+    }
+}
+
+void TextLabel::resetUnitFormat()
+{
+    if (unitFormat_.reset()) {
+        emit unitFormatChanged();
+    }
+}
+
 QString TextLabel::paintedText() const
 {
     if (unitText_.isEmpty()) {
         return text_;
     }
-    return QStringLiteral("%1 (%2)").arg(text_, unitText_);
+    if (text_.isEmpty()) {
+        return unitText_;
+    }
+    return unitFormat_.value().arg(text_, unitText_);
 }
 
 } // namespace QAccelPlot
