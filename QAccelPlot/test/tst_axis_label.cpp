@@ -325,6 +325,8 @@ void AxisLabelTest::axesSharingAFormatterKeepTheirOwnPrefix()
 
     QCOMPARE(zoomedIn.label()->unitText(), QStringLiteral("nm"));
     QCOMPARE(zoomedOut.label()->unitText(), QStringLiteral("km"));
+    QCOMPARE(zoomedIn.formatValue(1.23456e-9, 700.0), QStringLiteral("1.2346 nm"));
+    QCOMPARE(zoomedOut.formatValue(1234.56, 700.0), QStringLiteral("1.2346 km"));
 }
 
 void AxisLabelTest::paintedLabelShowsThePrefixedUnit()

@@ -66,6 +66,9 @@ protected:
     QString doFormatLogTick(qreal value) const override;
     /// \brief Returns the tick labels in the shared unit prefix of \a tickSet, and the prefixed unit as unit text.
     TickSetLabels doFormatTicks(const TickSet& tickSet) const override;
+    /// \brief Returns \a value in the unit prefix of \a tickSetFormat, followed by a space and the prefixed unit,
+    /// such as "12.3 mm".
+    QString doFormatValue(qreal value, qreal resolution, const TickSetFormat& tickSetFormat) const override;
 
 private:
     QString unit_;

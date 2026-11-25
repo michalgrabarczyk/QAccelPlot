@@ -4,6 +4,7 @@
 //
 #include "QAccelPlot/formatters/internal/UnitPrefix.hpp"
 
+#include <algorithm>
 #include <cmath>
 
 namespace QAccelPlot::Internal {
@@ -50,6 +51,12 @@ UnitPrefix largestMagnitudePrefix(const qreal magnitude, const QList<UnitPrefix>
         }
     }
     return prefixes.first();
+}
+
+UnitPrefix prefixWithExponent(const int exponent, const QList<UnitPrefix>& prefixes)
+{
+    const auto it = std::find_if(prefixes.cbegin(), prefixes.cend(), [exponent](const UnitPrefix& prefix) { return prefix.exponent == exponent; });
+    return it != prefixes.cend() ? *it : UnitPrefix{};
 }
 
 qreal toPrefix(const qreal value, const UnitPrefix& prefix)

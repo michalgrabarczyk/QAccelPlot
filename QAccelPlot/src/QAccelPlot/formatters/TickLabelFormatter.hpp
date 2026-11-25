@@ -21,10 +21,18 @@ struct TickSet {
     bool logScale{false};   ///< \brief Whether the values were placed at powers of ten.
 };
 
+/// \brief What a formatter decided for a whole \c TickSet that a single value formatted later must follow.
+///
+/// The axis keeps it with its latest ticks and passes it to \c TickLabelFormatter::formatValue().
+struct TickSetFormat {
+    int prefixExponent{0}; ///< \brief Power of ten of the unit prefix shared by the tick labels; 0 for none.
+};
+
 /// \brief The text a formatter returns for a \c TickSet.
 struct TickSetLabels {
-    QStringList labels; ///< \brief One tick label per tick value, in the same order.
-    QString unitText;   ///< \brief Unit text for the axis label, shared by the whole tick set; empty for none.
+    QStringList labels;   ///< \brief One tick label per tick value, in the same order.
+    QString unitText;     ///< \brief Unit text for the axis label, shared by the whole tick set; empty for none.
+    TickSetFormat format; ///< \brief What single values formatted for this tick set must follow.
 };
 
 /// \brief Abstract base class for tick label formatters.
@@ -63,6 +71,12 @@ public:
     /// be shared by several axes, so anything decided for one tick set belongs in the result, not in the formatter.
     TickSetLabels formatTicks(const TickSet& tickSet) const;
 
+    /// \brief Returns the readout text for \a value, resolved to \a resolution, following \a tickSetFormat.
+    ///
+    /// \a tickSetFormat is what \c formatTicks() returned for the axis's latest tick set. Delegates to
+    /// \c doFormatValue(). Used for tooltips, the crosshair, and inspector rows.
+    QString formatValue(qreal value, qreal resolution, const TickSetFormat& tickSetFormat) const;
+
     /// \brief Returns the smallest major tick step a linear axis may use with this formatter.
     ///
     /// The axis raises a smaller "nice" step to this value. The default is \c 0, no minimum.
@@ -96,6 +110,11 @@ protected:
     /// implementation labels each tick with \c format(), or \c formatLogTick() on a logarithmic scale, and returns
     /// no unit text.
     virtual TickSetLabels doFormatTicks(const TickSet& tickSet) const;
+
+    /// \brief Subclass entry point for readouts — returns the text for \a value at \a resolution.
+    ///
+    /// The default implementation returns \c format(value, resolution) and ignores \a tickSetFormat.
+    virtual QString doFormatValue(qreal value, qreal resolution, const TickSetFormat& tickSetFormat) const;
 
 private:
     /// \brief Calls the \c tickLabel JS callback; returns \c true and sets \a label on success.

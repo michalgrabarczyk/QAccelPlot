@@ -10,6 +10,8 @@
 #include "QAccelPlot/axis/AxisTicks.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
+#include <optional>
+
 #include <QColor>
 #include <QFont>
 #include <QList>
@@ -223,8 +225,9 @@ public:
     /// \brief Formats \a value for a readout on an axis of \a length pixels.
     ///
     /// Uses the tick label formatter with a precision one decimal digit finer than a pixel, so the
-    /// text follows the zoom level instead of the tick spacing. Returns an empty string for a
-    /// nonfinite \a value.
+    /// text follows the zoom level instead of the tick spacing. Follows what the formatter decided for
+    /// the current ticks, such as the unit prefix of a \c UnitTickLabelFormatter ("12.3 mm"). Returns an
+    /// empty string for a nonfinite \a value.
     Q_INVOKABLE QString formatValue(qreal value, qreal length) const;
 
 signals:
@@ -298,6 +301,7 @@ private:
     DataRange dataFitRange() const;
     void autoRescaleToData();
     qreal valueResolution(qreal value, qreal length) const;
+    TickSetFormat valueFormat() const;
     qreal defaultLabelRotation() const;
     void paintLabel(QPainter* painter, const QRectF& r, qreal axisX, qreal axisY) const;
     void createLabelItem();
@@ -335,6 +339,8 @@ private:
     Side side_{Bottom};
     AxisTicker* ticker_;
     AxisTicks ticks_;
+    // What formatValue() follows; empty until the ticks are recomputed after a change. GUI thread only.
+    mutable std::optional<TickSetFormat> valueFormat_;
 };
 
 } // namespace QAccelPlot

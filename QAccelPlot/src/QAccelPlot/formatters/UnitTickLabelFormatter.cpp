@@ -66,12 +66,20 @@ TickSetLabels UnitTickLabelFormatter::doFormatTicks(const TickSet& tickSet) cons
     const auto largestTick = std::max(std::abs(tickSet.values.front()), std::abs(tickSet.values.back()));
     const auto prefix = Internal::largestMagnitudePrefix(largestTick, Internal::defaultUnitPrefixes());
     const auto step = Internal::toPrefix(tickSet.step, prefix);
-    auto result = TickSetLabels{{}, prefix.symbol + unit_};
+    auto result = TickSetLabels{{}, prefix.symbol + unit_, TickSetFormat{prefix.exponent}};
     result.labels.reserve(tickSet.values.size());
     for (const auto value : tickSet.values) {
         result.labels.append(format(Internal::toPrefix(value, prefix), step));
     }
     return result;
+}
+
+QString UnitTickLabelFormatter::doFormatValue(const qreal value, const qreal resolution, const TickSetFormat& tickSetFormat) const
+{
+    const auto prefix = Internal::prefixWithExponent(tickSetFormat.prefixExponent, Internal::defaultUnitPrefixes());
+    const auto number = format(Internal::toPrefix(value, prefix), Internal::toPrefix(resolution, prefix));
+    const auto prefixedUnit = prefix.symbol + unit_;
+    return prefixedUnit.isEmpty() ? number : number + QLatin1Char(' ') + prefixedUnit;
 }
 
 } // namespace QAccelPlot

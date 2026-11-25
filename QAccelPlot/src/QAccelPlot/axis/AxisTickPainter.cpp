@@ -147,6 +147,7 @@ AxisTicks AxisTickPainter::computeTicks(const qreal viewportMin, const qreal vie
         ticks.majorTicks.append(AxisTick{values.majorValues.at(i), labels.labels.at(i)});
     }
     ticks.unitText = labels.unitText;
+    ticks.format = labels.format;
     return ticks;
 }
 

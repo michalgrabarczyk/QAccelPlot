@@ -4,6 +4,8 @@
 //
 #pragma once
 
+#include "QAccelPlot/formatters/TickLabelFormatter.hpp"
+
 #include <QList>
 #include <QString>
 
@@ -27,6 +29,7 @@ struct AxisTicks {
     QList<qreal> subtickValues; ///< \brief Data-space values of the visible subticks.
     QList<AxisTick> majorTicks; ///< \brief Visible major ticks with their labels.
     QString unitText;           ///< \brief Unit text the formatter chose for the axis label; empty for none.
+    TickSetFormat format;       ///< \brief What the formatter decided for the major ticks that single-value readouts follow.
 };
 
 /// \brief The visible tick and subtick values for one axis viewport, without labels.

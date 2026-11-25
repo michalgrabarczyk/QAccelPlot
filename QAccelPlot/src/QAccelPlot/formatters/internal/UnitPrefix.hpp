@@ -24,6 +24,9 @@ const QList<UnitPrefix>& defaultUnitPrefixes();
 /// the bare unit when \a prefixes is empty. A zero or non-finite \a magnitude is treated as 1.
 UnitPrefix largestMagnitudePrefix(qreal magnitude, const QList<UnitPrefix>& prefixes);
 
+/// \brief Returns the prefix of \a prefixes whose power of ten is \a exponent, or the bare unit when none matches.
+UnitPrefix prefixWithExponent(int exponent, const QList<UnitPrefix>& prefixes);
+
 /// \brief Returns \a value, given in the base unit, expressed in \a prefix.
 qreal toPrefix(qreal value, const UnitPrefix& prefix);
 

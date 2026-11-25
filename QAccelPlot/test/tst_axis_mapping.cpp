@@ -3,6 +3,8 @@
 // SPDX-License-Identifier: MIT
 //
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/axis/AxisTicker.hpp"
+#include "QAccelPlot/formatters/UnitTickLabelFormatter.hpp"
 
 #include <QtTest/QtTest>
 
@@ -55,6 +57,8 @@ private slots:
     void formatValue_linear_followsPixelResolution();
     void formatValue_log_scalesWithValue();
     void formatValue_nonFinite_isEmpty();
+    void formatValue_unitFormatter_writesTheAxisPrefixAndUnit();
+    void formatValue_unitFormatter_followsThePrefixAfterZooming();
 };
 
 // ---------------------------------------------------------------------------
@@ -350,6 +354,33 @@ void TestAxisMapping::formatValue_nonFinite_isEmpty()
     const auto axis = makeHorizontalAxis(0.0, 10.0);
     QCOMPARE(axis->formatValue(std::numeric_limits<qreal>::quiet_NaN(), 700.0), QString{});
     QCOMPARE(axis->formatValue(std::numeric_limits<qreal>::infinity(), 700.0), QString{});
+}
+
+void TestAxisMapping::formatValue_unitFormatter_writesTheAxisPrefixAndUnit()
+{
+    auto formatter = QAccelPlot::UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    const auto axis = makeHorizontalAxis(0.0, 0.004);
+    axis->ticker()->setTickLabelFormatter(&formatter);
+    QCOMPARE(axis->formatValue(0.00123456, 700.0), QStringLiteral("1.2346 mm"));
+}
+
+void TestAxisMapping::formatValue_unitFormatter_followsThePrefixAfterZooming()
+{
+    auto formatter = QAccelPlot::UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    const auto axis = makeHorizontalAxis(0.0, 0.004);
+    axis->ticker()->setTickLabelFormatter(&formatter);
+    QCOMPARE(axis->formatValue(0.00123456, 700.0), QStringLiteral("1.2346 mm"));
+
+    axis->setViewportRange(0.0, 4e-6);
+    QCOMPARE(axis->formatValue(1.23456e-6, 700.0), QStringLiteral("1.2346 µm"));
+
+    axis->setViewportRange(0.0, 4000.0);
+    QCOMPARE(axis->formatValue(1234.56, 700.0), QStringLiteral("1.2346 km"));
+
+    axis->setViewportRange(0.0, 4.0);
+    QCOMPARE(axis->formatValue(1.23456, 700.0), QStringLiteral("1.2346 m"));
 }
 
 QTEST_MAIN(TestAxisMapping)
