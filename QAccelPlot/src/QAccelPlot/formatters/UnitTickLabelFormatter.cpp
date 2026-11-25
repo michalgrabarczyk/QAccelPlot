@@ -7,11 +7,26 @@
 #include "QAccelPlot/formatters/internal/NumericLabel.hpp"
 #include "QAccelPlot/formatters/internal/UnitPrefix.hpp"
 
+#include <QJSEngine>
+
 #include <algorithm>
 #include <cmath>
 #include <utility>
 
 namespace QAccelPlot {
+
+namespace {
+
+QJSValue jsArray(QJSEngine& engine, const QList<qreal>& values)
+{
+    auto array = engine.newArray(static_cast<uint>(values.size()));
+    for (auto i = qsizetype{0}; i < values.size(); ++i) {
+        array.setProperty(static_cast<quint32>(i), QJSValue{values.at(i)});
+    }
+    return array;
+}
+
+} // namespace
 
 UnitTickLabelFormatter::UnitTickLabelFormatter(QObject* parent)
     : TickLabelFormatter(parent)
@@ -46,6 +61,38 @@ void UnitTickLabelFormatter::setPrefixMode(const PrefixMode mode)
     }
     prefixMode_ = mode;
     emit prefixModeChanged();
+    emit formatChanged();
+}
+
+QString UnitTickLabelFormatter::fixedPrefix() const
+{
+    return fixedPrefix_.symbol;
+}
+
+void UnitTickLabelFormatter::setFixedPrefix(const QString& symbol)
+{
+    const auto prefix = Internal::unitPrefixFromSymbol(symbol);
+    if (!prefix) {
+        qCWarning(lcQAccelPlot) << "UnitTickLabelFormatter: ignoring unknown unit prefix" << symbol;
+        return;
+    }
+    if (fixedPrefix_ == *prefix) {
+        return;
+    }
+    fixedPrefix_ = *prefix;
+    emit fixedPrefixChanged();
+    emit formatChanged();
+}
+
+QJSValue UnitTickLabelFormatter::prefixCallback() const
+{
+    return prefixCallback_;
+}
+
+void UnitTickLabelFormatter::setPrefixCallback(const QJSValue& callback)
+{
+    prefixCallback_ = callback;
+    emit prefixCallbackChanged();
     emit formatChanged();
 }
 
@@ -95,8 +142,7 @@ TickSetLabels UnitTickLabelFormatter::doFormatTicks(const TickSet& tickSet) cons
         result.unitText = unit_;
         return result;
     }
-    const auto largestTick = std::max(std::abs(tickSet.values.front()), std::abs(tickSet.values.back()));
-    const auto prefix = Internal::largestMagnitudePrefix(largestTick, allowedPrefixes_);
+    const auto prefix = sharedPrefix(tickSet);
     const auto step = Internal::toPrefix(tickSet.step, prefix);
     auto result = TickSetLabels{{}, prefix.symbol + unit_, TickSetFormat{prefix.exponent}};
     result.labels.reserve(tickSet.values.size());
@@ -122,6 +168,49 @@ void UnitTickLabelFormatter::applyAllowedPrefixes(const QList<Internal::UnitPref
     allowedPrefixes_ = prefixes;
     emit allowedPrefixesChanged();
     emit formatChanged();
+}
+
+Internal::UnitPrefix UnitTickLabelFormatter::sharedPrefix(const TickSet& tickSet) const
+{
+    if (allowedPrefixes_.isEmpty()) {
+        return {};
+    }
+    if (prefixMode_ == Fixed) {
+        return Internal::snappedUnitPrefix(fixedPrefix_.exponent, allowedPrefixes_);
+    }
+    if (prefixMode_ == Custom) {
+        if (const auto prefix = callPrefixCallback(tickSet)) {
+            return Internal::snappedUnitPrefix(prefix->exponent, allowedPrefixes_);
+        }
+    }
+    const auto largestTick = std::max(std::abs(tickSet.values.front()), std::abs(tickSet.values.back()));
+    return Internal::largestMagnitudePrefix(largestTick, allowedPrefixes_);
+}
+
+std::optional<Internal::UnitPrefix> UnitTickLabelFormatter::callPrefixCallback(const TickSet& tickSet) const
+{
+    if (!prefixCallback_.isCallable()) {
+        return std::nullopt;
+    }
+    auto* const engine = qjsEngine(this);
+    if (engine == nullptr) {
+        qCWarning(lcQAccelPlot) << "UnitTickLabelFormatter: prefix callback needs a formatter created by a QML or JavaScript engine";
+        return std::nullopt;
+    }
+    const auto result = prefixCallback_.call({QJSValue{tickSet.viewportMin}, QJSValue{tickSet.viewportMax}, jsArray(*engine, tickSet.values)});
+    if (result.isError()) {
+        qCWarning(lcQAccelPlot) << "UnitTickLabelFormatter: prefix callback failed:" << result.toString();
+        return std::nullopt;
+    }
+    if (!result.isString()) {
+        qCWarning(lcQAccelPlot) << "UnitTickLabelFormatter: prefix callback returned a non-string" << result.toString();
+        return std::nullopt;
+    }
+    const auto prefix = Internal::unitPrefixFromSymbol(result.toString());
+    if (!prefix) {
+        qCWarning(lcQAccelPlot) << "UnitTickLabelFormatter: prefix callback returned an unknown unit prefix" << result.toString();
+    }
+    return prefix;
 }
 
 } // namespace QAccelPlot

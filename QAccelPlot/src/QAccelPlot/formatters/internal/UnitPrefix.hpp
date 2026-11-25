@@ -53,6 +53,12 @@ UnitPrefix largestMagnitudePrefix(qreal magnitude, const QList<UnitPrefix>& pref
 /// \brief Returns the prefix of \a prefixes whose power of ten is \a exponent, or the bare unit when none matches.
 UnitPrefix prefixWithExponent(int exponent, const QList<UnitPrefix>& prefixes);
 
+/// \brief Returns the prefix of \a prefixes with the largest exponent not above \a exponent.
+///
+/// \a prefixes must be sorted by ascending exponent. Falls back to the smallest prefix when none qualifies, and to
+/// the bare unit when \a prefixes is empty.
+UnitPrefix snappedUnitPrefix(int exponent, const QList<UnitPrefix>& prefixes);
+
 /// \brief Returns \a value, given in the base unit, expressed in \a prefix.
 qreal toPrefix(qreal value, const UnitPrefix& prefix);
 

@@ -7,10 +7,13 @@
 #include "QAccelPlot/formatters/TickLabelFormatter.hpp"
 #include "QAccelPlot/formatters/internal/UnitPrefix.hpp"
 
+#include <QJSValue>
 #include <QList>
 #include <QString>
 #include <QStringList>
 #include <QtQml/qqmlregistration.h>
+
+#include <optional>
 
 namespace QAccelPlot {
 
@@ -33,6 +36,21 @@ class UnitTickLabelFormatter : public TickLabelFormatter {
     Q_PROPERTY(QString unit READ unit WRITE setUnit NOTIFY unitChanged)
     /// \brief Rule that picks the unit prefix from the visible range. Default: \c LargestMagnitude.
     Q_PROPERTY(PrefixMode prefixMode READ prefixMode WRITE setPrefixMode NOTIFY prefixModeChanged)
+    /// \brief Unit prefix symbol the tick labels use with \c prefixMode \c Fixed, such as "m". Default: "", the bare
+    /// unit.
+    ///
+    /// A prefix outside \c allowedPrefixes snaps to the allowed prefix with the largest power of ten not above it,
+    /// or to the smallest allowed prefix. "µ" (U+00B5), "μ" (U+03BC), and "u" all mean micro and read back as "µ"
+    /// (U+00B5). An unknown symbol is ignored with a warning.
+    Q_PROPERTY(QString fixedPrefix READ fixedPrefix WRITE setFixedPrefix NOTIFY fixedPrefixChanged)
+    /// \brief JavaScript callback \c function(min, max, ticks) that returns the unit prefix symbol with \c prefixMode
+    /// \c Custom. Default: \c undefined.
+    ///
+    /// Receives the visible range and an array of the visible major tick values, all in the base unit. Called on
+    /// the GUI thread once per tick computation of a linear axis. A result outside \c allowedPrefixes snaps as with
+    /// \c fixedPrefix. An exception, a result that is not a string, or an unknown symbol falls back to
+    /// \c LargestMagnitude with a warning.
+    Q_PROPERTY(QJSValue prefixCallback READ prefixCallback WRITE setPrefixCallback NOTIFY prefixCallbackChanged)
     /// \brief Unit prefix symbols the tick labels may use, with "" for the bare unit. Default: every power-of-1000
     /// prefix from quecto ("q") to quetta ("Q"), and "".
     ///
@@ -50,6 +68,10 @@ public:
         /// \brief The allowed prefix with the largest power of ten at which the largest visible major tick is still
         /// at least 1, or the smallest allowed prefix when none qualifies, shared by all tick labels.
         LargestMagnitude,
+        /// \brief \c fixedPrefix, shared by all tick labels at every zoom level.
+        Fixed,
+        /// \brief The result of \c prefixCallback, shared by all tick labels.
+        Custom,
     };
     Q_ENUM(PrefixMode)
 
@@ -66,6 +88,17 @@ public:
     /// \brief Sets the rule that picks the unit prefix to \a mode.
     void setPrefixMode(PrefixMode mode);
 
+    /// \brief Returns the unit prefix symbol used with \c prefixMode \c Fixed.
+    QString fixedPrefix() const;
+    /// \brief Sets the unit prefix symbol used with \c prefixMode \c Fixed to \a symbol; an unknown symbol is
+    /// ignored with a warning.
+    void setFixedPrefix(const QString& symbol);
+
+    /// \brief Returns the JavaScript callback that picks the unit prefix with \c prefixMode \c Custom.
+    QJSValue prefixCallback() const;
+    /// \brief Sets the JavaScript callback that picks the unit prefix with \c prefixMode \c Custom to \a callback.
+    void setPrefixCallback(const QJSValue& callback);
+
     /// \brief Returns the allowed unit prefix symbols in effect, sorted by ascending power of ten.
     QStringList allowedPrefixes() const;
     /// \brief Sets the allowed unit prefix symbols to \a symbols; unknown symbols are ignored with a warning.
@@ -78,6 +111,10 @@ signals:
     void unitChanged();
     /// \brief Emitted when the prefixMode property changes.
     void prefixModeChanged();
+    /// \brief Emitted when the fixedPrefix property changes.
+    void fixedPrefixChanged();
+    /// \brief Emitted when the prefixCallback property changes.
+    void prefixCallbackChanged();
     /// \brief Emitted when the allowedPrefixes property changes.
     void allowedPrefixesChanged();
 
@@ -94,9 +131,13 @@ protected:
 
 private:
     void applyAllowedPrefixes(const QList<Internal::UnitPrefix>& prefixes);
+    Internal::UnitPrefix sharedPrefix(const TickSet& tickSet) const;
+    std::optional<Internal::UnitPrefix> callPrefixCallback(const TickSet& tickSet) const;
 
     QString unit_;
     PrefixMode prefixMode_{LargestMagnitude};
+    Internal::UnitPrefix fixedPrefix_;
+    QJSValue prefixCallback_;
     QList<Internal::UnitPrefix> allowedPrefixes_;
 };
 

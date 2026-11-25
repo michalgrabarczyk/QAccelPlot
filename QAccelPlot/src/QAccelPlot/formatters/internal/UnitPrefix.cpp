@@ -99,6 +99,15 @@ UnitPrefix prefixWithExponent(const int exponent, const QList<UnitPrefix>& prefi
     return it != prefixes.cend() ? *it : UnitPrefix{};
 }
 
+UnitPrefix snappedUnitPrefix(const int exponent, const QList<UnitPrefix>& prefixes)
+{
+    if (prefixes.isEmpty()) {
+        return {};
+    }
+    const auto it = std::find_if(prefixes.crbegin(), prefixes.crend(), [exponent](const UnitPrefix& prefix) { return prefix.exponent <= exponent; });
+    return it != prefixes.crend() ? *it : prefixes.first();
+}
+
 qreal toPrefix(const qreal value, const UnitPrefix& prefix)
 {
     // Multiplying by a positive power of ten keeps values such as 0.003 m closer to 3 mm than dividing by 0.001.
