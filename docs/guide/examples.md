@@ -175,6 +175,13 @@ Each executable is named after its example, for example
 
     Category, logarithmic, and date/time tick labels. Recipe: [Axis formats](cookbook/axis-formats.md).
 
+-   ![Unit Tick Labels](assets/examples/unit_tick_labels.webp)
+
+    **[Unit Tick Labels](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axes/unit_tick_labels)**
+
+    SI unit prefixes that follow the zoom, in the axis label, on each tick label, or per tick label.
+    Recipe: [Units and SI prefixes](cookbook/axis-formats.md#units-and-si-prefixes).
+
 -   ![Axis Labels](assets/examples/axis_labels.webp)
 
     **[Axis Labels](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axes/axis_labels)**

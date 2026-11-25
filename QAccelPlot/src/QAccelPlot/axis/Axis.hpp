@@ -52,7 +52,7 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(qreal dataMax READ dataMax WRITE setDataMax NOTIFY dataMaxChanged)
     /// \brief Axis orientation: \c Qt.Horizontal or \c Qt.Vertical.
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
-    /// \brief Read-only constant: axis title and its placement, e.g. <tt>label.text: "Time (s)"</tt>.
+    /// \brief Read-only constant: axis label and its placement, e.g. <tt>label.text: "Time (s)"</tt>.
     Q_PROPERTY(AxisLabel* label READ label CONSTANT)
     /// \brief Read-only: \c true while the mouse cursor is over the axis widget.
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
@@ -137,7 +137,7 @@ public:
     /// \brief Sets the axis orientation to \a o.
     void setOrientation(Qt::Orientation o);
 
-    /// \brief Returns the axis title configuration object. Include \c AxisLabel.hpp to use it.
+    /// \brief Returns the axis label configuration object. Include \c AxisLabel.hpp to use it.
     AxisLabel* label() const;
 
     /// \brief Returns the axis side.

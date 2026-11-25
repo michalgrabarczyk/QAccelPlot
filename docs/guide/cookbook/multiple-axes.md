@@ -30,7 +30,7 @@ xAxis: QAccelPlot.Axis {
 ```
 
 `layoutSize` does not grow with label text, fonts, or formatters. Choose a value
-that fits the tick labels and axis title.
+that fits the tick labels and axis label.
 
 ## Secondary axes
 

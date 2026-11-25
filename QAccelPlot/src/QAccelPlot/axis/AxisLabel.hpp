@@ -14,56 +14,57 @@
 
 namespace QAccelPlot {
 
-/// \brief Axis title and its placement, grouped as the Axis \c label property, e.g. <tt>label.text: "Time (s)"</tt>.
+/// \brief Axis label and its placement, grouped as the Axis \c label property, e.g. <tt>label.text: "Time (s)"</tt>.
 ///
-/// The title is painted inside the axis item and clipped to it. \c delegate replaces it with a QML item.
+/// The axis label is painted inside the axis item and clipped to it. \c delegate replaces it with a QML item.
 ///
 /// \sa Axis
 class AxisLabel : public TextLabel {
     Q_OBJECT
     QML_ANONYMOUS
-    /// \brief Position of the title along the axis. Default: \c Axis.Center.
+    /// \brief Position of the axis label along the axis. Default: \c Axis.Center.
     Q_PROPERTY(Axis::LabelAlignment alignment READ alignment WRITE setAlignment NOTIFY alignmentChanged)
-    /// \brief Clockwise rotation of the title in degrees.
+    /// \brief Clockwise rotation of the axis label in degrees.
     ///
     /// Defaults to the side's rotation: 0 on horizontal axes, -90 on the left, and 90 on the right.
     /// Assign \c undefined to return to it.
     Q_PROPERTY(qreal rotation READ rotation WRITE setRotation RESET resetRotation NOTIFY rotationChanged)
-    /// \brief Pixel offset added to the title position after alignment and padding. Default: (0, 0).
+    /// \brief Pixel offset added to the axis label position after alignment and padding. Default: (0, 0).
     Q_PROPERTY(QPointF offset READ offset WRITE setOffset NOTIFY offsetChanged)
-    /// \brief Optional component that replaces the painted title. Default: \c null.
+    /// \brief Optional component that replaces the painted axis label. Default: \c null.
     ///
     /// The axis creates one instance as its child item, so \c parent is the axis and anchors, \c x,
     /// \c y, and \c rotation position it. The instance may extend beyond the axis. While a delegate
-    /// is set, the axis paints no title and ignores \c alignment, \c rotation, \c offset, and \c padding.
+    /// is set, the axis paints no axis label and ignores \c alignment, \c rotation, \c offset, and \c padding.
     Q_PROPERTY(QQmlComponent* delegate READ delegate WRITE setDelegate NOTIFY delegateChanged)
 
 public:
     /// \brief Constructs an axis label owned by \a parent.
     explicit AxisLabel(QObject* parent = nullptr);
 
-    /// \brief Returns the position of the title along the axis.
+    /// \brief Returns the position of the axis label along the axis.
     Axis::LabelAlignment alignment() const;
-    /// \brief Sets the position of the title along the axis to \a alignment.
+    /// \brief Sets the position of the axis label along the axis to \a alignment.
     void setAlignment(Axis::LabelAlignment alignment);
 
-    /// \brief Returns the title rotation in degrees, including the side's default rotation.
+    /// \brief Returns the axis label rotation in degrees, including the side's default rotation.
     qreal rotation() const;
-    /// \brief Sets the title rotation to \a degrees. A non-finite value restores the side's default rotation.
+    /// \brief Sets the axis label rotation to \a degrees. A non-finite value restores the side's default rotation.
     void setRotation(qreal degrees);
-    /// \brief Restores the side's default title rotation.
+    /// \brief Restores the side's default axis label rotation.
     void resetRotation();
     /// \brief Sets the rotation used while none is set to \a degrees. Called by the owning Axis when its side changes.
     void setDefaultRotation(qreal degrees);
 
-    /// \brief Returns the pixel offset of the title.
+    /// \brief Returns the pixel offset of the axis label.
     QPointF offset() const;
-    /// \brief Sets the pixel offset of the title to \a offset.
+    /// \brief Sets the pixel offset of the axis label to \a offset.
     void setOffset(const QPointF& offset);
 
-    /// \brief Returns the component that replaces the painted title, or \c nullptr.
+    /// \brief Returns the component that replaces the painted axis label, or \c nullptr.
     QQmlComponent* delegate() const;
-    /// \brief Sets the component that replaces the painted title to \a delegate. \c nullptr restores the painted title.
+    /// \brief Sets the component that replaces the painted axis label to \a delegate. \c nullptr restores the painted
+    /// axis label.
     void setDelegate(QQmlComponent* delegate);
 
 signals:
