@@ -8,6 +8,7 @@
 #include "QAccelPlot/axis/ColorBar.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/formatters/TickLabelFormatter.hpp"
+#include "QAccelPlot/formatters/UnitTickLabelFormatter.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/series/HeatmapSeries.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
@@ -53,6 +54,24 @@ public:
     using ColorBar::mousePressEvent;
     using ColorBar::mouseReleaseEvent;
     using ColorBar::wheelEvent;
+};
+
+// Labels each tick with its value multiplied by a scale, without a unit.
+class ScaledFormatter final : public TickLabelFormatter {
+public:
+    explicit ScaledFormatter(const qreal scale)
+        : scale_{scale}
+    {
+    }
+
+protected:
+    QString doFormat(const qreal value, [[maybe_unused]] qreal tickStep) const override
+    {
+        return QString::number(value * scale_);
+    }
+
+private:
+    qreal scale_;
 };
 
 // Labels every tick set with the unit text "u".
@@ -227,6 +246,10 @@ private slots:
     void tickLabelsAreClippedToTickLabelWidth();
     void drawsTitleBesideTickLabels();
     void keepsUnitTextOfLatestTicks();
+    void labelUnitTextFollowsTheValueRange();
+    void tickLabelsFollowTheSharedPrefix();
+    void paintedLabelShowsThePrefixedUnit();
+    void qmlColorBarLabelExposesUnitText();
     void qmlColorBarInsidePlot();
     void pixelToValueInvertsValueToPixel();
     void gesturesAreIgnoredUnlessInteractive();
@@ -512,6 +535,118 @@ void ColorBarTest::keepsUnitTextOfLatestTicks()
     scene.bar.setSeries(nullptr);
     QVERIFY(!scene.render().isNull());
     QVERIFY(scene.bar.unitText().isEmpty());
+}
+
+void ColorBarTest::labelUnitTextFollowsTheValueRange()
+{
+    auto scene = Scene{Qt::Horizontal, QSize{200, 60}};
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    scene.bar.ticker()->setTickLabelFormatter(&formatter);
+    auto spy = QSignalSpy{scene.bar.label(), &TextLabel::unitTextChanged};
+
+    scene.colormap.setRange(0.0, 0.004);
+    QVERIFY(!scene.render().isNull());
+    QCOMPARE(scene.bar.label()->unitText(), QStringLiteral("mm"));
+    QCOMPARE(scene.bar.label()->property("unitText").toString(), QStringLiteral("mm"));
+    QCOMPARE(spy.count(), 1);
+
+    scene.colormap.setRange(0.0, 4000.0);
+    scene.render();
+    QCOMPARE(scene.bar.label()->unitText(), QStringLiteral("km"));
+    QCOMPARE(spy.count(), 2);
+
+    scene.bar.ticker()->resetTickLabelFormatter();
+    scene.render();
+    QVERIFY(scene.bar.label()->unitText().isEmpty());
+    QCOMPARE(spy.count(), 3);
+}
+
+void ColorBarTest::tickLabelsFollowTheSharedPrefix()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    auto withUnit = Scene{Qt::Horizontal, QSize{200, 60}};
+    withUnit.bar.ticker()->setTickLabelFormatter(&formatter);
+    auto toMillimeters = ScaledFormatter{1e3};
+    auto reference = Scene{Qt::Horizontal, QSize{200, 60}};
+    reference.bar.ticker()->setTickLabelFormatter(&toMillimeters);
+    auto unscaled = Scene{Qt::Horizontal, QSize{200, 60}};
+    for (auto* const scene : {&withUnit, &reference, &unscaled}) {
+        scene->bar.ticker()->setTickLabelColor(Qt::white);
+        scene->colormap.setRange(0.0, 0.004);
+    }
+
+    const auto painted = withUnit.render();
+    QVERIFY(!painted.isNull());
+    QCOMPARE(painted, reference.render());
+    QVERIFY(painted != unscaled.render());
+
+    auto toKilometers = ScaledFormatter{1e-3};
+    reference.bar.ticker()->setTickLabelFormatter(&toKilometers);
+    withUnit.colormap.setRange(0.0, 4000.0);
+    reference.colormap.setRange(0.0, 4000.0);
+    QCOMPARE(withUnit.render(), reference.render());
+}
+
+void ColorBarTest::paintedLabelShowsThePrefixedUnit()
+{
+    auto formatter = UnitTickLabelFormatter{};
+    formatter.setUnit(QStringLiteral("m"));
+    auto withUnit = Scene{Qt::Vertical, QSize{100, 200}};
+    withUnit.bar.ticker()->setTickLabelFormatter(&formatter);
+    withUnit.bar.label()->setText(QStringLiteral("Value"));
+    auto toMillimeters = ScaledFormatter{1e3};
+    auto reference = Scene{Qt::Vertical, QSize{100, 200}};
+    reference.bar.ticker()->setTickLabelFormatter(&toMillimeters);
+    reference.bar.label()->setText(QStringLiteral("Value (mm)"));
+    auto textOnly = Scene{Qt::Vertical, QSize{100, 200}};
+    textOnly.bar.ticker()->setTickLabelFormatter(&toMillimeters);
+    textOnly.bar.label()->setText(QStringLiteral("Value"));
+    for (auto* const scene : {&withUnit, &reference, &textOnly}) {
+        scene->bar.label()->setColor(Qt::white);
+        scene->colormap.setRange(0.0, 0.004);
+    }
+
+    const auto painted = withUnit.render();
+    QVERIFY(!painted.isNull());
+    QCOMPARE(painted, reference.render());
+    QVERIFY(painted != textOnly.render());
+}
+
+void ColorBarTest::qmlColorBarLabelExposesUnitText()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    component.setData(R"(
+        import QtQuick
+        import QAccelPlot as QAccelPlot
+
+        QAccelPlot.Plot {
+            width: 300
+            height: 200
+            property string barUnit: bar.label.unitText
+            QAccelPlot.PointCloud {
+                id: cloud
+                colormap: QAccelPlot.Colormap { min: 0; max: 0.004 }
+            }
+            QAccelPlot.ColorBar {
+                id: bar
+                series: cloud
+                label.text: "Value"
+                ticker.tickLabelFormatter: QAccelPlot.UnitTickLabelFormatter { unit: "m" }
+            }
+        }
+    )",
+        QUrl{});
+    const auto root = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(root, qPrintable(component.errorString()));
+    auto window = QQuickWindow{};
+    qobject_cast<QQuickItem*>(root.get())->setParentItem(window.contentItem());
+    window.resize(300, 200);
+    window.show();
+    QVERIFY(QTest::qWaitForWindowExposed(&window));
+    QTRY_COMPARE(root->property("barUnit").toString(), QStringLiteral("mm"));
 }
 
 void ColorBarTest::qmlColorBarInsidePlot()

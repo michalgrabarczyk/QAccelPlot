@@ -362,6 +362,7 @@ void ColorBar::updatePolish()
     // callback must run on the QML engine's thread.
     captureColormap();
     ticks_ = stops_.empty() ? AxisTicks{} : AxisTickPainter::computeTicks(valueMin_, valueMax_, logScale_, ticker_);
+    label_->setUnitText(ticks_.unitText);
     updateImplicitSize();
     layout_ = computeLayout();
     update();
@@ -590,6 +591,7 @@ void ColorBar::paintTitle(QPainter* painter) const
         return;
     }
     const auto& title = layout_.title;
+    const auto text = label_->paintedText();
     painter->save();
     painter->setFont(label_->font());
     painter->setPen(label_->color());
@@ -597,9 +599,9 @@ void ColorBar::paintTitle(QPainter* painter) const
         // Reads top to bottom, like a right-side axis title.
         painter->translate(title.center());
         painter->rotate(90.0);
-        painter->drawText(QRectF{-title.height() / 2.0, -title.width() / 2.0, title.height(), title.width()}, Qt::AlignCenter, label_->text());
+        painter->drawText(QRectF{-title.height() / 2.0, -title.width() / 2.0, title.height(), title.width()}, Qt::AlignCenter, text);
     } else {
-        painter->drawText(title, Qt::AlignHCenter | Qt::AlignTop, label_->text());
+        painter->drawText(title, Qt::AlignHCenter | Qt::AlignTop, text);
     }
     painter->restore();
 }

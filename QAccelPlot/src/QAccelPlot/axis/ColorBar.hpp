@@ -65,6 +65,9 @@ class ColorBar : public QQuickPaintedItem {
     /// \brief Direction of the ramp: \c Qt.Vertical or \c Qt.Horizontal. Default: \c Qt.Vertical.
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
     /// \brief Title drawn beside the tick labels, e.g. <tt>label.text: "Intensity"</tt>. Negative padding counts as 0.
+    ///
+    /// With a \c UnitTickLabelFormatter, the title includes the prefixed unit from \c label.unitText, such as
+    /// "Intensity (mW)".
     Q_PROPERTY(TextLabel* label READ label CONSTANT)
     /// \brief Thickness in pixels of the color strip across the ramp direction. Default: 12.
     Q_PROPERTY(qreal barThickness READ barThickness WRITE setBarThickness NOTIFY barThicknessChanged)
