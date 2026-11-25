@@ -5,8 +5,11 @@
 #pragma once
 
 #include "QAccelPlot/formatters/TickLabelFormatter.hpp"
+#include "QAccelPlot/formatters/internal/UnitPrefix.hpp"
 
+#include <QList>
 #include <QString>
+#include <QStringList>
 #include <QtQml/qqmlregistration.h>
 
 namespace QAccelPlot {
@@ -30,12 +33,22 @@ class UnitTickLabelFormatter : public TickLabelFormatter {
     Q_PROPERTY(QString unit READ unit WRITE setUnit NOTIFY unitChanged)
     /// \brief Rule that picks the unit prefix from the visible range. Default: \c LargestMagnitude.
     Q_PROPERTY(PrefixMode prefixMode READ prefixMode WRITE setPrefixMode NOTIFY prefixModeChanged)
+    /// \brief Unit prefix symbols the tick labels may use, with "" for the bare unit. Default: every power-of-1000
+    /// prefix from quecto ("q") to quetta ("Q"), and "".
+    ///
+    /// Any SI prefix may be listed, including "c", "d", "da", and "h". "µ" (U+00B5), "μ" (U+03BC), and "u" all mean
+    /// micro, written as "µ" (U+00B5). An unknown symbol is ignored with a warning. An empty list turns prefixing
+    /// off: values are written unscaled in the bare unit.
+    ///
+    /// Reads back the prefixes in effect, sorted by ascending power of ten, without duplicates or unknown symbols,
+    /// and with micro as "µ" (U+00B5). Assign \c undefined to restore the default.
+    Q_PROPERTY(QStringList allowedPrefixes READ allowedPrefixes WRITE setAllowedPrefixes RESET resetAllowedPrefixes NOTIFY allowedPrefixesChanged)
 
 public:
     /// \brief Rule that picks the unit prefix.
     enum PrefixMode {
-        /// \brief The largest power-of-1000 prefix, from quecto to quetta, at which the largest visible major tick
-        /// is still at least 1, shared by all tick labels.
+        /// \brief The allowed prefix with the largest power of ten at which the largest visible major tick is still
+        /// at least 1, or the smallest allowed prefix when none qualifies, shared by all tick labels.
         LargestMagnitude,
     };
     Q_ENUM(PrefixMode)
@@ -53,11 +66,20 @@ public:
     /// \brief Sets the rule that picks the unit prefix to \a mode.
     void setPrefixMode(PrefixMode mode);
 
+    /// \brief Returns the allowed unit prefix symbols in effect, sorted by ascending power of ten.
+    QStringList allowedPrefixes() const;
+    /// \brief Sets the allowed unit prefix symbols to \a symbols; unknown symbols are ignored with a warning.
+    void setAllowedPrefixes(const QStringList& symbols);
+    /// \brief Restores every power-of-1000 prefix from quecto to quetta, and the bare unit.
+    void resetAllowedPrefixes();
+
 signals:
     /// \brief Emitted when the unit property changes.
     void unitChanged();
     /// \brief Emitted when the prefixMode property changes.
     void prefixModeChanged();
+    /// \brief Emitted when the allowedPrefixes property changes.
+    void allowedPrefixesChanged();
 
 protected:
     /// \brief Returns a numeric string for \a value, precision matched to \a tickStep.
@@ -71,8 +93,11 @@ protected:
     QString doFormatValue(qreal value, qreal resolution, const TickSetFormat& tickSetFormat) const override;
 
 private:
+    void applyAllowedPrefixes(const QList<Internal::UnitPrefix>& prefixes);
+
     QString unit_;
     PrefixMode prefixMode_{LargestMagnitude};
+    QList<Internal::UnitPrefix> allowedPrefixes_;
 };
 
 } // namespace QAccelPlot

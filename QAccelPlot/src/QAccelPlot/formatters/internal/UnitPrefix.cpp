@@ -6,10 +6,18 @@
 
 #include <algorithm>
 #include <cmath>
+#include <iterator>
 
 namespace QAccelPlot::Internal {
 
-const QList<UnitPrefix>& defaultUnitPrefixes()
+namespace {
+
+constexpr auto kMicroSign = char16_t{0x00B5};
+constexpr auto kGreekMu = char16_t{0x03BC};
+
+} // namespace
+
+const QList<UnitPrefix>& siUnitPrefixes()
 {
     static const auto prefixes = QList<UnitPrefix>{
         {QStringLiteral("q"), -30},
@@ -20,9 +28,13 @@ const QList<UnitPrefix>& defaultUnitPrefixes()
         {QStringLiteral("f"), -15},
         {QStringLiteral("p"), -12},
         {QStringLiteral("n"), -9},
-        {QStringLiteral("µ"), -6},
+        {QString{QChar{kMicroSign}}, -6},
         {QStringLiteral("m"), -3},
+        {QStringLiteral("c"), -2},
+        {QStringLiteral("d"), -1},
         {QString{}, 0},
+        {QStringLiteral("da"), 1},
+        {QStringLiteral("h"), 2},
         {QStringLiteral("k"), 3},
         {QStringLiteral("M"), 6},
         {QStringLiteral("G"), 9},
@@ -34,6 +46,34 @@ const QList<UnitPrefix>& defaultUnitPrefixes()
         {QStringLiteral("R"), 27},
         {QStringLiteral("Q"), 30},
     };
+    return prefixes;
+}
+
+const QList<UnitPrefix>& defaultUnitPrefixes()
+{
+    static const auto prefixes = [] {
+        auto result = QList<UnitPrefix>{};
+        std::copy_if(
+            siUnitPrefixes().cbegin(), siUnitPrefixes().cend(), std::back_inserter(result), [](const UnitPrefix& prefix) { return prefix.exponent % 3 == 0; });
+        return result;
+    }();
+    return prefixes;
+}
+
+std::optional<UnitPrefix> unitPrefixFromSymbol(const QString& symbol)
+{
+    const auto isMicro = symbol == QLatin1String("u") || symbol == QString{QChar{kGreekMu}};
+    const auto canonical = isMicro ? QString{QChar{kMicroSign}} : symbol;
+    const auto& prefixes = siUnitPrefixes();
+    const auto it = std::find_if(prefixes.cbegin(), prefixes.cend(), [&canonical](const UnitPrefix& prefix) { return prefix.symbol == canonical; });
+    return it != prefixes.cend() ? std::optional<UnitPrefix>{*it} : std::nullopt;
+}
+
+QList<UnitPrefix> sortedUnitPrefixes(QList<UnitPrefix> prefixes)
+{
+    const auto byExponent = [](const UnitPrefix& left, const UnitPrefix& right) { return left.exponent < right.exponent; };
+    std::sort(prefixes.begin(), prefixes.end(), byExponent);
+    prefixes.erase(std::unique(prefixes.begin(), prefixes.end()), prefixes.end());
     return prefixes;
 }
 
