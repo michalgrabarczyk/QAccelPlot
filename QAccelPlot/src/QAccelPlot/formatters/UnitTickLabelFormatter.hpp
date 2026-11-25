@@ -23,7 +23,7 @@ namespace QAccelPlot {
 /// and the axis label shows the prefixed unit: \c unit "m" over 0–0.004 gives the tick labels 0, 1, 2, 3, 4 and
 /// the axis label "Distance (mm)". Decimals follow the tick step in the prefixed unit, as with
 /// \c NumericTickLabelFormatter. On a logarithmic axis the tick labels stay powers of ten in the prefixed unit:
-/// 0.000001–0.001 gives 10^-3 to 10^0 with "Distance (mm)". The prefix depends only on the visible range, so each
+/// 0.000001–0.001 gives 10⁻³ to 10⁰ with "Distance (mm)". The prefix depends only on the visible range, so each
 /// axis sharing one formatter picks its own.
 ///
 /// With \c unitPosition \c TickLabels, each tick label carries the prefixed unit instead ("0 mm", "1 mm") and the
@@ -100,7 +100,7 @@ public:
         /// \brief The axis label shows the prefixed unit through \c label.unitText, and the tick labels show only
         /// numbers.
         AxisLabel,
-        /// \brief Each tick label is followed by a space and the prefixed unit, such as "10 mm", or "10^3 mm" on a
+        /// \brief Each tick label is followed by a space and the prefixed unit, such as "10 mm", or "10³ mm" on a
         /// logarithmic axis, and \c label.unitText is empty. An empty prefixed unit adds nothing.
         TickLabels,
     };

@@ -16,14 +16,14 @@ QString powerOfTen(const int exponent)
 {
     // Superscript digits use U+2070, U+00B9, U+00B2, U+00B3, and U+2074–U+2079;
     // the superscript minus sign is U+207B.
-    const auto superscriptDigits = QStringLiteral("⁰¹²³⁴⁵⁶⁷⁸⁹");
+    const auto superscriptDigits = QStringLiteral("\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079");
     const auto exponentText = QString::number(exponent);
     auto result = QStringLiteral("10");
     result.reserve(result.size() + exponentText.size());
 
     for (const auto character : exponentText) {
         if (character == QLatin1Char('-')) {
-            result += QStringLiteral("⁻");
+            result += QStringLiteral("\u207B");
         } else {
             result += superscriptDigits.at(character.digitValue());
         }
