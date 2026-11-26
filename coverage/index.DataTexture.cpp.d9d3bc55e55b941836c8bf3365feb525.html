@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-11-25 20:14:27</td>
+      <td>2026-11-26 10:14:46</td>
     </tr>
   </table>
 </div>
@@ -71,8 +71,8 @@
       <th>Block coverage</th>
     </tr>
     <tr><td><a href="#l19">QAccelPlot::DataTexture::DataTexture(std::unique_ptr&lt;QSGTexture, std::default_delete&lt;QSGTexture&gt; &gt;) (line 19)</a></td><td>called 5 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l66">QAccelPlot::DataTexture::texture() const (line 66)</a></td><td>called 3136 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l24">QAccelPlot::DataTexture::upload(QQuickWindow*, float const*, int) (line 24)</a></td><td>called 1409 times</td><td>55.0%</td></tr>
+    <tr><td><a href="#l66">QAccelPlot::DataTexture::texture() const (line 66)</a></td><td>called 3138 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l24">QAccelPlot::DataTexture::upload(QQuickWindow*, float const*, int) (line 24)</a></td><td>called 1411 times</td><td>55.0%</td></tr>
   </table>
 </details>
 
@@ -251,7 +251,7 @@
       <td class="lineno"><a id="l24" href="#l24">24</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1409</td>
+      <td class="linecount coveredLine">1411</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">DataTexture::upload</span><span class="p">(</span><span class="n">QQuickWindow</span><span class="o">*</span><span class="w"> </span><span class="n">window</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">floatCount</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -267,14 +267,14 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">3/4</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 1397 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 1399 times.</div>
             <div class="takenBranch">&check; Branch 1 taken 12 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
-            <div class="takenBranch">&check; Branch 3 taken 1397 times.</div>
+            <div class="takenBranch">&check; Branch 3 taken 1399 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">1409</td>
+      <td class="linecount partialCoveredLine">1411</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">window</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">floatCount</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -302,21 +302,21 @@
       <td class="lineno"><a id="l30" href="#l30">30</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1397</td>
+      <td class="linecount coveredLine">1399</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">maxSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Internal</span><span class="o">::</span><span class="n">maxTextureSize</span><span class="p">(</span><span class="n">window</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l31" href="#l31">31</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1397</td>
+      <td class="linecount coveredLine">1399</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">texWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Internal</span><span class="o">::</span><span class="n">dataTextureWidth</span><span class="p">(</span><span class="n">maxSize</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l32" href="#l32">32</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1397</td>
+      <td class="linecount coveredLine">1399</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">texHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Internal</span><span class="o">::</span><span class="n">dataTextureHeight</span><span class="p">(</span><span class="n">floatCount</span><span class="p">,</span><span class="w"> </span><span class="n">texWidth</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -326,13 +326,13 @@
           <summary class="linebranchSummary">1/4</summary>
           <div class="linebranchContents">
             <div class="notTakenBranch">&cross; Branch 0 not taken.</div>
-            <div class="takenBranch">&check; Branch 1 taken 1397 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 1399 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
             <div class="notTakenBranch">&cross; Branch 3 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">1397</td>
+      <td class="linecount partialCoveredLine">1399</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">texHeight</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">maxSize</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">warnedAboutTextureSize_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -398,13 +398,13 @@
           <summary class="linebranchSummary">4/4</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 1 taken 959 times.</div>
-            <div class="takenBranch">&check; Branch 2 taken 438 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 440 times.</div>
             <div class="takenBranch">&check; Branch 4 taken 4 times.</div>
             <div class="takenBranch">&check; Branch 5 taken 955 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">1397</td>
+      <td class="linecount coveredLine">1399</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">dimensionsChanged</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">imageBuffer_</span><span class="p">.</span><span class="n">width</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">texWidth</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">imageBuffer_</span><span class="p">.</span><span class="n">height</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">texHeight</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -413,12 +413,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 442 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 444 times.</div>
             <div class="takenBranch">&check; Branch 1 taken 955 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">1397</td>
+      <td class="linecount coveredLine">1399</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dimensionsChanged</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -427,12 +427,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 442 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 444 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">442</td>
+      <td class="linecount partialCoveredLine">444</td>
       <td class="src partialCoveredLine"><span class="w">        </span><span class="n">imageBuffer_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QImage</span><span class="p">(</span><span class="n">texWidth</span><span class="p">,</span><span class="w"> </span><span class="n">texHeight</span><span class="p">,</span><span class="w"> </span><span class="n">QImage</span><span class="o">::</span><span class="n">Format_RGBA8888_Premultiplied</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -441,12 +441,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 2 taken 442 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 444 times.</div>
             <div class="notTakenBranch">&cross; Branch 3 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">442</td>
+      <td class="linecount partialCoveredLine">444</td>
       <td class="src partialCoveredLine"><span class="w">        </span><span class="n">imageBuffer_</span><span class="p">.</span><span class="n">setColorSpace</span><span class="p">(</span><span class="n">QColorSpace</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
@@ -470,11 +470,11 @@
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
             <div class="notTakenBranch">&cross; Branch 1 not taken.</div>
-            <div class="takenBranch">&check; Branch 2 taken 1397 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 1399 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">1397</td>
+      <td class="linecount partialCoveredLine">1399</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">imageBuffer_</span><span class="p">.</span><span class="n">isNull</span><span class="p">())</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -502,14 +502,14 @@
       <td class="lineno"><a id="l52" href="#l52">52</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1397</td>
+      <td class="linecount coveredLine">1399</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">dataBytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">floatCount</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l53" href="#l53">53</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1397</td>
+      <td class="linecount coveredLine">1399</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="n">imageBuffer_</span><span class="p">.</span><span class="n">bits</span><span class="p">(),</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">dataBytes</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -525,19 +525,19 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 442 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 444 times.</div>
             <div class="takenBranch">&check; Branch 1 taken 955 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">1397</td>
+      <td class="linecount coveredLine">1399</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dimensionsChanged</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l56" href="#l56">56</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">442</td>
+      <td class="linecount coveredLine">444</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">tailBytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">imageBuffer_</span><span class="p">.</span><span class="n">sizeInBytes</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">qsizetype</span><span class="o">&gt;</span><span class="p">(</span><span class="n">dataBytes</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -546,19 +546,19 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 432 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 434 times.</div>
             <div class="takenBranch">&check; Branch 1 taken 10 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">442</td>
+      <td class="linecount coveredLine">444</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tailBytes</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l58" href="#l58">58</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">432</td>
+      <td class="linecount coveredLine">434</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">memset</span><span class="p">(</span><span class="n">imageBuffer_</span><span class="p">.</span><span class="n">bits</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dataBytes</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tailBytes</span><span class="p">));</span></td>
     </tr>
     <tr class="source-line">
@@ -586,14 +586,14 @@
       <td class="lineno"><a id="l62" href="#l62">62</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1397</td>
+      <td class="linecount coveredLine">1399</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">Internal</span><span class="o">::</span><span class="n">uploadDataTexture</span><span class="p">(</span><span class="n">texture_</span><span class="p">,</span><span class="w"> </span><span class="n">window</span><span class="p">,</span><span class="w"> </span><span class="n">imageBuffer_</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l63" href="#l63">63</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1397</td>
+      <td class="linecount coveredLine">1399</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">Internal</span><span class="o">::</span><span class="n">recordDataTextureUpload</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">int64_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">dataBytes</span><span class="p">));</span></td>
     </tr>
     <tr class="source-line">
@@ -614,7 +614,7 @@
       <td class="lineno"><a id="l66" href="#l66">66</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3136</td>
+      <td class="linecount coveredLine">3138</td>
       <td class="src coveredLine"><span class="n">QSGTexture</span><span class="o">*</span><span class="w"> </span><span class="nf">DataTexture::texture</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
@@ -628,7 +628,7 @@
       <td class="lineno"><a id="l68" href="#l68">68</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3136</td>
+      <td class="linecount coveredLine">3138</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">texture_</span><span class="p">.</span><span class="n">get</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
