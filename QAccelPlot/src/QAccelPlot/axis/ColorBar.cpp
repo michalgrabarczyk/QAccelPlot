@@ -111,6 +111,7 @@ ColorBar::ColorBar(QQuickItem* parent)
     connect(label_, &TextLabel::textChanged, this, &ColorBar::invalidate);
     connect(label_, &TextLabel::fontChanged, this, &ColorBar::invalidate);
     connect(label_, &TextLabel::paddingChanged, this, &ColorBar::invalidate);
+    connect(label_, &TextLabel::unitFormatChanged, this, &ColorBar::invalidate);
     connect(label_, &TextLabel::colorChanged, this, [this]() { update(); });
     invalidate();
 }
@@ -232,6 +233,11 @@ bool ColorBar::hovered() const
 AxisTicker* ColorBar::ticker() const
 {
     return ticker_;
+}
+
+QString ColorBar::unitText() const
+{
+    return ticks_.unitText;
 }
 
 void ColorBar::rescaleToData()
@@ -357,6 +363,7 @@ void ColorBar::updatePolish()
     // callback must run on the QML engine's thread.
     captureColormap();
     ticks_ = stops_.empty() ? AxisTicks{} : AxisTickPainter::computeTicks(valueMin_, valueMax_, logScale_, ticker_);
+    label_->setUnitText(ticks_.unitText);
     updateImplicitSize();
     layout_ = computeLayout();
     update();
@@ -462,7 +469,7 @@ void ColorBar::captureColormap()
 
 void ColorBar::updateImplicitSize()
 {
-    const auto titleExtent = label_->text().isEmpty() ? qreal{0.0} : titlePadding() + titleThickness();
+    const auto titleExtent = label_->paintedText().isEmpty() ? qreal{0.0} : titlePadding() + titleThickness();
     const auto thickness = std::ceil(titleOffset() - titlePadding() + titleExtent);
     if (orientation_ == Qt::Vertical) {
         setImplicitSize(thickness, kDefaultLength);
@@ -581,7 +588,8 @@ void ColorBar::paintTicks(QPainter* painter) const
 
 void ColorBar::paintTitle(QPainter* painter) const
 {
-    if (label_->text().isEmpty()) {
+    const auto text = label_->paintedText();
+    if (text.isEmpty()) {
         return;
     }
     const auto& title = layout_.title;
@@ -592,9 +600,9 @@ void ColorBar::paintTitle(QPainter* painter) const
         // Reads top to bottom, like a right-side axis title.
         painter->translate(title.center());
         painter->rotate(90.0);
-        painter->drawText(QRectF{-title.height() / 2.0, -title.width() / 2.0, title.height(), title.width()}, Qt::AlignCenter, label_->text());
+        painter->drawText(QRectF{-title.height() / 2.0, -title.width() / 2.0, title.height(), title.width()}, Qt::AlignCenter, text);
     } else {
-        painter->drawText(title, Qt::AlignHCenter | Qt::AlignTop, label_->text());
+        painter->drawText(title, Qt::AlignHCenter | Qt::AlignTop, text);
     }
     painter->restore();
 }

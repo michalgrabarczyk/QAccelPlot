@@ -136,17 +136,18 @@ QRectF clampTickLabelRect(const QRectF& bounds, const QRectF& axisRect, const Ax
 AxisTicks AxisTickPainter::computeTicks(const qreal viewportMin, const qreal viewportMax, const bool logScale, const AxisTicker* ticker)
 {
     const auto values = computeTickValues(viewportMin, viewportMax, logScale, ticker);
-    auto ticks = AxisTicks{values.subtickValues, {}};
+    auto ticks = AxisTicks{values.subtickValues, {}, {}, {}};
     if (values.majorValues.isEmpty()) {
         return ticks;
     }
-    // Log-scale ticks have no single step (each decade is 10x the last), so the formatter gets a dedicated entry
-    // point; the default numeric formatter labels them as powers of ten. The linear step lets the formatter choose a
-    // matching label precision.
-    const auto* formatter = ticker->tickLabelFormatter();
-    for (const auto value : values.majorValues) {
-        ticks.majorTicks.append(AxisTick{value, values.logScale ? formatter->formatLogTick(value) : formatter->format(value, values.step)});
+    const auto tickSet = TickSet{values.majorValues, std::min(viewportMin, viewportMax), std::max(viewportMin, viewportMax), values.step, values.logScale};
+    const auto labels = ticker->tickLabelFormatter()->formatTicks(tickSet);
+    ticks.majorTicks.reserve(values.majorValues.size());
+    for (auto i = qsizetype{0}; i < values.majorValues.size(); ++i) {
+        ticks.majorTicks.append(AxisTick{values.majorValues.at(i), labels.labels.at(i)});
     }
+    ticks.unitText = labels.unitText;
+    ticks.format = labels.format;
     return ticks;
 }
 

@@ -18,6 +18,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Candlestick and OHLC charts via `CandlestickSeries`: candles from
   `(x, open, high, low, close)` data, in `upColor` and `downColor`, as wide as
   `candleWidth` times `spacing`. Includes a Candlestick example.
+- Unit tick labels via `UnitTickLabelFormatter`: automatic SI unit prefixes
+  that follow the visible range, shown in the axis label or on each tick label.
+  Includes a Unit Tick Labels example.
 
 ### Changed
 

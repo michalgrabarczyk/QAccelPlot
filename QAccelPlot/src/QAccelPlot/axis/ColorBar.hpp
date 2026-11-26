@@ -64,7 +64,11 @@ class ColorBar : public QQuickPaintedItem {
     Q_PROPERTY(ColormappedSeries* series READ series WRITE setSeries NOTIFY seriesChanged)
     /// \brief Direction of the ramp: \c Qt.Vertical or \c Qt.Horizontal. Default: \c Qt.Vertical.
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
-    /// \brief Title drawn beside the tick labels, e.g. <tt>label.text: "Intensity"</tt>. Negative padding counts as 0.
+    /// \brief Axis label drawn beside the tick labels, e.g. <tt>label.text: "Intensity"</tt>. Negative padding counts
+    /// as 0.
+    ///
+    /// With a \c UnitTickLabelFormatter, the axis label includes the prefixed unit from \c label.unitText, such as
+    /// "Intensity (mW)".
     Q_PROPERTY(TextLabel* label READ label CONSTANT)
     /// \brief Thickness in pixels of the color strip across the ramp direction. Default: 12.
     Q_PROPERTY(qreal barThickness READ barThickness WRITE setBarThickness NOTIFY barThicknessChanged)
@@ -72,7 +76,7 @@ class ColorBar : public QQuickPaintedItem {
     Q_PROPERTY(Border* border READ border CONSTANT)
     /// \brief Width in pixels reserved for the tick labels of a vertical bar. Default: 16.
     ///
-    /// The width is fixed, so the implicit width and the title stay in place while the labels
+    /// The width is fixed, so the implicit width and the axis label stay in place while the labels
     /// change. Labels wider than it are clipped. Ignored by horizontal bars.
     Q_PROPERTY(qreal tickLabelWidth READ tickLabelWidth WRITE setTickLabelWidth NOTIFY tickLabelWidthChanged)
     /// \brief Whether dragging, the mouse wheel, and double-clicking change the colormap's value range. Default: \c false.
@@ -105,7 +109,7 @@ public:
     /// \brief Sets the ramp direction to \a orientation.
     void setOrientation(Qt::Orientation orientation);
 
-    /// \brief Returns the title settings. The object is owned by the bar.
+    /// \brief Returns the axis label settings. The object is owned by the bar.
     TextLabel* label() const;
 
     /// \brief Returns the strip thickness in pixels.
@@ -137,6 +141,12 @@ public:
     /// \brief Returns the tick configuration object. The object is owned by the color bar.
     AxisTicker* ticker() const;
 
+    /// \brief Returns the unit text the tick label formatter chose for the latest tick computation.
+    ///
+    /// Updated on the GUI thread when the bar is polished. Empty when the bar has no ticks or the formatter shows
+    /// no unit in the axis label.
+    QString unitText() const;
+
     /// \brief Unsets the colormap's \c min and \c max, so the range is resolved from the data again.
     Q_INVOKABLE void rescaleToData();
 
@@ -150,7 +160,7 @@ public:
     /// The inverse of \c valueToPixel(). Returns the range minimum when \a length is 0.
     qreal pixelToValue(qreal pixel, qreal length) const;
 
-    /// \brief Paints the strip, ticks, tick labels, and title computed in \c updatePolish().
+    /// \brief Paints the strip, ticks, tick labels, and axis label computed in \c updatePolish().
     void paint(QPainter* painter) override;
 
 signals:

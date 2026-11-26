@@ -16,6 +16,24 @@
 #include <limits>
 #include <memory>
 
+namespace {
+
+/// Returns a single label for any tick set, whatever its size.
+class WrongCountTickLabelFormatter final : public QAccelPlot::TickLabelFormatter {
+protected:
+    QString doFormat([[maybe_unused]] qreal value, [[maybe_unused]] qreal tickStep) const override
+    {
+        return {};
+    }
+
+    QAccelPlot::TickSetLabels doFormatTicks([[maybe_unused]] const QAccelPlot::TickSet& tickSet) const override
+    {
+        return {{QStringLiteral("only")}, QString{}, {}};
+    }
+};
+
+} // namespace
+
 class TestFormatters : public QObject {
     Q_OBJECT
 
@@ -46,6 +64,12 @@ private slots:
     void tickLabelCallback_errorFallsBackToFormatter();
     void tickLabel_nonCallableIsIgnored();
     void tickLabel_changeEmitsFormatChanged();
+
+    void formatTicks_defaultFormatsEachTick();
+    void formatTicks_defaultLogScaleFormatsEachDecade();
+    void formatTicks_defaultUsesTickLabelCallback();
+    void formatTicks_defaultHasNoUnitText();
+    void formatTicks_labelCountMatchesTickCount();
 };
 
 void TestFormatters::numericFormat_data()
@@ -335,6 +359,59 @@ void TestFormatters::tickLabel_changeEmitsFormatChanged()
     formatter.setTickLabel(QJSValue{});
     QCOMPARE(spy.count(), 2);
     QCOMPARE(formatter.format(100.0, 1.0), QStringLiteral("100"));
+}
+
+void TestFormatters::formatTicks_defaultFormatsEachTick()
+{
+    const auto formatter = QAccelPlot::NumericTickLabelFormatter{};
+    const auto tickSet = QAccelPlot::TickSet{{0.0, 0.5, 1.0}, 0.0, 1.0, 0.5, false};
+
+    const auto labels = formatter.formatTicks(tickSet).labels;
+
+    QCOMPARE(labels, (QStringList{QStringLiteral("0.0"), QStringLiteral("0.5"), QStringLiteral("1.0")}));
+}
+
+void TestFormatters::formatTicks_defaultLogScaleFormatsEachDecade()
+{
+    const auto formatter = QAccelPlot::NumericTickLabelFormatter{};
+    const auto tickSet = QAccelPlot::TickSet{{0.01, 1.0, 100.0}, 0.01, 100.0, 0.0, true};
+
+    const auto labels = formatter.formatTicks(tickSet).labels;
+
+    QCOMPARE(labels, (QStringList{QStringLiteral("10⁻²"), QStringLiteral("10⁰"), QStringLiteral("10²")}));
+}
+
+void TestFormatters::formatTicks_defaultUsesTickLabelCallback()
+{
+    auto engine = QJSEngine{};
+    auto formatter = QAccelPlot::TextTickLabelFormatter{};
+    formatter.setTickLabel(engine.evaluate(QStringLiteral("(function(value, tickStep) { return value + '/' + tickStep; })")));
+
+    const auto linear = formatter.formatTicks(QAccelPlot::TickSet{{1.0, 2.0}, 0.5, 2.5, 1.0, false}).labels;
+    const auto log = formatter.formatTicks(QAccelPlot::TickSet{{10.0, 100.0}, 5.0, 200.0, 0.0, true}).labels;
+
+    QCOMPARE(linear, (QStringList{QStringLiteral("1/1"), QStringLiteral("2/1")}));
+    QCOMPARE(log, (QStringList{QStringLiteral("10/10"), QStringLiteral("100/100")}));
+}
+
+void TestFormatters::formatTicks_defaultHasNoUnitText()
+{
+    auto text = QAccelPlot::TextTickLabelFormatter{};
+    text.setLabels({QStringLiteral("a"), QStringLiteral("b")});
+    const auto tickSet = QAccelPlot::TickSet{{0.0, 1.0}, 0.0, 1.0, 1.0, false};
+
+    QVERIFY(QAccelPlot::NumericTickLabelFormatter{}.formatTicks(tickSet).unitText.isEmpty());
+    QVERIFY(QAccelPlot::DateTimeTickLabelFormatter{}.formatTicks(tickSet).unitText.isEmpty());
+    QVERIFY(text.formatTicks(tickSet).unitText.isEmpty());
+}
+
+void TestFormatters::formatTicks_labelCountMatchesTickCount()
+{
+    const auto formatter = WrongCountTickLabelFormatter{};
+
+    const auto labels = formatter.formatTicks(QAccelPlot::TickSet{{0.0, 1.0, 2.0}, 0.0, 2.0, 1.0, false}).labels;
+
+    QCOMPARE(labels, (QStringList{QStringLiteral("only"), QString{}, QString{}}));
 }
 
 QTEST_GUILESS_MAIN(TestFormatters)

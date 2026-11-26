@@ -29,6 +29,18 @@ QString TickLabelFormatter::formatLogTick(const qreal value) const
     return doFormatLogTick(value);
 }
 
+TickSetLabels TickLabelFormatter::formatTicks(const TickSet& tickSet) const
+{
+    auto result = doFormatTicks(tickSet);
+    result.labels.resize(tickSet.values.size());
+    return result;
+}
+
+QString TickLabelFormatter::formatValue(const qreal value, const qreal resolution, const TickSetFormat& tickSetFormat) const
+{
+    return doFormatValue(value, resolution, tickSetFormat);
+}
+
 qreal TickLabelFormatter::minimumTickStep() const
 {
     return 0.0;
@@ -37,6 +49,21 @@ qreal TickLabelFormatter::minimumTickStep() const
 QString TickLabelFormatter::doFormatLogTick(const qreal value) const
 {
     return doFormat(value, value);
+}
+
+TickSetLabels TickLabelFormatter::doFormatTicks(const TickSet& tickSet) const
+{
+    auto result = TickSetLabels{};
+    result.labels.reserve(tickSet.values.size());
+    for (const auto value : tickSet.values) {
+        result.labels.append(tickSet.logScale ? formatLogTick(value) : format(value, tickSet.step));
+    }
+    return result;
+}
+
+QString TickLabelFormatter::doFormatValue(const qreal value, const qreal resolution, [[maybe_unused]] const TickSetFormat& tickSetFormat) const
+{
+    return format(value, resolution);
 }
 
 bool TickLabelFormatter::callTickLabel(const qreal value, const qreal tickStep, QString& label) const

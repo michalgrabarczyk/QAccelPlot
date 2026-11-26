@@ -10,6 +10,8 @@
 #include "QAccelPlot/axis/AxisTicks.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
+#include <optional>
+
 #include <QColor>
 #include <QFont>
 #include <QList>
@@ -50,7 +52,7 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(qreal dataMax READ dataMax WRITE setDataMax NOTIFY dataMaxChanged)
     /// \brief Axis orientation: \c Qt.Horizontal or \c Qt.Vertical.
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
-    /// \brief Read-only constant: axis title and its placement, e.g. <tt>label.text: "Time (s)"</tt>.
+    /// \brief Read-only constant: axis label and its placement, e.g. <tt>label.text: "Time (s)"</tt>.
     Q_PROPERTY(AxisLabel* label READ label CONSTANT)
     /// \brief Read-only: \c true while the mouse cursor is over the axis widget.
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
@@ -135,7 +137,7 @@ public:
     /// \brief Sets the axis orientation to \a o.
     void setOrientation(Qt::Orientation o);
 
-    /// \brief Returns the axis title configuration object. Include \c AxisLabel.hpp to use it.
+    /// \brief Returns the axis label configuration object. Include \c AxisLabel.hpp to use it.
     AxisLabel* label() const;
 
     /// \brief Returns the axis side.
@@ -173,6 +175,11 @@ public:
 
     /// \brief Returns the tick configuration object.
     AxisTicker* ticker() const;
+
+    /// \brief Returns the unit text the tick label formatter chose for the latest tick computation.
+    ///
+    /// Updated on the GUI thread when the axis is polished. Empty when the formatter shows no unit in the axis label.
+    QString unitText() const;
 
     /// \brief Returns \c true when log scale is active.
     bool logScale() const;
@@ -218,8 +225,9 @@ public:
     /// \brief Formats \a value for a readout on an axis of \a length pixels.
     ///
     /// Uses the tick label formatter with a precision one decimal digit finer than a pixel, so the
-    /// text follows the zoom level instead of the tick spacing. Returns an empty string for a
-    /// nonfinite \a value.
+    /// text follows the zoom level instead of the tick spacing. Follows what the formatter decided for
+    /// the current ticks, such as the unit prefix of a \c UnitTickLabelFormatter ("12.3 mm"). Returns an
+    /// empty string for a nonfinite \a value.
     Q_INVOKABLE QString formatValue(qreal value, qreal length) const;
 
 signals:
@@ -293,6 +301,7 @@ private:
     DataRange dataFitRange() const;
     void autoRescaleToData();
     qreal valueResolution(qreal value, qreal length) const;
+    TickSetFormat valueFormat() const;
     qreal defaultLabelRotation() const;
     void paintLabel(QPainter* painter, const QRectF& r, qreal axisX, qreal axisY) const;
     void createLabelItem();
@@ -330,6 +339,8 @@ private:
     Side side_{Bottom};
     AxisTicker* ticker_;
     AxisTicks ticks_;
+    // What formatValue() follows; empty until the ticks are recomputed after a change. GUI thread only.
+    mutable std::optional<TickSetFormat> valueFormat_;
 };
 
 } // namespace QAccelPlot

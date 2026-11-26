@@ -320,6 +320,11 @@ AxisTicker* Axis::ticker() const
     return ticker_;
 }
 
+QString Axis::unitText() const
+{
+    return ticks_.unitText;
+}
+
 bool Axis::logScale() const
 {
     return logScale_;
@@ -523,7 +528,7 @@ QString Axis::formatValue(const qreal value, const qreal length) const
     if (!std::isfinite(value)) {
         return {};
     }
-    return ticker_->tickLabelFormatter()->format(value, valueResolution(value, length));
+    return ticker_->tickLabelFormatter()->formatValue(value, valueResolution(value, length), valueFormat());
 }
 
 void Axis::addDataRangeSource(const PlotSeries* series, const Qt::Orientation dimension)
@@ -730,6 +735,8 @@ void Axis::updatePolish()
     // Runs on the GUI thread before the scene graph sync. Tick labels are formatted here rather than in
     // paint(), because a formatter's tickLabel JS callback must run on the QML engine's thread.
     ticks_ = AxisTickPainter::computeTicks(viewportMin_, viewportMax_, logScale_, ticker_);
+    valueFormat_ = ticks_.format;
+    label_->setUnitText(ticks_.unitText);
 }
 
 void Axis::componentComplete()
@@ -758,6 +765,14 @@ qreal Axis::valueResolution(const qreal value, const qreal length) const
     return std::pow(10.0, std::floor(std::log10(perPixel)) - 1.0);
 }
 
+TickSetFormat Axis::valueFormat() const
+{
+    if (!valueFormat_) {
+        valueFormat_ = AxisTickPainter::computeTicks(viewportMin_, viewportMax_, logScale_, ticker_).format;
+    }
+    return *valueFormat_;
+}
+
 qreal Axis::defaultLabelRotation() const
 {
     constexpr auto kVerticalLabelRotation = qreal{90.0};
@@ -769,7 +784,7 @@ qreal Axis::defaultLabelRotation() const
 
 void Axis::paintLabel(QPainter* painter, const QRectF& r, const qreal axisX, const qreal axisY) const
 {
-    const auto text = label_->text();
+    const auto text = label_->paintedText();
     if (text.isEmpty() || labelItem_) {
         return;
     }
@@ -839,6 +854,8 @@ void Axis::connectLabel()
     connect(label_, &AxisLabel::fontChanged, this, repaint);
     connect(label_, &AxisLabel::colorChanged, this, repaint);
     connect(label_, &AxisLabel::paddingChanged, this, repaint);
+    connect(label_, &AxisLabel::unitTextChanged, this, repaint);
+    connect(label_, &AxisLabel::unitFormatChanged, this, repaint);
     connect(label_, &AxisLabel::alignmentChanged, this, repaint);
     connect(label_, &AxisLabel::rotationChanged, this, repaint);
     connect(label_, &AxisLabel::offsetChanged, this, repaint);
@@ -852,6 +869,7 @@ void Axis::connectLabel()
 
 void Axis::invalidateTicks()
 {
+    valueFormat_.reset();
     polish();
     update();
 }

@@ -156,7 +156,7 @@ In both modes:
 ## Automatic values
 
 Some properties have a default that is computed instead of fixed, such as an
-axis title rotation that depends on the side. Assigning `undefined`, or a
+axis label rotation that depends on the side. Assigning `undefined`, or a
 binding that evaluates to `undefined`, returns such a property to its default:
 
 ```qml
