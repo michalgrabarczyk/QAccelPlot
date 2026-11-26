@@ -39,11 +39,11 @@ AxisTicks computeLogTicks(UnitTickLabelFormatter& formatter, const qreal viewpor
 }
 
 // Exposes formatter to engine as the global "formatter", as QML does, and sets its prefix callback from source.
-void setPrefixCallback(QJSEngine& engine, UnitTickLabelFormatter& formatter, const QString& source)
+void setCustomPrefix(QJSEngine& engine, UnitTickLabelFormatter& formatter, const QString& source)
 {
     QJSEngine::setObjectOwnership(&formatter, QJSEngine::CppOwnership);
     engine.globalObject().setProperty(QStringLiteral("formatter"), engine.newQObject(&formatter));
-    const auto result = engine.evaluate(QStringLiteral("formatter.prefixCallback = ") + source);
+    const auto result = engine.evaluate(QStringLiteral("formatter.customPrefix = ") + source);
     QVERIFY2(!result.isError(), qPrintable(result.toString()));
 }
 
@@ -74,17 +74,17 @@ private slots:
     void fixedPrefixReadsBackNormalized();
     void fixedPrefixChangeEmitsFormatChanged();
     void prefixModeChangeEmitsFormatChanged();
-    void customPrefixCallbackReceivesRangeAndTicksInBaseUnit();
+    void customPrefixReceivesRangeAndTicksInBaseUnit();
     void customPrefixSnapsToTheAllowedPrefixes_data();
     void customPrefixSnapsToTheAllowedPrefixes();
     void customPrefixFallsBackToLargestMagnitude_data();
     void customPrefixFallsBackToLargestMagnitude();
-    void prefixCallbackIsUsedOnlyInCustomMode_data();
-    void prefixCallbackIsUsedOnlyInCustomMode();
-    void prefixCallbackChangeEmitsFormatChanged();
+    void customPrefixIsUsedOnlyInCustomMode_data();
+    void customPrefixIsUsedOnlyInCustomMode();
+    void customPrefixChangeEmitsFormatChanged();
     void logAxisSharesThePrefixOfTheLargestTick();
     void logAxisScalesDecadesToTheFixedPrefix();
-    void logAxisPassesBaseUnitTicksToThePrefixCallback();
+    void logAxisPassesBaseUnitTicksToTheCustomPrefix();
     void logAxisSnapsToTheAllowedPrefixes_data();
     void logAxisSnapsToTheAllowedPrefixes();
     void logAxisTickLabelCallbackReceivesPrefixedValues();
@@ -435,13 +435,13 @@ void UnitTickLabelFormatterTest::prefixModeChangeEmitsFormatChanged()
     QCOMPARE(formatSpy.count(), 2);
 }
 
-void UnitTickLabelFormatterTest::customPrefixCallbackReceivesRangeAndTicksInBaseUnit()
+void UnitTickLabelFormatterTest::customPrefixReceivesRangeAndTicksInBaseUnit()
 {
     auto engine = QJSEngine{};
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     formatter.setPrefixMode(UnitTickLabelFormatter::Custom);
-    setPrefixCallback(engine, formatter, QStringLiteral("(function(min, max, ticks) { calls.push([min, max, ticks.join(',')].join('|')); return 'k'; })"));
+    setCustomPrefix(engine, formatter, QStringLiteral("(function(min, max, ticks) { calls.push([min, max, ticks.join(',')].join('|')); return 'k'; })"));
     engine.globalObject().setProperty(QStringLiteral("calls"), engine.newArray());
 
     const auto ticks = computeTicks(formatter, 0.0, 0.004);
@@ -472,7 +472,7 @@ void UnitTickLabelFormatterTest::customPrefixSnapsToTheAllowedPrefixes()
     formatter.setUnit(QStringLiteral("m"));
     formatter.setAllowedPrefixes({QStringLiteral("u"), QStringLiteral(""), QStringLiteral("k")});
     formatter.setPrefixMode(UnitTickLabelFormatter::Custom);
-    setPrefixCallback(engine, formatter, QStringLiteral("(function() { return result; })"));
+    setCustomPrefix(engine, formatter, QStringLiteral("(function() { return result; })"));
     engine.globalObject().setProperty(QStringLiteral("result"), result);
 
     const auto ticks = computeTicks(formatter, 0.0, 4.0);
@@ -499,7 +499,7 @@ void UnitTickLabelFormatterTest::customPrefixFallsBackToLargestMagnitude()
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     formatter.setPrefixMode(UnitTickLabelFormatter::Custom);
-    setPrefixCallback(engine, formatter, callback);
+    setCustomPrefix(engine, formatter, callback);
     if (!warning.isEmpty()) {
         QTest::ignoreMessage(QtWarningMsg, QRegularExpression(warning));
     }
@@ -511,7 +511,7 @@ void UnitTickLabelFormatterTest::customPrefixFallsBackToLargestMagnitude()
     QCOMPARE(formatter.formatValue(0.002, 0.000001, ticks.format), QStringLiteral("2.000 mm"));
 }
 
-void UnitTickLabelFormatterTest::prefixCallbackIsUsedOnlyInCustomMode_data()
+void UnitTickLabelFormatterTest::customPrefixIsUsedOnlyInCustomMode_data()
 {
     QTest::addColumn<UnitTickLabelFormatter::PrefixMode>("prefixMode");
     QTest::addColumn<QString>("unitText");
@@ -519,7 +519,7 @@ void UnitTickLabelFormatterTest::prefixCallbackIsUsedOnlyInCustomMode_data()
     QTest::newRow("fixed") << UnitTickLabelFormatter::Fixed << QStringLiteral("m");
 }
 
-void UnitTickLabelFormatterTest::prefixCallbackIsUsedOnlyInCustomMode()
+void UnitTickLabelFormatterTest::customPrefixIsUsedOnlyInCustomMode()
 {
     QFETCH(UnitTickLabelFormatter::PrefixMode, prefixMode);
     QFETCH(QString, unitText);
@@ -527,7 +527,7 @@ void UnitTickLabelFormatterTest::prefixCallbackIsUsedOnlyInCustomMode()
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     formatter.setPrefixMode(prefixMode);
-    setPrefixCallback(engine, formatter, QStringLiteral("(function() { called = true; return 'k'; })"));
+    setCustomPrefix(engine, formatter, QStringLiteral("(function() { called = true; return 'k'; })"));
     engine.globalObject().setProperty(QStringLiteral("called"), false);
 
     const auto ticks = computeTicks(formatter, 0.0, 0.004);
@@ -536,16 +536,16 @@ void UnitTickLabelFormatterTest::prefixCallbackIsUsedOnlyInCustomMode()
     QCOMPARE(engine.globalObject().property(QStringLiteral("called")).toBool(), false);
 }
 
-void UnitTickLabelFormatterTest::prefixCallbackChangeEmitsFormatChanged()
+void UnitTickLabelFormatterTest::customPrefixChangeEmitsFormatChanged()
 {
     auto engine = QJSEngine{};
     auto formatter = UnitTickLabelFormatter{};
-    auto callbackSpy = QSignalSpy{&formatter, &UnitTickLabelFormatter::prefixCallbackChanged};
+    auto callbackSpy = QSignalSpy{&formatter, &UnitTickLabelFormatter::customPrefixChanged};
     auto formatSpy = QSignalSpy{&formatter, &TickLabelFormatter::formatChanged};
 
-    formatter.setPrefixCallback(engine.evaluate(QStringLiteral("(function() { return 'k'; })")));
+    formatter.setCustomPrefix(engine.evaluate(QStringLiteral("(function() { return 'k'; })")));
 
-    QVERIFY(formatter.prefixCallback().isCallable());
+    QVERIFY(formatter.customPrefix().isCallable());
     QCOMPARE(callbackSpy.count(), 1);
     QCOMPARE(formatSpy.count(), 1);
 }
@@ -579,13 +579,13 @@ void UnitTickLabelFormatterTest::logAxisScalesDecadesToTheFixedPrefix()
     QCOMPARE(formatter.formatValue(0.5, 0.001, ticks.format), QStringLiteral("500 mm"));
 }
 
-void UnitTickLabelFormatterTest::logAxisPassesBaseUnitTicksToThePrefixCallback()
+void UnitTickLabelFormatterTest::logAxisPassesBaseUnitTicksToTheCustomPrefix()
 {
     auto engine = QJSEngine{};
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     formatter.setPrefixMode(UnitTickLabelFormatter::Custom);
-    setPrefixCallback(engine, formatter, QStringLiteral("(function(min, max, ticks) { calls.push([min, max, ticks.join(',')].join('|')); return 'k'; })"));
+    setCustomPrefix(engine, formatter, QStringLiteral("(function(min, max, ticks) { calls.push([min, max, ticks.join(',')].join('|')); return 'k'; })"));
     engine.globalObject().setProperty(QStringLiteral("calls"), engine.newArray());
 
     const auto ticks = computeLogTicks(formatter, 10.0, 1000.0);

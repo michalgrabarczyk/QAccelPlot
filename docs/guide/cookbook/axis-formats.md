@@ -90,7 +90,7 @@ to 0–0.000004, they switch to µm.
 | --- | --- |
 | `unit` | Base unit symbol of the values, such as `"m"`. |
 | `unitPosition` | `AxisLabel` (default): the axis label shows the prefixed unit. `TickLabels`: each tick label carries it, as in `2 mm`. |
-| `prefixMode` | `LargestMagnitude` (default): the largest prefix that keeps the largest visible tick at 1 or more, shared by all tick labels. `Fixed`: `fixedPrefix` at every zoom level. `Custom`: the symbol returned by `prefixCallback(min, max, ticks)`. `PerTick`: each tick label picks its own prefix and carries the unit, as in `500 mm`, `1.0 m`. |
+| `prefixMode` | `LargestMagnitude` (default): the largest prefix that keeps the largest visible tick at 1 or more, shared by all tick labels. `Fixed`: `fixedPrefix` at every zoom level. `Custom`: the symbol returned by `customPrefix(min, max, ticks)`. `PerTick`: each tick label picks its own prefix and carries the unit, as in `500 mm`, `1.0 m`. |
 | `allowedPrefixes` | Prefix symbols to choose from, with `""` for the bare unit. Default: every power-of-1000 prefix from `q` to `Q`, and `""`. `[]` turns prefixing off. Assign `undefined` to restore the default. |
 
 On a logarithmic axis, a shared prefix keeps the decade ticks as powers of ten

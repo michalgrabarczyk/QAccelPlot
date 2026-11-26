@@ -57,7 +57,7 @@ class UnitTickLabelFormatter : public TickLabelFormatter {
     /// the GUI thread once per tick computation. A result outside \c allowedPrefixes snaps as with
     /// \c fixedPrefix. An exception, a result that is not a string, or an unknown symbol falls back to
     /// \c LargestMagnitude with a warning.
-    Q_PROPERTY(QJSValue prefixCallback READ prefixCallback WRITE setPrefixCallback NOTIFY prefixCallbackChanged)
+    Q_PROPERTY(QJSValue customPrefix READ customPrefix WRITE setCustomPrefix NOTIFY customPrefixChanged)
     /// \brief Unit prefix symbols the tick labels may use, with "" for the bare unit. Default: every power-of-1000
     /// prefix from quecto ("q") to quetta ("Q"), and "".
     ///
@@ -81,7 +81,7 @@ public:
         LargestMagnitude,
         /// \brief \c fixedPrefix, shared by all tick labels at every zoom level.
         Fixed,
-        /// \brief The result of \c prefixCallback, shared by all tick labels.
+        /// \brief The result of \c customPrefix, shared by all tick labels.
         Custom,
         /// \brief The \c LargestMagnitude rule applied to each tick label and each \c formatValue() readout on its
         /// own, such as "500 mm, 1.0 m, 1.5 m".
@@ -90,7 +90,7 @@ public:
         /// Decimals follow the tick step in each label's own prefix. A zero tick takes the prefix of the tick step,
         /// as in "0 mm, 2 mm, 4 mm", and a zero readout the prefix of its resolution. On a logarithmic axis each
         /// decade is a plain number in its own prefix: "1 mm, 10 mm, 100 mm, 1 m". \c allowedPrefixes applies to
-        /// each label, and \c prefixCallback is not called.
+        /// each label, and \c customPrefix is not called.
         PerTick,
     };
     Q_ENUM(PrefixMode)
@@ -126,9 +126,9 @@ public:
     void setFixedPrefix(const QString& symbol);
 
     /// \brief Returns the JavaScript callback that picks the unit prefix with \c prefixMode \c Custom.
-    QJSValue prefixCallback() const;
+    QJSValue customPrefix() const;
     /// \brief Sets the JavaScript callback that picks the unit prefix with \c prefixMode \c Custom to \a callback.
-    void setPrefixCallback(const QJSValue& callback);
+    void setCustomPrefix(const QJSValue& callback);
 
     /// \brief Returns the allowed unit prefix symbols in effect, sorted by ascending power of ten.
     QStringList allowedPrefixes() const;
@@ -149,8 +149,8 @@ signals:
     void prefixModeChanged();
     /// \brief Emitted when the fixedPrefix property changes.
     void fixedPrefixChanged();
-    /// \brief Emitted when the prefixCallback property changes.
-    void prefixCallbackChanged();
+    /// \brief Emitted when the customPrefix property changes.
+    void customPrefixChanged();
     /// \brief Emitted when the allowedPrefixes property changes.
     void allowedPrefixesChanged();
     /// \brief Emitted when the unitPosition property changes.
@@ -173,12 +173,12 @@ private:
     Internal::UnitPrefix sharedPrefix(const TickSet& tickSet) const;
     Internal::UnitPrefix ownPrefix(qreal value, qreal precision) const;
     TickSetLabels perTickLabels(const TickSet& tickSet) const;
-    std::optional<Internal::UnitPrefix> callPrefixCallback(const TickSet& tickSet) const;
+    std::optional<Internal::UnitPrefix> callCustomPrefix(const TickSet& tickSet) const;
 
     QString unit_;
     PrefixMode prefixMode_{LargestMagnitude};
     Internal::UnitPrefix fixedPrefix_;
-    QJSValue prefixCallback_;
+    QJSValue customPrefix_;
     QList<Internal::UnitPrefix> allowedPrefixes_;
     UnitPosition unitPosition_{AxisLabel};
 };

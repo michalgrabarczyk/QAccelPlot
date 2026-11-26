@@ -90,15 +90,15 @@ void UnitTickLabelFormatter::setFixedPrefix(const QString& symbol)
     emit formatChanged();
 }
 
-QJSValue UnitTickLabelFormatter::prefixCallback() const
+QJSValue UnitTickLabelFormatter::customPrefix() const
 {
-    return prefixCallback_;
+    return customPrefix_;
 }
 
-void UnitTickLabelFormatter::setPrefixCallback(const QJSValue& callback)
+void UnitTickLabelFormatter::setCustomPrefix(const QJSValue& callback)
 {
-    prefixCallback_ = callback;
-    emit prefixCallbackChanged();
+    customPrefix_ = callback;
+    emit customPrefixChanged();
     emit formatChanged();
 }
 
@@ -204,7 +204,7 @@ Internal::UnitPrefix UnitTickLabelFormatter::sharedPrefix(const TickSet& tickSet
         return Internal::snappedUnitPrefix(fixedPrefix_.exponent, allowedPrefixes_);
     }
     if (prefixMode_ == Custom) {
-        if (const auto prefix = callPrefixCallback(tickSet)) {
+        if (const auto prefix = callCustomPrefix(tickSet)) {
             return Internal::snappedUnitPrefix(prefix->exponent, allowedPrefixes_);
         }
     }
@@ -232,9 +232,9 @@ TickSetLabels UnitTickLabelFormatter::perTickLabels(const TickSet& tickSet) cons
     return result;
 }
 
-std::optional<Internal::UnitPrefix> UnitTickLabelFormatter::callPrefixCallback(const TickSet& tickSet) const
+std::optional<Internal::UnitPrefix> UnitTickLabelFormatter::callCustomPrefix(const TickSet& tickSet) const
 {
-    if (!prefixCallback_.isCallable()) {
+    if (!customPrefix_.isCallable()) {
         return std::nullopt;
     }
     auto* const engine = qjsEngine(this);
@@ -242,7 +242,7 @@ std::optional<Internal::UnitPrefix> UnitTickLabelFormatter::callPrefixCallback(c
         qCWarning(lcQAccelPlot) << "UnitTickLabelFormatter: prefix callback needs a formatter created by a QML or JavaScript engine";
         return std::nullopt;
     }
-    const auto result = prefixCallback_.call({QJSValue{tickSet.viewportMin}, QJSValue{tickSet.viewportMax}, jsArray(*engine, tickSet.values)});
+    const auto result = customPrefix_.call({QJSValue{tickSet.viewportMin}, QJSValue{tickSet.viewportMax}, jsArray(*engine, tickSet.values)});
     if (result.isError()) {
         qCWarning(lcQAccelPlot) << "UnitTickLabelFormatter: prefix callback failed:" << result.toString();
         return std::nullopt;
