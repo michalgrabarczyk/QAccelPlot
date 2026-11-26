@@ -170,6 +170,9 @@ QAccelPlot/
   override, signal, or shared signature requires it.
 - Always run `clang-format` after making changes to `.cpp` or `.hpp` files.
   The Static analysis CI workflow checks them with clang-format 19.
+- Write string and character literals in ASCII, with `\u` escapes for other
+  characters (`QStringLiteral("\u00B5m")`); `scripts/check-source-text.py`
+  enforces this in CI.
 - Library sources must pass `clang-tidy` with the repository `.clang-tidy`
   (enforced by the Static analysis CI workflow).
 

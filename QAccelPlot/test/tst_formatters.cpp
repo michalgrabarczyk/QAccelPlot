@@ -378,7 +378,7 @@ void TestFormatters::formatTicks_defaultLogScaleFormatsEachDecade()
 
     const auto labels = formatter.formatTicks(tickSet).labels;
 
-    QCOMPARE(labels, (QStringList{QStringLiteral("10⁻²"), QStringLiteral("10⁰"), QStringLiteral("10²")}));
+    QCOMPARE(labels, (QStringList{QStringLiteral("10\u207B\u00B2"), QStringLiteral("10\u2070"), QStringLiteral("10\u00B2")}));
 }
 
 void TestFormatters::formatTicks_defaultUsesTickLabelCallback()

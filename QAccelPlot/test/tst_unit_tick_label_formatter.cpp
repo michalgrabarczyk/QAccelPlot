@@ -116,7 +116,7 @@ void UnitTickLabelFormatterTest::sharedPrefixFollowsVisibleRange_data()
     QTest::addColumn<QStringList>("labels");
     QTest::addColumn<QString>("unitText");
     QTest::newRow("millimeters") << 0.0 << 0.004 << QStringList{"0", "1", "2", "3", "4"} << QStringLiteral("mm");
-    QTest::newRow("micrometers") << 0.0 << 4e-6 << QStringList{"0", "1", "2", "3", "4"} << QStringLiteral("µm");
+    QTest::newRow("micrometers") << 0.0 << 4e-6 << QStringList{"0", "1", "2", "3", "4"} << QStringLiteral("\u00B5m");
     QTest::newRow("nanometers") << 0.0 << 4e-9 << QStringList{"0", "1", "2", "3", "4"} << QStringLiteral("nm");
     QTest::newRow("meters") << 0.0 << 4.0 << QStringList{"0", "1", "2", "3", "4"} << QStringLiteral("m");
     QTest::newRow("kilometers") << 0.0 << 4000.0 << QStringList{"0", "1", "2", "3", "4"} << QStringLiteral("km");

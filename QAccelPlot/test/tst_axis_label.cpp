@@ -318,7 +318,7 @@ void AxisLabelTest::unitTextFollowsTheViewport()
 
     axis.setViewportRange(0.0, 4e-6);
     axis.updatePolish();
-    QCOMPARE(axis.label()->unitText(), QStringLiteral("µm"));
+    QCOMPARE(axis.label()->unitText(), QStringLiteral("\u00B5m"));
     QCOMPARE(spy.count(), 2);
 
     axis.setViewportRange(0.0, 4000.0);
@@ -536,7 +536,7 @@ void AxisLabelTest::delegateBindsToTheUnitText()
 
     axis->setViewportRange(0.0, 4e-6);
 
-    QTRY_COMPARE(title->property("text").toString(), QStringLiteral("Distance in µm"));
+    QTRY_COMPARE(title->property("text").toString(), QStringLiteral("Distance in \u00B5m"));
 }
 
 void AxisLabelTest::unitOnTickLabelsLeavesTheAxisLabelText()
