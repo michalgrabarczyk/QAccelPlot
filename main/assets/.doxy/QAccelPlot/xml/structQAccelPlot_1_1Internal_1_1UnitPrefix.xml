@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1UnitPrefix" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::UnitPrefix</compoundname>
+    <includes local="no">UnitPrefix.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1UnitPrefix_1a1114398b1cfb7e1f4c492a5fffdf00da" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::Internal::UnitPrefix::symbol</definition>
+        <argsstring></argsstring>
+        <name>symbol</name>
+        <qualifiedname>QAccelPlot::Internal::UnitPrefix::symbol</qualifiedname>
+        <briefdescription>
+<para>Output symbol, such as &quot;k&quot; or &quot;µ&quot; (U+00B5); empty for the bare unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="16" column="13" bodyfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1UnitPrefix_1a67ac2680d68dd8c4aa277f29975cb7e6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::UnitPrefix::exponent</definition>
+        <argsstring></argsstring>
+        <name>exponent</name>
+        <qualifiedname>QAccelPlot::Internal::UnitPrefix::exponent</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Power of ten the prefix stands for, such as 3 for &quot;k&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="17" column="9" bodyfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="structQAccelPlot_1_1Internal_1_1UnitPrefix_1a70ba69057f753eb9199f1722c8673f96" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator==</definition>
+        <argsstring>(const UnitPrefix &amp;left, const UnitPrefix &amp;right)</argsstring>
+        <name>operator==</name>
+        <qualifiedname>QAccelPlot::Internal::UnitPrefix::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &amp;</type>
+          <declname>right</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether both prefixes have the same symbol and power of ten. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="20" column="17" bodyfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="friend" id="structQAccelPlot_1_1Internal_1_1UnitPrefix_1a7e3cf621e4a0dc743dfce2715dfd358c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator!=</definition>
+        <argsstring>(const UnitPrefix &amp;left, const UnitPrefix &amp;right)</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>QAccelPlot::Internal::UnitPrefix::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &amp;</type>
+          <declname>right</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether the prefixes differ in symbol or power of ten. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="26" column="17" bodyfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" bodystart="26" bodyend="29"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>An SI unit prefix: its output symbol and its power of ten. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="15" column="1" bodyfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" bodystart="15" bodyend="30"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1UnitPrefix_1a67ac2680d68dd8c4aa277f29975cb7e6" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::UnitPrefix</scope><name>exponent</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1UnitPrefix_1a7e3cf621e4a0dc743dfce2715dfd358c" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::UnitPrefix</scope><name>operator!=</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1UnitPrefix_1a70ba69057f753eb9199f1722c8673f96" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::UnitPrefix</scope><name>operator==</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1UnitPrefix_1a1114398b1cfb7e1f4c492a5fffdf00da" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::UnitPrefix</scope><name>symbol</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

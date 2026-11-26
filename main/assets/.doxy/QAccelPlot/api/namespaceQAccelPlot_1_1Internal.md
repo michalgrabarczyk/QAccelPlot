@@ -91,6 +91,7 @@
 | struct | [**TransitionLayout**](structQAccelPlot_1_1Internal_1_1TransitionLayout.md) <br>_How a series' items animate._  |
 | struct | [**TransitionSlots**](structQAccelPlot_1_1Internal_1_1TransitionSlots.md) <br>_Slots a data change animates._  |
 | struct | [**TransitionStep**](structQAccelPlot_1_1Internal_1_1TransitionStep.md) <br>_The state of one slot's transition at the frame._  |
+| struct | [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) <br>_An SI unit prefix: its output symbol and its power of ten._  |
 | struct | [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) <br>_Bounds of an axis viewport or a colormap value range._  |
 
 
@@ -147,6 +148,7 @@
 |  qint64 | [**dataTextureItemCapacity**](#function-datatextureitemcapacity) (const int maxTextureSize, const int floatsPerItem) <br>_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture on a GPU with texture limit__maxTextureSize_ _._ |
 |  [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) | [**dataTextureUploadTotals**](#function-datatextureuploadtotals) () <br>_Returns the totals since the last reset. Thread-safe._  |
 |  int | [**dataTextureWidth**](#function-datatexturewidth) (const int maxTextureSize) <br>_Returns the floats per data texture row on a GPU with texture limit_ _maxTextureSize_ _._ |
+|  const QList&lt; [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) &gt; & | [**defaultUnitPrefixes**](#function-defaultunitprefixes) () <br>_Returns every power-of-1000 prefix from quecto to quetta, including the bare unit, by ascending exponent._  |
 |  qreal | [**distanceToBox**](#function-distancetobox) (qreal x, qreal y, const std::pair&lt; qreal, qreal &gt; & xs, const std::pair&lt; qreal, qreal &gt; & ys) <br>_Returns the pixel distance from (_ _x_ _,__y_ _) to the box spanning__xs_ _and__ys_ _; 0 inside._ |
 |  double | [**distanceToInterval**](#function-distancetointerval) (double position, double a, double b) noexcept<br>_Returns the signed distance from_ _position_ _to the closed interval between__a_ _and__b_ _._ |
 |  qreal | [**edgePixel**](#function-edgepixel) (double value, const [**Axis**](classQAccelPlot_1_1Axis.md) & axis, qreal length) <br>_Maps rectangle edge_ _value_ _on__axis_ _to item pixels along an item side__length_ _pixels long._ |
@@ -161,12 +163,16 @@
 |  [**ItemOpacityUniforms**](structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms.md) | [**itemOpacityUniforms**](#function-itemopacityuniforms) (const [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) & fade, const [**ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) & trail) <br>_Returns the uniforms that fade the items of_ _fade_ _and__trail_ _._ |
 |  [**ItemTiming**](structQAccelPlot_1_1Internal_1_1ItemTiming.md) | [**itemTiming**](#function-itemtiming) (const [**TransitionStep**](structQAccelPlot_1_1Internal_1_1TransitionStep.md) & step, int itemCount) <br>_Returns the timing of a group of_ _itemCount_ _items under__step_ _._ |
 |  bool | [**keptItemsChanged**](#function-keptitemschanged) (const [**TransitionItems**](structQAccelPlot_1_1Internal_1_1TransitionItems.md) & from, const [**TransitionItems**](structQAccelPlot_1_1Internal_1_1TransitionItems.md) & to, int stride) <br>_Returns_ `true` _when an item below both counts of__from_ _and__to_ _,__stride_ _values each, changes._ |
+|  [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) | [**largestMagnitudePrefix**](#function-largestmagnitudeprefix) (qreal magnitude, const QList&lt; [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) &gt; & prefixes) <br>_Returns the prefix of_ _prefixes_ _with the largest exponent at which__magnitude_ _is still at least 1._ |
 |  std::optional&lt; QPointF &gt; | [**linePathPoint**](#function-linepathpoint) (const [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) & data, int pointCount, int index, int corner, [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode, bool logScaleX, bool logScaleY) <br>_Returns path point_ _corner_ _of data point__index_ _on the drawn line of__pointCount_ _data points._ |
 |  QString | [**localFilePath**](#function-localfilepath) (const QString & pathOrUrl) <br>_Returns_ _pathOrUrl_ _as a local file path; a_`file:` _URL, as a QML file dialog returns, is converted._ |
+|  QString | [**logTickLabel**](#function-logticklabel) (qreal value) <br>_Returns a decade_ _value_ _as a superscript power of ten, such as "10²" or "10⁻³"._ |
 |  int | [**maxTextureSize**](#function-maxtexturesize) (QQuickWindow \* window) <br>_Returns the largest texture width and height, in pixels, that_ _window's_ _GPU supports._ |
+|  QString | [**numericLabel**](#function-numericlabel) (qreal value, qreal tickStep) <br>_Returns_ _value_ _with the decimal places needed to write__tickStep_ _exactly._ |
 |  [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) | [**pannedRange**](#function-pannedrange) (const [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) & range, qreal fraction, bool logarithmic) <br>_Returns_ _range_ _shifted by__fraction_ _of its extent; a positive__fraction_ _raises both bounds._ |
 |  double | [**placeGrowBaseline**](#function-placegrowbaseline) (double baseline, const [**GrowViewport**](structQAccelPlot_1_1Internal_1_1GrowViewport.md) & viewport) <br>_Returns the value that items drawn from_ _baseline_ _grow from in__viewport_ _._ |
 |  [**TransitionSlots**](structQAccelPlot_1_1Internal_1_1TransitionSlots.md) | [**plannedSlots**](#function-plannedslots) (int fromCount, int toCount, bool keptChanged, std::optional&lt; TransitionKind &gt; enter, std::optional&lt; TransitionKind &gt; update, std::optional&lt; TransitionKind &gt; exit) <br>_Returns the slots that animate a change from_ _fromCount_ _to__toCount_ _items._ |
+|  [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) | [**prefixWithExponent**](#function-prefixwithexponent) (int exponent, const QList&lt; [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) &gt; & prefixes) <br>_Returns the prefix of_ _prefixes_ _whose power of ten is__exponent_ _, or the bare unit when none matches._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readEffectStops**](#function-readeffectstops) (const [**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap, QObject \* gradient) <br>_Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of the QML_`Gradient` ___gradient_ _._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStopList**](#function-readgradientstoplist) (const QVariantList & stopObjects) <br>_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._ |
 |  [**OpacityTimeline**](classQAccelPlot_1_1Internal_1_1OpacityTimeline.md) | [**readOpacityAnimations**](#function-readopacityanimations) (const QList&lt; QObject \* &gt; & animations, QStringList \* problems=nullptr) <br>_Reads the Qt Quick animations of_ `"opacity"` _among__animations_ _, which run together, as one timeline._ |
@@ -179,10 +185,15 @@
 |  QSizeF | [**rotatedBoundingSize**](#function-rotatedboundingsize) (const QSizeF & size, qreal degrees) <br>_Returns the size of the box that holds_ _size_ _rotated by__degrees_ _._ |
 |  void | [**setImageResolution**](#function-setimageresolution) (QImage & image, qreal dpi) <br>_Sets the resolution stored with_ _image_ _to__dpi_ _dots per inch._ |
 |  std::size\_t | [**shortestLength**](#function-shortestlength) (const Lists &... lists) <br>_Returns the size of the shortest of_ _lists_ _._ |
+|  const QList&lt; [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) &gt; & | [**siUnitPrefixes**](#function-siunitprefixes) () <br>_Returns every SI prefix from quecto to quetta, including the bare unit, by ascending exponent._  |
+|  [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) | [**snappedUnitPrefix**](#function-snappedunitprefix) (int exponent, const QList&lt; [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) &gt; & prefixes) <br>_Returns the prefix of_ _prefixes_ _with the largest exponent not above__exponent_ _._ |
+|  QList&lt; [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) &gt; | [**sortedUnitPrefixes**](#function-sortedunitprefixes) (QList&lt; [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) &gt; prefixes) <br>_Returns_ _prefixes_ _sorted by ascending exponent, without duplicates._ |
 |  std::optional&lt; QPointF &gt; | [**stepCorner**](#function-stepcorner) (const [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) & data, int from, int to, int corner, [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode, bool logScaleX, bool logScaleY) <br>_Returns corner_ _corner_ _of the step from data point__from_ _to data point__to_ _, in data space._ |
 |  int | [**stepCornerCount**](#function-stepcornercount) ([**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode) noexcept<br>_Returns the number of line path points per data point for_ _mode:_ _the data point and the step corners after it._ |
 |  bool | [**supportsCustomShaderRendering**](#function-supportscustomshaderrendering) (const QQuickWindow \* window) <br>_Returns_ `true` _when__window_ _renders through a hardware scene graph backend that runs custom shaders._ |
+|  qreal | [**toPrefix**](#function-toprefix) (qreal value, const [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) & prefix) <br>_Returns_ _value_ _, given in the base unit, expressed in__prefix_ _._ |
 |  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const Qt::Orientation direction, const qreal value, const qreal minimum, const qreal maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
+|  std::optional&lt; [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) &gt; | [**unitPrefixFromSymbol**](#function-unitprefixfromsymbol) (const QString & symbol) <br>_Returns the SI prefix written as_ _symbol_ _, or_`std::nullopt` _when__symbol_ _is not an SI prefix._ |
 |  QSGGeometryNode \* | [**updateRecordNode**](#function-updaterecordnode) (QSGNode \* oldNode, const [**RecordFrame**](structQAccelPlot_1_1Internal_1_1RecordFrame.md) & frame, const [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) & store, std::uint64\_t & uploadedRevision, UpdateMaterial && updateMaterial) <br>_Returns the node that draws_ _frame_ _with a__Material_ _, reusing__oldNode_ _, or_`nullptr` _when__frame_ _is not drawn._ |
 |  void | [**uploadDataTexture**](#function-uploaddatatexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const QImage & image) <br>_Uploads an image to the live-data texture using the configured Qt API path._  |
 |  void | [**uploadRecordData**](#function-uploadrecorddata) ([**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) & material, const [**RecordFrame**](structQAccelPlot_1_1Internal_1_1RecordFrame.md) & frame, const [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) & store, std::uint64\_t & uploadedRevision, bool newMaterial) <br>_Uploads the render data of_ _store_ _to__material_ _unless__uploadedRevision_ _is its render revision._ |
@@ -611,6 +622,21 @@ data\_texture.glsl reads the width from the bound texture, so it follows this va
 
 
 
+### function defaultUnitPrefixes {#function-defaultunitprefixes}
+
+_Returns every power-of-1000 prefix from quecto to quetta, including the bare unit, by ascending exponent._ 
+```C++
+const QList< UnitPrefix > & QAccelPlot::Internal::defaultUnitPrefixes () 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function distanceToBox {#function-distancetobox}
 
 _Returns the pixel distance from (_ _x_ _,__y_ _) to the box spanning__xs_ _and__ys_ _; 0 inside._
@@ -876,6 +902,28 @@ Invalid values that stay invalid do not count as a change.
 
 
 
+### function largestMagnitudePrefix {#function-largestmagnitudeprefix}
+
+_Returns the prefix of_ _prefixes_ _with the largest exponent at which__magnitude_ _is still at least 1._
+```C++
+UnitPrefix QAccelPlot::Internal::largestMagnitudePrefix (
+    qreal magnitude,
+    const QList< UnitPrefix > & prefixes
+) 
+```
+
+
+
+_prefixes_ must be sorted by ascending exponent. Falls back to the smallest prefix when none qualifies, and to the bare unit when _prefixes_ is empty. A zero or non-finite _magnitude_ is treated as 1. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function linePathPoint {#function-linepathpoint}
 
 _Returns path point_ _corner_ _of data point__index_ _on the drawn line of__pointCount_ _data points._
@@ -920,6 +968,27 @@ QString QAccelPlot::Internal::localFilePath (
 
 
 
+### function logTickLabel {#function-logticklabel}
+
+_Returns a decade_ _value_ _as a superscript power of ten, such as "10²" or "10⁻³"._
+```C++
+QString QAccelPlot::Internal::logTickLabel (
+    qreal value
+) 
+```
+
+
+
+A value that is not a positive power of ten falls back to `numericLabel(value, value)`. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function maxTextureSize {#function-maxtexturesize}
 
 _Returns the largest texture width and height, in pixels, that_ _window's_ _GPU supports._
@@ -932,6 +1001,28 @@ int QAccelPlot::Internal::maxTextureSize (
 
 
 Falls back to 8192 when the RHI cannot be queried (Qt older than 6.6, or a build without the private Qt API). `QACCELPLOT_MAX_TEXTURE_SIZE` lowers the result, for example to exercise capacity limits in tests. 
+
+
+        
+
+<hr>
+
+
+
+
+### function numericLabel {#function-numericlabel}
+
+_Returns_ _value_ _with the decimal places needed to write__tickStep_ _exactly._
+```C++
+QString QAccelPlot::Internal::numericLabel (
+    qreal value,
+    qreal tickStep
+) 
+```
+
+
+
+Steps 1, 2, 5, and 10 get no decimals, 0.5 and 0.1 get one, 0.25 and 0.05 get two. A non-finite or non-positive step gets one. A value that rounds to zero is written without a minus sign. 
 
 
         
@@ -1006,6 +1097,24 @@ Each kind is that of the slot's enabled transition, or `std::nullopt` without on
 
 
         
+
+<hr>
+
+
+
+
+### function prefixWithExponent {#function-prefixwithexponent}
+
+_Returns the prefix of_ _prefixes_ _whose power of ten is__exponent_ _, or the bare unit when none matches._
+```C++
+UnitPrefix QAccelPlot::Internal::prefixWithExponent (
+    int exponent,
+    const QList< UnitPrefix > & prefixes
+) 
+```
+
+
+
 
 <hr>
 
@@ -1271,6 +1380,60 @@ std::size_t QAccelPlot::Internal::shortestLength (
 
 
 
+### function siUnitPrefixes {#function-siunitprefixes}
+
+_Returns every SI prefix from quecto to quetta, including the bare unit, by ascending exponent._ 
+```C++
+const QList< UnitPrefix > & QAccelPlot::Internal::siUnitPrefixes () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function snappedUnitPrefix {#function-snappedunitprefix}
+
+_Returns the prefix of_ _prefixes_ _with the largest exponent not above__exponent_ _._
+```C++
+UnitPrefix QAccelPlot::Internal::snappedUnitPrefix (
+    int exponent,
+    const QList< UnitPrefix > & prefixes
+) 
+```
+
+
+
+_prefixes_ must be sorted by ascending exponent. Falls back to the smallest prefix when none qualifies, and to the bare unit when _prefixes_ is empty. 
+
+
+        
+
+<hr>
+
+
+
+
+### function sortedUnitPrefixes {#function-sortedunitprefixes}
+
+_Returns_ _prefixes_ _sorted by ascending exponent, without duplicates._
+```C++
+QList< UnitPrefix > QAccelPlot::Internal::sortedUnitPrefixes (
+    QList< UnitPrefix > prefixes
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function stepCorner {#function-stepcorner}
 
 _Returns corner_ _corner_ _of the step from data point__from_ _to data point__to_ _, in data space._
@@ -1332,6 +1495,24 @@ bool QAccelPlot::Internal::supportsCustomShaderRendering (
 
 
 
+### function toPrefix {#function-toprefix}
+
+_Returns_ _value_ _, given in the base unit, expressed in__prefix_ _._
+```C++
+qreal QAccelPlot::Internal::toPrefix (
+    qreal value,
+    const UnitPrefix & prefix
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function unboundedGradientCoordinate {#function-unboundedgradientcoordinate}
 
 _Returns an unbounded palette coordinate for a data-space_ _value_ _._
@@ -1347,6 +1528,27 @@ inline float QAccelPlot::Internal::unboundedGradientCoordinate (
 
 
 Coordinates outside [0, 1] are intentionally preserved for interpolation. Renderers must clamp only after interpolation, immediately before sampling the gradient, so values beyond the configured range retain endpoint colors. 
+
+
+        
+
+<hr>
+
+
+
+
+### function unitPrefixFromSymbol {#function-unitprefixfromsymbol}
+
+_Returns the SI prefix written as_ _symbol_ _, or_`std::nullopt` _when__symbol_ _is not an SI prefix._
+```C++
+std::optional< UnitPrefix > QAccelPlot::Internal::unitPrefixFromSymbol (
+    const QString & symbol
+) 
+```
+
+
+
+An empty _symbol_ is the bare unit. "µ" (U+00B5), "μ" (U+03BC), and "u" all give micro with the symbol "µ" (U+00B5). 
 
 
         

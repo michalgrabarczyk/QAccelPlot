@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Configure QAccelPlot axis tick labels — date/time formatting, categorical text labels, logarithmic scales, and custom JavaScript formatters.">
+        <meta name="description" content="Configure QAccelPlot axis tick labels — date/time formatting, categorical text labels, logarithmic scales, units with SI prefixes, and custom JavaScript formatters.">
       
       
       
@@ -64,7 +64,7 @@
     
     
 
-<meta property="og:description" content="Configure QAccelPlot axis tick labels — date/time formatting, categorical text labels, logarithmic scales, and custom JavaScript formatters.">
+<meta property="og:description" content="Configure QAccelPlot axis tick labels — date/time formatting, categorical text labels, logarithmic scales, units with SI prefixes, and custom JavaScript formatters.">
 
 <script type="application/ld+json">
 {
@@ -659,6 +659,17 @@
     <span class="md-ellipsis">
       
         Logarithmic axes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#units-and-si-prefixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Units and SI prefixes
       
     </span>
   </a>
@@ -1548,6 +1559,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#units-and-si-prefixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Units and SI prefixes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#application-specific-labels" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1621,21 +1643,72 @@ still ticks only at whole numbers, so each category is labeled once.</p>
 <p>Logarithmic ranges must stay positive. The default
 <code>NumericTickLabelFormatter</code> labels each decade tick as a power of ten, such as
 <code>10⁻³</code> and <code>10²</code>.</p>
+<h2 id="units-and-si-prefixes">Units and SI prefixes<a class="headerlink" href="#units-and-si-prefixes" title="Permanent link">&para;</a></h2>
+<p><a href="../../api/classQAccelPlot_1_1UnitTickLabelFormatter/"><code>QAccelPlot.UnitTickLabelFormatter</code></a> writes values in a unit
+with an SI unit prefix that follows the visible range. The data stays in the
+base unit:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">xAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">viewportMin:</span> <span class="mi">0</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">viewportMax:</span> <span class="mf">0.004</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">label.text:</span> <span class="s2">"Distance"</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="k">ticker.tickLabelFormatter:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">UnitTickLabelFormatter</span> <span class="p">{</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="k">unit:</span> <span class="s2">"m"</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="p">}</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">}</span>
+</code></pre></div>
+<p>The tick labels read <code>0</code> to <code>4</code> and the axis label <code>Distance (mm)</code>. Zoomed in
+to 0–0.000004, they switch to µm.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>unit</code></td>
+<td>Base unit symbol of the values, such as <code>"m"</code>.</td>
+</tr>
+<tr>
+<td><code>unitPosition</code></td>
+<td><code>AxisLabel</code> (default): the axis label shows the prefixed unit. <code>TickLabels</code>: each tick label carries it, as in <code>2 mm</code>.</td>
+</tr>
+<tr>
+<td><code>prefixMode</code></td>
+<td><code>LargestMagnitude</code> (default): the largest prefix that keeps the largest visible tick at 1 or more, shared by all tick labels. <code>Fixed</code>: <code>fixedPrefix</code> at every zoom level. <code>Custom</code>: the symbol returned by <code>customPrefix(min, max, ticks)</code>. <code>PerTick</code>: each tick label picks its own prefix and carries the unit, as in <code>500 mm</code>, <code>1.0 m</code>.</td>
+</tr>
+<tr>
+<td><code>allowedPrefixes</code></td>
+<td>Prefix symbols to choose from, with <code>""</code> for the bare unit. Default: every power-of-1000 prefix from <code>q</code> to <code>Q</code>, and <code>""</code>. <code>[]</code> turns prefixing off. Assign <code>undefined</code> to restore the default.</td>
+</tr>
+</tbody>
+</table>
+<p>On a logarithmic axis, a shared prefix keeps the decade ticks as powers of ten
+in the prefixed unit; <code>PerTick</code> writes each decade as a plain number, such as
+<code>1 kHz</code>, <code>10 kHz</code>, <code>100 kHz</code>, <code>1 MHz</code>.</p>
+<p>The axis label combines <code>label.text</code> and the read-only <code>label.unitText</code> with
+<code>label.unitFormat</code>, <code>"%1 (%2)"</code> by default: <code>"%1 [%2]"</code> paints
+<code>Distance [mm]</code>. A <code>label.delegate</code> binds <code>label.unitText</code> to show the unit.
+Color bars work the same way. <code>Axis.formatValue()</code>, used by tooltips, the
+crosshair, and the inspector, appends the prefixed unit: <code>12.3 mm</code>.</p>
+<p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axes/unit_tick_labels"><code>examples/axes/unit_tick_labels</code></a></p>
 <h2 id="application-specific-labels">Application-specific labels<a class="headerlink" href="#application-specific-labels" title="Permanent link">&para;</a></h2>
 <p>For custom text, assign a JavaScript function to a formatter's
 <a href="../../api/classQAccelPlot_1_1TickLabelFormatter/#property-ticklabel-12"><code>tickLabel</code></a> property. It runs for every tick label, so keep it
 cheap:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">yAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">viewportMin:</span> <span class="mi">18</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">viewportMax:</span> <span class="mi">26</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">label.text:</span> <span class="s2">"Temperature"</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="k">ticker.tickLabelFormatter:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">NumericTickLabelFormatter</span> <span class="p">{</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="k">tickLabel:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">temperature</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>            <span class="k">return</span> <span class="nx">temperature</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" °C"</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="p">}</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="p">}</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">yAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">viewportMin:</span> <span class="mi">18</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="k">viewportMax:</span> <span class="mi">26</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">label.text:</span> <span class="s2">"Temperature"</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">ticker.tickLabelFormatter:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">NumericTickLabelFormatter</span> <span class="p">{</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="k">tickLabel:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">temperature</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>            <span class="k">return</span> <span class="nx">temperature</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" °C"</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="p">}</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="p">}</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">}</span>
 </code></pre></div>
 <p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axes/tick_formats"><code>examples/axes/tick_formats</code></a></p>
 

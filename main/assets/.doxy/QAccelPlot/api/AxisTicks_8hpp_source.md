@@ -14,6 +14,8 @@
 //
 #pragma once
 
+#include "QAccelPlot/formatters/TickLabelFormatter.hpp"
+
 #include <QList>
 #include <QString>
 
@@ -27,6 +29,8 @@ struct AxisTick {
 struct AxisTicks {
     QList<qreal> subtickValues; 
     QList<AxisTick> majorTicks; 
+    QString unitText;           
+    TickSetFormat format;       
 };
 
 struct AxisTickValues {

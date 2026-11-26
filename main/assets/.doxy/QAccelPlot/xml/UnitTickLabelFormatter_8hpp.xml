@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="UnitTickLabelFormatter_8hpp" kind="file" language="C++">
+    <compoundname>UnitTickLabelFormatter.hpp</compoundname>
+    <includes refid="TickLabelFormatter_8hpp" local="yes">QAccelPlot/formatters/TickLabelFormatter.hpp</includes>
+    <includes refid="UnitPrefix_8hpp" local="yes">QAccelPlot/formatters/internal/UnitPrefix.hpp</includes>
+    <includes local="no">QJSValue</includes>
+    <includes local="no">QList</includes>
+    <includes local="no">QString</includes>
+    <includes local="no">QStringList</includes>
+    <includes local="no">QtQml/qqmlregistration.h</includes>
+    <includes local="no">optional</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp</label>
+        <link refid="UnitTickLabelFormatter_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QJSValue</label>
+      </node>
+      <node id="3">
+        <label>QList</label>
+      </node>
+      <node id="4">
+        <label>QString</label>
+      </node>
+      <node id="5">
+        <label>QStringList</label>
+      </node>
+      <node id="6">
+        <label>QtQml/qqmlregistration.h</label>
+      </node>
+      <node id="7">
+        <label>optional</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classQAccelPlot_1_1UnitTickLabelFormatter" prot="public">QAccelPlot::UnitTickLabelFormatter</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>MIT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/formatters/TickLabelFormatter.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/formatters/internal/UnitPrefix.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QJSValue&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QList&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QString&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QStringList&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQml/qqmlregistration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;optional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="classQAccelPlot_1_1UnitTickLabelFormatter" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a9058b6912a75836b9ef5c3af1c9fe2d9" kindref="member">UnitTickLabelFormatter</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" kindref="member">TickLabelFormatter</ref><sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a9058b6912a75836b9ef5c3af1c9fe2d9" kindref="member">UnitTickLabelFormatter</ref>)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QString<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ad14ab74c45c35f081c8c184f40870df9" kindref="member">unit</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ad14ab74c45c35f081c8c184f40870df9" kindref="member">unit</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a94414212aa7c9e15d28503625d9a7d21" kindref="member">setUnit</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aef9bd3bc996ba22191cda9d13715f85f" kindref="member">unitChanged</ref>)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" kindref="member">PrefixMode</ref><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a601a3103a48fe840516d707f503add03" kindref="member">prefixMode</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a601a3103a48fe840516d707f503add03" kindref="member">prefixMode</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a25548b32a6fd7ece0cddfcb89525dcc0" kindref="member">setPrefixMode</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a186420ce1271a760166a0b22de652bdf" kindref="member">prefixModeChanged</ref>)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QString<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a47996e1536a25a6ff86067bb120055ae" kindref="member">fixedPrefix</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a47996e1536a25a6ff86067bb120055ae" kindref="member">fixedPrefix</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a414f00ea967c3eafbedc87b89e9a19da" kindref="member">setFixedPrefix</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ab0dc0bdec2a67082600239da45ee59ae" kindref="member">fixedPrefixChanged</ref>)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QJSValue<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aa19283bde506fb119e7e31040560a4f6" kindref="member">customPrefix</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aa19283bde506fb119e7e31040560a4f6" kindref="member">customPrefix</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a4ea334ffbf0fd0d70a5113298587bce8" kindref="member">setCustomPrefix</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ade2719216c1e47238ca55439101e16cf" kindref="member">customPrefixChanged</ref>)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QStringList<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a2dc2340cfd73d39811baf4c3ed059a46" kindref="member">allowedPrefixes</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a2dc2340cfd73d39811baf4c3ed059a46" kindref="member">allowedPrefixes</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a708991c58d806921826da86d9bf0cc93" kindref="member">setAllowedPrefixes</ref><sp/>RESET<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a812a3e911cb06ec5125b79ac2e8a6793" kindref="member">resetAllowedPrefixes</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1acd06b722fa112211a094b103503cdbd2" kindref="member">allowedPrefixesChanged</ref>)</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" kindref="member">UnitPosition</ref><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a3fa67ce28c89371d2c7f8e6070009a7b" kindref="member">unitPosition</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a3fa67ce28c89371d2c7f8e6070009a7b" kindref="member">unitPosition</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1acffe788604335cbbcedd20748b1b2ae2" kindref="member">setUnitPosition</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aa4e95ab82a6b381b13528d560a2da0f1" kindref="member">unitPositionChanged</ref>)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" kindref="member">PrefixMode</ref><sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95dab2623579c642a9b0f16d9e6961bb9163" kindref="member">LargestMagnitude</ref>,</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95dadc3e449f77841fbe4c56e3001dc5254f" kindref="member">Fixed</ref>,</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95da891f214d8c2a8a5a56f8a796e6419bbc" kindref="member">Custom</ref>,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95da9b9833697922d40ecbeb3e5e6d0f0d2c" kindref="member">PerTick</ref>,</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_ENUM(<ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" kindref="member">PrefixMode</ref>)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" kindref="member">UnitPosition</ref><sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24baa267a3fde341a6e0a62abd03aa4f34464" kindref="member">AxisLabel</ref>,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24baad0aff0bb1669979a349a6c9068793e5a" kindref="member">TickLabels</ref>,</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_ENUM(<ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" kindref="member">UnitPosition</ref>)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a9058b6912a75836b9ef5c3af1c9fe2d9" kindref="member">UnitTickLabelFormatter</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ad14ab74c45c35f081c8c184f40870df9" kindref="member">unit</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a94414212aa7c9e15d28503625d9a7d21" kindref="member">setUnit</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QString&amp;<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ad14ab74c45c35f081c8c184f40870df9" kindref="member">unit</ref>);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" kindref="member">PrefixMode</ref><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a601a3103a48fe840516d707f503add03" kindref="member">prefixMode</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a25548b32a6fd7ece0cddfcb89525dcc0" kindref="member">setPrefixMode</ref>(<ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" kindref="member">PrefixMode</ref><sp/>mode);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a47996e1536a25a6ff86067bb120055ae" kindref="member">fixedPrefix</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a414f00ea967c3eafbedc87b89e9a19da" kindref="member">setFixedPrefix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QString&amp;<sp/>symbol);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>QJSValue<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aa19283bde506fb119e7e31040560a4f6" kindref="member">customPrefix</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a4ea334ffbf0fd0d70a5113298587bce8" kindref="member">setCustomPrefix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QJSValue&amp;<sp/>callback);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>QStringList<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a2dc2340cfd73d39811baf4c3ed059a46" kindref="member">allowedPrefixes</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a708991c58d806921826da86d9bf0cc93" kindref="member">setAllowedPrefixes</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QStringList&amp;<sp/>symbols);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a812a3e911cb06ec5125b79ac2e8a6793" kindref="member">resetAllowedPrefixes</ref>();</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" kindref="member">UnitPosition</ref><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a3fa67ce28c89371d2c7f8e6070009a7b" kindref="member">unitPosition</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1acffe788604335cbbcedd20748b1b2ae2" kindref="member">setUnitPosition</ref>(<ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" kindref="member">UnitPosition</ref><sp/>position);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aef9bd3bc996ba22191cda9d13715f85f" kindref="member">unitChanged</ref>();</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a186420ce1271a760166a0b22de652bdf" kindref="member">prefixModeChanged</ref>();</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ab0dc0bdec2a67082600239da45ee59ae" kindref="member">fixedPrefixChanged</ref>();</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ade2719216c1e47238ca55439101e16cf" kindref="member">customPrefixChanged</ref>();</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1acd06b722fa112211a094b103503cdbd2" kindref="member">allowedPrefixesChanged</ref>();</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aa4e95ab82a6b381b13528d560a2da0f1" kindref="member">unitPositionChanged</ref>();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1acd46eb09bfd195bba7189204b97ecfd1" kindref="member">doFormat</ref>(qreal<sp/>value,<sp/>qreal<sp/>tickStep)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a544de9777e6846ff83178f7fbaa5f8f6" kindref="member">doFormatLogTick</ref>(qreal<sp/>value)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1TickSetLabels" kindref="compound">TickSetLabels</ref><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aa1ac7facd588a45d106094a9da4a829a" kindref="member">doFormatTicks</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref>&amp;<sp/>tickSet)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a2d18b88f1fc7ca6a1edb0ff7258fb780" kindref="member">doFormatValue</ref>(qreal<sp/>value,<sp/>qreal<sp/>resolution,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1TickSetFormat" kindref="compound">TickSetFormat</ref>&amp;<sp/>tickSetFormat)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>applyAllowedPrefixes(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QList&lt;Internal::UnitPrefix&gt;&amp;<sp/>prefixes);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">Internal::UnitPrefix</ref><sp/>sharedPrefix(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref>&amp;<sp/>tickSet)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">Internal::UnitPrefix</ref><sp/>ownPrefix(qreal<sp/>value,<sp/>qreal<sp/>precision)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1TickSetLabels" kindref="compound">TickSetLabels</ref><sp/>perTickLabels(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref>&amp;<sp/>tickSet)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;Internal::UnitPrefix&gt;<sp/>callCustomPrefix(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref>&amp;<sp/>tickSet)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/>unit_;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" kindref="member">PrefixMode</ref><sp/>prefixMode_{<ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95dab2623579c642a9b0f16d9e6961bb9163" kindref="member">LargestMagnitude</ref>};</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">Internal::UnitPrefix</ref><sp/>fixedPrefix_;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>QJSValue<sp/>customPrefix_;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;Internal::UnitPrefix&gt;<sp/>allowedPrefixes_;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" kindref="member">UnitPosition</ref><sp/>unitPosition_{<ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24baa267a3fde341a6e0a62abd03aa4f34464" kindref="member">AxisLabel</ref>};</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp"/>
+  </compounddef>
+</doxygen>

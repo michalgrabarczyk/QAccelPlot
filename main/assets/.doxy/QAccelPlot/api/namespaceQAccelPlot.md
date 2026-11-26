@@ -50,7 +50,7 @@
 | Type | Name |
 | ---: | :--- |
 | class | [**Axis**](classQAccelPlot_1_1Axis.md) <br>_A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels._  |
-| class | [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _title and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._ |
+| class | [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _label and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._ |
 | struct | [**AxisMapping**](structQAccelPlot_1_1AxisMapping.md) <br>_Snapshot of an axis viewport that maps between data values and pixel positions._  |
 | struct | [**AxisTick**](structQAccelPlot_1_1AxisTick.md) <br>_A single major tick: its data-space value and its formatted label._  |
 | class | [**AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) <br>_Internal helper that computes and paints tick marks and labels for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
@@ -151,10 +151,14 @@
 | class | [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) <br>_Controls the markers a series draws at its data points._  |
 | class | [**SolidLine**](classQAccelPlot_1_1SolidLine.md) <br>_The default line style — renders a continuous solid line with no gaps._  |
 | class | [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) <br>_Uniform-grid spatial index with bounded per-rectangle storage._  |
-| class | [**TextLabel**](classQAccelPlot_1_1TextLabel.md) <br>_Text, font, color, and padding of a title, grouped as the_ `label` _property of_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _and_[_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
+| class | [**TextLabel**](classQAccelPlot_1_1TextLabel.md) <br>_Text, font, color, and padding of an axis label, grouped as the_ `label` _property of_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _and_[_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
 | class | [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) <br>_A tick label formatter that maps integer tick indices to a user-supplied list of strings._  |
 | class | [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) <br>_Abstract base class for tick label formatters._  |
+| struct | [**TickSet**](structQAccelPlot_1_1TickSet.md) <br>_The visible major ticks of one axis viewport, passed to_ `TickLabelFormatter::formatTicks()` _._ |
+| struct | [**TickSetFormat**](structQAccelPlot_1_1TickSetFormat.md) <br>_What a formatter decided for a whole_ `TickSet` _that a single value formatted later must follow._ |
+| struct | [**TickSetLabels**](structQAccelPlot_1_1TickSetLabels.md) <br>_The text a formatter returns for a_ `TickSet` _._ |
 | class | [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) <br>_Runs the enter, update, and exit transitions of one item, such as a custom series._  |
+| class | [**UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md) <br>_Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix._  |
 
 
 ## Public Types

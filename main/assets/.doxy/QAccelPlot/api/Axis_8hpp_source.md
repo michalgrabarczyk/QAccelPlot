@@ -20,6 +20,8 @@
 #include "QAccelPlot/axis/AxisTicks.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
+#include <optional>
+
 #include <QColor>
 #include <QFont>
 #include <QList>
@@ -113,6 +115,8 @@ public:
 
     AxisTicker* ticker() const;
 
+    QString unitText() const;
+
     bool logScale() const;
     void setLogScale(bool on);
     qreal zoomScaleFactor() const;
@@ -188,6 +192,7 @@ private:
     DataRange dataFitRange() const;
     void autoRescaleToData();
     qreal valueResolution(qreal value, qreal length) const;
+    TickSetFormat valueFormat() const;
     qreal defaultLabelRotation() const;
     void paintLabel(QPainter* painter, const QRectF& r, qreal axisX, qreal axisY) const;
     void createLabelItem();
@@ -225,6 +230,8 @@ private:
     Side side_{Bottom};
     AxisTicker* ticker_;
     AxisTicks ticks_;
+    // What formatValue() follows; empty until the ticks are recomputed after a change. GUI thread only.
+    mutable std::optional<TickSetFormat> valueFormat_;
 };
 
 } // namespace QAccelPlot

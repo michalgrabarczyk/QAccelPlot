@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1TickSet" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::TickSet</compoundname>
+    <includes local="no">TickLabelFormatter.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1TickSet_1adffb112ce8befffff2927384540a4ad7" prot="public" static="no" mutable="no">
+        <type>QList&lt; qreal &gt;</type>
+        <definition>QList&lt;qreal&gt; QAccelPlot::TickSet::values</definition>
+        <argsstring></argsstring>
+        <name>values</name>
+        <qualifiedname>QAccelPlot::TickSet::values</qualifiedname>
+        <briefdescription>
+<para>Data-space values of the visible major ticks, in ascending order. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="17" column="11" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1TickSet_1a10f4f92afa3b8e6f06a1b02e4209c22d" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::TickSet::viewportMin</definition>
+        <argsstring></argsstring>
+        <name>viewportMin</name>
+        <qualifiedname>QAccelPlot::TickSet::viewportMin</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Lower bound of the visible range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="18" column="11" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1TickSet_1a800a9d9777093a481bec58c553bbc12b" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::TickSet::viewportMax</definition>
+        <argsstring></argsstring>
+        <name>viewportMax</name>
+        <qualifiedname>QAccelPlot::TickSet::viewportMax</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Upper bound of the visible range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="19" column="11" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1TickSet_1a2b9e8bc04d7f00f816fb13503c7edf23" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::TickSet::step</definition>
+        <argsstring></argsstring>
+        <name>step</name>
+        <qualifiedname>QAccelPlot::TickSet::step</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Major tick step on a linear scale; 0 on a logarithmic scale. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="20" column="11" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1TickSet_1ada26c63fb405c2604ff6ccf6ca16b638" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::TickSet::logScale</definition>
+        <argsstring></argsstring>
+        <name>logScale</name>
+        <qualifiedname>QAccelPlot::TickSet::logScale</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Whether the values were placed at powers of ten. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="21" column="10" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="21" bodyend="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The visible major ticks of one axis viewport, passed to <computeroutput><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a5f11efa4dc85ff82cdcb1427fb195c11" kindref="member">TickLabelFormatter::formatTicks()</ref></computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="16" column="1" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="16" bodyend="22"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1TickSet_1ada26c63fb405c2604ff6ccf6ca16b638" prot="public" virt="non-virtual"><scope>QAccelPlot::TickSet</scope><name>logScale</name></member>
+      <member refid="structQAccelPlot_1_1TickSet_1a2b9e8bc04d7f00f816fb13503c7edf23" prot="public" virt="non-virtual"><scope>QAccelPlot::TickSet</scope><name>step</name></member>
+      <member refid="structQAccelPlot_1_1TickSet_1adffb112ce8befffff2927384540a4ad7" prot="public" virt="non-virtual"><scope>QAccelPlot::TickSet</scope><name>values</name></member>
+      <member refid="structQAccelPlot_1_1TickSet_1a800a9d9777093a481bec58c553bbc12b" prot="public" virt="non-virtual"><scope>QAccelPlot::TickSet</scope><name>viewportMax</name></member>
+      <member refid="structQAccelPlot_1_1TickSet_1a10f4f92afa3b8e6f06a1b02e4209c22d" prot="public" virt="non-virtual"><scope>QAccelPlot::TickSet</scope><name>viewportMin</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

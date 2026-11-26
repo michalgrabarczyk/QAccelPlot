@@ -31,6 +31,7 @@
 * **dataTextureItemCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureUploadTotals** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureWidth** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **defaultUnitPrefixes** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **distanceToBox** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **distanceToInterval** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
@@ -76,8 +77,10 @@
 
 ## l
 
+* **largestMagnitudePrefix** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **linePathPoint** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **localFilePath** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **logTickLabel** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## m
@@ -90,6 +93,7 @@
 * **nearest** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **nearestAlong** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **neighbors** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
+* **numericLabel** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **nearlyEqual** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **nearlyEqualOrBothNaN** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
@@ -99,6 +103,7 @@
 * **pannedRange** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **placeGrowBaseline** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **plannedSlots** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **prefixWithExponent** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **planRunSampling** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 
 
@@ -123,15 +128,24 @@
 * **summarize** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **setImageResolution** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **shortestLength** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **siUnitPrefixes** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **snappedUnitPrefix** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **sortedUnitPrefixes** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **stepCorner** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **stepCornerCount** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **supportsCustomShaderRendering** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **setMaterial** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
 
+## t
+
+* **toPrefix** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+
+
 ## u
 
 * **unboundedGradientCoordinate** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **unitPrefixFromSymbol** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **updateRecordNode** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **uploadDataTexture** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **uploadRecordData** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))

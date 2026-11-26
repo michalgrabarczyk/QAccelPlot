@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1TickSetLabels" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::TickSetLabels</compoundname>
+    <includes local="no">TickLabelFormatter.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1TickSetLabels_1a8b09ec4375ca40ae7367ed9cb590eab5" prot="public" static="no" mutable="no">
+        <type>QStringList</type>
+        <definition>QStringList QAccelPlot::TickSetLabels::labels</definition>
+        <argsstring></argsstring>
+        <name>labels</name>
+        <qualifiedname>QAccelPlot::TickSetLabels::labels</qualifiedname>
+        <briefdescription>
+<para>One tick label per tick value, in the same order. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="33" column="17" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1TickSetLabels_1ad6a10b9c5c8e0312490ac926e23cd530" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::TickSetLabels::unitText</definition>
+        <argsstring></argsstring>
+        <name>unitText</name>
+        <qualifiedname>QAccelPlot::TickSetLabels::unitText</qualifiedname>
+        <briefdescription>
+<para>Unit text for the axis label, shared by the whole tick set; empty for none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="34" column="13" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1TickSetLabels_1aaa515314ee59f15d06becb78244bc411" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1TickSetFormat" kindref="compound">TickSetFormat</ref></type>
+        <definition>TickSetFormat QAccelPlot::TickSetLabels::format</definition>
+        <argsstring></argsstring>
+        <name>format</name>
+        <qualifiedname>QAccelPlot::TickSetLabels::format</qualifiedname>
+        <briefdescription>
+<para>What single values formatted for this tick set must follow. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="35" column="19" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The text a formatter returns for a <computeroutput><ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref></computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::TickSetFormat</label>
+        <link refid="structQAccelPlot_1_1TickSetFormat"/>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::TickSetLabels</label>
+        <link refid="structQAccelPlot_1_1TickSetLabels"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>format</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="32" column="1" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="32" bodyend="36"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1TickSetLabels_1aaa515314ee59f15d06becb78244bc411" prot="public" virt="non-virtual"><scope>QAccelPlot::TickSetLabels</scope><name>format</name></member>
+      <member refid="structQAccelPlot_1_1TickSetLabels_1a8b09ec4375ca40ae7367ed9cb590eab5" prot="public" virt="non-virtual"><scope>QAccelPlot::TickSetLabels</scope><name>labels</name></member>
+      <member refid="structQAccelPlot_1_1TickSetLabels_1ad6a10b9c5c8e0312490ac926e23cd530" prot="public" virt="non-virtual"><scope>QAccelPlot::TickSetLabels</scope><name>unitText</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

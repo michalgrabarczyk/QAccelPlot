@@ -49,7 +49,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _title and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._ |
+| class | [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _label and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._ |
 
 
 

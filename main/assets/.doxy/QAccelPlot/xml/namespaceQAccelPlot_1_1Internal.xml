@@ -6,6 +6,7 @@
     <innerclass refid="structQAccelPlot_1_1Internal_1_1ValueRange" prot="public">QAccelPlot::Internal::ValueRange</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1GrabSize" prot="public">QAccelPlot::Internal::GrabSize</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures" prot="public">QAccelPlot::Internal::ScopedPaintedItemTextures</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" prot="public">QAccelPlot::Internal::UnitPrefix</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1InspectionCache" prot="public">QAccelPlot::Internal::InspectionCache</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1InspectionIndex" prot="public">QAccelPlot::Internal::InspectionIndex</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1InspectionSource" prot="public">QAccelPlot::Internal::InspectionSource</innerclass>
@@ -620,6 +621,213 @@
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/export/internal/ImageFile.hpp" line="27" column="9" declfile="QAccelPlot/src/QAccelPlot/export/internal/ImageFile.hpp" declline="27" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="NumericLabel_8hpp_1ae23b7ce137e7fe79e5564adc55c28444" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::Internal::numericLabel</definition>
+        <argsstring>(qreal value, qreal tickStep)</argsstring>
+        <name>numericLabel</name>
+        <qualifiedname>QAccelPlot::Internal::numericLabel</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>tickStep</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>value</emphasis> with the decimal places needed to write <emphasis>tickStep</emphasis> exactly. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Steps 1, 2, 5, and 10 get no decimals, 0.5 and 0.1 get one, 0.25 and 0.05 get two. A non-finite or non-positive step gets one. A value that rounds to zero is written without a minus sign. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/NumericLabel.hpp" line="15" column="9" declfile="QAccelPlot/src/QAccelPlot/formatters/internal/NumericLabel.hpp" declline="15" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="NumericLabel_8hpp_1a4e6a15804867e134b078cf897dc33a26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::Internal::logTickLabel</definition>
+        <argsstring>(qreal value)</argsstring>
+        <name>logTickLabel</name>
+        <qualifiedname>QAccelPlot::Internal::logTickLabel</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Returns a decade <emphasis>value</emphasis> as a superscript power of ten, such as &quot;10²&quot; or &quot;10⁻³&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A value that is not a positive power of ten falls back to <computeroutput>numericLabel(value, value)</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/NumericLabel.hpp" line="20" column="9" declfile="QAccelPlot/src/QAccelPlot/formatters/internal/NumericLabel.hpp" declline="20" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitPrefix_8hpp_1a928e6c2b17d61cb2842a8db42adc3f86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const QList&lt; <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &gt; &amp;</type>
+        <definition>const QList&lt; UnitPrefix &gt; &amp; QAccelPlot::Internal::siUnitPrefixes</definition>
+        <argsstring>()</argsstring>
+        <name>siUnitPrefixes</name>
+        <qualifiedname>QAccelPlot::Internal::siUnitPrefixes</qualifiedname>
+        <briefdescription>
+<para>Returns every SI prefix from quecto to quetta, including the bare unit, by ascending exponent. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="33" column="13" declfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" declline="33" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitPrefix_8hpp_1af91ac1b1d82d1eda5cf2a8b62082d9a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const QList&lt; <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &gt; &amp;</type>
+        <definition>const QList&lt; UnitPrefix &gt; &amp; QAccelPlot::Internal::defaultUnitPrefixes</definition>
+        <argsstring>()</argsstring>
+        <name>defaultUnitPrefixes</name>
+        <qualifiedname>QAccelPlot::Internal::defaultUnitPrefixes</qualifiedname>
+        <briefdescription>
+<para>Returns every power-of-1000 prefix from quecto to quetta, including the bare unit, by ascending exponent. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="36" column="13" declfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" declline="36" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitPrefix_8hpp_1adac4c59c9b313b5f7dbb617751c4cd34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &gt;</type>
+        <definition>std::optional&lt; UnitPrefix &gt; QAccelPlot::Internal::unitPrefixFromSymbol</definition>
+        <argsstring>(const QString &amp;symbol)</argsstring>
+        <name>unitPrefixFromSymbol</name>
+        <qualifiedname>QAccelPlot::Internal::unitPrefixFromSymbol</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>symbol</declname>
+        </param>
+        <briefdescription>
+<para>Returns the SI prefix written as <emphasis>symbol</emphasis>, or <computeroutput>std::nullopt</computeroutput> when <emphasis>symbol</emphasis> is not an SI prefix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>An empty <emphasis>symbol</emphasis> is the bare unit. &quot;µ&quot; (U+00B5), &quot;μ&quot; (U+03BC), and &quot;u&quot; all give micro with the symbol &quot;µ&quot; (U+00B5). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="42" column="15" declfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" declline="42" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitPrefix_8hpp_1a9f66c3df7d5d7156ee00338b127150a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QList&lt; <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &gt;</type>
+        <definition>QList&lt; UnitPrefix &gt; QAccelPlot::Internal::sortedUnitPrefixes</definition>
+        <argsstring>(QList&lt; UnitPrefix &gt; prefixes)</argsstring>
+        <name>sortedUnitPrefixes</name>
+        <qualifiedname>QAccelPlot::Internal::sortedUnitPrefixes</qualifiedname>
+        <param>
+          <type>QList&lt; <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &gt;</type>
+          <declname>prefixes</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>prefixes</emphasis> sorted by ascending exponent, without duplicates. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="45" column="7" declfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" declline="45" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitPrefix_8hpp_1ac2fae9a6168f72e2637b4d5feaa6246a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref></type>
+        <definition>UnitPrefix QAccelPlot::Internal::largestMagnitudePrefix</definition>
+        <argsstring>(qreal magnitude, const QList&lt; UnitPrefix &gt; &amp;prefixes)</argsstring>
+        <name>largestMagnitudePrefix</name>
+        <qualifiedname>QAccelPlot::Internal::largestMagnitudePrefix</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>magnitude</declname>
+        </param>
+        <param>
+          <type>const QList&lt; <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &gt; &amp;</type>
+          <declname>prefixes</declname>
+        </param>
+        <briefdescription>
+<para>Returns the prefix of <emphasis>prefixes</emphasis> with the largest exponent at which <emphasis>magnitude</emphasis> is still at least 1. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>prefixes</emphasis> must be sorted by ascending exponent. Falls back to the smallest prefix when none qualifies, and to the bare unit when <emphasis>prefixes</emphasis> is empty. A zero or non-finite <emphasis>magnitude</emphasis> is treated as 1. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="51" column="12" declfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" declline="51" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitPrefix_8hpp_1a5858357e3eabde1900c98844a7d407d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref></type>
+        <definition>UnitPrefix QAccelPlot::Internal::prefixWithExponent</definition>
+        <argsstring>(int exponent, const QList&lt; UnitPrefix &gt; &amp;prefixes)</argsstring>
+        <name>prefixWithExponent</name>
+        <qualifiedname>QAccelPlot::Internal::prefixWithExponent</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>exponent</declname>
+        </param>
+        <param>
+          <type>const QList&lt; <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &gt; &amp;</type>
+          <declname>prefixes</declname>
+        </param>
+        <briefdescription>
+<para>Returns the prefix of <emphasis>prefixes</emphasis> whose power of ten is <emphasis>exponent</emphasis>, or the bare unit when none matches. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="54" column="12" declfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" declline="54" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitPrefix_8hpp_1a75a145d07202cb55867eb9c1626cb093" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref></type>
+        <definition>UnitPrefix QAccelPlot::Internal::snappedUnitPrefix</definition>
+        <argsstring>(int exponent, const QList&lt; UnitPrefix &gt; &amp;prefixes)</argsstring>
+        <name>snappedUnitPrefix</name>
+        <qualifiedname>QAccelPlot::Internal::snappedUnitPrefix</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>exponent</declname>
+        </param>
+        <param>
+          <type>const QList&lt; <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &gt; &amp;</type>
+          <declname>prefixes</declname>
+        </param>
+        <briefdescription>
+<para>Returns the prefix of <emphasis>prefixes</emphasis> with the largest exponent not above <emphasis>exponent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>prefixes</emphasis> must be sorted by ascending exponent. Falls back to the smallest prefix when none qualifies, and to the bare unit when <emphasis>prefixes</emphasis> is empty. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="60" column="12" declfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" declline="60" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitPrefix_8hpp_1af690c2d5956c4d0a89466c7b7b498a2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::toPrefix</definition>
+        <argsstring>(qreal value, const UnitPrefix &amp;prefix)</argsstring>
+        <name>toPrefix</name>
+        <qualifiedname>QAccelPlot::Internal::toPrefix</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">UnitPrefix</ref> &amp;</type>
+          <declname>prefix</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>value</emphasis>, given in the base unit, expressed in <emphasis>prefix</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" line="63" column="7" declfile="QAccelPlot/src/QAccelPlot/formatters/internal/UnitPrefix.hpp" declline="63" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="InspectionTypes_8hpp_1a61d21d20f32db7d3465b0eb03f846864" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>double</type>

@@ -136,6 +136,8 @@ See [QAccelPlot::TickLabelFormatter](classQAccelPlot_1_1TickLabelFormatter.md)
 |   | [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md#function-ticklabelformatter) (QObject \* parent=nullptr) <br>_Constructs an_ [_**TickLabelFormatter**_](classQAccelPlot_1_1TickLabelFormatter.md) _with the given__parent_ _._ |
 |  QString | [**format**](classQAccelPlot_1_1TickLabelFormatter.md#function-format) (qreal value, qreal tickStep) const<br>_Returns the display string for_ _value_ _at the given__tickStep_ _._ |
 |  QString | [**formatLogTick**](classQAccelPlot_1_1TickLabelFormatter.md#function-formatlogtick) (qreal value) const<br>_Returns the display string for a major tick at_ _value_ _on a logarithmic axis._ |
+|  [**TickSetLabels**](structQAccelPlot_1_1TickSetLabels.md) | [**formatTicks**](classQAccelPlot_1_1TickLabelFormatter.md#function-formatticks) (const [**TickSet**](structQAccelPlot_1_1TickSet.md) & tickSet) const<br>_Returns the tick labels and unit text for the visible major ticks in_ _tickSet_ _._ |
+|  QString | [**formatValue**](classQAccelPlot_1_1TickLabelFormatter.md#function-formatvalue) (qreal value, qreal resolution, const [**TickSetFormat**](structQAccelPlot_1_1TickSetFormat.md) & tickSetFormat) const<br>_Returns the readout text for_ _value_ _, resolved to__resolution_ _, following__tickSetFormat_ _._ |
 | virtual qreal | [**minimumTickStep**](classQAccelPlot_1_1TickLabelFormatter.md#function-minimumtickstep) () const<br>_Returns the smallest major tick step a linear axis may use with this formatter._  |
 |  void | [**setTickLabel**](classQAccelPlot_1_1TickLabelFormatter.md#function-setticklabel) (const QJSValue & tickLabel) <br>_Sets the JavaScript override callback to_ _tickLabel_ _._ |
 |  QJSValue | [**tickLabel**](classQAccelPlot_1_1TickLabelFormatter.md#function-ticklabel-22) () const<br>_Returns the optional JavaScript override callback._  |
@@ -200,6 +202,8 @@ See [QAccelPlot::TickLabelFormatter](classQAccelPlot_1_1TickLabelFormatter.md)
 | ---: | :--- |
 | virtual QString | [**doFormat**](classQAccelPlot_1_1TickLabelFormatter.md#function-doformat) (qreal value, qreal tickStep) const = 0<br>_Subclass entry point — returns the formatted label for_ _value_ _._ |
 | virtual QString | [**doFormatLogTick**](classQAccelPlot_1_1TickLabelFormatter.md#function-doformatlogtick) (qreal value) const<br>_Subclass entry point for log-scale major ticks — returns the label for_ _value_ _._ |
+| virtual [**TickSetLabels**](structQAccelPlot_1_1TickSetLabels.md) | [**doFormatTicks**](classQAccelPlot_1_1TickLabelFormatter.md#function-doformatticks) (const [**TickSet**](structQAccelPlot_1_1TickSet.md) & tickSet) const<br>_Subclass entry point for a whole tick set — returns its tick labels and unit text._  |
+| virtual QString | [**doFormatValue**](classQAccelPlot_1_1TickLabelFormatter.md#function-doformatvalue) (qreal value, qreal resolution, const [**TickSetFormat**](structQAccelPlot_1_1TickSetFormat.md) & tickSetFormat) const<br>_Subclass entry point for readouts — returns the text for_ _value_ _at__resolution_ _._ |
 
 
 

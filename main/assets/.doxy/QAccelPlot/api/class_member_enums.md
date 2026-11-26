@@ -47,6 +47,7 @@
 ## p
 
 * **Preset** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
+* **PrefixMode** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 
 
 ## r
@@ -61,6 +62,11 @@
 * **Style** ([**QAccelPlot::CandlestickSeries**](classQAccelPlot_1_1CandlestickSeries.md))
 * **Spacing** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md))
 * **Slot** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
+
+
+## u
+
+* **UnitPosition** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 
 
 

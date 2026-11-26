@@ -439,6 +439,12 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**TickSet**](structQAccelPlot_1_1TickSet.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**TickSetFormat**](structQAccelPlot_1_1TickSetFormat.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**TickSetLabels**](structQAccelPlot_1_1TickSetLabels.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**TransitionFrameInput**](structQAccelPlot_1_1Internal_1_1TransitionFrameInput.md)
 ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**TransitionItems**](structQAccelPlot_1_1Internal_1_1TransitionItems.md)
@@ -457,6 +463,10 @@
 
 * [**Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md)
 ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
+* [**UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## v

@@ -79,6 +79,8 @@ public:
 
     AxisTicker* ticker() const;
 
+    QString unitText() const;
+
     Q_INVOKABLE void rescaleToData();
 
     qreal valueToPixel(qreal value, qreal length) const;

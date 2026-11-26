@@ -78,7 +78,7 @@ flowchart TB
 | property qreal | [**dataMin**](classQAccelPlot_1_1Axis.md#property-datamin-12)  <br>_Minimum data value of the series bound to this axis. Default: 0._  |
 | property QColor | [**hoverColor**](classQAccelPlot_1_1Axis.md#property-hovercolor-12)  <br>_Tick and label color applied when the axis is hovered. Default:_ `Colors.dark.hover` _._ |
 | property bool | [**hovered**](classQAccelPlot_1_1Axis.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the axis widget._ |
-| property [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) \* | [**label**](classQAccelPlot_1_1Axis.md#property-label-12)  <br>_Read-only constant: axis title and its placement, e.g._ `label.text: "Time (s)"` _._ |
+| property [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) \* | [**label**](classQAccelPlot_1_1Axis.md#property-label-12)  <br>_Read-only constant: axis label and its placement, e.g._ `label.text: "Time (s)"` _._ |
 | property qreal | [**layoutSize**](classQAccelPlot_1_1Axis.md#property-layoutsize-12)  <br>_Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50._  |
 | property bool | [**logScale**](classQAccelPlot_1_1Axis.md#property-logscale-12)  <br>_Whether the axis uses a base-10 logarithmic scale. Default:_ `false` _._ |
 | property Qt::Orientation | [**orientation**](classQAccelPlot_1_1Axis.md#property-orientation-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _orientation:_`Qt.Horizontal` _or_`Qt.Vertical` _._ |
@@ -132,7 +132,7 @@ flowchart TB
 |  QColor | [**hoverColor**](#function-hovercolor-22) () const<br>_Returns the hovered tick/label color._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _if the mouse is currently over the axis widget._ |
 |  qreal | [**inwardTickOverlap**](#function-inwardtickoverlap) () const<br>_Returns the inward tick overlap beyond_ `baselinePadding` _, used by_[_**PlotView**_](classQAccelPlot_1_1PlotView.md) _to size the plot area._ |
-|  [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) \* | [**label**](#function-label-22) () const<br>_Returns the axis title configuration object. Include_ `AxisLabel.hpp` _to use it._ |
+|  [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) \* | [**label**](#function-label-22) () const<br>_Returns the axis label configuration object. Include_ `AxisLabel.hpp` _to use it._ |
 |  qreal | [**labelOverflow**](#function-labeloverflow) () const<br>_Returns extra width/height needed to accommodate edge tick labels that extend beyond the axis bounds._  |
 |  qreal | [**layoutSize**](#function-layoutsize-22) () const<br>_Returns the layout thickness in pixels._  |
 |  bool | [**logScale**](#function-logscale-22) () const<br>_Returns_ `true` _when log scale is active._ |
@@ -160,6 +160,7 @@ flowchart TB
 |  [**Side**](classQAccelPlot_1_1Axis.md#enum-side) | [**side**](#function-side-22) () const<br>_Returns the axis side._  |
 |  [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](#function-ticker-22) () const<br>_Returns the tick configuration object._  |
 |  Q\_INVOKABLE void | [**toggleLogScale**](#function-togglelogscale) () <br>_Toggles the log-scale mode on or off._  |
+|  QString | [**unitText**](#function-unittext) () const<br>_Returns the unit text the tick label formatter chose for the latest tick computation._  |
 |  qreal | [**viewportMax**](#function-viewportmax-22) () const<br>_Returns the upper bound of the visible range._  |
 |  qreal | [**viewportMin**](#function-viewportmin-22) () const<br>_Returns the lower bound of the visible range._  |
 |  qreal | [**zoomScaleFactor**](#function-zoomscalefactor-22) () const<br>_Returns the zoom scale factor._  |
@@ -394,7 +395,7 @@ bool QAccelPlot::Axis::hovered;
 
 ### property label {#property-label-12}
 
-_Read-only constant: axis title and its placement, e.g._ `label.text: "Time (s)"` _._
+_Read-only constant: axis label and its placement, e.g._ `label.text: "Time (s)"` _._
 ```C++
 AxisLabel* QAccelPlot::Axis::label;
 ```
@@ -928,7 +929,7 @@ Q_INVOKABLE QString QAccelPlot::Axis::formatValue (
 
 
 
-Uses the tick label formatter with a precision one decimal digit finer than a pixel, so the text follows the zoom level instead of the tick spacing. Returns an empty string for a nonfinite _value_. 
+Uses the tick label formatter with a precision one decimal digit finer than a pixel, so the text follows the zoom level instead of the tick spacing. Follows what the formatter decided for the current ticks, such as the unit prefix of a `UnitTickLabelFormatter` ("12.3 mm"). Returns an empty string for a nonfinite _value_. 
 
 
         
@@ -985,7 +986,7 @@ qreal QAccelPlot::Axis::inwardTickOverlap () const
 
 ### function label {#function-label-22}
 
-_Returns the axis title configuration object. Include_ `AxisLabel.hpp` _to use it._
+_Returns the axis label configuration object. Include_ `AxisLabel.hpp` _to use it._
 ```C++
 AxisLabel * QAccelPlot::Axis::label () const
 ```
@@ -1456,6 +1457,25 @@ Q_INVOKABLE void QAccelPlot::Axis::toggleLogScale ()
 
 
 
+
+<hr>
+
+
+
+
+### function unitText {#function-unittext}
+
+_Returns the unit text the tick label formatter chose for the latest tick computation._ 
+```C++
+QString QAccelPlot::Axis::unitText () const
+```
+
+
+
+Updated on the GUI thread when the axis is polished. Empty when the formatter shows no unit in the axis label. 
+
+
+        
 
 <hr>
 

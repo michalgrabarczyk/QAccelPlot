@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="27" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="27" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="29" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="29" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1AxisTicks_1af03ec06095f8e4075ca77ae61581630b" prot="public" static="no" mutable="no">
         <type>QList&lt; <ref refid="structQAccelPlot_1_1AxisTick" kindref="compound">AxisTick</ref> &gt;</type>
@@ -32,7 +32,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="28" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="28" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="30" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTicks_1a9307facd13100e5d99853da0d5151ec0" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::AxisTicks::unitText</definition>
+        <argsstring></argsstring>
+        <name>unitText</name>
+        <qualifiedname>QAccelPlot::AxisTicks::unitText</qualifiedname>
+        <briefdescription>
+<para>Unit text the formatter chose for the axis label; empty for none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="31" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTicks_1ae9e0e22e5fd65f81281cce3ec06e58e9" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1TickSetFormat" kindref="compound">TickSetFormat</ref></type>
+        <definition>TickSetFormat QAccelPlot::AxisTicks::format</definition>
+        <argsstring></argsstring>
+        <name>format</name>
+        <qualifiedname>QAccelPlot::AxisTicks::format</qualifiedname>
+        <briefdescription>
+<para>What the formatter decided for the major ticks that single-value readouts follow. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="32" column="19" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="32" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -42,10 +72,25 @@
 <para>Holds data-space values and label text only; no pixel geometry. Placement (padding, font metrics, rotation, value-to-pixel mapping) is resolved in <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a3613ed1b3cae19f09cc42571153a751c" kindref="member">Axis::paint()</ref></computeroutput>.</para>
 <para>Built on the GUI thread by <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1ab562bfd5e90de190ede26dee32247ae7" kindref="member">AxisTickPainter::computeTicks()</ref></computeroutput>, because label formatting may call into the QML/JS engine, and consumed by <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a3613ed1b3cae19f09cc42571153a751c" kindref="member">Axis::paint()</ref></computeroutput>, which runs on the render thread with the threaded render loop. </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="26" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="26" bodyend="29"/>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::AxisTicks</label>
+        <link refid="structQAccelPlot_1_1AxisTicks"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>format</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::TickSetFormat</label>
+        <link refid="structQAccelPlot_1_1TickSetFormat"/>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="28" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="28" bodyend="33"/>
     <listofallmembers>
+      <member refid="structQAccelPlot_1_1AxisTicks_1ae9e0e22e5fd65f81281cce3ec06e58e9" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicks</scope><name>format</name></member>
       <member refid="structQAccelPlot_1_1AxisTicks_1af03ec06095f8e4075ca77ae61581630b" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicks</scope><name>majorTicks</name></member>
       <member refid="structQAccelPlot_1_1AxisTicks_1a17edc5acc84db9dc646cde77ab9fb595" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicks</scope><name>subtickValues</name></member>
+      <member refid="structQAccelPlot_1_1AxisTicks_1a9307facd13100e5d99853da0d5151ec0" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicks</scope><name>unitText</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

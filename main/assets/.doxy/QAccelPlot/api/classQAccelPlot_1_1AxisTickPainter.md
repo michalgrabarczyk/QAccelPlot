@@ -231,7 +231,7 @@ static AxisTicks QAccelPlot::AxisTickPainter::computeTicks (
 
 
 
-Uses log-scale placement when _logScale_ is set and both bounds are positive. Labels are produced by _ticker's_ formatter, which may invoke a QML/JS callback, so this must be called on the formatter's thread. 
+Uses log-scale placement when _logScale_ is set and both bounds are positive. Labels are produced by _ticker's_ formatter from the whole set of visible major ticks, together with the axis-wide unit text. The formatter may invoke a QML/JS callback, so this must be called on the formatter's thread. 
 
 
         

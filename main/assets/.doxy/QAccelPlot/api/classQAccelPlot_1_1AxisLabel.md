@@ -15,7 +15,7 @@
 
 
 
-[_**Axis**_](classQAccelPlot_1_1Axis.md) _title and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._[More...](#detailed-description)
+[_**Axis**_](classQAccelPlot_1_1Axis.md) _label and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._[More...](#detailed-description)
 
 * `#include <AxisLabel.hpp>`
 
@@ -80,10 +80,10 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property QML\_ANONYMOUSAxis::LabelAlignment | [**alignment**](classQAccelPlot_1_1AxisLabel.md#property-alignment-12)  <br>_Position of the title along the axis. Default:_ `Axis.Center` _._ |
-| property QQmlComponent \* | [**delegate**](classQAccelPlot_1_1AxisLabel.md#property-delegate-12)  <br>_Optional component that replaces the painted title. Default:_ `null` _._ |
-| property QPointF | [**offset**](classQAccelPlot_1_1AxisLabel.md#property-offset-12)  <br>_Pixel offset added to the title position after alignment and padding. Default: (0, 0)._  |
-| property qreal | [**rotation**](classQAccelPlot_1_1AxisLabel.md#property-rotation-12)  <br>_Clockwise rotation of the title in degrees._  |
+| property QML\_ANONYMOUSAxis::LabelAlignment | [**alignment**](classQAccelPlot_1_1AxisLabel.md#property-alignment-12)  <br>_Position of the axis label along the axis. Default:_ `Axis.Center` _._ |
+| property QQmlComponent \* | [**delegate**](classQAccelPlot_1_1AxisLabel.md#property-delegate-12)  <br>_Optional component that replaces the painted axis label. Default:_ `null` _._ |
+| property QPointF | [**offset**](classQAccelPlot_1_1AxisLabel.md#property-offset-12)  <br>_Pixel offset added to the axis label position after alignment and padding. Default: (0, 0)._  |
+| property qreal | [**rotation**](classQAccelPlot_1_1AxisLabel.md#property-rotation-12)  <br>_Clockwise rotation of the axis label in degrees._  |
 
 
 ## Public Properties inherited from QAccelPlot::TextLabel
@@ -92,10 +92,12 @@ See [QAccelPlot::TextLabel](classQAccelPlot_1_1TextLabel.md)
 
 | Type | Name |
 | ---: | :--- |
-| property QColor | [**color**](classQAccelPlot_1_1TextLabel.md#property-color-12)  <br>_Title color. Default:_ `Colors.dark.axisLine` _on a_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _, the axis_`baselineColor` _on an_[_**Axis**_](classQAccelPlot_1_1Axis.md) _. Assign_`undefined` _to return to it._ |
-| property QFont | [**font**](classQAccelPlot_1_1TextLabel.md#property-font-12)  <br>_Title font. Default: application default font._  |
-| property qreal | [**padding**](classQAccelPlot_1_1TextLabel.md#property-padding-12)  <br>_Gap in pixels between the title and the axis or color strip. Default: 30 on an_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _, 6 on a_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _._ |
-| property QML\_ANONYMOUSQString | [**text**](classQAccelPlot_1_1TextLabel.md#property-text-12)  <br>_Title text. Default: empty, which draws no title._  |
+| property QColor | [**color**](classQAccelPlot_1_1TextLabel.md#property-color-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _label color. Default:_`Colors.dark.axisLine` _on a_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _, the axis_`baselineColor` _on an_[_**Axis**_](classQAccelPlot_1_1Axis.md) _. Assign_`undefined` _to return to it._ |
+| property QFont | [**font**](classQAccelPlot_1_1TextLabel.md#property-font-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _label font. Default: application default font._ |
+| property qreal | [**padding**](classQAccelPlot_1_1TextLabel.md#property-padding-12)  <br>_Gap in pixels between the axis label and the axis or color strip. Default: 30 on an_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _, 6 on a_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _._ |
+| property QML\_ANONYMOUSQString | [**text**](classQAccelPlot_1_1TextLabel.md#property-text-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _label text. Default: empty, which draws_`unitText` _alone, or no axis label without unit text._ |
+| property QString | [**unitFormat**](classQAccelPlot_1_1TextLabel.md#property-unitformat-12)  <br>_How the painted axis label combines_ `text` _(_`%1` _) and_`unitText` _(_`%2` _). Default: "%1 (%2)"._ |
+| property QString | [**unitText**](classQAccelPlot_1_1TextLabel.md#property-unittext-12)  <br>_Prefixed unit the tick label formatter chose for the current ticks, such as "mm". Read-only._  |
 
 
 
@@ -122,6 +124,8 @@ See [QAccelPlot::TextLabel](classQAccelPlot_1_1TextLabel.md)
 | signal void | [**fontChanged**](classQAccelPlot_1_1TextLabel.md#signal-fontchanged)  <br>_Emitted when the font property changes._  |
 | signal void | [**paddingChanged**](classQAccelPlot_1_1TextLabel.md#signal-paddingchanged)  <br>_Emitted when the padding property changes._  |
 | signal void | [**textChanged**](classQAccelPlot_1_1TextLabel.md#signal-textchanged)  <br>_Emitted when the text property changes._  |
+| signal void | [**unitFormatChanged**](classQAccelPlot_1_1TextLabel.md#signal-unitformatchanged)  <br>_Emitted when the unitFormat property changes._  |
+| signal void | [**unitTextChanged**](classQAccelPlot_1_1TextLabel.md#signal-unittextchanged)  <br>_Emitted when the unitText property changes._  |
 
 
 
@@ -133,16 +137,16 @@ See [QAccelPlot::TextLabel](classQAccelPlot_1_1TextLabel.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**AxisLabel**](#function-axislabel) (QObject \* parent=nullptr) <br>_Constructs an axis label owned by_ _parent_ _._ |
-|  [**Axis::LabelAlignment**](classQAccelPlot_1_1Axis.md#enum-labelalignment) | [**alignment**](#function-alignment-22) () const<br>_Returns the position of the title along the axis._  |
-|  QQmlComponent \* | [**delegate**](#function-delegate-22) () const<br>_Returns the component that replaces the painted title, or_ `nullptr` _._ |
-|  QPointF | [**offset**](#function-offset-22) () const<br>_Returns the pixel offset of the title._  |
-|  void | [**resetRotation**](#function-resetrotation) () <br>_Restores the side's default title rotation._  |
-|  qreal | [**rotation**](#function-rotation-22) () const<br>_Returns the title rotation in degrees, including the side's default rotation._  |
-|  void | [**setAlignment**](#function-setalignment) ([**Axis::LabelAlignment**](classQAccelPlot_1_1Axis.md#enum-labelalignment) alignment) <br>_Sets the position of the title along the axis to_ _alignment_ _._ |
+|  [**Axis::LabelAlignment**](classQAccelPlot_1_1Axis.md#enum-labelalignment) | [**alignment**](#function-alignment-22) () const<br>_Returns the position of the axis label along the axis._  |
+|  QQmlComponent \* | [**delegate**](#function-delegate-22) () const<br>_Returns the component that replaces the painted axis label, or_ `nullptr` _._ |
+|  QPointF | [**offset**](#function-offset-22) () const<br>_Returns the pixel offset of the axis label._  |
+|  void | [**resetRotation**](#function-resetrotation) () <br>_Restores the side's default axis label rotation._  |
+|  qreal | [**rotation**](#function-rotation-22) () const<br>_Returns the axis label rotation in degrees, including the side's default rotation._  |
+|  void | [**setAlignment**](#function-setalignment) ([**Axis::LabelAlignment**](classQAccelPlot_1_1Axis.md#enum-labelalignment) alignment) <br>_Sets the position of the axis label along the axis to_ _alignment_ _._ |
 |  void | [**setDefaultRotation**](#function-setdefaultrotation) (qreal degrees) <br>_Sets the rotation used while none is set to_ _degrees_ _. Called by the owning_[_**Axis**_](classQAccelPlot_1_1Axis.md) _when its side changes._ |
-|  void | [**setDelegate**](#function-setdelegate) (QQmlComponent \* delegate) <br>_Sets the component that replaces the painted title to_ _delegate_ _._`nullptr` _restores the painted title._ |
-|  void | [**setOffset**](#function-setoffset) (const QPointF & offset) <br>_Sets the pixel offset of the title to_ _offset_ _._ |
-|  void | [**setRotation**](#function-setrotation) (qreal degrees) <br>_Sets the title rotation to_ _degrees_ _. A non-finite value restores the side's default rotation._ |
+|  void | [**setDelegate**](#function-setdelegate) (QQmlComponent \* delegate) <br>_Sets the component that replaces the painted axis label to_ _delegate_ _._`nullptr` _restores the painted axis label._ |
+|  void | [**setOffset**](#function-setoffset) (const QPointF & offset) <br>_Sets the pixel offset of the axis label to_ _offset_ _._ |
+|  void | [**setRotation**](#function-setrotation) (qreal degrees) <br>_Sets the axis label rotation to_ _degrees_ _. A non-finite value restores the side's default rotation._ |
 
 
 ## Public Functions inherited from QAccelPlot::TextLabel
@@ -152,16 +156,22 @@ See [QAccelPlot::TextLabel](classQAccelPlot_1_1TextLabel.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**TextLabel**](classQAccelPlot_1_1TextLabel.md#function-textlabel) (const QColor & color={}, qreal padding=0.0, QObject \* parent=nullptr) <br>_Constructs a label with the default_ _color_ _and__padding_ _, owned by__parent_ _._ |
-|  QColor | [**color**](classQAccelPlot_1_1TextLabel.md#function-color-22) () const<br>_Returns the title color in effect._  |
-|  QFont | [**font**](classQAccelPlot_1_1TextLabel.md#function-font-22) () const<br>_Returns the title font._  |
-|  qreal | [**padding**](classQAccelPlot_1_1TextLabel.md#function-padding-22) () const<br>_Returns the gap between the title and the axis or color strip in pixels._  |
-|  void | [**resetColor**](classQAccelPlot_1_1TextLabel.md#function-resetcolor) () <br>_Restores the default title color._  |
-|  void | [**setColor**](classQAccelPlot_1_1TextLabel.md#function-setcolor) (const QColor & color) <br>_Sets the title color to_ _color_ _. An invalid color restores the default._ |
+|  QColor | [**color**](classQAccelPlot_1_1TextLabel.md#function-color-22) () const<br>_Returns the axis label color in effect._  |
+|  QFont | [**font**](classQAccelPlot_1_1TextLabel.md#function-font-22) () const<br>_Returns the axis label font._  |
+|  qreal | [**padding**](classQAccelPlot_1_1TextLabel.md#function-padding-22) () const<br>_Returns the gap between the axis label and the axis or color strip in pixels._  |
+|  QString | [**paintedText**](classQAccelPlot_1_1TextLabel.md#function-paintedtext) () const<br>_Returns the axis label text combined with the unit text by_ [_**unitFormat()**_](classQAccelPlot_1_1TextLabel.md#property-unitformat-12) _, such as "Distance (mm)"._ |
+|  void | [**resetColor**](classQAccelPlot_1_1TextLabel.md#function-resetcolor) () <br>_Restores the default axis label color._  |
+|  void | [**resetUnitFormat**](classQAccelPlot_1_1TextLabel.md#function-resetunitformat) () <br>_Restores the default unit format "%1 (%2)"._  |
+|  void | [**setColor**](classQAccelPlot_1_1TextLabel.md#function-setcolor) (const QColor & color) <br>_Sets the axis label color to_ _color_ _. An invalid color restores the default._ |
 |  void | [**setDefaultColor**](classQAccelPlot_1_1TextLabel.md#function-setdefaultcolor) (const QColor & color) <br>_Sets the color used while none is set to_ _color_ _. Called by the owning_[_**Axis**_](classQAccelPlot_1_1Axis.md) _or_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _._ |
-|  void | [**setFont**](classQAccelPlot_1_1TextLabel.md#function-setfont) (const QFont & font) <br>_Sets the title font to_ _font_ _._ |
-|  void | [**setPadding**](classQAccelPlot_1_1TextLabel.md#function-setpadding) (qreal padding) <br>_Sets the gap between the title and the axis or color strip to_ _padding_ _pixels._ |
-|  void | [**setText**](classQAccelPlot_1_1TextLabel.md#function-settext) (const QString & text) <br>_Sets the title text to_ _text_ _._ |
-|  QString | [**text**](classQAccelPlot_1_1TextLabel.md#function-text-22) () const<br>_Returns the title text._  |
+|  void | [**setFont**](classQAccelPlot_1_1TextLabel.md#function-setfont) (const QFont & font) <br>_Sets the axis label font to_ _font_ _._ |
+|  void | [**setPadding**](classQAccelPlot_1_1TextLabel.md#function-setpadding) (qreal padding) <br>_Sets the gap between the axis label and the axis or color strip to_ _padding_ _pixels._ |
+|  void | [**setText**](classQAccelPlot_1_1TextLabel.md#function-settext) (const QString & text) <br>_Sets the axis label text to_ _text_ _._ |
+|  void | [**setUnitFormat**](classQAccelPlot_1_1TextLabel.md#function-setunitformat) (const QString & format) <br>_Sets how the painted axis label combines the text (_ `%1` _) and the unit text (_`%2` _) to__format_ _._ |
+|  void | [**setUnitText**](classQAccelPlot_1_1TextLabel.md#function-setunittext) (const QString & unitText) <br>_Sets the prefixed unit to_ _unitText_ _. Called by the owning_[_**Axis**_](classQAccelPlot_1_1Axis.md) _or_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _when its ticks change._ |
+|  QString | [**text**](classQAccelPlot_1_1TextLabel.md#function-text-22) () const<br>_Returns the axis label text._  |
+|  QString | [**unitFormat**](classQAccelPlot_1_1TextLabel.md#function-unitformat-22) () const<br>_Returns how the painted axis label combines the text and the unit text._  |
+|  QString | [**unitText**](classQAccelPlot_1_1TextLabel.md#function-unittext-22) () const<br>_Returns the prefixed unit chosen for the current ticks, or an empty string for none._  |
 
 
 
@@ -219,7 +229,7 @@ See [QAccelPlot::TextLabel](classQAccelPlot_1_1TextLabel.md)
 ## Detailed Description
 
 
-The title is painted inside the axis item and clipped to it. `delegate` replaces it with a QML item.
+The axis label is painted inside the axis item and clipped to it. `delegate` replaces it with a QML item.
 
 
 
@@ -237,7 +247,7 @@ The title is painted inside the axis item and clipped to it. `delegate` replaces
 
 ### property alignment {#property-alignment-12}
 
-_Position of the title along the axis. Default:_ `Axis.Center` _._
+_Position of the axis label along the axis. Default:_ `Axis.Center` _._
 ```C++
 QML_ANONYMOUSAxis::LabelAlignment QAccelPlot::AxisLabel::alignment;
 ```
@@ -252,14 +262,14 @@ QML_ANONYMOUSAxis::LabelAlignment QAccelPlot::AxisLabel::alignment;
 
 ### property delegate {#property-delegate-12}
 
-_Optional component that replaces the painted title. Default:_ `null` _._
+_Optional component that replaces the painted axis label. Default:_ `null` _._
 ```C++
 QQmlComponent* QAccelPlot::AxisLabel::delegate;
 ```
 
 
 
-The axis creates one instance as its child item, so `parent` is the axis and anchors, `x`, `y`, and `rotation` position it. The instance may extend beyond the axis. While a delegate is set, the axis paints no title and ignores `alignment`, `rotation`, `offset`, and `padding`. 
+The axis creates one instance as its child item, so `parent` is the axis and anchors, `x`, `y`, and `rotation` position it. The instance may extend beyond the axis. While a delegate is set, the axis paints no axis label and ignores `alignment`, `rotation`, `offset`, and `padding`. 
 
 
         
@@ -271,7 +281,7 @@ The axis creates one instance as its child item, so `parent` is the axis and anc
 
 ### property offset {#property-offset-12}
 
-_Pixel offset added to the title position after alignment and padding. Default: (0, 0)._ 
+_Pixel offset added to the axis label position after alignment and padding. Default: (0, 0)._ 
 ```C++
 QPointF QAccelPlot::AxisLabel::offset;
 ```
@@ -286,7 +296,7 @@ QPointF QAccelPlot::AxisLabel::offset;
 
 ### property rotation {#property-rotation-12}
 
-_Clockwise rotation of the title in degrees._ 
+_Clockwise rotation of the axis label in degrees._ 
 ```C++
 qreal QAccelPlot::AxisLabel::rotation;
 ```
@@ -386,7 +396,7 @@ explicit QAccelPlot::AxisLabel::AxisLabel (
 
 ### function alignment {#function-alignment-22}
 
-_Returns the position of the title along the axis._ 
+_Returns the position of the axis label along the axis._ 
 ```C++
 Axis::LabelAlignment QAccelPlot::AxisLabel::alignment () const
 ```
@@ -401,7 +411,7 @@ Axis::LabelAlignment QAccelPlot::AxisLabel::alignment () const
 
 ### function delegate {#function-delegate-22}
 
-_Returns the component that replaces the painted title, or_ `nullptr` _._
+_Returns the component that replaces the painted axis label, or_ `nullptr` _._
 ```C++
 QQmlComponent * QAccelPlot::AxisLabel::delegate () const
 ```
@@ -416,7 +426,7 @@ QQmlComponent * QAccelPlot::AxisLabel::delegate () const
 
 ### function offset {#function-offset-22}
 
-_Returns the pixel offset of the title._ 
+_Returns the pixel offset of the axis label._ 
 ```C++
 QPointF QAccelPlot::AxisLabel::offset () const
 ```
@@ -431,7 +441,7 @@ QPointF QAccelPlot::AxisLabel::offset () const
 
 ### function resetRotation {#function-resetrotation}
 
-_Restores the side's default title rotation._ 
+_Restores the side's default axis label rotation._ 
 ```C++
 void QAccelPlot::AxisLabel::resetRotation () 
 ```
@@ -446,7 +456,7 @@ void QAccelPlot::AxisLabel::resetRotation ()
 
 ### function rotation {#function-rotation-22}
 
-_Returns the title rotation in degrees, including the side's default rotation._ 
+_Returns the axis label rotation in degrees, including the side's default rotation._ 
 ```C++
 qreal QAccelPlot::AxisLabel::rotation () const
 ```
@@ -461,7 +471,7 @@ qreal QAccelPlot::AxisLabel::rotation () const
 
 ### function setAlignment {#function-setalignment}
 
-_Sets the position of the title along the axis to_ _alignment_ _._
+_Sets the position of the axis label along the axis to_ _alignment_ _._
 ```C++
 void QAccelPlot::AxisLabel::setAlignment (
     Axis::LabelAlignment alignment
@@ -495,7 +505,7 @@ void QAccelPlot::AxisLabel::setDefaultRotation (
 
 ### function setDelegate {#function-setdelegate}
 
-_Sets the component that replaces the painted title to_ _delegate_ _._`nullptr` _restores the painted title._
+_Sets the component that replaces the painted axis label to_ _delegate_ _._`nullptr` _restores the painted axis label._
 ```C++
 void QAccelPlot::AxisLabel::setDelegate (
     QQmlComponent * delegate
@@ -512,7 +522,7 @@ void QAccelPlot::AxisLabel::setDelegate (
 
 ### function setOffset {#function-setoffset}
 
-_Sets the pixel offset of the title to_ _offset_ _._
+_Sets the pixel offset of the axis label to_ _offset_ _._
 ```C++
 void QAccelPlot::AxisLabel::setOffset (
     const QPointF & offset
@@ -529,7 +539,7 @@ void QAccelPlot::AxisLabel::setOffset (
 
 ### function setRotation {#function-setrotation}
 
-_Sets the title rotation to_ _degrees_ _. A non-finite value restores the side's default rotation._
+_Sets the axis label rotation to_ _degrees_ _. A non-finite value restores the side's default rotation._
 ```C++
 void QAccelPlot::AxisLabel::setRotation (
     qreal degrees

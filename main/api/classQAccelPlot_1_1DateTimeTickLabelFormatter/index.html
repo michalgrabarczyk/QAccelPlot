@@ -1806,6 +1806,14 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-formatlogtick"><strong>formatLogTick</strong></a> (qreal value) const<br><em>Returns the display string for a major tick at</em> <em>value</em> <em>on a logarithmic axis.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1TickSetLabels/"><strong>TickSetLabels</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-formatticks"><strong>formatTicks</strong></a> (const <a href="../structQAccelPlot_1_1TickSet/"><strong>TickSet</strong></a> &amp; tickSet) const<br><em>Returns the tick labels and unit text for the visible major ticks in</em> <em>tickSet</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-formatvalue"><strong>formatValue</strong></a> (qreal value, qreal resolution, const <a href="../structQAccelPlot_1_1TickSetFormat/"><strong>TickSetFormat</strong></a> &amp; tickSetFormat) const<br><em>Returns the readout text for</em> <em>value</em> <em>, resolved to__resolution</em> <em>, following__tickSetFormat</em> <em>.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">virtual qreal</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-minimumtickstep"><strong>minimumTickStep</strong></a> () const<br><em>Returns the smallest major tick step a linear axis may use with this formatter.</em></td>
 </tr>
@@ -1851,6 +1859,14 @@
 <tr>
 <td style="text-align: right;">virtual QString</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-doformatlogtick"><strong>doFormatLogTick</strong></a> (qreal value) const<br><em>Subclass entry point for log-scale major ticks — returns the label for</em> <em>value</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1TickSetLabels/"><strong>TickSetLabels</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-doformatticks"><strong>doFormatTicks</strong></a> (const <a href="../structQAccelPlot_1_1TickSet/"><strong>TickSet</strong></a> &amp; tickSet) const<br><em>Subclass entry point for a whole tick set — returns its tick labels and unit text.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-doformatvalue"><strong>doFormatValue</strong></a> (qreal value, qreal resolution, const <a href="../structQAccelPlot_1_1TickSetFormat/"><strong>TickSetFormat</strong></a> &amp; tickSetFormat) const<br><em>Subclass entry point for readouts — returns the text for</em> <em>value</em> <em>at__resolution</em> <em>.</em></td>
 </tr>
 </tbody>
 </table>

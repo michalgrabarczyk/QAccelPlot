@@ -1783,7 +1783,7 @@
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AxisTicker</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ticker</span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
-<p>Uses log-scale placement when <em>logScale</em> is set and both bounds are positive. Labels are produced by <em>ticker's</em> formatter, which may invoke a QML/JS callback, so this must be called on the formatter's thread. </p>
+<p>Uses log-scale placement when <em>logScale</em> is set and both bounds are positive. Labels are produced by <em>ticker's</em> formatter from the whole set of visible major ticks, together with the axis-wide unit text. The formatter may invoke a QML/JS callback, so this must be called on the formatter's thread. </p>
 <hr>
 
 <h3 id="function-paintticks">function paintTicks<a class="headerlink" href="#function-paintticks" title="Permanent link">&para;</a></h3>

@@ -45,8 +45,10 @@ _The visible tick and subtick values, with formatted labels, for one axis viewpo
 
 | Type | Name |
 | ---: | :--- |
+|  [**TickSetFormat**](structQAccelPlot_1_1TickSetFormat.md) | [**format**](#variable-format)  <br>_What the formatter decided for the major ticks that single-value readouts follow._  |
 |  QList&lt; [**AxisTick**](structQAccelPlot_1_1AxisTick.md) &gt; | [**majorTicks**](#variable-majorticks)  <br>_Visible major ticks with their labels._  |
 |  QList&lt; qreal &gt; | [**subtickValues**](#variable-subtickvalues)  <br>_Data-space values of the visible subticks._  |
+|  QString | [**unitText**](#variable-unittext)  <br>_Unit text the formatter chose for the axis label; empty for none._  |
 
 
 
@@ -107,6 +109,21 @@ Built on the GUI thread by `AxisTickPainter::computeTicks()`, because label form
 
 
 
+### variable format {#variable-format}
+
+_What the formatter decided for the major ticks that single-value readouts follow._ 
+```C++
+TickSetFormat QAccelPlot::AxisTicks::format;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### variable majorTicks {#variable-majorticks}
 
 _Visible major ticks with their labels._ 
@@ -127,6 +144,21 @@ QList<AxisTick> QAccelPlot::AxisTicks::majorTicks;
 _Data-space values of the visible subticks._ 
 ```C++
 QList<qreal> QAccelPlot::AxisTicks::subtickValues;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable unitText {#variable-unittext}
+
+_Unit text the formatter chose for the axis label; empty for none._ 
+```C++
+QString QAccelPlot::AxisTicks::unitText;
 ```
 
 

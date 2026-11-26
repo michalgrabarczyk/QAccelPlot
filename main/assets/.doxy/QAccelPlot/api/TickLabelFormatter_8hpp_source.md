@@ -15,10 +15,30 @@
 #pragma once
 
 #include <QJSValue>
+#include <QList>
 #include <QObject>
+#include <QStringList>
 #include <QtQml/qqmlregistration.h>
 
 namespace QAccelPlot {
+
+struct TickSet {
+    QList<qreal> values;    
+    qreal viewportMin{0.0}; 
+    qreal viewportMax{0.0}; 
+    qreal step{0.0};        
+    bool logScale{false};   
+};
+
+struct TickSetFormat {
+    int prefixExponent{0}; 
+};
+
+struct TickSetLabels {
+    QStringList labels;   
+    QString unitText;     
+    TickSetFormat format; 
+};
 
 class TickLabelFormatter : public QObject {
     Q_OBJECT
@@ -33,6 +53,10 @@ public:
 
     QString formatLogTick(qreal value) const;
 
+    TickSetLabels formatTicks(const TickSet& tickSet) const;
+
+    QString formatValue(qreal value, qreal resolution, const TickSetFormat& tickSetFormat) const;
+
     virtual qreal minimumTickStep() const;
 
     QJSValue tickLabel() const;
@@ -46,6 +70,10 @@ protected:
     virtual QString doFormat(qreal value, qreal tickStep) const = 0;
 
     virtual QString doFormatLogTick(qreal value) const;
+
+    virtual TickSetLabels doFormatTicks(const TickSet& tickSet) const;
+
+    virtual QString doFormatValue(qreal value, qreal resolution, const TickSetFormat& tickSetFormat) const;
 
 private:
     bool callTickLabel(qreal value, qreal tickStep, QString& label) const;

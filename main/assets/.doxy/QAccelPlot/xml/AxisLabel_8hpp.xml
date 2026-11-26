@@ -75,22 +75,22 @@
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a18ecf5f456fd80315084d99a8ca5b341" kindref="member">setOffset</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QPointF&amp;<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a46759c980d66065a8e8cbf3b5a967c9d" kindref="member">offset</ref>);</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>QQmlComponent*<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1aa64cea6ede6785e958994065b05ad0da" kindref="member">delegate</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1ade0d313daddf48eaa02259d629398111" kindref="member">setDelegate</ref>(QQmlComponent*<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1aa64cea6ede6785e958994065b05ad0da" kindref="member">delegate</ref>);</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal">signals:</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1ae88ee8cb8e705229970fa13f758c34c2" kindref="member">alignmentChanged</ref>();</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a3ac2f79d4b8d6195b46c865153482c0e" kindref="member">rotationChanged</ref>();</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a58c412d99aa49c67d2e775deb1191691" kindref="member">offsetChanged</ref>();</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1adeb1bb41cd851999aae07b2a1369c511" kindref="member">delegateChanged</ref>();</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244d" kindref="member">Axis::LabelAlignment</ref><sp/>alignment_{<ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244dacf791c17ba1f95cb5ea3cdbac59d91e5" kindref="member">Axis::Center</ref>};</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Internal_1_1ResettableValue" kindref="compound">Internal::ResettableValue&lt;qreal&gt;</ref><sp/>rotation_{0.0};</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointF<sp/>offset_;</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointer&lt;QQmlComponent&gt;<sp/>delegate_;</highlight></codeline>
-<codeline lineno="84"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1ade0d313daddf48eaa02259d629398111" kindref="member">setDelegate</ref>(QQmlComponent*<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1aa64cea6ede6785e958994065b05ad0da" kindref="member">delegate</ref>);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1ae88ee8cb8e705229970fa13f758c34c2" kindref="member">alignmentChanged</ref>();</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a3ac2f79d4b8d6195b46c865153482c0e" kindref="member">rotationChanged</ref>();</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a58c412d99aa49c67d2e775deb1191691" kindref="member">offsetChanged</ref>();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1adeb1bb41cd851999aae07b2a1369c511" kindref="member">delegateChanged</ref>();</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244d" kindref="member">Axis::LabelAlignment</ref><sp/>alignment_{<ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244dacf791c17ba1f95cb5ea3cdbac59d91e5" kindref="member">Axis::Center</ref>};</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Internal_1_1ResettableValue" kindref="compound">Internal::ResettableValue&lt;qreal&gt;</ref><sp/>rotation_{0.0};</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointF<sp/>offset_;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointer&lt;QQmlComponent&gt;<sp/>delegate_;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp"/>
   </compounddef>

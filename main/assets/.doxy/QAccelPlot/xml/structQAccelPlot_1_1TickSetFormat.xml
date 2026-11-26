@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1TickSetFormat" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::TickSetFormat</compoundname>
+    <includes local="no">TickLabelFormatter.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1TickSetFormat_1a79e4990c2d31ce8269078d052f62173c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::TickSetFormat::prefixExponent</definition>
+        <argsstring></argsstring>
+        <name>prefixExponent</name>
+        <qualifiedname>QAccelPlot::TickSetFormat::prefixExponent</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Power of ten of the unit prefix shared by the tick labels; 0 for none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="28" column="9" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="28" bodyend="28"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>What a formatter decided for a whole <computeroutput><ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref></computeroutput> that a single value formatted later must follow. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The axis keeps it with its latest ticks and passes it to <computeroutput><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a6a25a95c04ad70d231dc405302988390" kindref="member">TickLabelFormatter::formatValue()</ref></computeroutput>. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="27" column="1" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="27" bodyend="29"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1TickSetFormat_1a79e4990c2d31ce8269078d052f62173c" prot="public" virt="non-virtual"><scope>QAccelPlot::TickSetFormat</scope><name>prefixExponent</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

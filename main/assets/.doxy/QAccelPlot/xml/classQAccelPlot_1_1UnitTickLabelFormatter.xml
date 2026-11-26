@@ -1,0 +1,913 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1UnitTickLabelFormatter" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::UnitTickLabelFormatter</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1TickLabelFormatter" prot="public" virt="non-virtual">QAccelPlot::TickLabelFormatter</basecompoundref>
+    <includes local="no">UnitTickLabelFormatter.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" prot="public" static="no" strong="no">
+        <type></type>
+        <name>PrefixMode</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::PrefixMode</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95dab2623579c642a9b0f16d9e6961bb9163" prot="public">
+          <name>LargestMagnitude</name>
+          <briefdescription>
+<para>The allowed prefix with the largest power of ten at which the largest visible major tick is still at least 1, or the smallest allowed prefix when none qualifies, shared by all tick labels. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95dadc3e449f77841fbe4c56e3001dc5254f" prot="public">
+          <name>Fixed</name>
+          <briefdescription>
+<para><computeroutput>fixedPrefix</computeroutput>, shared by all tick labels at every zoom level. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95da891f214d8c2a8a5a56f8a796e6419bbc" prot="public">
+          <name>Custom</name>
+          <briefdescription>
+<para>The result of <computeroutput>customPrefix</computeroutput>, shared by all tick labels. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95da9b9833697922d40ecbeb3e5e6d0f0d2c" prot="public">
+          <name>PerTick</name>
+          <briefdescription>
+<para>The <computeroutput>LargestMagnitude</computeroutput> rule applied to each tick label and each <computeroutput><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a6a25a95c04ad70d231dc405302988390" kindref="member">formatValue()</ref></computeroutput> readout on its own, such as &quot;500 mm, 1.0 m, 1.5 m&quot;. </para>
+          </briefdescription>
+          <detaileddescription>
+<para>The unit is always on the tick labels, whatever <computeroutput>unitPosition</computeroutput> says, and <computeroutput>label.unitText</computeroutput> is empty. Decimals follow the tick step in each label&apos;s own prefix. A zero tick takes the prefix of the tick step, as in &quot;0 mm, 2 mm, 4 mm&quot;, and a zero readout the prefix of its resolution. On a logarithmic axis each decade is a plain number in its own prefix: &quot;1 mm, 10 mm, 100 mm, 1 m&quot;. <computeroutput>allowedPrefixes</computeroutput> applies to each label, and <computeroutput>customPrefix</computeroutput> is not called. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Rule that picks the unit prefix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="78" column="5" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="78" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="enum" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" prot="public" static="no" strong="no">
+        <type></type>
+        <name>UnitPosition</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::UnitPosition</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24baa267a3fde341a6e0a62abd03aa4f34464" prot="public">
+          <name>AxisLabel</name>
+          <briefdescription>
+<para>The axis label shows the prefixed unit through <computeroutput>label.unitText</computeroutput>, and the tick labels show only numbers. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24baad0aff0bb1669979a349a6c9068793e5a" prot="public">
+          <name>TickLabels</name>
+          <briefdescription>
+<para>Each tick label is followed by a space and the prefixed unit, such as &quot;10 mm&quot;, or &quot;10³ mm&quot; on a logarithmic axis, and <computeroutput>label.unitText</computeroutput> is empty. An empty prefixed unit adds nothing. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Where the prefixed unit is written. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="99" column="5" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="99" bodyend="106"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1UnitTickLabelFormatter_1ad14ab74c45c35f081c8c184f40870df9" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::UnitTickLabelFormatter::unit</definition>
+        <argsstring></argsstring>
+        <name>unit</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::unit</qualifiedname>
+        <read>unit</read>
+        <write>setUnit</write>
+        <briefdescription>
+<para>Base unit symbol of the axis values, such as &quot;m&quot;. Default: empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a601a3103a48fe840516d707f503add03" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" kindref="member">PrefixMode</ref></type>
+        <definition>PrefixMode QAccelPlot::UnitTickLabelFormatter::prefixMode</definition>
+        <argsstring></argsstring>
+        <name>prefixMode</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::prefixMode</qualifiedname>
+        <read>prefixMode</read>
+        <write>setPrefixMode</write>
+        <briefdescription>
+<para>Rule that picks the unit prefix from the visible range. Default: <computeroutput>LargestMagnitude</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="45" column="5" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a47996e1536a25a6ff86067bb120055ae" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::UnitTickLabelFormatter::fixedPrefix</definition>
+        <argsstring></argsstring>
+        <name>fixedPrefix</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::fixedPrefix</qualifiedname>
+        <read>fixedPrefix</read>
+        <write>setFixedPrefix</write>
+        <briefdescription>
+<para>Unit prefix symbol the tick labels use with <computeroutput>prefixMode</computeroutput> <computeroutput>Fixed</computeroutput>, such as &quot;m&quot;. Default: &quot;&quot;, the bare unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A prefix outside <computeroutput>allowedPrefixes</computeroutput> snaps to the allowed prefix with the largest power of ten not above it, or to the smallest allowed prefix. &quot;µ&quot; (U+00B5), &quot;μ&quot; (U+03BC), and &quot;u&quot; all mean micro and read back as &quot;µ&quot; (U+00B5). An unknown symbol is ignored with a warning. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="52" column="5" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1UnitTickLabelFormatter_1aa19283bde506fb119e7e31040560a4f6" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QJSValue</type>
+        <definition>QJSValue QAccelPlot::UnitTickLabelFormatter::customPrefix</definition>
+        <argsstring></argsstring>
+        <name>customPrefix</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::customPrefix</qualifiedname>
+        <read>customPrefix</read>
+        <write>setCustomPrefix</write>
+        <briefdescription>
+<para>JavaScript callback <computeroutput>function(min, max, ticks)</computeroutput> that returns the unit prefix symbol with <computeroutput>prefixMode</computeroutput> <computeroutput>Custom</computeroutput>. Default: <computeroutput>undefined</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Receives the visible range and an array of the visible major tick values, all in the base unit. Called on the GUI thread once per tick computation. A result outside <computeroutput>allowedPrefixes</computeroutput> snaps as with <computeroutput>fixedPrefix</computeroutput>. An exception, a result that is not a string, or an unknown symbol falls back to <computeroutput>LargestMagnitude</computeroutput> with a warning. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="60" column="5" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a2dc2340cfd73d39811baf4c3ed059a46" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QStringList</type>
+        <definition>QStringList QAccelPlot::UnitTickLabelFormatter::allowedPrefixes</definition>
+        <argsstring></argsstring>
+        <name>allowedPrefixes</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::allowedPrefixes</qualifiedname>
+        <read>allowedPrefixes</read>
+        <write>setAllowedPrefixes</write>
+        <briefdescription>
+<para>Unit prefix symbols the tick labels may use, with &quot;&quot; for the bare unit. Default: every power-of-1000 prefix from quecto (&quot;q&quot;) to quetta (&quot;Q&quot;), and &quot;&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Any SI prefix may be listed, including &quot;c&quot;, &quot;d&quot;, &quot;da&quot;, and &quot;h&quot;. &quot;µ&quot; (U+00B5), &quot;μ&quot; (U+03BC), and &quot;u&quot; all mean micro, written as &quot;µ&quot; (U+00B5). An unknown symbol is ignored with a warning. An empty list turns prefixing off: values are written unscaled in the bare unit.</para>
+<para>Reads back the prefixes in effect, sorted by ascending power of ten, without duplicates or unknown symbols, and with micro as &quot;µ&quot; (U+00B5). Assign <computeroutput>undefined</computeroutput> to restore the default. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="70" column="5" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a3fa67ce28c89371d2c7f8e6070009a7b" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" kindref="member">UnitPosition</ref></type>
+        <definition>UnitPosition QAccelPlot::UnitTickLabelFormatter::unitPosition</definition>
+        <argsstring></argsstring>
+        <name>unitPosition</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::unitPosition</qualifiedname>
+        <read>unitPosition</read>
+        <write>setUnitPosition</write>
+        <briefdescription>
+<para>Where the prefixed unit is written. Default: <computeroutput><ref refid="classQAccelPlot_1_1AxisLabel" kindref="compound">AxisLabel</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Ignored with <computeroutput>prefixMode</computeroutput> <computeroutput>PerTick</computeroutput>, which always writes the unit on the tick labels. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="74" column="5" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1UnitTickLabelFormatter_1ae422d01c6ae7ca03a4ae0b2a0e2790bf" prot="private" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::UnitTickLabelFormatter::unit_</definition>
+        <argsstring></argsstring>
+        <name>unit_</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::unit_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="178" column="13" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1UnitTickLabelFormatter_1aec3a814fa0764e1c806f849482659769" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" kindref="member">PrefixMode</ref></type>
+        <definition>PrefixMode QAccelPlot::UnitTickLabelFormatter::prefixMode_</definition>
+        <argsstring></argsstring>
+        <name>prefixMode_</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::prefixMode_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95dab2623579c642a9b0f16d9e6961bb9163" kindref="member">LargestMagnitude</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="179" column="16" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="179" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a3aec3fdf2b2b5bc62cc031a0df5951ea" prot="private" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">Internal::UnitPrefix</ref></type>
+        <definition>Internal::UnitPrefix QAccelPlot::UnitTickLabelFormatter::fixedPrefix_</definition>
+        <argsstring></argsstring>
+        <name>fixedPrefix_</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::fixedPrefix_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="180" column="26" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a056c18345d100de607902561d17be528" prot="private" static="no" mutable="no">
+        <type>QJSValue</type>
+        <definition>QJSValue QAccelPlot::UnitTickLabelFormatter::customPrefix_</definition>
+        <argsstring></argsstring>
+        <name>customPrefix_</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::customPrefix_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="181" column="14" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1UnitTickLabelFormatter_1aafb94f55b74944168fe6dcbce3575a1e" prot="private" static="no" mutable="no">
+        <type>QList&lt; <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">Internal::UnitPrefix</ref> &gt;</type>
+        <definition>QList&lt;Internal::UnitPrefix&gt; QAccelPlot::UnitTickLabelFormatter::allowedPrefixes_</definition>
+        <argsstring></argsstring>
+        <name>allowedPrefixes_</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::allowedPrefixes_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="182" column="11" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="182" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1UnitTickLabelFormatter_1aafb2ea8cdacb3a63e5839265476f83e4" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" kindref="member">UnitPosition</ref></type>
+        <definition>UnitPosition QAccelPlot::UnitTickLabelFormatter::unitPosition_</definition>
+        <argsstring></argsstring>
+        <name>unitPosition_</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::unitPosition_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24baa267a3fde341a6e0a62abd03aa4f34464" kindref="member">AxisLabel</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="183" column="18" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="183" bodyend="183"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a9058b6912a75836b9ef5c3af1c9fe2d9" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::UnitTickLabelFormatter::UnitTickLabelFormatter</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>UnitTickLabelFormatter</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::UnitTickLabelFormatter</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1UnitTickLabelFormatter" kindref="compound">UnitTickLabelFormatter</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="110" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a48ddfe27ef15285d121b2a4cc670ee3d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::UnitTickLabelFormatter::unit</definition>
+        <argsstring>() const</argsstring>
+        <name>unit</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::unit</qualifiedname>
+        <briefdescription>
+<para>Returns the base unit symbol. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="113" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a94414212aa7c9e15d28503625d9a7d21" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::setUnit</definition>
+        <argsstring>(const QString &amp;unit)</argsstring>
+        <name>setUnit</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::setUnit</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+<para>Sets the base unit symbol to <emphasis>unit</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="115" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1ac3a21d9681bb548333738b8034557cc4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" kindref="member">PrefixMode</ref></type>
+        <definition>PrefixMode QAccelPlot::UnitTickLabelFormatter::prefixMode</definition>
+        <argsstring>() const</argsstring>
+        <name>prefixMode</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::prefixMode</qualifiedname>
+        <briefdescription>
+<para>Returns the rule that picks the unit prefix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="118" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a25548b32a6fd7ece0cddfcb89525dcc0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::setPrefixMode</definition>
+        <argsstring>(PrefixMode mode)</argsstring>
+        <name>setPrefixMode</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::setPrefixMode</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" kindref="member">PrefixMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+<para>Sets the rule that picks the unit prefix to <emphasis>mode</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="120" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1ac4157f4b0607bd981ca81c5c16e435bb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::UnitTickLabelFormatter::fixedPrefix</definition>
+        <argsstring>() const</argsstring>
+        <name>fixedPrefix</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::fixedPrefix</qualifiedname>
+        <briefdescription>
+<para>Returns the unit prefix symbol used with <computeroutput>prefixMode</computeroutput> <computeroutput>Fixed</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="123" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a414f00ea967c3eafbedc87b89e9a19da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::setFixedPrefix</definition>
+        <argsstring>(const QString &amp;symbol)</argsstring>
+        <name>setFixedPrefix</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::setFixedPrefix</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>symbol</declname>
+        </param>
+        <briefdescription>
+<para>Sets the unit prefix symbol used with <computeroutput>prefixMode</computeroutput> <computeroutput>Fixed</computeroutput> to <emphasis>symbol</emphasis>; an unknown symbol is ignored with a warning. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="126" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1af384753e4abeb4ab352d8462e18a6781" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QJSValue</type>
+        <definition>QJSValue QAccelPlot::UnitTickLabelFormatter::customPrefix</definition>
+        <argsstring>() const</argsstring>
+        <name>customPrefix</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::customPrefix</qualifiedname>
+        <briefdescription>
+<para>Returns the JavaScript callback that picks the unit prefix with <computeroutput>prefixMode</computeroutput> <computeroutput>Custom</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="129" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a4ea334ffbf0fd0d70a5113298587bce8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::setCustomPrefix</definition>
+        <argsstring>(const QJSValue &amp;callback)</argsstring>
+        <name>setCustomPrefix</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::setCustomPrefix</qualifiedname>
+        <param>
+          <type>const QJSValue &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+<para>Sets the JavaScript callback that picks the unit prefix with <computeroutput>prefixMode</computeroutput> <computeroutput>Custom</computeroutput> to <emphasis>callback</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="131" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1af5a56e5332881b3841c8edb6a5a7e481" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QStringList</type>
+        <definition>QStringList QAccelPlot::UnitTickLabelFormatter::allowedPrefixes</definition>
+        <argsstring>() const</argsstring>
+        <name>allowedPrefixes</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::allowedPrefixes</qualifiedname>
+        <briefdescription>
+<para>Returns the allowed unit prefix symbols in effect, sorted by ascending power of ten. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="134" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a708991c58d806921826da86d9bf0cc93" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::setAllowedPrefixes</definition>
+        <argsstring>(const QStringList &amp;symbols)</argsstring>
+        <name>setAllowedPrefixes</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::setAllowedPrefixes</qualifiedname>
+        <param>
+          <type>const QStringList &amp;</type>
+          <declname>symbols</declname>
+        </param>
+        <briefdescription>
+<para>Sets the allowed unit prefix symbols to <emphasis>symbols</emphasis>; unknown symbols are ignored with a warning. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="136" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a812a3e911cb06ec5125b79ac2e8a6793" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::resetAllowedPrefixes</definition>
+        <argsstring>()</argsstring>
+        <name>resetAllowedPrefixes</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::resetAllowedPrefixes</qualifiedname>
+        <briefdescription>
+<para>Restores every power-of-1000 prefix from quecto to quetta, and the bare unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="138" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1ab7b94db5eb87493eed948109475f9650" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" kindref="member">UnitPosition</ref></type>
+        <definition>UnitPosition QAccelPlot::UnitTickLabelFormatter::unitPosition</definition>
+        <argsstring>() const</argsstring>
+        <name>unitPosition</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::unitPosition</qualifiedname>
+        <briefdescription>
+<para>Returns where the prefixed unit is written. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="141" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1acffe788604335cbbcedd20748b1b2ae2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::setUnitPosition</definition>
+        <argsstring>(UnitPosition position)</argsstring>
+        <name>setUnitPosition</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::setUnitPosition</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" kindref="member">UnitPosition</ref></type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>Sets where the prefixed unit is written to <emphasis>position</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="143" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1UnitTickLabelFormatter_1aef9bd3bc996ba22191cda9d13715f85f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::unitChanged</definition>
+        <argsstring>()</argsstring>
+        <name>unitChanged</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::unitChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the unit property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="147" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a186420ce1271a760166a0b22de652bdf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::prefixModeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>prefixModeChanged</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::prefixModeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the prefixMode property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="149" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1UnitTickLabelFormatter_1ab0dc0bdec2a67082600239da45ee59ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::fixedPrefixChanged</definition>
+        <argsstring>()</argsstring>
+        <name>fixedPrefixChanged</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::fixedPrefixChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the fixedPrefix property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="151" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1UnitTickLabelFormatter_1ade2719216c1e47238ca55439101e16cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::customPrefixChanged</definition>
+        <argsstring>()</argsstring>
+        <name>customPrefixChanged</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::customPrefixChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the customPrefix property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="153" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1UnitTickLabelFormatter_1acd06b722fa112211a094b103503cdbd2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::allowedPrefixesChanged</definition>
+        <argsstring>()</argsstring>
+        <name>allowedPrefixesChanged</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::allowedPrefixesChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the allowedPrefixes property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="155" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1UnitTickLabelFormatter_1aa4e95ab82a6b381b13528d560a2da0f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::unitPositionChanged</definition>
+        <argsstring>()</argsstring>
+        <name>unitPositionChanged</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::unitPositionChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the unitPosition property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="157" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1acd46eb09bfd195bba7189204b97ecfd1" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::UnitTickLabelFormatter::doFormat</definition>
+        <argsstring>(qreal value, qreal tickStep) const override</argsstring>
+        <name>doFormat</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::doFormat</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8">doFormat</reimplements>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>tickStep</declname>
+        </param>
+        <briefdescription>
+<para>Returns a numeric string for <emphasis>value</emphasis>, precision matched to <emphasis>tickStep</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="161" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a544de9777e6846ff83178f7fbaa5f8f6" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::UnitTickLabelFormatter::doFormatLogTick</definition>
+        <argsstring>(qreal value) const override</argsstring>
+        <name>doFormatLogTick</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::doFormatLogTick</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1TickLabelFormatter_1a0d9e566d8c97dab3c8b506b45dea4597">doFormatLogTick</reimplements>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Returns a decade tick as a superscript power of ten, for example &quot;10²&quot; for 100. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="163" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1aa1ac7facd588a45d106094a9da4a829a" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structQAccelPlot_1_1TickSetLabels" kindref="compound">TickSetLabels</ref></type>
+        <definition>TickSetLabels QAccelPlot::UnitTickLabelFormatter::doFormatTicks</definition>
+        <argsstring>(const TickSet &amp;tickSet) const override</argsstring>
+        <name>doFormatTicks</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::doFormatTicks</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1TickLabelFormatter_1a3512cdcba04bad33cde1b19b39763836">doFormatTicks</reimplements>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref> &amp;</type>
+          <declname>tickSet</declname>
+        </param>
+        <briefdescription>
+<para>Returns the tick labels in the shared unit prefix of <emphasis>tickSet</emphasis>, with the prefixed unit as unit text or on each tick label, as <computeroutput>unitPosition</computeroutput> says, or each in its own prefix with <computeroutput>prefixMode</computeroutput> <computeroutput>PerTick</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="166" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a2d18b88f1fc7ca6a1edb0ff7258fb780" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::UnitTickLabelFormatter::doFormatValue</definition>
+        <argsstring>(qreal value, qreal resolution, const TickSetFormat &amp;tickSetFormat) const override</argsstring>
+        <name>doFormatValue</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::doFormatValue</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1TickLabelFormatter_1a15931b05bfc44d8b9d5454666d22954e">doFormatValue</reimplements>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>resolution</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1TickSetFormat" kindref="compound">TickSetFormat</ref> &amp;</type>
+          <declname>tickSetFormat</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>value</emphasis> in the unit prefix of <emphasis>tickSetFormat</emphasis>, or in its own prefix with <computeroutput>prefixMode</computeroutput> <computeroutput>PerTick</computeroutput>, followed by a space and the prefixed unit, such as &quot;12.3 mm&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="169" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a061ec6658707c3c4204006d1e262b9d2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::UnitTickLabelFormatter::applyAllowedPrefixes</definition>
+        <argsstring>(const QList&lt; Internal::UnitPrefix &gt; &amp;prefixes)</argsstring>
+        <name>applyAllowedPrefixes</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::applyAllowedPrefixes</qualifiedname>
+        <param>
+          <type>const QList&lt; <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">Internal::UnitPrefix</ref> &gt; &amp;</type>
+          <declname>prefixes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="172" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a170ec417802eb1aa88cf4d74b4344f7a" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">Internal::UnitPrefix</ref></type>
+        <definition>Internal::UnitPrefix QAccelPlot::UnitTickLabelFormatter::sharedPrefix</definition>
+        <argsstring>(const TickSet &amp;tickSet) const</argsstring>
+        <name>sharedPrefix</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::sharedPrefix</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref> &amp;</type>
+          <declname>tickSet</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="173" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a366535d49e5469f43efd7e3b4ee31b58" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">Internal::UnitPrefix</ref></type>
+        <definition>Internal::UnitPrefix QAccelPlot::UnitTickLabelFormatter::ownPrefix</definition>
+        <argsstring>(qreal value, qreal precision) const</argsstring>
+        <name>ownPrefix</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::ownPrefix</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>precision</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="174" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1a25409e6ce02c4be0614c18ad57b53258" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1TickSetLabels" kindref="compound">TickSetLabels</ref></type>
+        <definition>TickSetLabels QAccelPlot::UnitTickLabelFormatter::perTickLabels</definition>
+        <argsstring>(const TickSet &amp;tickSet) const</argsstring>
+        <name>perTickLabels</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::perTickLabels</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref> &amp;</type>
+          <declname>tickSet</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="175" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1UnitTickLabelFormatter_1aab91dc51808c4e83c422be5c276daa7e" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kindref="compound">Internal::UnitPrefix</ref> &gt;</type>
+        <definition>std::optional&lt; Internal::UnitPrefix &gt; QAccelPlot::UnitTickLabelFormatter::callCustomPrefix</definition>
+        <argsstring>(const TickSet &amp;tickSet) const</argsstring>
+        <name>callCustomPrefix</name>
+        <qualifiedname>QAccelPlot::UnitTickLabelFormatter::callCustomPrefix</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref> &amp;</type>
+          <declname>tickSet</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="176" column="19"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The data stays in the base <computeroutput>unit</computeroutput>. All tick labels share one unit prefix chosen from the visible major ticks, and the axis label shows the prefixed unit: <computeroutput>unit</computeroutput> &quot;m&quot; over 0–0.004 gives the tick labels 0, 1, 2, 3, 4 and the axis label &quot;Distance (mm)&quot;. Decimals follow the tick step in the prefixed unit, as with <computeroutput><ref refid="classQAccelPlot_1_1NumericTickLabelFormatter" kindref="compound">NumericTickLabelFormatter</ref></computeroutput>. On a logarithmic axis the tick labels stay powers of ten in the prefixed unit: 0.000001–0.001 gives 10⁻³ to 10⁰ with &quot;Distance (mm)&quot;. The prefix depends only on the visible range, so each axis sharing one formatter picks its own.</para>
+<para>With <computeroutput>unitPosition</computeroutput> <computeroutput>TickLabels</computeroutput>, each tick label carries the prefixed unit instead (&quot;0 mm&quot;, &quot;1 mm&quot;) and the axis label shows only its text. With <computeroutput>prefixMode</computeroutput> <computeroutput>PerTick</computeroutput>, each tick label picks its own prefix and carries it: &quot;500 mm, 1.0 m, 1.5 m&quot;.</para>
+<para>A <computeroutput>tickLabel</computeroutput> callback receives the value and the tick step in the prefixed unit; on a logarithmic axis the tick step is the value itself. Its result replaces only the number: with <computeroutput>unitPosition</computeroutput> <computeroutput>TickLabels</computeroutput> the prefixed unit is still appended, as in <computeroutput><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a6a25a95c04ad70d231dc405302988390" kindref="member">formatValue()</ref></computeroutput>.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1NumericTickLabelFormatter" kindref="compound">NumericTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>QAccelPlot::TickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1TickLabelFormatter"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::UnitTickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1UnitTickLabelFormatter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::TickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1TickLabelFormatter"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::UnitTickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1UnitTickLabelFormatter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" line="38" column="1" bodyfile="QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp" bodystart="38" bodyend="184"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a2dc2340cfd73d39811baf4c3ed059a46" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>allowedPrefixes</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1af5a56e5332881b3841c8edb6a5a7e481" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>allowedPrefixes</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aafb94f55b74944168fe6dcbce3575a1e" prot="private" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>allowedPrefixes_</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1acd06b722fa112211a094b103503cdbd2" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>allowedPrefixesChanged</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a061ec6658707c3c4204006d1e262b9d2" prot="private" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>applyAllowedPrefixes</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24baa267a3fde341a6e0a62abd03aa4f34464" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>AxisLabel</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aab91dc51808c4e83c422be5c276daa7e" prot="private" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>callCustomPrefix</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95da891f214d8c2a8a5a56f8a796e6419bbc" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>Custom</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aa19283bde506fb119e7e31040560a4f6" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>customPrefix</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1af384753e4abeb4ab352d8462e18a6781" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>customPrefix</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a056c18345d100de607902561d17be528" prot="private" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>customPrefix_</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ade2719216c1e47238ca55439101e16cf" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>customPrefixChanged</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1acd46eb09bfd195bba7189204b97ecfd1" prot="protected" virt="virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>doFormat</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a544de9777e6846ff83178f7fbaa5f8f6" prot="protected" virt="virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>doFormatLogTick</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aa1ac7facd588a45d106094a9da4a829a" prot="protected" virt="virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>doFormatTicks</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a2d18b88f1fc7ca6a1edb0ff7258fb780" prot="protected" virt="virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>doFormatValue</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95dadc3e449f77841fbe4c56e3001dc5254f" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>Fixed</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a47996e1536a25a6ff86067bb120055ae" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>fixedPrefix</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ac4157f4b0607bd981ca81c5c16e435bb" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>fixedPrefix</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a3aec3fdf2b2b5bc62cc031a0df5951ea" prot="private" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>fixedPrefix_</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ab0dc0bdec2a67082600239da45ee59ae" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>fixedPrefixChanged</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a917283d2336c53aefad3317824c48083" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>format</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a958ae780917a92606338ba702984b9cf" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>formatChanged</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a0831ef9f994c099050754469340637e9" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>formatLogTick</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a5f11efa4dc85ff82cdcb1427fb195c11" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>formatTicks</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a6a25a95c04ad70d231dc405302988390" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>formatValue</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95dab2623579c642a9b0f16d9e6961bb9163" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>LargestMagnitude</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1aec4690678e7b36534945a3122de8322e" prot="public" virt="virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>minimumTickStep</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a366535d49e5469f43efd7e3b4ee31b58" prot="private" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>ownPrefix</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95da9b9833697922d40ecbeb3e5e6d0f0d2c" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>PerTick</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a25409e6ce02c4be0614c18ad57b53258" prot="private" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>perTickLabels</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>PrefixMode</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a601a3103a48fe840516d707f503add03" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>prefixMode</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ac3a21d9681bb548333738b8034557cc4" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>prefixMode</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aec3a814fa0764e1c806f849482659769" prot="private" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>prefixMode_</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a186420ce1271a760166a0b22de652bdf" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>prefixModeChanged</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a812a3e911cb06ec5125b79ac2e8a6793" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>resetAllowedPrefixes</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a708991c58d806921826da86d9bf0cc93" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>setAllowedPrefixes</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a4ea334ffbf0fd0d70a5113298587bce8" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>setCustomPrefix</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a414f00ea967c3eafbedc87b89e9a19da" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>setFixedPrefix</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a25548b32a6fd7ece0cddfcb89525dcc0" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>setPrefixMode</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>setTickLabel</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a94414212aa7c9e15d28503625d9a7d21" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>setUnit</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1acffe788604335cbbcedd20748b1b2ae2" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>setUnitPosition</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a170ec417802eb1aa88cf4d74b4344f7a" prot="private" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>sharedPrefix</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>tickLabel</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a926532dedf9007b09c792cac8009d314" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>tickLabel</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a9bf9272bca76afa4a3b51b711e90e077" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>tickLabelChanged</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>TickLabelFormatter</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24baad0aff0bb1669979a349a6c9068793e5a" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>TickLabels</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ad14ab74c45c35f081c8c184f40870df9" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>unit</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a48ddfe27ef15285d121b2a4cc670ee3d" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>unit</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ae422d01c6ae7ca03a4ae0b2a0e2790bf" prot="private" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>unit_</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aef9bd3bc996ba22191cda9d13715f85f" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>unitChanged</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>UnitPosition</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a3fa67ce28c89371d2c7f8e6070009a7b" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>unitPosition</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ab7b94db5eb87493eed948109475f9650" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>unitPosition</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aafb2ea8cdacb3a63e5839265476f83e4" prot="private" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>unitPosition_</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aa4e95ab82a6b381b13528d560a2da0f1" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>unitPositionChanged</name></member>
+      <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a9058b6912a75836b9ef5c3af1c9fe2d9" prot="public" virt="non-virtual"><scope>QAccelPlot::UnitTickLabelFormatter</scope><name>UnitTickLabelFormatter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

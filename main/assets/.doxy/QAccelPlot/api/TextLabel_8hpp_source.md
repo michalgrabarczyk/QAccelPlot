@@ -31,6 +31,8 @@ class TextLabel : public QObject {
     Q_PROPERTY(QFont font READ font WRITE setFont NOTIFY fontChanged)
     Q_PROPERTY(QColor color READ color WRITE setColor RESET resetColor NOTIFY colorChanged)
     Q_PROPERTY(qreal padding READ padding WRITE setPadding NOTIFY paddingChanged)
+    Q_PROPERTY(QString unitText READ unitText NOTIFY unitTextChanged)
+    Q_PROPERTY(QString unitFormat READ unitFormat WRITE setUnitFormat RESET resetUnitFormat NOTIFY unitFormatChanged)
 
 public:
     explicit TextLabel(const QColor& color = {}, qreal padding = 0.0, QObject* parent = nullptr);
@@ -49,17 +51,30 @@ public:
     qreal padding() const;
     void setPadding(qreal padding);
 
+    QString unitText() const;
+    void setUnitText(const QString& unitText);
+
+    QString unitFormat() const;
+    void setUnitFormat(const QString& format);
+    void resetUnitFormat();
+
+    QString paintedText() const;
+
 signals:
     void textChanged();
     void fontChanged();
     void colorChanged();
     void paddingChanged();
+    void unitTextChanged();
+    void unitFormatChanged();
 
 private:
     QString text_;
     QFont font_;
     Internal::ResettableValue<QColor> color_;
     qreal padding_;
+    QString unitText_;
+    Internal::ResettableValue<QString> unitFormat_;
 };
 
 } // namespace QAccelPlot

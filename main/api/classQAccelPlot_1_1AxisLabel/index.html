@@ -1782,7 +1782,7 @@
 
 <h1 id="class-qaccelplotaxislabel">Class QAccelPlot::AxisLabel<a class="headerlink" href="#class-qaccelplotaxislabel" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>AxisLabel</strong></a></p>
-<p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>title and its placement, grouped as the</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> __<code>label</code> <em>property, e.g.</em><code>label.text: "Time (s)"</code> <em>.</em><a href="#detailed-description">More...</a></p>
+<p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>label and its placement, grouped as the</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> __<code>label</code> <em>property, e.g.</em><code>label.text: "Time (s)"</code> <em>.</em><a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;AxisLabel.hpp&gt;</code></li>
 </ul>
@@ -1809,19 +1809,19 @@
 <tbody>
 <tr>
 <td style="text-align: right;">property QML_ANONYMOUSAxis::LabelAlignment</td>
-<td style="text-align: left;"><a href="./#property-alignment-12"><strong>alignment</strong></a>  <br><em>Position of the title along the axis. Default:</em> <code>Axis.Center</code> <em>.</em></td>
+<td style="text-align: left;"><a href="./#property-alignment-12"><strong>alignment</strong></a>  <br><em>Position of the axis label along the axis. Default:</em> <code>Axis.Center</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QQmlComponent *</td>
-<td style="text-align: left;"><a href="./#property-delegate-12"><strong>delegate</strong></a>  <br><em>Optional component that replaces the painted title. Default:</em> <code>null</code> <em>.</em></td>
+<td style="text-align: left;"><a href="./#property-delegate-12"><strong>delegate</strong></a>  <br><em>Optional component that replaces the painted axis label. Default:</em> <code>null</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QPointF</td>
-<td style="text-align: left;"><a href="./#property-offset-12"><strong>offset</strong></a>  <br><em>Pixel offset added to the title position after alignment and padding. Default: (0, 0).</em></td>
+<td style="text-align: left;"><a href="./#property-offset-12"><strong>offset</strong></a>  <br><em>Pixel offset added to the axis label position after alignment and padding. Default: (0, 0).</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-rotation-12"><strong>rotation</strong></a>  <br><em>Clockwise rotation of the title in degrees.</em></td>
+<td style="text-align: left;"><a href="./#property-rotation-12"><strong>rotation</strong></a>  <br><em>Clockwise rotation of the axis label in degrees.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1837,19 +1837,27 @@
 <tbody>
 <tr>
 <td style="text-align: right;">property QColor</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#property-color-12"><strong>color</strong></a>  <br><em>Title color. Default:</em> <code>Colors.dark.axisLine</code> <em>on a</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>, the axis</em><code>baselineColor</code> <em>on an</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>. Assign</em><code>undefined</code> <em>to return to it.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#property-color-12"><strong>color</strong></a>  <br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>label color. Default:</em><code>Colors.dark.axisLine</code> <em>on a</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>, the axis</em><code>baselineColor</code> <em>on an</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>. Assign</em><code>undefined</code> <em>to return to it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QFont</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#property-font-12"><strong>font</strong></a>  <br><em>Title font. Default: application default font.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#property-font-12"><strong>font</strong></a>  <br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>label font. Default: application default font.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#property-padding-12"><strong>padding</strong></a>  <br><em>Gap in pixels between the title and the axis or color strip. Default: 30 on an</em> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>, 6 on a</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#property-padding-12"><strong>padding</strong></a>  <br><em>Gap in pixels between the axis label and the axis or color strip. Default: 30 on an</em> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>, 6 on a</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QML_ANONYMOUSQString</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#property-text-12"><strong>text</strong></a>  <br><em>Title text. Default: empty, which draws no title.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#property-text-12"><strong>text</strong></a>  <br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>label text. Default: empty, which draws</em><code>unitText</code> <em>alone, or no axis label without unit text.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#property-unitformat-12"><strong>unitFormat</strong></a>  <br><em>How the painted axis label combines</em> <code>text</code> <em>(</em><code>%1</code> <em>) and</em><code>unitText</code> <em>(</em><code>%2</code> <em>). Default: "%1 (%2)".</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#property-unittext-12"><strong>unitText</strong></a>  <br><em>Prefixed unit the tick label formatter chose for the current ticks, such as "mm". Read-only.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1906,6 +1914,14 @@
 <td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#signal-textchanged"><strong>textChanged</strong></a>  <br><em>Emitted when the text property changes.</em></td>
 </tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#signal-unitformatchanged"><strong>unitFormatChanged</strong></a>  <br><em>Emitted when the unitFormat property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#signal-unittextchanged"><strong>unitTextChanged</strong></a>  <br><em>Emitted when the unitText property changes.</em></td>
+</tr>
 </tbody>
 </table>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
@@ -1923,27 +1939,27 @@
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/#enum-labelalignment"><strong>Axis::LabelAlignment</strong></a></td>
-<td style="text-align: left;"><a href="#function-alignment-22"><strong>alignment</strong></a> () const<br><em>Returns the position of the title along the axis.</em></td>
+<td style="text-align: left;"><a href="#function-alignment-22"><strong>alignment</strong></a> () const<br><em>Returns the position of the axis label along the axis.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QQmlComponent *</td>
-<td style="text-align: left;"><a href="#function-delegate-22"><strong>delegate</strong></a> () const<br><em>Returns the component that replaces the painted title, or</em> <code>nullptr</code> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-delegate-22"><strong>delegate</strong></a> () const<br><em>Returns the component that replaces the painted axis label, or</em> <code>nullptr</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QPointF</td>
-<td style="text-align: left;"><a href="#function-offset-22"><strong>offset</strong></a> () const<br><em>Returns the pixel offset of the title.</em></td>
+<td style="text-align: left;"><a href="#function-offset-22"><strong>offset</strong></a> () const<br><em>Returns the pixel offset of the axis label.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-resetrotation"><strong>resetRotation</strong></a> () <br><em>Restores the side's default title rotation.</em></td>
+<td style="text-align: left;"><a href="#function-resetrotation"><strong>resetRotation</strong></a> () <br><em>Restores the side's default axis label rotation.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#function-rotation-22"><strong>rotation</strong></a> () const<br><em>Returns the title rotation in degrees, including the side's default rotation.</em></td>
+<td style="text-align: left;"><a href="#function-rotation-22"><strong>rotation</strong></a> () const<br><em>Returns the axis label rotation in degrees, including the side's default rotation.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setalignment"><strong>setAlignment</strong></a> (<a href="../classQAccelPlot_1_1Axis/#enum-labelalignment"><strong>Axis::LabelAlignment</strong></a> alignment) <br><em>Sets the position of the title along the axis to</em> <em>alignment</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-setalignment"><strong>setAlignment</strong></a> (<a href="../classQAccelPlot_1_1Axis/#enum-labelalignment"><strong>Axis::LabelAlignment</strong></a> alignment) <br><em>Sets the position of the axis label along the axis to</em> <em>alignment</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -1951,15 +1967,15 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdelegate"><strong>setDelegate</strong></a> (QQmlComponent * delegate) <br><em>Sets the component that replaces the painted title to</em> <em>delegate</em> <em>.</em><code>nullptr</code> <em>restores the painted title.</em></td>
+<td style="text-align: left;"><a href="#function-setdelegate"><strong>setDelegate</strong></a> (QQmlComponent * delegate) <br><em>Sets the component that replaces the painted axis label to</em> <em>delegate</em> <em>.</em><code>nullptr</code> <em>restores the painted axis label.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setoffset"><strong>setOffset</strong></a> (const QPointF &amp; offset) <br><em>Sets the pixel offset of the title to</em> <em>offset</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-setoffset"><strong>setOffset</strong></a> (const QPointF &amp; offset) <br><em>Sets the pixel offset of the axis label to</em> <em>offset</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setrotation"><strong>setRotation</strong></a> (qreal degrees) <br><em>Sets the title rotation to</em> <em>degrees</em> <em>. A non-finite value restores the side's default rotation.</em></td>
+<td style="text-align: left;"><a href="#function-setrotation"><strong>setRotation</strong></a> (qreal degrees) <br><em>Sets the axis label rotation to</em> <em>degrees</em> <em>. A non-finite value restores the side's default rotation.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1979,23 +1995,31 @@
 </tr>
 <tr>
 <td style="text-align: right;">QColor</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-color-22"><strong>color</strong></a> () const<br><em>Returns the title color in effect.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-color-22"><strong>color</strong></a> () const<br><em>Returns the axis label color in effect.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QFont</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-font-22"><strong>font</strong></a> () const<br><em>Returns the title font.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-font-22"><strong>font</strong></a> () const<br><em>Returns the axis label font.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-padding-22"><strong>padding</strong></a> () const<br><em>Returns the gap between the title and the axis or color strip in pixels.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-padding-22"><strong>padding</strong></a> () const<br><em>Returns the gap between the axis label and the axis or color strip in pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-paintedtext"><strong>paintedText</strong></a> () const<br><em>Returns the axis label text combined with the unit text by</em> <a href="../classQAccelPlot_1_1TextLabel/#property-unitformat-12"><em><strong>unitFormat()</strong></em></a> <em>, such as "Distance (mm)".</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-resetcolor"><strong>resetColor</strong></a> () <br><em>Restores the default title color.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-resetcolor"><strong>resetColor</strong></a> () <br><em>Restores the default axis label color.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-setcolor"><strong>setColor</strong></a> (const QColor &amp; color) <br><em>Sets the title color to</em> <em>color</em> <em>. An invalid color restores the default.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-resetunitformat"><strong>resetUnitFormat</strong></a> () <br><em>Restores the default unit format "%1 (%2)".</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-setcolor"><strong>setColor</strong></a> (const QColor &amp; color) <br><em>Sets the axis label color to</em> <em>color</em> <em>. An invalid color restores the default.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2003,47 +2027,63 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-setfont"><strong>setFont</strong></a> (const QFont &amp; font) <br><em>Sets the title font to</em> <em>font</em> <em>.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-setfont"><strong>setFont</strong></a> (const QFont &amp; font) <br><em>Sets the axis label font to</em> <em>font</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-setpadding"><strong>setPadding</strong></a> (qreal padding) <br><em>Sets the gap between the title and the axis or color strip to</em> <em>padding</em> <em>pixels.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-setpadding"><strong>setPadding</strong></a> (qreal padding) <br><em>Sets the gap between the axis label and the axis or color strip to</em> <em>padding</em> <em>pixels.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-settext"><strong>setText</strong></a> (const QString &amp; text) <br><em>Sets the title text to</em> <em>text</em> <em>.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-settext"><strong>setText</strong></a> (const QString &amp; text) <br><em>Sets the axis label text to</em> <em>text</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-setunitformat"><strong>setUnitFormat</strong></a> (const QString &amp; format) <br><em>Sets how the painted axis label combines the text (</em> <code>%1</code> <em>) and the unit text (</em><code>%2</code> <em>) to__format</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-setunittext"><strong>setUnitText</strong></a> (const QString &amp; unitText) <br><em>Sets the prefixed unit to</em> <em>unitText</em> <em>. Called by the owning</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>or</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>when its ticks change.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QString</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-text-22"><strong>text</strong></a> () const<br><em>Returns the title text.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-text-22"><strong>text</strong></a> () const<br><em>Returns the axis label text.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-unitformat-22"><strong>unitFormat</strong></a> () const<br><em>Returns how the painted axis label combines the text and the unit text.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-unittext-22"><strong>unitText</strong></a> () const<br><em>Returns the prefixed unit chosen for the current ticks, or an empty string for none.</em></td>
 </tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>The title is painted inside the axis item and clipped to it. <code>delegate</code> replaces it with a QML item.</p>
+<p>The axis label is painted inside the axis item and clipped to it. <code>delegate</code> replaces it with a QML item.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-alignment-12">property alignment<a class="headerlink" href="#property-alignment-12" title="Permanent link">&para;</a></h3>
-<p><em>Position of the title along the axis. Default:</em> <code>Axis.Center</code> <em>.</em>
+<p><em>Position of the axis label along the axis. Default:</em> <code>Axis.Center</code> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QML_ANONYMOUSAxis</span><span class="o">::</span><span class="n">LabelAlignment</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">alignment</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-delegate-12">property delegate<a class="headerlink" href="#property-delegate-12" title="Permanent link">&para;</a></h3>
-<p><em>Optional component that replaces the painted title. Default:</em> <code>null</code> <em>.</em>
+<p><em>Optional component that replaces the painted axis label. Default:</em> <code>null</code> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QQmlComponent</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">delegate</span><span class="p">;</span>
 </code></pre></div></p>
-<p>The axis creates one instance as its child item, so <code>parent</code> is the axis and anchors, <code>x</code>, <code>y</code>, and <code>rotation</code> position it. The instance may extend beyond the axis. While a delegate is set, the axis paints no title and ignores <code>alignment</code>, <code>rotation</code>, <code>offset</code>, and <code>padding</code>. </p>
+<p>The axis creates one instance as its child item, so <code>parent</code> is the axis and anchors, <code>x</code>, <code>y</code>, and <code>rotation</code> position it. The instance may extend beyond the axis. While a delegate is set, the axis paints no axis label and ignores <code>alignment</code>, <code>rotation</code>, <code>offset</code>, and <code>padding</code>. </p>
 <hr>
 
 <h3 id="property-offset-12">property offset<a class="headerlink" href="#property-offset-12" title="Permanent link">&para;</a></h3>
-<p><em>Pixel offset added to the title position after alignment and padding. Default: (0, 0).</em> 
+<p><em>Pixel offset added to the axis label position after alignment and padding. Default: (0, 0).</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">QPointF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">offset</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-rotation-12">property rotation<a class="headerlink" href="#property-rotation-12" title="Permanent link">&para;</a></h3>
-<p><em>Clockwise rotation of the title in degrees.</em> 
+<p><em>Clockwise rotation of the axis label in degrees.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">rotation</span><span class="p">;</span>
 </code></pre></div></p>
 <p>Defaults to the side's rotation: 0 on horizontal axes, -90 on the left, and 90 on the right. Assign <code>undefined</code> to return to it. </p>
@@ -2082,37 +2122,37 @@
 <hr>
 
 <h3 id="function-alignment-22">function alignment<a class="headerlink" href="#function-alignment-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the position of the title along the axis.</em> 
+<p><em>Returns the position of the axis label along the axis.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">Axis</span><span class="o">::</span><span class="n">LabelAlignment</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">alignment</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-delegate-22">function delegate<a class="headerlink" href="#function-delegate-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the component that replaces the painted title, or</em> <code>nullptr</code> <em>.</em>
+<p><em>Returns the component that replaces the painted axis label, or</em> <code>nullptr</code> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">QQmlComponent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">delegate</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-offset-22">function offset<a class="headerlink" href="#function-offset-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the pixel offset of the title.</em> 
+<p><em>Returns the pixel offset of the axis label.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">QPointF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">offset</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-resetrotation">function resetRotation<a class="headerlink" href="#function-resetrotation" title="Permanent link">&para;</a></h3>
-<p><em>Restores the side's default title rotation.</em> 
+<p><em>Restores the side's default axis label rotation.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">resetRotation</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-rotation-22">function rotation<a class="headerlink" href="#function-rotation-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the title rotation in degrees, including the side's default rotation.</em> 
+<p><em>Returns the axis label rotation in degrees, including the side's default rotation.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">rotation</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setalignment">function setAlignment<a class="headerlink" href="#function-setalignment" title="Permanent link">&para;</a></h3>
-<p><em>Sets the position of the title along the axis to</em> <em>alignment</em> <em>.</em>
+<p><em>Sets the position of the axis label along the axis to</em> <em>alignment</em> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">setAlignment</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="n">Axis</span><span class="o">::</span><span class="n">LabelAlignment</span><span class="w"> </span><span class="n">alignment</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span>
@@ -2128,7 +2168,7 @@
 <hr>
 
 <h3 id="function-setdelegate">function setDelegate<a class="headerlink" href="#function-setdelegate" title="Permanent link">&para;</a></h3>
-<p><em>Sets the component that replaces the painted title to</em> <em>delegate</em> <em>.</em><code>nullptr</code> <em>restores the painted title.</em>
+<p><em>Sets the component that replaces the painted axis label to</em> <em>delegate</em> <em>.</em><code>nullptr</code> <em>restores the painted axis label.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">setDelegate</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="n">QQmlComponent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">delegate</span>
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span>
@@ -2136,7 +2176,7 @@
 <hr>
 
 <h3 id="function-setoffset">function setOffset<a class="headerlink" href="#function-setoffset" title="Permanent link">&para;</a></h3>
-<p><em>Sets the pixel offset of the title to</em> <em>offset</em> <em>.</em>
+<p><em>Sets the pixel offset of the axis label to</em> <em>offset</em> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">setOffset</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">offset</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span>
@@ -2144,7 +2184,7 @@
 <hr>
 
 <h3 id="function-setrotation">function setRotation<a class="headerlink" href="#function-setrotation" title="Permanent link">&para;</a></h3>
-<p><em>Sets the title rotation to</em> <em>degrees</em> <em>. A non-finite value restores the side's default rotation.</em>
+<p><em>Sets the axis label rotation to</em> <em>degrees</em> <em>. A non-finite value restores the side's default rotation.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisLabel</span><span class="o">::</span><span class="n">setRotation</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">degrees</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span>

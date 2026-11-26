@@ -22,6 +22,7 @@
 * `#include "QAccelPlot/axis/AxisTicker.hpp"`
 * `#include "QAccelPlot/axis/AxisTicks.hpp"`
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`
+* `#include <optional>`
 * `#include <QColor>`
 * `#include <QFont>`
 * `#include <QList>`

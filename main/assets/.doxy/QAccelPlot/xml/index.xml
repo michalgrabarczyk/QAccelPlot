@@ -75,6 +75,7 @@
     <member refid="classQAccelPlot_1_1Axis_1a4375e365fad1d36eca25876049ada22d" kind="variable"><name>side_</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a62984c5e09ddb1de57d6d49e6f5b421a" kind="variable"><name>ticker_</name></member>
     <member refid="classQAccelPlot_1_1Axis_1ae8d8683ddaacb4d5d390eac0fb9b6ef9" kind="variable"><name>ticks_</name></member>
+    <member refid="classQAccelPlot_1_1Axis_1afdacbd0d381c514ab3bbd2d5f1850a1d" kind="variable"><name>valueFormat_</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a4ded4e4d6d08ff8338cf62a8d48d749c" kind="function"><name>Axis</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a7e609c5b9eefca817ca60c2d3bce8286" kind="function"><name>viewportMin</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a6a6f58d339c5e3449b9af4a88e9d07ee" kind="function"><name>setViewportMin</name></member>
@@ -103,6 +104,7 @@
     <member refid="classQAccelPlot_1_1Axis_1adb52d6a8bee3ca1d8d3b79236fcc208f" kind="function"><name>layoutSize</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a9157d5dc4cf978b807650e083baab6c6" kind="function"><name>setLayoutSize</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a7e14dd389bbd1c794e12ca490c54c8ae" kind="function"><name>ticker</name></member>
+    <member refid="classQAccelPlot_1_1Axis_1aafa799a1fe211a864fbefe22cba1a605" kind="function"><name>unitText</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a3c5174df0cfb8a7f70c54e57b841ea79" kind="function"><name>logScale</name></member>
     <member refid="classQAccelPlot_1_1Axis_1ae1341d0c24822f541050b2d7cd421abe" kind="function"><name>setLogScale</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a26713372b37ed827412403426483e3e4" kind="function"><name>zoomScaleFactor</name></member>
@@ -152,6 +154,7 @@
     <member refid="classQAccelPlot_1_1Axis_1abc0a691d1617d35784f65fa1b3cc9418" kind="function"><name>dataFitRange</name></member>
     <member refid="classQAccelPlot_1_1Axis_1af39f6cbab3836a0c97a71ea3be8af174" kind="function"><name>autoRescaleToData</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a42b69b0e37fb6bbc286fba9b117b325d" kind="function"><name>valueResolution</name></member>
+    <member refid="classQAccelPlot_1_1Axis_1a6880c2db10267f315a2220ec769e6ae1" kind="function"><name>valueFormat</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a01ceb647ed19e6f9ebbbed30a742b496" kind="function"><name>defaultLabelRotation</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a35a896b9c6def08c3be566a8bb7774c0" kind="function"><name>paintLabel</name></member>
     <member refid="classQAccelPlot_1_1Axis_1ae3513c629191a3b4efde468844b79454" kind="function"><name>createLabelItem</name></member>
@@ -318,6 +321,8 @@
   <compound refid="structQAccelPlot_1_1AxisTicks" kind="struct"><name>QAccelPlot::AxisTicks</name>
     <member refid="structQAccelPlot_1_1AxisTicks_1a17edc5acc84db9dc646cde77ab9fb595" kind="variable"><name>subtickValues</name></member>
     <member refid="structQAccelPlot_1_1AxisTicks_1af03ec06095f8e4075ca77ae61581630b" kind="variable"><name>majorTicks</name></member>
+    <member refid="structQAccelPlot_1_1AxisTicks_1a9307facd13100e5d99853da0d5151ec0" kind="variable"><name>unitText</name></member>
+    <member refid="structQAccelPlot_1_1AxisTicks_1ae9e0e22e5fd65f81281cce3ec06e58e9" kind="variable"><name>format</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1AxisTickValues" kind="struct"><name>QAccelPlot::AxisTickValues</name>
     <member refid="structQAccelPlot_1_1AxisTickValues_1a8e5608e9d6dde06b8f23b02c592f05a1" kind="variable"><name>majorValues</name></member>
@@ -881,6 +886,7 @@
     <member refid="classQAccelPlot_1_1ColorBar_1af16793eeee8f8e29ae2cca79b21c9a70" kind="function"><name>setZoomScaleFactor</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a83980c7db46b5fbe319c191b1af3c8e3" kind="function"><name>hovered</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a46dfc8fa9724931e0222eb72094a940a" kind="function"><name>ticker</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a426cf40d461f5b0b083cbef0a8aaa6bd" kind="function"><name>unitText</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a80193407bf04596dd3b781fc3fad68aa" kind="function"><name>rescaleToData</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a6666a1cae7096bf5ef087d93fe94934d" kind="function"><name>valueToPixel</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a52244701cf67fb95a7b0d294ca803dca" kind="function"><name>pixelToValue</name></member>
@@ -3970,10 +3976,14 @@
     <member refid="classQAccelPlot_1_1TextLabel_1a834b04ff20fcd2780af4aaf05a9d0f17" kind="property"><name>font</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a8aa743c1cda93be9ccdd03a4e2b7e067" kind="property"><name>color</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a131eb4ee32f7f92c8bb7dc4aba680e3d" kind="property"><name>padding</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1a49cdcedafbfa499cce14f885eb62e920" kind="property"><name>unitText</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1a1d937994093f06c5a32d79909d4361a0" kind="property"><name>unitFormat</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1ae5ce15205ec267e393decf443d828416" kind="variable"><name>text_</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1ae8f1d510744ad330be7bd5df139ab123" kind="variable"><name>font_</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1af19cf6f115cbaa8261ceb4213aaf0f79" kind="variable"><name>color_</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a4b0288a966a3277767cabf56740c37cd" kind="variable"><name>padding_</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1a39f4018cadaf73d54c0e2c3e11851427" kind="variable"><name>unitText_</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1abd651fe40d2909bf5017a1a37d29e115" kind="variable"><name>unitFormat_</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a015af2ca9bb81ed57c28efdb2ae65eb3" kind="function"><name>TextLabel</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a6a0b5361366e1adfd54b144547e809d6" kind="function"><name>text</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1aa4e03c2533875c520e43be3fc189ca02" kind="function"><name>setText</name></member>
@@ -3985,10 +3995,18 @@
     <member refid="classQAccelPlot_1_1TextLabel_1a5226556d7fd17beddd59ac7989bef196" kind="function"><name>setDefaultColor</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a84c143c4c41e1c253cb76869d8df2a59" kind="function"><name>padding</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1aca6e700adbd19d73478c7e0296206204" kind="function"><name>setPadding</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1a4139552d9328e39d42d72a905ec11298" kind="function"><name>unitText</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1a3a6f338a08822d063e00da1e7db1197b" kind="function"><name>setUnitText</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1a22412ca52364a40e61f581312247c47a" kind="function"><name>unitFormat</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1a69e713c8c4c395b80ada487d396db288" kind="function"><name>setUnitFormat</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1acb791014a42103088702078709fc4f44" kind="function"><name>resetUnitFormat</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1a27ca4dbb564aa42bc1eed11056a47b06" kind="function"><name>paintedText</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a966e1b6ae8d29f1e6b950ad1c0998e00" kind="signal"><name>textChanged</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1abe8083ba51680ea33693d057b7070268" kind="signal"><name>fontChanged</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a87e0025dbc876c48e2805b4bd321610f" kind="signal"><name>colorChanged</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1accfee0e23bf6118a9cd2aa032a826c7f" kind="signal"><name>paddingChanged</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1a5ea573fe7c47398a5cc47822c0d2e06d" kind="signal"><name>unitTextChanged</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1a1804f35cac29eaaaaa1cd78ad91b2fc3" kind="signal"><name>unitFormatChanged</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1TextTickLabelFormatter" kind="class"><name>QAccelPlot::TextTickLabelFormatter</name>
     <member refid="classQAccelPlot_1_1TextTickLabelFormatter_1afbf71434f34d43e806188b5879a84e6f" kind="property"><name>labels</name></member>
@@ -4006,6 +4024,8 @@
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" kind="function"><name>TickLabelFormatter</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a917283d2336c53aefad3317824c48083" kind="function"><name>format</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a0831ef9f994c099050754469340637e9" kind="function"><name>formatLogTick</name></member>
+    <member refid="classQAccelPlot_1_1TickLabelFormatter_1a5f11efa4dc85ff82cdcb1427fb195c11" kind="function"><name>formatTicks</name></member>
+    <member refid="classQAccelPlot_1_1TickLabelFormatter_1a6a25a95c04ad70d231dc405302988390" kind="function"><name>formatValue</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1aec4690678e7b36534945a3122de8322e" kind="function"><name>minimumTickStep</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a926532dedf9007b09c792cac8009d314" kind="function"><name>tickLabel</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" kind="function"><name>setTickLabel</name></member>
@@ -4013,7 +4033,24 @@
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a958ae780917a92606338ba702984b9cf" kind="signal"><name>formatChanged</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8" kind="function"><name>doFormat</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a0d9e566d8c97dab3c8b506b45dea4597" kind="function"><name>doFormatLogTick</name></member>
+    <member refid="classQAccelPlot_1_1TickLabelFormatter_1a3512cdcba04bad33cde1b19b39763836" kind="function"><name>doFormatTicks</name></member>
+    <member refid="classQAccelPlot_1_1TickLabelFormatter_1a15931b05bfc44d8b9d5454666d22954e" kind="function"><name>doFormatValue</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a2b2b07707bb70cffd2d853519652b236" kind="function"><name>callTickLabel</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1TickSet" kind="struct"><name>QAccelPlot::TickSet</name>
+    <member refid="structQAccelPlot_1_1TickSet_1adffb112ce8befffff2927384540a4ad7" kind="variable"><name>values</name></member>
+    <member refid="structQAccelPlot_1_1TickSet_1a10f4f92afa3b8e6f06a1b02e4209c22d" kind="variable"><name>viewportMin</name></member>
+    <member refid="structQAccelPlot_1_1TickSet_1a800a9d9777093a481bec58c553bbc12b" kind="variable"><name>viewportMax</name></member>
+    <member refid="structQAccelPlot_1_1TickSet_1a2b9e8bc04d7f00f816fb13503c7edf23" kind="variable"><name>step</name></member>
+    <member refid="structQAccelPlot_1_1TickSet_1ada26c63fb405c2604ff6ccf6ca16b638" kind="variable"><name>logScale</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1TickSetFormat" kind="struct"><name>QAccelPlot::TickSetFormat</name>
+    <member refid="structQAccelPlot_1_1TickSetFormat_1a79e4990c2d31ce8269078d052f62173c" kind="variable"><name>prefixExponent</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1TickSetLabels" kind="struct"><name>QAccelPlot::TickSetLabels</name>
+    <member refid="structQAccelPlot_1_1TickSetLabels_1a8b09ec4375ca40ae7367ed9cb590eab5" kind="variable"><name>labels</name></member>
+    <member refid="structQAccelPlot_1_1TickSetLabels_1ad6a10b9c5c8e0312490ac926e23cd530" kind="variable"><name>unitText</name></member>
+    <member refid="structQAccelPlot_1_1TickSetLabels_1aaa515314ee59f15d06becb78244bc411" kind="variable"><name>format</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput" kind="struct"><name>QAccelPlot::Internal::TransitionFrameInput</name>
     <member refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput_1acd6da682d05abb2b480f9993723eab3f" kind="variable"><name>from</name></member>
@@ -4118,6 +4155,63 @@
     <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1aed9ca5a0c8fdc06ecbb6da4a1512fe45" kind="variable"><name>antialiasingFeather</name></member>
     <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1ade8dd6374e894d85efe88760baabce42" kind="variable"><name>dash</name></member>
   </compound>
+  <compound refid="structQAccelPlot_1_1Internal_1_1UnitPrefix" kind="struct"><name>QAccelPlot::Internal::UnitPrefix</name>
+    <member refid="structQAccelPlot_1_1Internal_1_1UnitPrefix_1a1114398b1cfb7e1f4c492a5fffdf00da" kind="variable"><name>symbol</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1UnitPrefix_1a67ac2680d68dd8c4aa277f29975cb7e6" kind="variable"><name>exponent</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1UnitPrefix_1a70ba69057f753eb9199f1722c8673f96" kind="friend"><name>operator==</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1UnitPrefix_1a7e3cf621e4a0dc743dfce2715dfd358c" kind="friend"><name>operator!=</name></member>
+  </compound>
+  <compound refid="classQAccelPlot_1_1UnitTickLabelFormatter" kind="class"><name>QAccelPlot::UnitTickLabelFormatter</name>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95d" kind="enum"><name>PrefixMode</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95dab2623579c642a9b0f16d9e6961bb9163" kind="enumvalue"><name>LargestMagnitude</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95dadc3e449f77841fbe4c56e3001dc5254f" kind="enumvalue"><name>Fixed</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95da891f214d8c2a8a5a56f8a796e6419bbc" kind="enumvalue"><name>Custom</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1abe9c681a33afb653b1003bcac22db95da9b9833697922d40ecbeb3e5e6d0f0d2c" kind="enumvalue"><name>PerTick</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24ba" kind="enum"><name>UnitPosition</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24baa267a3fde341a6e0a62abd03aa4f34464" kind="enumvalue"><name>AxisLabel</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a96279ff3e31d8cee1d423bb4830b24baad0aff0bb1669979a349a6c9068793e5a" kind="enumvalue"><name>TickLabels</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ad14ab74c45c35f081c8c184f40870df9" kind="property"><name>unit</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a601a3103a48fe840516d707f503add03" kind="property"><name>prefixMode</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a47996e1536a25a6ff86067bb120055ae" kind="property"><name>fixedPrefix</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aa19283bde506fb119e7e31040560a4f6" kind="property"><name>customPrefix</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a2dc2340cfd73d39811baf4c3ed059a46" kind="property"><name>allowedPrefixes</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a3fa67ce28c89371d2c7f8e6070009a7b" kind="property"><name>unitPosition</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ae422d01c6ae7ca03a4ae0b2a0e2790bf" kind="variable"><name>unit_</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aec3a814fa0764e1c806f849482659769" kind="variable"><name>prefixMode_</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a3aec3fdf2b2b5bc62cc031a0df5951ea" kind="variable"><name>fixedPrefix_</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a056c18345d100de607902561d17be528" kind="variable"><name>customPrefix_</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aafb94f55b74944168fe6dcbce3575a1e" kind="variable"><name>allowedPrefixes_</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aafb2ea8cdacb3a63e5839265476f83e4" kind="variable"><name>unitPosition_</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a9058b6912a75836b9ef5c3af1c9fe2d9" kind="function"><name>UnitTickLabelFormatter</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a48ddfe27ef15285d121b2a4cc670ee3d" kind="function"><name>unit</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a94414212aa7c9e15d28503625d9a7d21" kind="function"><name>setUnit</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ac3a21d9681bb548333738b8034557cc4" kind="function"><name>prefixMode</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a25548b32a6fd7ece0cddfcb89525dcc0" kind="function"><name>setPrefixMode</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ac4157f4b0607bd981ca81c5c16e435bb" kind="function"><name>fixedPrefix</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a414f00ea967c3eafbedc87b89e9a19da" kind="function"><name>setFixedPrefix</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1af384753e4abeb4ab352d8462e18a6781" kind="function"><name>customPrefix</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a4ea334ffbf0fd0d70a5113298587bce8" kind="function"><name>setCustomPrefix</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1af5a56e5332881b3841c8edb6a5a7e481" kind="function"><name>allowedPrefixes</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a708991c58d806921826da86d9bf0cc93" kind="function"><name>setAllowedPrefixes</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a812a3e911cb06ec5125b79ac2e8a6793" kind="function"><name>resetAllowedPrefixes</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ab7b94db5eb87493eed948109475f9650" kind="function"><name>unitPosition</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1acffe788604335cbbcedd20748b1b2ae2" kind="function"><name>setUnitPosition</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aef9bd3bc996ba22191cda9d13715f85f" kind="signal"><name>unitChanged</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a186420ce1271a760166a0b22de652bdf" kind="signal"><name>prefixModeChanged</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ab0dc0bdec2a67082600239da45ee59ae" kind="signal"><name>fixedPrefixChanged</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1ade2719216c1e47238ca55439101e16cf" kind="signal"><name>customPrefixChanged</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1acd06b722fa112211a094b103503cdbd2" kind="signal"><name>allowedPrefixesChanged</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aa4e95ab82a6b381b13528d560a2da0f1" kind="signal"><name>unitPositionChanged</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1acd46eb09bfd195bba7189204b97ecfd1" kind="function"><name>doFormat</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a544de9777e6846ff83178f7fbaa5f8f6" kind="function"><name>doFormatLogTick</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aa1ac7facd588a45d106094a9da4a829a" kind="function"><name>doFormatTicks</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a2d18b88f1fc7ca6a1edb0ff7258fb780" kind="function"><name>doFormatValue</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a061ec6658707c3c4204006d1e262b9d2" kind="function"><name>applyAllowedPrefixes</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a170ec417802eb1aa88cf4d74b4344f7a" kind="function"><name>sharedPrefix</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a366535d49e5469f43efd7e3b4ee31b58" kind="function"><name>ownPrefix</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1a25409e6ce02c4be0614c18ad57b53258" kind="function"><name>perTickLabels</name></member>
+    <member refid="classQAccelPlot_1_1UnitTickLabelFormatter_1aab91dc51808c4e83c422be5c276daa7e" kind="function"><name>callCustomPrefix</name></member>
+  </compound>
   <compound refid="structQAccelPlot_1_1Internal_1_1ValueRange" kind="struct"><name>QAccelPlot::Internal::ValueRange</name>
     <member refid="structQAccelPlot_1_1Internal_1_1ValueRange_1a9f8e5b0289cb8f681b6cc22b7eae893d" kind="variable"><name>min</name></member>
     <member refid="structQAccelPlot_1_1Internal_1_1ValueRange_1a3eed5cece7c984ad289f63a1b74ecfc7" kind="variable"><name>max</name></member>
@@ -4206,6 +4300,16 @@
     <member refid="ImageFile_8hpp_1afd21fed10a07314ea38c3997bd36661b" kind="function"><name>imageFormatForPath</name></member>
     <member refid="ImageFile_8hpp_1a35e7866f6024957da987ec41cc0f2927" kind="function"><name>setImageResolution</name></member>
     <member refid="ImageFile_8hpp_1a77d2509d9cb06cd5384518b034e8f436" kind="function"><name>writeImageFile</name></member>
+    <member refid="NumericLabel_8hpp_1ae23b7ce137e7fe79e5564adc55c28444" kind="function"><name>numericLabel</name></member>
+    <member refid="NumericLabel_8hpp_1a4e6a15804867e134b078cf897dc33a26" kind="function"><name>logTickLabel</name></member>
+    <member refid="UnitPrefix_8hpp_1a928e6c2b17d61cb2842a8db42adc3f86" kind="function"><name>siUnitPrefixes</name></member>
+    <member refid="UnitPrefix_8hpp_1af91ac1b1d82d1eda5cf2a8b62082d9a8" kind="function"><name>defaultUnitPrefixes</name></member>
+    <member refid="UnitPrefix_8hpp_1adac4c59c9b313b5f7dbb617751c4cd34" kind="function"><name>unitPrefixFromSymbol</name></member>
+    <member refid="UnitPrefix_8hpp_1a9f66c3df7d5d7156ee00338b127150a6" kind="function"><name>sortedUnitPrefixes</name></member>
+    <member refid="UnitPrefix_8hpp_1ac2fae9a6168f72e2637b4d5feaa6246a" kind="function"><name>largestMagnitudePrefix</name></member>
+    <member refid="UnitPrefix_8hpp_1a5858357e3eabde1900c98844a7d407d8" kind="function"><name>prefixWithExponent</name></member>
+    <member refid="UnitPrefix_8hpp_1a75a145d07202cb55867eb9c1626cb093" kind="function"><name>snappedUnitPrefix</name></member>
+    <member refid="UnitPrefix_8hpp_1af690c2d5956c4d0a89466c7b7b498a2b" kind="function"><name>toPrefix</name></member>
     <member refid="InspectionTypes_8hpp_1a61d21d20f32db7d3465b0eb03f846864" kind="function"><name>distanceToInterval</name></member>
     <member refid="GlowStyle_8hpp_1a1e767da3cf8613f45a437be4aeb2e078" kind="function"><name>compareGlowStyles</name></member>
     <member refid="ItemFade_8hpp_1a82f8e67f1c7ec939587d6109a23029ee" kind="function"><name>compactedFadeGroup</name></member>
@@ -4362,11 +4466,17 @@
   </compound>
   <compound refid="DateTimeTickLabelFormatter_8hpp" kind="file"><name>DateTimeTickLabelFormatter.hpp</name>
   </compound>
+  <compound refid="NumericLabel_8hpp" kind="file"><name>NumericLabel.hpp</name>
+  </compound>
+  <compound refid="UnitPrefix_8hpp" kind="file"><name>UnitPrefix.hpp</name>
+  </compound>
   <compound refid="NumericTickLabelFormatter_8hpp" kind="file"><name>NumericTickLabelFormatter.hpp</name>
   </compound>
   <compound refid="TextTickLabelFormatter_8hpp" kind="file"><name>TextTickLabelFormatter.hpp</name>
   </compound>
   <compound refid="TickLabelFormatter_8hpp" kind="file"><name>TickLabelFormatter.hpp</name>
+  </compound>
+  <compound refid="UnitTickLabelFormatter_8hpp" kind="file"><name>UnitTickLabelFormatter.hpp</name>
   </compound>
   <compound refid="Grid_8hpp" kind="file"><name>Grid.hpp</name>
   </compound>
@@ -4595,6 +4705,8 @@
   <compound refid="dir_549760165a8bc07353c1d6f09e5e91eb" kind="dir"><name>QAccelPlot/src/QAccelPlot/effects/internal</name>
   </compound>
   <compound refid="dir_502a5035d8e883b896944d94c324e4a9" kind="dir"><name>QAccelPlot/src/QAccelPlot/export/internal</name>
+  </compound>
+  <compound refid="dir_5d21a914f9fc6a0914b7bb5bdcf315a8" kind="dir"><name>QAccelPlot/src/QAccelPlot/formatters/internal</name>
   </compound>
   <compound refid="dir_4814785cc4b3fb9ee4963645259310b2" kind="dir"><name>QAccelPlot/src/QAccelPlot/inspection/internal</name>
   </compound>

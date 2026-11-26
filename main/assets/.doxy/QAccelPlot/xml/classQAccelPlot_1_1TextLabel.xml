@@ -15,7 +15,7 @@
         <read>text</read>
         <write>setText</write>
         <briefdescription>
-<para>Title text. Default: empty, which draws no title. </para>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> label text. Default: empty, which draws <computeroutput>unitText</computeroutput> alone, or no axis label without unit text. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -32,7 +32,7 @@
         <read>font</read>
         <write>setFont</write>
         <briefdescription>
-<para>Title font. Default: application default font. </para>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> label font. Default: application default font. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -49,7 +49,7 @@
         <read>color</read>
         <write>setColor</write>
         <briefdescription>
-<para>Title color. Default: <computeroutput>Colors.dark.axisLine</computeroutput> on a <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>, the axis <computeroutput>baselineColor</computeroutput> on an <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>. Assign <computeroutput>undefined</computeroutput> to return to it. </para>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> label color. Default: <computeroutput>Colors.dark.axisLine</computeroutput> on a <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>, the axis <computeroutput>baselineColor</computeroutput> on an <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>. Assign <computeroutput>undefined</computeroutput> to return to it. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -66,13 +66,48 @@
         <read>padding</read>
         <write>setPadding</write>
         <briefdescription>
-<para>Gap in pixels between the title and the axis or color strip. Default: 30 on an <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>, 6 on a <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>. </para>
+<para>Gap in pixels between the axis label and the axis or color strip. Default: 30 on an <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>, 6 on a <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="31" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1TextLabel_1a49cdcedafbfa499cce14f885eb62e920" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::TextLabel::unitText</definition>
+        <argsstring></argsstring>
+        <name>unitText</name>
+        <qualifiedname>QAccelPlot::TextLabel::unitText</qualifiedname>
+        <read>unitText</read>
+        <briefdescription>
+<para>Prefixed unit the tick label formatter chose for the current ticks, such as &quot;mm&quot;. Read-only. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The owning <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> or <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref> updates it whenever it computes its ticks. It is empty when the formatter shows no unit, as with every built-in formatter except <computeroutput><ref refid="classQAccelPlot_1_1UnitTickLabelFormatter" kindref="compound">UnitTickLabelFormatter</ref></computeroutput>. While it is set, the owner paints its axis label with <computeroutput>unitFormat</computeroutput>, such as &quot;Distance (mm)&quot;. An <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> <computeroutput>delegate</computeroutput> can bind to it. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1TextLabel_1a1d937994093f06c5a32d79909d4361a0" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::TextLabel::unitFormat</definition>
+        <argsstring></argsstring>
+        <name>unitFormat</name>
+        <qualifiedname>QAccelPlot::TextLabel::unitFormat</qualifiedname>
+        <read>unitFormat</read>
+        <write>setUnitFormat</write>
+        <briefdescription>
+<para>How the painted axis label combines <computeroutput>text</computeroutput> (<computeroutput>%1</computeroutput>) and <computeroutput>unitText</computeroutput> (<computeroutput>%2</computeroutput>). Default: &quot;%1 (%2)&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For example, &quot;%1 [%2]&quot; paints &quot;Distance [mm]&quot; and &quot;%1 / %2&quot; paints &quot;Distance / mm&quot;. It applies only while both <computeroutput>text</computeroutput> and <computeroutput>unitText</computeroutput> are set: an empty <computeroutput>text</computeroutput> paints <computeroutput>unitText</computeroutput> alone, and an empty <computeroutput>unitText</computeroutput> paints <computeroutput>text</computeroutput> alone. Assign <computeroutput>undefined</computeroutput> to return to the default. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -88,7 +123,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="72" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="72" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="105" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="105" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1ae8f1d510744ad330be7bd5df139ab123" prot="private" static="no" mutable="no">
         <type>QFont</type>
@@ -102,7 +137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="73" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="73" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="106" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="106" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1af19cf6f115cbaa8261ceb4213aaf0f79" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1Internal_1_1ResettableValue" kindref="compound">Internal::ResettableValue</ref>&lt; QColor &gt;</type>
@@ -116,7 +151,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="74" column="31" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="74" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="107" column="31" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="107" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1a4b0288a966a3277767cabf56740c37cd" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -130,7 +165,35 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="75" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="75" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="108" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1a39f4018cadaf73d54c0e2c3e11851427" prot="private" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::TextLabel::unitText_</definition>
+        <argsstring></argsstring>
+        <name>unitText_</name>
+        <qualifiedname>QAccelPlot::TextLabel::unitText_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="109" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1abd651fe40d2909bf5017a1a37d29e115" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Internal_1_1ResettableValue" kindref="compound">Internal::ResettableValue</ref>&lt; QString &gt;</type>
+        <definition>Internal::ResettableValue&lt;QString&gt; QAccelPlot::TextLabel::unitFormat_</definition>
+        <argsstring></argsstring>
+        <name>unitFormat_</name>
+        <qualifiedname>QAccelPlot::TextLabel::unitFormat_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="110" column="31" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="110" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -162,7 +225,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="35" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="47" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a6a0b5361366e1adfd54b144547e809d6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QString</type>
@@ -171,13 +234,13 @@
         <name>text</name>
         <qualifiedname>QAccelPlot::TextLabel::text</qualifiedname>
         <briefdescription>
-<para>Returns the title text. </para>
+<para>Returns the axis label text. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="38" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="50" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1aa4e03c2533875c520e43be3fc189ca02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -190,13 +253,13 @@
           <declname>text</declname>
         </param>
         <briefdescription>
-<para>Sets the title text to <emphasis>text</emphasis>. </para>
+<para>Sets the axis label text to <emphasis>text</emphasis>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="40" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="52" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1ac3c5ec3d56bf5a6a6faff8a7dd4a0362" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QFont</type>
@@ -205,13 +268,13 @@
         <name>font</name>
         <qualifiedname>QAccelPlot::TextLabel::font</qualifiedname>
         <briefdescription>
-<para>Returns the title font. </para>
+<para>Returns the axis label font. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="43" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="55" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a88008a2c41f97c2550b0239c7e3d744f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -224,13 +287,13 @@
           <declname>font</declname>
         </param>
         <briefdescription>
-<para>Sets the title font to <emphasis>font</emphasis>. </para>
+<para>Sets the axis label font to <emphasis>font</emphasis>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="45" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="57" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a5049800abe40bd73d70a8c3439c4f7ab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -239,13 +302,13 @@
         <name>color</name>
         <qualifiedname>QAccelPlot::TextLabel::color</qualifiedname>
         <briefdescription>
-<para>Returns the title color in effect. </para>
+<para>Returns the axis label color in effect. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="48" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="60" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1ae6dfc3fc08063f86f7bd794393987f06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -258,13 +321,13 @@
           <declname>color</declname>
         </param>
         <briefdescription>
-<para>Sets the title color to <emphasis>color</emphasis>. An invalid color restores the default. </para>
+<para>Sets the axis label color to <emphasis>color</emphasis>. An invalid color restores the default. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="50" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="62" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1ac53573c1957aebce75e90fd55df9cbf4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -273,13 +336,13 @@
         <name>resetColor</name>
         <qualifiedname>QAccelPlot::TextLabel::resetColor</qualifiedname>
         <briefdescription>
-<para>Restores the default title color. </para>
+<para>Restores the default axis label color. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="52" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="64" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a5226556d7fd17beddd59ac7989bef196" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -298,7 +361,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="54" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="66" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a84c143c4c41e1c253cb76869d8df2a59" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -307,13 +370,13 @@
         <name>padding</name>
         <qualifiedname>QAccelPlot::TextLabel::padding</qualifiedname>
         <briefdescription>
-<para>Returns the gap between the title and the axis or color strip in pixels. </para>
+<para>Returns the gap between the axis label and the axis or color strip in pixels. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="57" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="69" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1aca6e700adbd19d73478c7e0296206204" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -326,13 +389,112 @@
           <declname>padding</declname>
         </param>
         <briefdescription>
-<para>Sets the gap between the title and the axis or color strip to <emphasis>padding</emphasis> pixels. </para>
+<para>Sets the gap between the axis label and the axis or color strip to <emphasis>padding</emphasis> pixels. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="59" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="71" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a4139552d9328e39d42d72a905ec11298" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::TextLabel::unitText</definition>
+        <argsstring>() const</argsstring>
+        <name>unitText</name>
+        <qualifiedname>QAccelPlot::TextLabel::unitText</qualifiedname>
+        <briefdescription>
+<para>Returns the prefixed unit chosen for the current ticks, or an empty string for none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="74" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a3a6f338a08822d063e00da1e7db1197b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::setUnitText</definition>
+        <argsstring>(const QString &amp;unitText)</argsstring>
+        <name>setUnitText</name>
+        <qualifiedname>QAccelPlot::TextLabel::setUnitText</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>unitText</declname>
+        </param>
+        <briefdescription>
+<para>Sets the prefixed unit to <emphasis>unitText</emphasis>. Called by the owning <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> or <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref> when its ticks change. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="76" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a22412ca52364a40e61f581312247c47a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::TextLabel::unitFormat</definition>
+        <argsstring>() const</argsstring>
+        <name>unitFormat</name>
+        <qualifiedname>QAccelPlot::TextLabel::unitFormat</qualifiedname>
+        <briefdescription>
+<para>Returns how the painted axis label combines the text and the unit text. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="79" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a69e713c8c4c395b80ada487d396db288" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::setUnitFormat</definition>
+        <argsstring>(const QString &amp;format)</argsstring>
+        <name>setUnitFormat</name>
+        <qualifiedname>QAccelPlot::TextLabel::setUnitFormat</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>Sets how the painted axis label combines the text (<computeroutput>%1</computeroutput>) and the unit text (<computeroutput>%2</computeroutput>) to <emphasis>format</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="81" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1acb791014a42103088702078709fc4f44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::resetUnitFormat</definition>
+        <argsstring>()</argsstring>
+        <name>resetUnitFormat</name>
+        <qualifiedname>QAccelPlot::TextLabel::resetUnitFormat</qualifiedname>
+        <briefdescription>
+<para>Restores the default unit format &quot;%1 (%2)&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="83" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a27ca4dbb564aa42bc1eed11056a47b06" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::TextLabel::paintedText</definition>
+        <argsstring>() const</argsstring>
+        <name>paintedText</name>
+        <qualifiedname>QAccelPlot::TextLabel::paintedText</qualifiedname>
+        <briefdescription>
+<para>Returns the axis label text combined with the unit text by <ref refid="classQAccelPlot_1_1TextLabel_1a1d937994093f06c5a32d79909d4361a0" kindref="member">unitFormat()</ref>, such as &quot;Distance (mm)&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the unit text alone for an empty text, and the text alone without unit text. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="88" column="13"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -349,7 +511,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="63" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="92" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1TextLabel_1abe8083ba51680ea33693d057b7070268" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -364,7 +526,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="65" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="94" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1TextLabel_1a87e0025dbc876c48e2805b4bd321610f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -379,7 +541,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="67" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="96" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1TextLabel_1accfee0e23bf6118a9cd2aa032a826c7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -394,11 +556,41 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="69" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="98" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1TextLabel_1a5ea573fe7c47398a5cc47822c0d2e06d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::unitTextChanged</definition>
+        <argsstring>()</argsstring>
+        <name>unitTextChanged</name>
+        <qualifiedname>QAccelPlot::TextLabel::unitTextChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the unitText property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="100" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1TextLabel_1a1804f35cac29eaaaaa1cd78ad91b2fc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::unitFormatChanged</definition>
+        <argsstring>()</argsstring>
+        <name>unitFormatChanged</name>
+        <qualifiedname>QAccelPlot::TextLabel::unitFormatChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the unitFormat property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="102" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Text, font, color, and padding of a title, grouped as the <computeroutput>label</computeroutput> property of <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref> and <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>. </para>
+<para>Text, font, color, and padding of an axis label, grouped as the <computeroutput>label</computeroutput> property of <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref> and <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>. </para>
     </briefdescription>
     <detaileddescription>
 <para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1AxisLabel" kindref="compound">AxisLabel</ref> </para>
@@ -433,7 +625,7 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="20" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="20" bodyend="76"/>
+    <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="20" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="20" bodyend="111"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1TextLabel_1a8aa743c1cda93be9ccdd03a4e2b7e067" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>color</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1a5049800abe40bd73d70a8c3439c4f7ab" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>color</name></member>
@@ -447,17 +639,29 @@
       <member refid="classQAccelPlot_1_1TextLabel_1a84c143c4c41e1c253cb76869d8df2a59" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>padding</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1a4b0288a966a3277767cabf56740c37cd" prot="private" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>padding_</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1accfee0e23bf6118a9cd2aa032a826c7f" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>paddingChanged</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a27ca4dbb564aa42bc1eed11056a47b06" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>paintedText</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1ac53573c1957aebce75e90fd55df9cbf4" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>resetColor</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1acb791014a42103088702078709fc4f44" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>resetUnitFormat</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1ae6dfc3fc08063f86f7bd794393987f06" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setColor</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1a5226556d7fd17beddd59ac7989bef196" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setDefaultColor</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1a88008a2c41f97c2550b0239c7e3d744f" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setFont</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1aca6e700adbd19d73478c7e0296206204" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setPadding</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1aa4e03c2533875c520e43be3fc189ca02" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setText</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a69e713c8c4c395b80ada487d396db288" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setUnitFormat</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a3a6f338a08822d063e00da1e7db1197b" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setUnitText</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1afeb0c659ab73eda4212bb6bacbaa6628" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>text</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1a6a0b5361366e1adfd54b144547e809d6" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>text</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1ae5ce15205ec267e393decf443d828416" prot="private" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>text_</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1a966e1b6ae8d29f1e6b950ad1c0998e00" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>textChanged</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1a015af2ca9bb81ed57c28efdb2ae65eb3" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>TextLabel</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a1d937994093f06c5a32d79909d4361a0" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>unitFormat</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a22412ca52364a40e61f581312247c47a" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>unitFormat</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1abd651fe40d2909bf5017a1a37d29e115" prot="private" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>unitFormat_</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a1804f35cac29eaaaaa1cd78ad91b2fc3" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>unitFormatChanged</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a49cdcedafbfa499cce14f885eb62e920" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>unitText</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a4139552d9328e39d42d72a905ec11298" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>unitText</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a39f4018cadaf73d54c0e2c3e11851427" prot="private" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>unitText_</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a5ea573fe7c47398a5cc47822c0d2e06d" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>unitTextChanged</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

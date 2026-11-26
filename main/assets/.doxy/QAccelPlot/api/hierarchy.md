@@ -94,6 +94,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::Internal::TransitionLayout**](structQAccelPlot_1_1Internal_1_1TransitionLayout.md) _How a series' items animate._ 
 * **struct** [**QAccelPlot::Internal::TransitionSlots**](structQAccelPlot_1_1Internal_1_1TransitionSlots.md) _Slots a data change animates._ 
 * **struct** [**QAccelPlot::Internal::TransitionStep**](structQAccelPlot_1_1Internal_1_1TransitionStep.md) _The state of one slot's transition at the frame._ 
+* **struct** [**QAccelPlot::Internal::UnitPrefix**](structQAccelPlot_1_1Internal_1_1UnitPrefix.md) _An SI unit prefix: its output symbol and its power of ten._ 
 * **struct** [**QAccelPlot::Internal::ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) _Bounds of an axis viewport or a colormap value range._ 
 * **struct** [**QAccelPlot::LegendEntry**](structQAccelPlot_1_1LegendEntry.md) _How a legend draws one row of a series: its label, symbol, color, line, and marker._ 
 * **struct** [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md) _Input parameters for_ [_**LineCurveLineRenderer::paint()**_](classQAccelPlot_1_1LineCurveLineRenderer.md#function-paint) _, assembled on the main thread._
@@ -108,6 +109,9 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md) _Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1_1LineCurvePointRenderer.md#function-paint) _, assembled on the main thread._
 * **struct** [**QAccelPlot::PointSpatialIndex::Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md) _Coordinate mapping applied before indexing._ 
 * **struct** [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md) _Placeholder vertex of a marker quad, shared with the main thread for vertex caches._ 
+* **struct** [**QAccelPlot::TickSet**](structQAccelPlot_1_1TickSet.md) _The visible major ticks of one axis viewport, passed to_ `TickLabelFormatter::formatTicks()` _._
+* **struct** [**QAccelPlot::TickSetFormat**](structQAccelPlot_1_1TickSetFormat.md) _What a formatter decided for a whole_ `TickSet` _that a single value formatted later must follow._
+* **struct** [**QAccelPlot::TickSetLabels**](structQAccelPlot_1_1TickSetLabels.md) _The text a formatter returns for a_ `TickSet` _._
 * **struct** [**QAccelPlot::Axis::DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md) 
 * **struct** [**QAccelPlot::Axis::DataRangeSource**](structQAccelPlot_1_1Axis_1_1DataRangeSource.md) 
 * **struct** [**QAccelPlot::BandEdgeRenderer::ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md) 
@@ -142,8 +146,8 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md) _A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels._ 
     * **class** [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md) _A continuous key that shows how a series'_ `Colormap` _maps values to colors._
 * **class** **QObject**    
-    * **class** [**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md) _Text, font, color, and padding of a title, grouped as the_ `label` _property of_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _and_[_**Axis**_](classQAccelPlot_1_1Axis.md) _._    
-        * **class** [**QAccelPlot::AxisLabel**](classQAccelPlot_1_1AxisLabel.md) [_**Axis**_](classQAccelPlot_1_1Axis.md) _title and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._
+    * **class** [**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md) _Text, font, color, and padding of an axis label, grouped as the_ `label` _property of_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _and_[_**Axis**_](classQAccelPlot_1_1Axis.md) _._    
+        * **class** [**QAccelPlot::AxisLabel**](classQAccelPlot_1_1AxisLabel.md) [_**Axis**_](classQAccelPlot_1_1Axis.md) _label and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._
     * **class** [**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md) _Controls the visual appearance of ticks, sub-ticks, and tick labels on an_ `Axis` _._
     * **class** [**QAccelPlot::BandEdges**](classQAccelPlot_1_1BandEdges.md) _Controls the lines a_ `BandSeries` _draws along its lower and upper edges._
     * **class** [**QAccelPlot::Border**](classQAccelPlot_1_1Border.md) _Outline color and width, exposed as a_ `border` _grouped property, for example_`border.width: 1` _._
@@ -164,6 +168,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._ 
         * **class** [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._ 
         * **class** [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._ 
+        * **class** [**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md) _Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix._ 
     * **class** [**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md) _Abstract base class for animated data transitions on plot series._     
         * **class** [**QAccelPlot::EnterExitTransition**](classQAccelPlot_1_1EnterExitTransition.md) _Abstract base class for transitions that bring items in or take them out._     
             * **class** [**QAccelPlot::DrawTransition**](classQAccelPlot_1_1DrawTransition.md) _A transition that reveals items one after another, in index order._ 
@@ -223,6 +228,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._ 
         * **class** [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._ 
         * **class** [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._ 
+        * **class** [**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md) _Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix._ 
     * **class** [**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md) _Exports a plot as a raster image: to a file, to the clipboard, or as a_ `QImage` _._
     * **class** [**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md) _Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._ 
     * **class** [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) _Carries mouse event data for the mouse signals._ 
@@ -239,17 +245,24 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::DashLine**](classQAccelPlot_1_1DashLine.md) _A line style that renders the curve as a customisable dashed line._ 
         * **class** [**QAccelPlot::NoLine**](classQAccelPlot_1_1NoLine.md) _A line style that suppresses line rendering entirely, leaving only markers visible._ 
         * **class** [**QAccelPlot::SolidLine**](classQAccelPlot_1_1SolidLine.md) _The default line style — renders a continuous solid line with no gaps._ 
-    * **class** [**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md) _Text, font, color, and padding of a title, grouped as the_ `label` _property of_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _and_[_**Axis**_](classQAccelPlot_1_1Axis.md) _._    
-        * **class** [**QAccelPlot::AxisLabel**](classQAccelPlot_1_1AxisLabel.md) [_**Axis**_](classQAccelPlot_1_1Axis.md) _title and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._
+    * **class** [**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md) _Text, font, color, and padding of an axis label, grouped as the_ `label` _property of_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _and_[_**Axis**_](classQAccelPlot_1_1Axis.md) _._    
+        * **class** [**QAccelPlot::AxisLabel**](classQAccelPlot_1_1AxisLabel.md) [_**Axis**_](classQAccelPlot_1_1Axis.md) _label and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._
     * **class** [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
         * **class** [**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._ 
         * **class** [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._ 
         * **class** [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._ 
+        * **class** [**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md) _Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix._ 
     * **class** [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
         * **class** [**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._ 
         * **class** [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._ 
         * **class** [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._ 
+        * **class** [**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md) _Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix._ 
     * **class** [**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) _Runs the enter, update, and exit transitions of one item, such as a custom series._ 
+    * **class** [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
+        * **class** [**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._ 
+        * **class** [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._ 
+        * **class** [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._ 
+        * **class** [**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md) _Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix._ 
 * **class** **QSGMaterial**    
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
         * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._

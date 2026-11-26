@@ -1445,7 +1445,7 @@
 <ul>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a>     <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> <em>A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels.</em>     </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisLabel/"><strong>AxisLabel</strong></a> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>title and its placement, grouped as the</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> __<code>label</code> <em>property, e.g.</em><code>label.text: "Time (s)"</code> <em>.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisLabel/"><strong>AxisLabel</strong></a> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>label and its placement, grouped as the</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> __<code>label</code> <em>property, e.g.</em><code>label.text: "Time (s)"</code> <em>.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisMapping/"><strong>AxisMapping</strong></a> <em>Snapshot of an axis viewport that maps between data values and pixel positions.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTick/"><strong>AxisTick</strong></a> <em>A single major tick: its data-space value and its formatted label.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>AxisTickPainter</strong></a> <em>Internal helper that computes and paints tick marks and labels for a single</em> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em>    <ul>
@@ -1596,6 +1596,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionLayout/"><strong>TransitionLayout</strong></a> <em>How a series' items animate.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionSlots/"><strong>TransitionSlots</strong></a> <em>Slots a data change animates.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionStep/"><strong>TransitionStep</strong></a> <em>The state of one slot's transition at the frame.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1UnitPrefix/"><strong>UnitPrefix</strong></a> <em>An SI unit prefix: its output symbol and its power of ten.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ValueRange/"><strong>ValueRange</strong></a> <em>Bounds of an axis viewport or a colormap value range.</em>     </li>
 </ul>
 </li>
@@ -1653,10 +1654,14 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SolidLine/"><strong>SolidLine</strong></a> <em>The default line style — renders a continuous solid line with no gaps.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SpatialGrid/"><strong>SpatialGrid</strong></a> <em>Uniform-grid spatial index with bounded per-rectangle storage.</em>     </li>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1StepModeNS/"><strong>StepModeNS</strong></a> <em>Namespace exposing the</em> <code>StepMode</code> <em>enum to QML.</em>    </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1TextLabel/"><strong>TextLabel</strong></a> <em>Text, font, color, and padding of a title, grouped as the</em> <code>label</code> <em>property of</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>and</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1TextLabel/"><strong>TextLabel</strong></a> <em>Text, font, color, and padding of an axis label, grouped as the</em> <code>label</code> <em>property of</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>and</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>TextTickLabelFormatter</strong></a> <em>A tick label formatter that maps integer tick indices to a user-supplied list of strings.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>TickLabelFormatter</strong></a> <em>Abstract base class for tick label formatters.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1TickSet/"><strong>TickSet</strong></a> <em>The visible major ticks of one axis viewport, passed to</em> <code>TickLabelFormatter::formatTicks()</code> <em>.</em>    </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1TickSetFormat/"><strong>TickSetFormat</strong></a> <em>What a formatter decided for a whole</em> <code>TickSet</code> <em>that a single value formatted later must follow.</em>    </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1TickSetLabels/"><strong>TickSetLabels</strong></a> <em>The text a formatter returns for a</em> <code>TickSet</code> <em>.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TransitionRunner/"><strong>TransitionRunner</strong></a> <em>Runs the enter, update, and exit transitions of one item, such as a custom series.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1UnitTickLabelFormatter/"><strong>UnitTickLabelFormatter</strong></a> <em>Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix.</em>     </li>
 </ul>
 </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>DataRange</strong></a>     </li>

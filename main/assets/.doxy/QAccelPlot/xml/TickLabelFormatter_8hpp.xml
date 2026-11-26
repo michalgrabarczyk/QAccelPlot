@@ -3,12 +3,16 @@
   <compounddef id="TickLabelFormatter_8hpp" kind="file" language="C++">
     <compoundname>TickLabelFormatter.hpp</compoundname>
     <includes local="no">QJSValue</includes>
+    <includes local="no">QList</includes>
     <includes local="no">QObject</includes>
+    <includes local="no">QStringList</includes>
     <includes local="no">QtQml/qqmlregistration.h</includes>
     <includedby refid="AxisTicker_8hpp" local="yes">QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp</includedby>
+    <includedby refid="AxisTicks_8hpp" local="yes">QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp</includedby>
     <includedby refid="DateTimeTickLabelFormatter_8hpp" local="yes">QAccelPlot/src/QAccelPlot/formatters/DateTimeTickLabelFormatter.hpp</includedby>
     <includedby refid="NumericTickLabelFormatter_8hpp" local="yes">QAccelPlot/src/QAccelPlot/formatters/NumericTickLabelFormatter.hpp</includedby>
     <includedby refid="TextTickLabelFormatter_8hpp" local="yes">QAccelPlot/src/QAccelPlot/formatters/TextTickLabelFormatter.hpp</includedby>
+    <includedby refid="UnitTickLabelFormatter_8hpp" local="yes">QAccelPlot/src/QAccelPlot/formatters/UnitTickLabelFormatter.hpp</includedby>
     <incdepgraph>
       <node id="1">
         <label>QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp</label>
@@ -19,17 +23,30 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>QJSValue</label>
       </node>
       <node id="3">
-        <label>QObject</label>
+        <label>QList</label>
       </node>
       <node id="4">
+        <label>QObject</label>
+      </node>
+      <node id="5">
+        <label>QStringList</label>
+      </node>
+      <node id="6">
         <label>QtQml/qqmlregistration.h</label>
       </node>
     </incdepgraph>
+    <innerclass refid="structQAccelPlot_1_1TickSet" prot="public">QAccelPlot::TickSet</innerclass>
+    <innerclass refid="structQAccelPlot_1_1TickSetFormat" prot="public">QAccelPlot::TickSetFormat</innerclass>
+    <innerclass refid="structQAccelPlot_1_1TickSetLabels" prot="public">QAccelPlot::TickSetLabels</innerclass>
     <innerclass refid="classQAccelPlot_1_1TickLabelFormatter" prot="public">QAccelPlot::TickLabelFormatter</innerclass>
     <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
     <briefdescription>
@@ -44,45 +61,73 @@
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QJSValue&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQml/qqmlregistration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QList&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QStringList&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQml/qqmlregistration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19" refid="classQAccelPlot_1_1TickLabelFormatter" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" kindref="member">TickLabelFormatter</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_ANONYMOUS</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QJSValue<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" kindref="member">tickLabel</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" kindref="member">tickLabel</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" kindref="member">setTickLabel</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a9bf9272bca76afa4a3b51b711e90e077" kindref="member">tickLabelChanged</ref>)</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" kindref="member">TickLabelFormatter</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a917283d2336c53aefad3317824c48083" kindref="member">format</ref>(qreal<sp/>value,<sp/>qreal<sp/>tickStep)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a0831ef9f994c099050754469340637e9" kindref="member">formatLogTick</ref>(qreal<sp/>value)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1aec4690678e7b36534945a3122de8322e" kindref="member">minimumTickStep</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>QJSValue<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" kindref="member">tickLabel</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" kindref="member">setTickLabel</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QJSValue&amp;<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" kindref="member">tickLabel</ref>);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="structQAccelPlot_1_1TickSet" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;qreal&gt;<sp/><ref refid="structQAccelPlot_1_1TickSet_1adffb112ce8befffff2927384540a4ad7" kindref="member">values</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1TickSet_1a10f4f92afa3b8e6f06a1b02e4209c22d" kindref="member">viewportMin</ref>{0.0};<sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1TickSet_1a800a9d9777093a481bec58c553bbc12b" kindref="member">viewportMax</ref>{0.0};<sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1TickSet_1a2b9e8bc04d7f00f816fb13503c7edf23" kindref="member">step</ref>{0.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1TickSet_1ada26c63fb405c2604ff6ccf6ca16b638" kindref="member">logScale</ref>{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="structQAccelPlot_1_1TickSetFormat" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1TickSetFormat" kindref="compound">TickSetFormat</ref><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1TickSetFormat_1a79e4990c2d31ce8269078d052f62173c" kindref="member">prefixExponent</ref>{0};<sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="structQAccelPlot_1_1TickSetLabels" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1TickSetLabels" kindref="compound">TickSetLabels</ref><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>QStringList<sp/><ref refid="structQAccelPlot_1_1TickSetLabels_1a8b09ec4375ca40ae7367ed9cb590eab5" kindref="member">labels</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="structQAccelPlot_1_1TickSetLabels_1ad6a10b9c5c8e0312490ac926e23cd530" kindref="member">unitText</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1TickSetFormat" kindref="compound">TickSetFormat</ref><sp/><ref refid="structQAccelPlot_1_1TickSetLabels_1aaa515314ee59f15d06becb78244bc411" kindref="member">format</ref>;<sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="classQAccelPlot_1_1TickLabelFormatter" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" kindref="member">TickLabelFormatter</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_ANONYMOUS</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QJSValue<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" kindref="member">tickLabel</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" kindref="member">tickLabel</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" kindref="member">setTickLabel</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a9bf9272bca76afa4a3b51b711e90e077" kindref="member">tickLabelChanged</ref>)</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal">signals:</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a9bf9272bca76afa4a3b51b711e90e077" kindref="member">tickLabelChanged</ref>();</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a958ae780917a92606338ba702984b9cf" kindref="member">formatChanged</ref>();</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8" kindref="member">doFormat</ref>(qreal<sp/>value,<sp/>qreal<sp/>tickStep)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a0d9e566d8c97dab3c8b506b45dea4597" kindref="member">doFormatLogTick</ref>(qreal<sp/>value)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>callTickLabel(qreal<sp/>value,<sp/>qreal<sp/>tickStep,<sp/>QString&amp;<sp/>label)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>QJSValue<sp/>tickLabel_;</highlight></codeline>
-<codeline lineno="73"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" kindref="member">TickLabelFormatter</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a917283d2336c53aefad3317824c48083" kindref="member">format</ref>(qreal<sp/>value,<sp/>qreal<sp/>tickStep)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a0831ef9f994c099050754469340637e9" kindref="member">formatLogTick</ref>(qreal<sp/>value)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1TickSetLabels" kindref="compound">TickSetLabels</ref><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a5f11efa4dc85ff82cdcb1427fb195c11" kindref="member">formatTicks</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref>&amp;<sp/>tickSet)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a6a25a95c04ad70d231dc405302988390" kindref="member">formatValue</ref>(qreal<sp/>value,<sp/>qreal<sp/>resolution,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1TickSetFormat" kindref="compound">TickSetFormat</ref>&amp;<sp/>tickSetFormat)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1aec4690678e7b36534945a3122de8322e" kindref="member">minimumTickStep</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>QJSValue<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" kindref="member">tickLabel</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" kindref="member">setTickLabel</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QJSValue&amp;<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" kindref="member">tickLabel</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a9bf9272bca76afa4a3b51b711e90e077" kindref="member">tickLabelChanged</ref>();</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a958ae780917a92606338ba702984b9cf" kindref="member">formatChanged</ref>();</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8" kindref="member">doFormat</ref>(qreal<sp/>value,<sp/>qreal<sp/>tickStep)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a0d9e566d8c97dab3c8b506b45dea4597" kindref="member">doFormatLogTick</ref>(qreal<sp/>value)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1TickSetLabels" kindref="compound">TickSetLabels</ref><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a3512cdcba04bad33cde1b19b39763836" kindref="member">doFormatTicks</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1TickSet" kindref="compound">TickSet</ref>&amp;<sp/>tickSet)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a15931b05bfc44d8b9d5454666d22954e" kindref="member">doFormatValue</ref>(qreal<sp/>value,<sp/>qreal<sp/>resolution,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1TickSetFormat" kindref="compound">TickSetFormat</ref>&amp;<sp/>tickSetFormat)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>callTickLabel(qreal<sp/>value,<sp/>qreal<sp/>tickStep,<sp/>QString&amp;<sp/>label)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>QJSValue<sp/>tickLabel_;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp"/>
   </compounddef>

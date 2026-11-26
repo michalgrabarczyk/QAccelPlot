@@ -68,7 +68,7 @@ flowchart TB
 | property [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1ColorBar.md#property-border-12)  <br>_Outline inside the strip's edges, e.g._ `border.width: 2` _. Default:_`Colors.dark.axisLine` _, width 1._ |
 | property bool | [**hovered**](classQAccelPlot_1_1ColorBar.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the bar. Reported only while_`interactive` _is set._ |
 | property bool | [**interactive**](classQAccelPlot_1_1ColorBar.md#property-interactive-12)  <br>_Whether dragging, the mouse wheel, and double-clicking change the colormap's value range. Default:_ `false` _._ |
-| property [**TextLabel**](classQAccelPlot_1_1TextLabel.md) \* | [**label**](classQAccelPlot_1_1ColorBar.md#property-label-12)  <br>_Title drawn beside the tick labels, e.g._ `label.text: "Intensity"` _. Negative padding counts as 0._ |
+| property [**TextLabel**](classQAccelPlot_1_1TextLabel.md) \* | [**label**](classQAccelPlot_1_1ColorBar.md#property-label-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _label drawn beside the tick labels, e.g._`label.text: "Intensity"` _. Negative padding counts as 0._ |
 | property Qt::Orientation | [**orientation**](classQAccelPlot_1_1ColorBar.md#property-orientation-12)  <br>_Direction of the ramp:_ `Qt.Vertical` _or_`Qt.Horizontal` _. Default:_`Qt.Vertical` _._ |
 | property [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) \* | [**series**](classQAccelPlot_1_1ColorBar.md#property-series-12)  <br>_Series whose colormap and resolved value range are shown. Default: null._  |
 | property qreal | [**tickLabelWidth**](classQAccelPlot_1_1ColorBar.md#property-ticklabelwidth-12)  <br>_Width in pixels reserved for the tick labels of a vertical bar. Default: 16._  |
@@ -102,9 +102,9 @@ flowchart TB
 |  [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](#function-border-22) () const<br>_Returns the strip outline settings. The object is owned by the bar._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _while the mouse cursor is over an interactive bar._ |
 |  bool | [**interactive**](#function-interactive-22) () const<br>_Returns whether the gestures that change the colormap's value range are enabled._  |
-|  [**TextLabel**](classQAccelPlot_1_1TextLabel.md) \* | [**label**](#function-label-22) () const<br>_Returns the title settings. The object is owned by the bar._  |
+|  [**TextLabel**](classQAccelPlot_1_1TextLabel.md) \* | [**label**](#function-label-22) () const<br>_Returns the axis label settings. The object is owned by the bar._  |
 |  Qt::Orientation | [**orientation**](#function-orientation-22) () const<br>_Returns the ramp direction._  |
-|  void | [**paint**](#function-paint) (QPainter \* painter) override<br>_Paints the strip, ticks, tick labels, and title computed in_ `updatePolish()` _._ |
+|  void | [**paint**](#function-paint) (QPainter \* painter) override<br>_Paints the strip, ticks, tick labels, and axis label computed in_ `updatePolish()` _._ |
 |  qreal | [**pixelToValue**](#function-pixeltovalue) (qreal pixel, qreal length) const<br>_Maps a_ _pixel_ _position along a strip of__length_ _pixels back to a value._ |
 |  Q\_INVOKABLE void | [**rescaleToData**](#function-rescaletodata) () <br>_Unsets the colormap's_ `min` _and_`max` _, so the range is resolved from the data again._ |
 |  [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) \* | [**series**](#function-series-22) () const<br>_Returns the series whose colormap is shown, or_ `nullptr` _._ |
@@ -116,6 +116,7 @@ flowchart TB
 |  void | [**setZoomScaleFactor**](#function-setzoomscalefactor) (qreal factor) <br>_Sets the zoom scale factor to_ _factor_ _(clamped to the range (0, 1))._ |
 |  qreal | [**tickLabelWidth**](#function-ticklabelwidth-22) () const<br>_Returns the width reserved for tick labels in pixels._  |
 |  [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](#function-ticker-22) () const<br>_Returns the tick configuration object. The object is owned by the color bar._  |
+|  QString | [**unitText**](#function-unittext) () const<br>_Returns the unit text the tick label formatter chose for the latest tick computation._  |
 |  qreal | [**valueToPixel**](#function-valuetopixel) (qreal value, qreal length) const<br>_Maps_ _value_ _to a pixel position along a strip of__length_ _pixels._ |
 |  qreal | [**zoomScaleFactor**](#function-zoomscalefactor-22) () const<br>_Returns the zoom scale factor._  |
 
@@ -266,13 +267,17 @@ While `false`, the bar leaves mouse and wheel events to the items below it.
 
 ### property label {#property-label-12}
 
-_Title drawn beside the tick labels, e.g._ `label.text: "Intensity"` _. Negative padding counts as 0._
+[_**Axis**_](classQAccelPlot_1_1Axis.md) _label drawn beside the tick labels, e.g._`label.text: "Intensity"` _. Negative padding counts as 0._
 ```C++
 TextLabel* QAccelPlot::ColorBar::label;
 ```
 
 
 
+With a `UnitTickLabelFormatter`, the axis label includes the prefixed unit from `label.unitText`, such as "Intensity (mW)". 
+
+
+        
 
 <hr>
 
@@ -318,7 +323,7 @@ qreal QAccelPlot::ColorBar::tickLabelWidth;
 
 
 
-The width is fixed, so the implicit width and the title stay in place while the labels change. Labels wider than it are clipped. Ignored by horizontal bars. 
+The width is fixed, so the implicit width and the axis label stay in place while the labels change. Labels wider than it are clipped. Ignored by horizontal bars. 
 
 
         
@@ -554,7 +559,7 @@ bool QAccelPlot::ColorBar::interactive () const
 
 ### function label {#function-label-22}
 
-_Returns the title settings. The object is owned by the bar._ 
+_Returns the axis label settings. The object is owned by the bar._ 
 ```C++
 TextLabel * QAccelPlot::ColorBar::label () const
 ```
@@ -584,7 +589,7 @@ Qt::Orientation QAccelPlot::ColorBar::orientation () const
 
 ### function paint {#function-paint}
 
-_Paints the strip, ticks, tick labels, and title computed in_ `updatePolish()` _._
+_Paints the strip, ticks, tick labels, and axis label computed in_ `updatePolish()` _._
 ```C++
 void QAccelPlot::ColorBar::paint (
     QPainter * painter
@@ -777,6 +782,25 @@ AxisTicker * QAccelPlot::ColorBar::ticker () const
 
 
 
+
+<hr>
+
+
+
+
+### function unitText {#function-unittext}
+
+_Returns the unit text the tick label formatter chose for the latest tick computation._ 
+```C++
+QString QAccelPlot::ColorBar::unitText () const
+```
+
+
+
+Updated on the GUI thread when the bar is polished. Empty when the bar has no ticks or the formatter shows no unit in the axis label. 
+
+
+        
 
 <hr>
 

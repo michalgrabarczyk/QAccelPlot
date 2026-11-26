@@ -1533,6 +1533,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionLayout/"><strong>QAccelPlot::Internal::TransitionLayout</strong></a> <em>How a series' items animate.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionSlots/"><strong>QAccelPlot::Internal::TransitionSlots</strong></a> <em>Slots a data change animates.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionStep/"><strong>QAccelPlot::Internal::TransitionStep</strong></a> <em>The state of one slot's transition at the frame.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1UnitPrefix/"><strong>QAccelPlot::Internal::UnitPrefix</strong></a> <em>An SI unit prefix: its output symbol and its power of ten.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ValueRange/"><strong>QAccelPlot::Internal::ValueRange</strong></a> <em>Bounds of an axis viewport or a colormap value range.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LegendEntry/"><strong>QAccelPlot::LegendEntry</strong></a> <em>How a legend draws one row of a series: its label, symbol, color, line, and marker.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a> <em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/#function-paint"><em><strong>LineCurveLineRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em></li>
@@ -1547,6 +1548,9 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a> <em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurvePointRenderer/#function-paint"><em><strong>LineCurvePointRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1Mapping/"><strong>QAccelPlot::PointSpatialIndex::Mapping</strong></a> <em>Coordinate mapping applied before indexing.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a> <em>Placeholder vertex of a marker quad, shared with the main thread for vertex caches.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1TickSet/"><strong>QAccelPlot::TickSet</strong></a> <em>The visible major ticks of one axis viewport, passed to</em> <code>TickLabelFormatter::formatTicks()</code> <em>.</em></li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1TickSetFormat/"><strong>QAccelPlot::TickSetFormat</strong></a> <em>What a formatter decided for a whole</em> <code>TickSet</code> <em>that a single value formatted later must follow.</em></li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1TickSetLabels/"><strong>QAccelPlot::TickSetLabels</strong></a> <em>The text a formatter returns for a</em> <code>TickSet</code> <em>.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>QAccelPlot::Axis::DataRange</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Axis_1_1DataRangeSource/"><strong>QAccelPlot::Axis::DataRangeSource</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale/"><strong>QAccelPlot::BandEdgeRenderer::ArcLengthScale</strong></a> </li>
@@ -1583,8 +1587,8 @@
 </ul>
 </li>
 <li><strong>class</strong> <strong>QObject</strong>    <ul>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a> <em>Text, font, color, and padding of a title, grouped as the</em> <code>label</code> <em>property of</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>and</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em>    <ul>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>title and its placement, grouped as the</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> __<code>label</code> <em>property, e.g.</em><code>label.text: "Time (s)"</code> <em>.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a> <em>Text, font, color, and padding of an axis label, grouped as the</em> <code>label</code> <em>property of</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>and</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>label and its placement, grouped as the</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> __<code>label</code> <em>property, e.g.</em><code>label.text: "Time (s)"</code> <em>.</em></li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a> <em>Controls the visual appearance of ticks, sub-ticks, and tick labels on an</em> <code>Axis</code> <em>.</em></li>
@@ -1613,6 +1617,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DateTimeTickLabelFormatter/"><strong>QAccelPlot::DateTimeTickLabelFormatter</strong></a> <em>A tick label formatter that displays tick values as formatted date/time strings.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1NumericTickLabelFormatter/"><strong>QAccelPlot::NumericTickLabelFormatter</strong></a> <em>The default tick label formatter — produces numeric labels with automatic decimal precision.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>QAccelPlot::TextTickLabelFormatter</strong></a> <em>A tick label formatter that maps integer tick indices to a user-supplied list of strings.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1UnitTickLabelFormatter/"><strong>QAccelPlot::UnitTickLabelFormatter</strong></a> <em>Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix.</em> </li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a> <em>Abstract base class for animated data transitions on plot series.</em>     <ul>
@@ -1702,6 +1707,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DateTimeTickLabelFormatter/"><strong>QAccelPlot::DateTimeTickLabelFormatter</strong></a> <em>A tick label formatter that displays tick values as formatted date/time strings.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1NumericTickLabelFormatter/"><strong>QAccelPlot::NumericTickLabelFormatter</strong></a> <em>The default tick label formatter — produces numeric labels with automatic decimal precision.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>QAccelPlot::TextTickLabelFormatter</strong></a> <em>A tick label formatter that maps integer tick indices to a user-supplied list of strings.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1UnitTickLabelFormatter/"><strong>QAccelPlot::UnitTickLabelFormatter</strong></a> <em>Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix.</em> </li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotExporter/"><strong>QAccelPlot::PlotExporter</strong></a> <em>Exports a plot as a raster image: to a file, to the clipboard, or as a</em> <code>QImage</code> <em>.</em></li>
@@ -1724,23 +1730,32 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SolidLine/"><strong>QAccelPlot::SolidLine</strong></a> <em>The default line style — renders a continuous solid line with no gaps.</em> </li>
 </ul>
 </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a> <em>Text, font, color, and padding of a title, grouped as the</em> <code>label</code> <em>property of</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>and</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em>    <ul>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>title and its placement, grouped as the</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> __<code>label</code> <em>property, e.g.</em><code>label.text: "Time (s)"</code> <em>.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a> <em>Text, font, color, and padding of an axis label, grouped as the</em> <code>label</code> <em>property of</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>and</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>label and its placement, grouped as the</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> __<code>label</code> <em>property, e.g.</em><code>label.text: "Time (s)"</code> <em>.</em></li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>QAccelPlot::TickLabelFormatter</strong></a> <em>Abstract base class for tick label formatters.</em>     <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DateTimeTickLabelFormatter/"><strong>QAccelPlot::DateTimeTickLabelFormatter</strong></a> <em>A tick label formatter that displays tick values as formatted date/time strings.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1NumericTickLabelFormatter/"><strong>QAccelPlot::NumericTickLabelFormatter</strong></a> <em>The default tick label formatter — produces numeric labels with automatic decimal precision.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>QAccelPlot::TextTickLabelFormatter</strong></a> <em>A tick label formatter that maps integer tick indices to a user-supplied list of strings.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1UnitTickLabelFormatter/"><strong>QAccelPlot::UnitTickLabelFormatter</strong></a> <em>Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix.</em> </li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>QAccelPlot::TickLabelFormatter</strong></a> <em>Abstract base class for tick label formatters.</em>     <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DateTimeTickLabelFormatter/"><strong>QAccelPlot::DateTimeTickLabelFormatter</strong></a> <em>A tick label formatter that displays tick values as formatted date/time strings.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1NumericTickLabelFormatter/"><strong>QAccelPlot::NumericTickLabelFormatter</strong></a> <em>The default tick label formatter — produces numeric labels with automatic decimal precision.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>QAccelPlot::TextTickLabelFormatter</strong></a> <em>A tick label formatter that maps integer tick indices to a user-supplied list of strings.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1UnitTickLabelFormatter/"><strong>QAccelPlot::UnitTickLabelFormatter</strong></a> <em>Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix.</em> </li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TransitionRunner/"><strong>QAccelPlot::TransitionRunner</strong></a> <em>Runs the enter, update, and exit transitions of one item, such as a custom series.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>QAccelPlot::TickLabelFormatter</strong></a> <em>Abstract base class for tick label formatters.</em>     <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DateTimeTickLabelFormatter/"><strong>QAccelPlot::DateTimeTickLabelFormatter</strong></a> <em>A tick label formatter that displays tick values as formatted date/time strings.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1NumericTickLabelFormatter/"><strong>QAccelPlot::NumericTickLabelFormatter</strong></a> <em>The default tick label formatter — produces numeric labels with automatic decimal precision.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>QAccelPlot::TextTickLabelFormatter</strong></a> <em>A tick label formatter that maps integer tick indices to a user-supplied list of strings.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1UnitTickLabelFormatter/"><strong>QAccelPlot::UnitTickLabelFormatter</strong></a> <em>Numeric tick label formatter that writes the tick labels in a unit with an automatic SI unit prefix.</em> </li>
+</ul>
+</li>
 </ul>
 </li>
 <li><strong>class</strong> <strong>QSGMaterial</strong>    <ul>

@@ -1450,6 +1450,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#variable-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-majorticks" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1465,6 +1476,17 @@
     <span class="md-ellipsis">
       
         variable subtickValues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-unittext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable unitText
       
     </span>
   </a>
@@ -1509,6 +1531,10 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1TickSetFormat/"><strong>TickSetFormat</strong></a></td>
+<td style="text-align: left;"><a href="#variable-format"><strong>format</strong></a>  <br><em>What the formatter decided for the major ticks that single-value readouts follow.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">QList&lt; <a href="../structQAccelPlot_1_1AxisTick/"><strong>AxisTick</strong></a> &gt;</td>
 <td style="text-align: left;"><a href="#variable-majorticks"><strong>majorTicks</strong></a>  <br><em>Visible major ticks with their labels.</em></td>
 </tr>
@@ -1516,21 +1542,37 @@
 <td style="text-align: right;">QList&lt; qreal &gt;</td>
 <td style="text-align: left;"><a href="#variable-subtickvalues"><strong>subtickValues</strong></a>  <br><em>Data-space values of the visible subticks.</em></td>
 </tr>
+<tr>
+<td style="text-align: right;">QString</td>
+<td style="text-align: left;"><a href="#variable-unittext"><strong>unitText</strong></a>  <br><em>Unit text the formatter chose for the axis label; empty for none.</em></td>
+</tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Holds data-space values and label text only; no pixel geometry. Placement (padding, font metrics, rotation, value-to-pixel mapping) is resolved in <code>Axis::paint()</code>.</p>
 <p>Built on the GUI thread by <code>AxisTickPainter::computeTicks()</code>, because label formatting may call into the QML/JS engine, and consumed by <code>Axis::paint()</code>, which runs on the render thread with the threaded render loop. </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-format">variable format<a class="headerlink" href="#variable-format" title="Permanent link">&para;</a></h3>
+<p><em>What the formatter decided for the major ticks that single-value readouts follow.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">TickSetFormat</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicks</span><span class="o">::</span><span class="n">format</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="variable-majorticks">variable majorTicks<a class="headerlink" href="#variable-majorticks" title="Permanent link">&para;</a></h3>
 <p><em>Visible major ticks with their labels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QList</span><span class="o">&lt;</span><span class="n">AxisTick</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicks</span><span class="o">::</span><span class="n">majorTicks</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QList</span><span class="o">&lt;</span><span class="n">AxisTick</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicks</span><span class="o">::</span><span class="n">majorTicks</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-subtickvalues">variable subtickValues<a class="headerlink" href="#variable-subtickvalues" title="Permanent link">&para;</a></h3>
 <p><em>Data-space values of the visible subticks.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QList</span><span class="o">&lt;</span><span class="n">qreal</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicks</span><span class="o">::</span><span class="n">subtickValues</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">QList</span><span class="o">&lt;</span><span class="n">qreal</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicks</span><span class="o">::</span><span class="n">subtickValues</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="variable-unittext">variable unitText<a class="headerlink" href="#variable-unittext" title="Permanent link">&para;</a></h3>
+<p><em>Unit text the formatter chose for the axis label; empty for none.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicks</span><span class="o">::</span><span class="n">unitText</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 

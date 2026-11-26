@@ -49,7 +49,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**TextLabel**](classQAccelPlot_1_1TextLabel.md) <br>_Text, font, color, and padding of a title, grouped as the_ `label` _property of_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _and_[_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
+| class | [**TextLabel**](classQAccelPlot_1_1TextLabel.md) <br>_Text, font, color, and padding of an axis label, grouped as the_ `label` _property of_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _and_[_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
 
 
 

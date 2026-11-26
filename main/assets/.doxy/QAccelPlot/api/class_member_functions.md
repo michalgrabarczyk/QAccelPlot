@@ -65,6 +65,8 @@
 * **animateValues** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **acquire** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **animates** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
+* **allowedPrefixes** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
+* **applyAllowedPrefixes** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 
 
 ## b
@@ -219,6 +221,8 @@
 * **cellIndex** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
 * **computeDataBounds** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
 * **callTickLabel** ([**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
+* **callCustomPrefix** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
+* **customPrefix** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 
 
 ## d
@@ -259,7 +263,7 @@
 * **duration** ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
 * **DateTimeTickLabelFormatter** ([**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md))
 * **dateTimeFormat** ([**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md))
-* **doFormat** ([**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md), [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md), [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md), [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
+* **doFormat** ([**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md), [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md), [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md), [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md), [**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 * **DrawTransition** ([**QAccelPlot::DrawTransition**](classQAccelPlot_1_1DrawTransition.md))
 * **dataBar** ([**QAccelPlot::ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md))
 * **direction** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
@@ -275,7 +279,7 @@
 * **downCandleColor** ([**QAccelPlot::LegendEntry**](structQAccelPlot_1_1LegendEntry.md))
 * **dataTexture** ([**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md))
 * **dashed** ([**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md))
-* **doFormatLogTick** ([**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md), [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
+* **doFormatLogTick** ([**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md), [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md), [**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 * **dpi** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
 * **dataPointAlong** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **dataPoints** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
@@ -288,6 +292,8 @@
 * **drawnPoints** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **dataPointAt** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **dataPointAtPosition** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
+* **doFormatTicks** ([**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md), [**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
+* **doFormatValue** ([**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md), [**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 
 
 ## e
@@ -339,7 +345,7 @@
 
 ## f
 
-* **formatValue** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **formatValue** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
 * **FadeTrail** ([**QAccelPlot::FadeTrail**](classQAccelPlot_1_1FadeTrail.md))
 * **fromCounts** ([**QAccelPlot::Histogram**](classQAccelPlot_1_1Histogram.md), [**QAccelPlot::HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md))
 * **fromSamples** ([**QAccelPlot::Histogram**](classQAccelPlot_1_1Histogram.md), [**QAccelPlot::HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md))
@@ -364,8 +370,10 @@
 * **font** ([**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md))
 * **format** ([**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
 * **formatLogTick** ([**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
+* **formatTicks** ([**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
 * **finished** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
 * **frameCapacity** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
+* **fixedPrefix** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 
 
 ## g
@@ -614,6 +622,7 @@
 * **onAfterAnimating** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
 * **onRunningChanged** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
 * **onTransitionDestroyed** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
+* **ownPrefix** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 * **overlaps** ([**QAccelPlot::SpatialGrid::ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md))
 
 
@@ -674,7 +683,10 @@
 * **PointCloudMaterial** ([**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md))
 * **PointMaterial** ([**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md))
 * **prepare** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
+* **paintedText** ([**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md))
 * **pending** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
+* **perTickLabels** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
+* **prefixMode** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 
 
 ## q
@@ -788,8 +800,10 @@
 * **resetYAxis** ([**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **recordAt** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **recordAtPosition** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
+* **resetUnitFormat** ([**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md))
 * **requestFrame** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
 * **restartRuns** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
+* **resetAllowedPrefixes** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 
 
 ## s
@@ -1067,10 +1081,19 @@
 * **scanTopmostFrom** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
 * **setFont** ([**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md))
 * **setText** ([**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md))
+* **setUnitFormat** ([**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md))
+* **setUnitText** ([**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md))
 * **setLabels** ([**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md))
 * **setTickLabel** ([**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
 * **setTransition** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
 * **step** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
+* **setAllowedPrefixes** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
+* **setCustomPrefix** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
+* **setFixedPrefix** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
+* **setPrefixMode** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
+* **setUnit** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
+* **setUnitPosition** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
+* **sharedPrefix** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 
 
 ## t
@@ -1126,6 +1149,7 @@
 
 ## u
 
+* **unitText** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md))
 * **updatePolish** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **updateFillNode** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md))
 * **updateColormapUniforms** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
@@ -1152,11 +1176,16 @@
 * **updateAcceptHoverEvents** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **updateRenderCapacity** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **updateRectangleSelection** ([**QAccelPlot::PlotView**](classQAccelPlot_1_1PlotView.md))
+* **unitFormat** ([**QAccelPlot::TextLabel**](classQAccelPlot_1_1TextLabel.md))
 * **updateActive** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
+* **UnitTickLabelFormatter** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
+* **unit** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
+* **unitPosition** ([**QAccelPlot::UnitTickLabelFormatter**](classQAccelPlot_1_1UnitTickLabelFormatter.md))
 
 
 ## v
 
+* **valueFormat** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **valueResolution** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **viewportMax** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **viewportMin** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
