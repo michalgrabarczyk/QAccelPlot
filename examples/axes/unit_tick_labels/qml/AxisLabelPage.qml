@@ -15,9 +15,22 @@ Item {
     property int prefixModeIndex: 0
     readonly property var prefixModes: [
         { text: "Largest magnitude", mode: QAccelPlot.UnitTickLabelFormatter.LargestMagnitude },
-        { text: "Fixed (ms)", mode: QAccelPlot.UnitTickLabelFormatter.Fixed },
-        { text: "Custom (from span)", mode: QAccelPlot.UnitTickLabelFormatter.Custom }
+        { text: "Fixed (milli)", mode: QAccelPlot.UnitTickLabelFormatter.Fixed },
+        { text: "Custom (whole numbers)", mode: QAccelPlot.UnitTickLabelFormatter.Custom }
     ]
+    readonly property var prefixFactors: [["G", 1e9], ["M", 1e6], ["k", 1e3], ["", 1], ["m", 1e-3], ["µ", 1e-6], ["n", 1e-9]]
+
+    // Custom prefix rule: the largest prefix at which the tick step is at least 1,
+    // so tick labels are whole numbers ("0, 500, 1000 mV" instead of "0.0, 0.5, 1.0 V").
+    function wholeNumberPrefix(min, max, ticks) {
+        const step = ticks.length > 1 ? Math.abs(ticks[1] - ticks[0]) : Math.abs(max - min);
+        for (const [symbol, factor] of prefixFactors) {
+            if (step >= factor * (1 - 1e-9)) {
+                return symbol;
+            }
+        }
+        return "n";
+    }
 
     // RC step response with a fast ringing transient right after the step.
     function voltageAt(seconds) {
@@ -83,12 +96,7 @@ Item {
                     unit: "s"
                     prefixMode: root.prefixModes[root.prefixModeIndex].mode
                     fixedPrefix: "m"
-                    // Picks the prefix from the visible span, so a narrow window far from zero
-                    // reads "5000.2 µs" instead of "5.0002 ms".
-                    customPrefix: function(min, max, ticks) {
-                        const span = max - min;
-                        return span < 1e-6 ? "n" : span < 1e-3 ? "µ" : "m";
-                    }
+                    customPrefix: root.wholeNumberPrefix
                 }
             }
 
@@ -101,6 +109,9 @@ Item {
                 layoutSize: 60
                 ticker.tickLabelFormatter: QAccelPlot.UnitTickLabelFormatter {
                     unit: "V"
+                    prefixMode: root.prefixModes[root.prefixModeIndex].mode
+                    fixedPrefix: "m"
+                    customPrefix: root.wholeNumberPrefix
                 }
             }
 
