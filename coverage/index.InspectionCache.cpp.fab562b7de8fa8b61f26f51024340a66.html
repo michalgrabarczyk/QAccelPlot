@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-11-26 10:14:46</td>
+      <td>2026-11-26 20:19:44</td>
     </tr>
   </table>
 </div>
@@ -75,14 +75,14 @@
     <tr><td><a href="#l45">QAccelPlot::Internal::(anonymous namespace)::validPoints(QAccelPlot::Internal::InspectionSource const&amp;, std::atomic&lt;bool&gt; const&amp;) (line 45)</a></td><td>called 6 times</td><td>80.0%</td></tr>
     <tr><td><a href="#l62">QAccelPlot::Internal::InspectionCache::Host::~Host() (line 62)</a></td><td>called 75 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l64">QAccelPlot::Internal::InspectionCache::InspectionCache(QAccelPlot::Internal::InspectionCache::Host&amp;) (line 64)</a></td><td>called 82 times</td><td>50.0%</td></tr>
-    <tr><td><a href="#l112">QAccelPlot::Internal::InspectionCache::index() const (line 112)</a></td><td>called 1169 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l112">QAccelPlot::Internal::InspectionCache::index() const (line 112)</a></td><td>called 1174 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l78">QAccelPlot::Internal::InspectionCache::invalidate() (line 78)</a></td><td>called 270 times</td><td>71.0%</td></tr>
     <tr><td><a href="#l138">QAccelPlot::Internal::InspectionCache::launch() (line 138)</a></td><td>called 6 times</td><td>63.0%</td></tr>
     <tr><td><a href="#l143">QAccelPlot::Internal::InspectionCache::launch()::{lambda()#1}::operator()() const (line 143)</a></td><td>called 6 times</td><td>78.0%</td></tr>
     <tr><td><a href="#l90">QAccelPlot::Internal::InspectionCache::modified(QAccelPlot::Internal::InspectionSource const&amp;, int) (line 90)</a></td><td>called 206 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l99">QAccelPlot::Internal::InspectionCache::request() (line 99)</a></td><td>called 564 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l107">QAccelPlot::Internal::InspectionCache::requested() const (line 107)</a></td><td>called 589 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l117">QAccelPlot::Internal::InspectionCache::tick() (line 117)</a></td><td>called 77 times</td><td>94.0%</td></tr>
+    <tr><td><a href="#l107">QAccelPlot::Internal::InspectionCache::requested() const (line 107)</a></td><td>called 594 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l117">QAccelPlot::Internal::InspectionCache::tick() (line 117)</a></td><td>called 110 times</td><td>94.0%</td></tr>
     <tr><td><a href="#l71">QAccelPlot::Internal::InspectionCache::~InspectionCache() (line 71)</a></td><td>called 75 times</td><td>78.0%</td></tr>
   </table>
 </details>
@@ -969,7 +969,7 @@
       <td class="lineno"><a id="l107" href="#l107">107</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">589</td>
+      <td class="linecount coveredLine">594</td>
       <td class="src coveredLine"><span class="kt">bool</span><span class="w"> </span><span class="n">InspectionCache</span><span class="o">::</span><span class="n">requested</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
@@ -983,7 +983,7 @@
       <td class="lineno"><a id="l109" href="#l109">109</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">589</td>
+      <td class="linecount coveredLine">594</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">requested_</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -1004,7 +1004,7 @@
       <td class="lineno"><a id="l112" href="#l112">112</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1169</td>
+      <td class="linecount coveredLine">1174</td>
       <td class="src coveredLine"><span class="k">const</span><span class="w"> </span><span class="n">InspectionIndex</span><span class="o">*</span><span class="w"> </span><span class="n">InspectionCache</span><span class="o">::</span><span class="n">index</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
@@ -1018,7 +1018,7 @@
       <td class="lineno"><a id="l114" href="#l114">114</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1169</td>
+      <td class="linecount coveredLine">1174</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">index_</span><span class="p">.</span><span class="n">get</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
@@ -1039,7 +1039,7 @@
       <td class="lineno"><a id="l117" href="#l117">117</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">77</td>
+      <td class="linecount coveredLine">110</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="n">InspectionCache</span><span class="o">::</span><span class="n">tick</span><span class="p">()</span></td>
     </tr>
     <tr class="source-line">
@@ -1055,12 +1055,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 71 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 104 times.</div>
             <div class="takenBranch">&check; Branch 2 taken 6 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">77</td>
+      <td class="linecount coveredLine">110</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">job_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -1069,26 +1069,26 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 2 taken 65 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 98 times.</div>
             <div class="takenBranch">&check; Branch 3 taken 6 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">71</td>
+      <td class="linecount coveredLine">104</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">job_</span><span class="o">-&gt;</span><span class="n">done</span><span class="p">.</span><span class="n">load</span><span class="p">())</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l121" href="#l121">121</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">65</td>
+      <td class="linecount coveredLine">98</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">timer_</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="n">kPollIntervalMs</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l122" href="#l122">122</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">65</td>
+      <td class="linecount coveredLine">98</td>
       <td class="src coveredLine"><span class="w">            </span><span class="k">return</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
