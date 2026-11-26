@@ -136,7 +136,7 @@ QRectF clampTickLabelRect(const QRectF& bounds, const QRectF& axisRect, const Ax
 AxisTicks AxisTickPainter::computeTicks(const qreal viewportMin, const qreal viewportMax, const bool logScale, const AxisTicker* ticker)
 {
     const auto values = computeTickValues(viewportMin, viewportMax, logScale, ticker);
-    auto ticks = AxisTicks{values.subtickValues, {}, {}};
+    auto ticks = AxisTicks{values.subtickValues, {}, {}, {}};
     if (values.majorValues.isEmpty()) {
         return ticks;
     }

@@ -28,7 +28,7 @@ protected:
 
     QAccelPlot::TickSetLabels doFormatTicks([[maybe_unused]] const QAccelPlot::TickSet& tickSet) const override
     {
-        return {{QStringLiteral("only")}, QString{}};
+        return {{QStringLiteral("only")}, QString{}, {}};
     }
 };
 

@@ -129,7 +129,7 @@ protected:
     QAccelPlot::TickSetLabels doFormatTicks(const QAccelPlot::TickSet& tickSet) const override
     {
         tickSets.append(tickSet);
-        auto result = QAccelPlot::TickSetLabels{{}, QStringLiteral("u")};
+        auto result = QAccelPlot::TickSetLabels{{}, QStringLiteral("u"), {}};
         for (auto i = 0; i < tickSet.values.size(); ++i) {
             result.labels.append(QStringLiteral("t%1").arg(i));
         }

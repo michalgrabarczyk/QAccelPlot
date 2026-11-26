@@ -84,7 +84,7 @@ protected:
 
     TickSetLabels doFormatTicks(const TickSet& tickSet) const override
     {
-        return {QStringList(tickSet.values.size(), QString{}), QStringLiteral("u")};
+        return {QStringList(tickSet.values.size(), QString{}), QStringLiteral("u"), {}};
     }
 };
 
