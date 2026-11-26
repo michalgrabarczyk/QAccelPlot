@@ -375,7 +375,7 @@ void TestAxisMapping::formatValue_unitFormatter_followsThePrefixAfterZooming()
     QCOMPARE(axis->formatValue(0.00123456, 700.0), QStringLiteral("1.2346 mm"));
 
     axis->setViewportRange(0.0, 4e-6);
-    QCOMPARE(axis->formatValue(1.23456e-6, 700.0), QStringLiteral("1.2346 µm"));
+    QCOMPARE(axis->formatValue(1.23456e-6, 700.0), QStringLiteral("1.2346 \u00B5m"));
 
     axis->setViewportRange(0.0, 4000.0);
     QCOMPARE(axis->formatValue(1234.56, 700.0), QStringLiteral("1.2346 km"));
