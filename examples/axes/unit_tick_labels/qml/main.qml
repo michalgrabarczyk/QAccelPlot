@@ -32,7 +32,7 @@ Window {
             subtitle: "UnitTickLabelFormatter writing SI unit prefixes that follow the visible range, in the axis label or on the tick labels."
             interactions: [
                 "Zoom in on an axis to watch its unit prefix change",
-                "Choose a <b>Unit format</b> on <b>Axis label</b>",
+                "Choose a <b>Unit format</b> and <b>Prefix mode</b> on <b>Axis label</b>",
                 "Choose the <b>Allowed prefixes</b> on <b>Tick labels</b>",
                 "Toggle <b>Logarithmic axis</b> on <b>Per tick label</b>"
             ]

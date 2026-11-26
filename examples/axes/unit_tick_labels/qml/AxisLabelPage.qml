@@ -12,6 +12,12 @@ Item {
     required property var colorPalette
     property int formatIndex: 0
     readonly property var unitFormats: ["%1 (%2)", "%1 [%2]", "%1 / %2"]
+    property int prefixModeIndex: 0
+    readonly property var prefixModes: [
+        { text: "Largest magnitude", mode: QAccelPlot.UnitTickLabelFormatter.LargestMagnitude },
+        { text: "Fixed (ms)", mode: QAccelPlot.UnitTickLabelFormatter.Fixed },
+        { text: "Custom (from span)", mode: QAccelPlot.UnitTickLabelFormatter.Custom }
+    ]
 
     // RC step response with a fast ringing transient right after the step.
     function voltageAt(seconds) {
@@ -46,6 +52,19 @@ Item {
                 Material.background: root.colorPalette.plotArea
                 onActivated: root.formatIndex = currentIndex
             }
+
+            Label {
+                text: "Prefix mode"
+                color: root.colorPalette.text
+            }
+            ComboBox {
+                model: root.prefixModes
+                textRole: "text"
+                currentIndex: root.prefixModeIndex
+                Layout.preferredWidth: 190
+                Material.background: root.colorPalette.plotArea
+                onActivated: root.prefixModeIndex = currentIndex
+            }
         }
 
         QAccelPlot.Plot {
@@ -62,6 +81,14 @@ Item {
                 label.unitFormat: root.unitFormats[root.formatIndex]
                 ticker.tickLabelFormatter: QAccelPlot.UnitTickLabelFormatter {
                     unit: "s"
+                    prefixMode: root.prefixModes[root.prefixModeIndex].mode
+                    fixedPrefix: "m"
+                    // Picks the prefix from the visible span, so a narrow window far from zero
+                    // reads "5000.2 µs" instead of "5.0002 ms".
+                    customPrefix: function(min, max, ticks) {
+                        const span = max - min;
+                        return span < 1e-6 ? "n" : span < 1e-3 ? "µ" : "m";
+                    }
                 }
             }
 
