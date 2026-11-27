@@ -59,6 +59,8 @@ private slots:
     void skipOnNaNRuleIgnoresInfiniteEdgesOnly();
     void extentsCoverARangeOfDataPoints();
     void columnsShareTheirDimensionsExtent();
+    void renderedExtentsCoverTheDrawnDataPoints();
+    void renderedExtentsIndexTheRenderedDataPoints();
     void appendPromotesFloatData();
     void appendExtendsTheRenderDataInPlace();
     void appendRebuildsWhenTheOriginIsUnsettled();
@@ -254,6 +256,44 @@ void DataPointStoreTest::columnsShareTheirDimensionsExtent()
 
     QCOMPARE(extents.y->min, -2.0);
     QCOMPARE(extents.y->max, 9.0);
+}
+
+void DataPointStoreTest::renderedExtentsCoverTheDrawnDataPoints()
+{
+    auto store = xyStore();
+    store.setFloat({1.0F, 2.0F, 3.0F, 4.0F}, 2);
+    std::ignore = store.setDrawn({10.0, -kInf, 20.0, 0.5, 30.0, 40.0}, 3);
+
+    const auto stored = store.extents(false, false);
+    QCOMPARE(stored.x->max, 3.0);
+
+    const auto linear = store.renderedExtents(false, false);
+    QCOMPARE(linear.x->min, 10.0);
+    QCOMPARE(linear.x->max, 30.0);
+    QCOMPARE(linear.y->min, 0.5);
+    QCOMPARE(linear.y->max, 40.0);
+
+    const auto log = store.renderedExtents(false, true, 0, 2);
+    QCOMPARE(log.x->max, 20.0);
+    QCOMPARE(log.y->min, 0.5);
+    QCOMPARE(log.y->max, 0.5);
+
+    store.clearDrawn();
+    QCOMPARE(store.renderedExtents(false, false).x->max, 3.0);
+}
+
+void DataPointStoreTest::renderedExtentsIndexTheRenderedDataPoints()
+{
+    auto store = xyStore();
+    store.setPrecise({1.0, 10.0, 2.0, kNaN, 3.0, 30.0, 4.0, 40.0}, 4);
+    store.setSkipInvalid(true);
+
+    const auto head = store.renderedExtents(false, false, 0, 2);
+    QCOMPARE(head.x->min, 1.0);
+    QCOMPARE(head.x->max, 3.0);
+    QCOMPARE(head.y->max, 30.0);
+
+    QVERIFY(!store.renderedExtents(false, false, 3).x);
 }
 
 void DataPointStoreTest::appendPromotesFloatData()

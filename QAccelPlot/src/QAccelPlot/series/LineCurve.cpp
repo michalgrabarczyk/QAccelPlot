@@ -31,7 +31,9 @@
 #include <array>
 #include <cmath>
 #include <limits>
+#include <optional>
 #include <type_traits>
+#include <utility>
 
 namespace QAccelPlot {
 
@@ -41,76 +43,14 @@ namespace {
 constexpr auto kFallbackDataMin = qreal{0.0};
 constexpr auto kFallbackDataMax = qreal{1.0};
 
-// Per-dimension extents of the valid coordinates in a curve buffer. A dimension
-// without any valid coordinate keeps min > max.
-struct DataExtents {
-    qreal xMin{std::numeric_limits<qreal>::max()};
-    qreal xMax{std::numeric_limits<qreal>::lowest()};
-    qreal yMin{std::numeric_limits<qreal>::max()};
-    qreal yMax{std::numeric_limits<qreal>::lowest()};
-};
-
-// Returns true when a dimension is empty (min > max) or both its bounds are valid.
-bool isValidExtent(const qreal min, const qreal max, const bool logScale)
+// Bounds of a chunk's culling box in one dimension; a dimension without a valid coordinate gets
+// min > max, which no hit test overlaps.
+std::pair<qreal, qreal> chunkBounds(const std::optional<DataPointStore::Extent>& extent)
 {
-    return min > max || (isValidCoordinate(min, logScale) && isValidCoordinate(max, logScale));
-}
-
-// Extents of the valid coordinates in data points [begin, end) of interleaved data.
-// Each coordinate is judged on its own: an invalid Y does not remove its X from
-// the X extent, and vice versa.
-//
-// The first pass is a branch-free min/max scan in the buffer's own type, using
-// local accumulators and pointer iteration so the compiler keeps it as cheap as
-// the pre-gap implementation. It is exact whenever the data is valid, and NaN
-// never wins a `value < min ? value : min` comparison, so NaN is ignored as
-// required. +/-Inf and non-positive log-scale values show up in the resulting
-// bounds, which triggers the validity-checked second pass.
-template <typename T> DataExtents computeValidExtents(const T* data, const std::size_t begin, const std::size_t end, const bool logScaleX, const bool logScaleY)
-{
-    auto xMin = std::numeric_limits<T>::max();
-    auto xMax = std::numeric_limits<T>::lowest();
-    auto yMin = std::numeric_limits<T>::max();
-    auto yMax = std::numeric_limits<T>::lowest();
-    const auto* last = data + end * 2;
-    for (auto* sample = data + begin * 2; sample != last; sample += 2) {
-        const auto x = sample[0];
-        const auto y = sample[1];
-        xMin = x < xMin ? x : xMin;
-        xMax = x > xMax ? x : xMax;
-        yMin = y < yMin ? y : yMin;
-        yMax = y > yMax ? y : yMax;
+    if (!extent) {
+        return {std::numeric_limits<qreal>::max(), std::numeric_limits<qreal>::lowest()};
     }
-    auto extents = DataExtents{static_cast<qreal>(xMin), static_cast<qreal>(xMax), static_cast<qreal>(yMin), static_cast<qreal>(yMax)};
-    if (begin == end) {
-        extents = DataExtents{};
-    }
-    if (isValidExtent(extents.xMin, extents.xMax, logScaleX) && isValidExtent(extents.yMin, extents.yMax, logScaleY)) {
-        return extents;
-    }
-
-    extents = DataExtents{};
-    for (auto i = begin; i < end; ++i) {
-        const auto x = static_cast<qreal>(data[i * 2]);
-        const auto y = static_cast<qreal>(data[i * 2 + 1]);
-        if (isValidCoordinate(x, logScaleX)) {
-            extents.xMin = std::min(extents.xMin, x);
-            extents.xMax = std::max(extents.xMax, x);
-        }
-        if (isValidCoordinate(y, logScaleY)) {
-            extents.yMin = std::min(extents.yMin, y);
-            extents.yMax = std::max(extents.yMax, y);
-        }
-    }
-    return extents;
-}
-
-// Data-space culling box for the inclusive index range [first, last]. It covers
-// every valid coordinate, which keeps it conservative for hit tests; a range
-// without valid coordinates yields min > max and is skipped.
-template <typename T> DataExtents computeChunkExtents(const T* data, const int first, const int last, const bool logScaleX, const bool logScaleY)
-{
-    return computeValidExtents(data, static_cast<std::size_t>(first), static_cast<std::size_t>(last) + 1, logScaleX, logScaleY);
+    return {extent->min, extent->max};
 }
 
 // Returns the first enabled Effect with a valid payload. Effects snapshot their payloads on the
@@ -873,20 +813,20 @@ void LineCurve::rebuildChunks() const
     }
 
     constexpr static auto kChunkSize = int{512};
-    const auto sourceData = sourceDataView();
     const auto logX = logScaleX();
     const auto logY = logScaleY();
     chunks_.reserve(static_cast<std::size_t>((pointCount + kChunkSize - 1) / kChunkSize));
     for (auto start = int{0}; start < pointCount; start += kChunkSize) {
         const auto count = std::min(kChunkSize, pointCount - start);
         // Extend AABB one point beyond the chunk boundary on each side so that
-        // line segments bridging adjacent chunks are fully covered. Invalid data points
+        // line segments bridging adjacent chunks are fully covered. Invalid coordinates
         // are excluded; a chunk without valid data points keeps min > max and is skipped.
         const auto aabbBegin = std::max(0, start - 1);
-        const auto aabbEnd = std::min(start + count, pointCount - 1); // inclusive
-        const auto extents = sourceData.doubleData ? computeChunkExtents(sourceData.doubleData, aabbBegin, aabbEnd, logX, logY)
-                                                   : computeChunkExtents(sourceData.floatData, aabbBegin, aabbEnd, logX, logY);
-        chunks_.push_back(CurveChunk{start, count, extents.xMin, extents.xMax, extents.yMin, extents.yMax});
+        const auto aabbEnd = std::min(start + count + 1, pointCount); // exclusive
+        const auto extents = dataPoints().renderedExtents(logX, logY, aabbBegin, aabbEnd);
+        const auto [minX, maxX] = chunkBounds(extents.x);
+        const auto [minY, maxY] = chunkBounds(extents.y);
+        chunks_.push_back(CurveChunk{start, count, minX, maxX, minY, maxY});
     }
     chunksValid_ = true;
 }
