@@ -21,7 +21,8 @@ so the design can be agreed before you write the code.
 
 Before opening a pull request:
 
-- follow the conventions in [`AGENTS.md`](AGENTS.md);
+- follow the conventions in [`AGENTS.md`](AGENTS.md) and
+  [`CODING_STANDARDS.md`](CODING_STANDARDS.md);
 - format changed `.cpp` and `.hpp` files with clang-format 19;
 - build with `-DQACCELPLOT_BUILD_TESTS=ON` and run
   `ctest --test-dir build --output-on-failure`;
