@@ -267,7 +267,7 @@ void LineCurveDataTest::stoppedTransitionBeforeFirstFrame_data()
 
 void LineCurveDataTest::stoppedTransitionBeforeFirstFrame()
 {
-    QFETCH(TransitionStopMode, stopMode);
+    QFETCH(const TransitionStopMode, stopMode);
     auto curve = LineCurve{};
     curve.setLineStyle(nullptr);
     curve.marker()->setShape(MarkerShape::Circle);
@@ -563,7 +563,7 @@ void LineCurveDataTest::hitTestFollowsDataUpdates_data()
 
 void LineCurveDataTest::hitTestFollowsDataUpdates()
 {
-    QFETCH(bool, hoverEnabled);
+    QFETCH(const bool, hoverEnabled);
     auto xAxis = Axis{};
     xAxis.setOrientation(Qt::Horizontal);
     auto yAxis = Axis{};

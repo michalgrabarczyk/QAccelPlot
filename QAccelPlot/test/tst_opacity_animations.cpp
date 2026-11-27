@@ -254,8 +254,8 @@ void OpacityAnimationsTest::unsupportedAnimations_areReported_data()
 
 void OpacityAnimationsTest::unsupportedAnimations_areReported()
 {
-    QFETCH(QString, qml);
-    QFETCH(QString, problem);
+    QFETCH(const QString, qml);
+    QFETCH(const QString, problem);
     auto problems = QStringList{};
 
     QVERIFY(read(qml, &problems).empty());

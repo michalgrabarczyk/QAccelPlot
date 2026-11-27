@@ -97,7 +97,7 @@ void TestSelectionTool::formatterChangesRefreshLabels_data()
 
 void TestSelectionTool::formatterChangesRefreshLabels()
 {
-    QFETCH(int, action);
+    QFETCH(const int, action);
     auto rig = PlotRig{0, 10, 0, 10};
     rig.addCurve({1, 1});
     QTRY_COMPARE(rig.plot.series().size(), 1);

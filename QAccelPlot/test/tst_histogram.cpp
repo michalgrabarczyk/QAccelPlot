@@ -143,9 +143,9 @@ void HistogramTest::extremeEdgesAvoidInvalidArithmetic_data()
 
 void HistogramTest::extremeEdgesAvoidInvalidArithmetic()
 {
-    QFETCH(double, minimum);
-    QFETCH(double, middle);
-    QFETCH(double, maximum);
+    QFETCH(const double, minimum);
+    QFETCH(const double, middle);
+    QFETCH(const double, maximum);
     std::feclearexcept(FE_ALL_EXCEPT);
     const auto histogram = histogramOf({minimum, middle, maximum}, {minimum, middle, maximum});
     const auto invalid = std::fetestexcept(FE_INVALID);
@@ -225,9 +225,9 @@ void HistogramTest::nearlyEqualSamplesWidenTheRange_data()
 
 void HistogramTest::nearlyEqualSamplesWidenTheRange()
 {
-    QFETCH(double, first);
-    QFETCH(double, second);
-    QFETCH(int, binCount);
+    QFETCH(const double, first);
+    QFETCH(const double, second);
+    QFETCH(const int, binCount);
     const auto samples = Values{first, second};
     const auto histogram = Histogram::fromSamples(samples.data(), samples.size(), binCount);
     QCOMPARE(histogram.binCount(), binCount);
@@ -381,8 +381,8 @@ void HistogramTest::largeLinearEdgesStayFinite_data()
 
 void HistogramTest::largeLinearEdgesStayFinite()
 {
-    QFETCH(double, minimum);
-    QFETCH(double, maximum);
+    QFETCH(const double, minimum);
+    QFETCH(const double, maximum);
     const auto edges = Histogram::linearEdges(minimum, maximum, 10);
     QCOMPARE(edges.size(), std::size_t{11});
     QCOMPARE(edges.front(), minimum);
@@ -468,7 +468,7 @@ void HistogramTest::binCountAboveMaximumIsRejected_data()
 void HistogramTest::binCountAboveMaximumIsRejected()
 {
     QFETCH(BinBuilder, builder);
-    QFETCH(int, binCount);
+    QFETCH(const int, binCount);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("Histogram bin count must be at most %1: %2").arg(kMaximumBinCount).arg(binCount)));
     QCOMPARE(builder(binCount), 0);
 }
@@ -483,7 +483,7 @@ void HistogramTest::maximumBinCountIsAccepted_data()
 void HistogramTest::maximumBinCountIsAccepted()
 {
     QFETCH(BinBuilder, builder);
-    QFETCH(int, binCount);
+    QFETCH(const int, binCount);
     QCOMPARE(builder(binCount), binCount);
 }
 

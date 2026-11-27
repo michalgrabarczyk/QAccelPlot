@@ -90,7 +90,7 @@ void LineCurveRenderingTest::lineVerticesFollowPointCount()
     };
     const auto lineVerticesMatch = [](const QSGNode* root, const std::vector<char>& cache) {
         const auto* geometry = static_cast<const QSGGeometryNode*>(root->lastChild())->geometry();
-        return static_cast<std::size_t>(geometry->vertexCount() * geometry->sizeOfVertex()) == cache.size()
+        return static_cast<std::size_t>(geometry->vertexCount()) * static_cast<std::size_t>(geometry->sizeOfVertex()) == cache.size()
             && std::memcmp(geometry->vertexData(), cache.data(), cache.size()) == 0;
     };
 
@@ -166,7 +166,7 @@ void LineCurveRenderingTest::markerVerticesFollowPointCount()
         const auto* geometry = static_cast<const QSGGeometryNode*>(node.get())->geometry();
         QCOMPARE(geometry->vertexCount(), count * QAccelPlot::LineCurvePointRenderer::kVerticesPerPoint);
         const auto* bytes = static_cast<const char*>(geometry->vertexData());
-        const auto byteCount = static_cast<std::size_t>(geometry->vertexCount() * geometry->sizeOfVertex());
+        const auto byteCount = static_cast<std::size_t>(geometry->vertexCount()) * static_cast<std::size_t>(geometry->sizeOfVertex());
         QVERIFY(std::all_of(bytes, bytes + byteCount, [](const char byte) { return byte == 0; }));
     }
 }

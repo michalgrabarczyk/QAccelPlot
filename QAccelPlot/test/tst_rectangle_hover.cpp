@@ -76,7 +76,7 @@ void RectangleHoverTest::nearbyTimestampRectangles_data()
 
 void RectangleHoverTest::nearbyTimestampRectangles()
 {
-    QFETCH(bool, horizontal);
+    QFETCH(const bool, horizontal);
     constexpr auto epoch = 1'789'032'600'000.0;
     const auto baseX = horizontal ? epoch : 0.0;
     const auto baseY = horizontal ? 0.0 : epoch;

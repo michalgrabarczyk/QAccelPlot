@@ -14,10 +14,10 @@ std::optional<QVersionNumber> requestedOpenGlEsVersion()
     if (text.isEmpty()) {
         return std::nullopt;
     }
-    const auto version = QVersionNumber::fromString(text);
+    auto version = QVersionNumber::fromString(text);
     // The round trip rejects trailing text without the suffix index, whose type differs before Qt 6.4.
     if (version.toString() != text || version.segmentCount() > 2 || version.majorVersion() <= 0) {
-        qFatal("QACCELPLOT_OPENGL_ES_VERSION must look like \"3.0\", got \"%s\".", qPrintable(text));
+        qFatal(R"(QACCELPLOT_OPENGL_ES_VERSION must look like "3.0", got "%s".)", qPrintable(text));
     }
     return version;
 }

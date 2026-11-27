@@ -319,9 +319,9 @@ void addSeriesRows()
 
 SeriesKind fetchSeriesKind()
 {
-    QFETCH(QString, type);
-    QFETCH(QString, properties);
-    QFETCH(int, layout);
+    QFETCH(const QString, type);
+    QFETCH(const QString, properties);
+    QFETCH(const int, layout);
     return {type, properties, static_cast<Layout>(layout)};
 }
 
@@ -412,7 +412,7 @@ void FrameWorkTest::panningUploadsNoSeriesData_data()
 void FrameWorkTest::panningUploadsNoSeriesData()
 {
     const auto kind = fetchSeriesKind();
-    QFETCH(bool, vertexDataFollowsRecords);
+    QFETCH(const bool, vertexDataFollowsRecords);
 
     const auto small = measurePanning(kind, kSmallCount);
     const auto large = measurePanning(kind, kLargeCount);
@@ -429,7 +429,7 @@ void FrameWorkTest::panningUploadsNoSeriesData()
 void FrameWorkTest::checkDataUpdates(const DataApi api)
 {
     const auto kind = fetchSeriesKind();
-    QFETCH(bool, vertexDataFollowsRecords);
+    QFETCH(const bool, vertexDataFollowsRecords);
 
     const auto small = measureDataUpdates(kind, 1, kSmallCount, api);
     const auto large = measureDataUpdates(kind, 1, kLargeCount, api);

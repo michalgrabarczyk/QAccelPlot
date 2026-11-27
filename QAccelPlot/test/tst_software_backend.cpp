@@ -44,7 +44,7 @@ private slots:
 
 private:
     // Renders \a Series after each of several data updates and expects its one warning.
-    template <typename Series> void renderAfterDataUpdates(const char* typeName, std::vector<double> data, int recordCount);
+    template <typename Series> void renderAfterDataUpdates(const char* typeName, const std::vector<double>& data, int recordCount);
 };
 
 void SoftwareBackendTest::lineCurveIsSkipped()
@@ -91,7 +91,7 @@ void SoftwareBackendTest::exportFails()
     QCOMPARE(finished.constFirst().at(0).toBool(), false);
 }
 
-template <typename Series> void SoftwareBackendTest::renderAfterDataUpdates(const char* typeName, std::vector<double> data, const int recordCount)
+template <typename Series> void SoftwareBackendTest::renderAfterDataUpdates(const char* typeName, const std::vector<double>& data, const int recordCount)
 {
     auto window = QQuickWindow{};
     QCOMPARE(window.rendererInterface()->graphicsApi(), QSGRendererInterface::Software);

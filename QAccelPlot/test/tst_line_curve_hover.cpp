@@ -148,8 +148,8 @@ void LineCurveHoverTest::hoverRadiusChangeUpdatesHoveredIndex_data()
 
 void LineCurveHoverTest::hoverRadiusChangeUpdatesHoveredIndex()
 {
-    QFETCH(QString, type);
-    QFETCH(QString, setData);
+    QFETCH(const QString, type);
+    QFETCH(const QString, setData);
     auto window = QQuickWindow{};
     window.resize(400, 300);
     auto engine = QQmlEngine{};

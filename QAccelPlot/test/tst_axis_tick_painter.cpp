@@ -62,8 +62,6 @@ QString describeDifference(const QImage& actual, const QImage& expected)
         .arg(describe(actualInk), describe(expectedInk));
 }
 
-} // namespace
-
 class FixedTickLabelFormatter final : public QAccelPlot::TickLabelFormatter {
 public:
     explicit FixedTickLabelFormatter(QString label)
@@ -274,6 +272,8 @@ bool inkMatches(const QRect& actual, const QRect& expected)
         && std::abs(actual.top() - expected.top()) <= kTolerance && std::abs(actual.bottom() - expected.bottom()) <= kTolerance;
 }
 
+} // namespace
+
 class TestAxisTickPainter : public QObject {
     Q_OBJECT
 
@@ -341,8 +341,8 @@ void TestAxisTickPainter::logTickControls_data()
 
 void TestAxisTickPainter::logTickControls()
 {
-    QFETCH(int, majorCount);
-    QFETCH(int, minorCount);
+    QFETCH(const int, majorCount);
+    QFETCH(const int, minorCount);
     auto ticker = QAccelPlot::AxisTicker{};
     ticker.setTickCount(majorCount);
     ticker.setSubtickCount(minorCount);
@@ -588,9 +588,9 @@ void TestAxisTickPainter::axis_rotatedTickLabelsSitBesideTheirTick_data()
 
 void TestAxisTickPainter::axis_rotatedTickLabelsSitBesideTheirTick()
 {
-    QFETCH(QAccelPlot::Axis::Side, side);
-    QFETCH(qreal, rotation);
-    QFETCH(QSize, size);
+    QFETCH(const QAccelPlot::Axis::Side, side);
+    QFETCH(const qreal, rotation);
+    QFETCH(const QSize, size);
     // The axis line sits one inward tick length from the inner edge; the label starts past the outward tick and padding.
     constexpr auto kLabelInset = 2.0 * 8.0 + 5.0;
 
@@ -716,10 +716,10 @@ void TestAxisTickPainter::computeTicks_linearLabelsShareDecimals_data()
 
 void TestAxisTickPainter::computeTicks_linearLabelsShareDecimals()
 {
-    QFETCH(qreal, viewportMin);
-    QFETCH(qreal, viewportMax);
-    QFETCH(int, tickCount);
-    QFETCH(QStringList, expected);
+    QFETCH(const qreal, viewportMin);
+    QFETCH(const qreal, viewportMax);
+    QFETCH(const int, tickCount);
+    QFETCH(const QStringList, expected);
 
     auto ticker = QAccelPlot::AxisTicker{};
     ticker.setTickCount(tickCount);
@@ -752,11 +752,11 @@ void TestAxisTickPainter::computeTicks_zoomedCategoryAxisKeepsWholeSteps_data()
 
 void TestAxisTickPainter::computeTicks_zoomedCategoryAxisKeepsWholeSteps()
 {
-    QFETCH(qreal, viewportMin);
-    QFETCH(qreal, viewportMax);
-    QFETCH(int, tickCount);
-    QFETCH(qreal, expectedStep);
-    QFETCH(QStringList, expected);
+    QFETCH(const qreal, viewportMin);
+    QFETCH(const qreal, viewportMax);
+    QFETCH(const int, tickCount);
+    QFETCH(const qreal, expectedStep);
+    QFETCH(const QStringList, expected);
 
     auto formatter = QAccelPlot::TextTickLabelFormatter{};
     formatter.setLabels({"Pump DE", "Pump NDE", "Motor DE", "Motor NDE", "Gearbox"});
@@ -820,11 +820,11 @@ void TestAxisTickPainter::computeTickValues_hugeCountsStayBounded_data()
 
 void TestAxisTickPainter::computeTickValues_hugeCountsStayBounded()
 {
-    QFETCH(qreal, viewportMin);
-    QFETCH(qreal, viewportMax);
-    QFETCH(bool, logScale);
-    QFETCH(int, tickCount);
-    QFETCH(int, subtickCount);
+    QFETCH(const qreal, viewportMin);
+    QFETCH(const qreal, viewportMax);
+    QFETCH(const bool, logScale);
+    QFETCH(const int, tickCount);
+    QFETCH(const int, subtickCount);
     auto ticker = QAccelPlot::AxisTicker{};
     ticker.setTickCount(tickCount);
     ticker.setSubtickCount(subtickCount);
@@ -905,9 +905,9 @@ void TestAxisTickPainter::computeTicks_degenerateViewportIsEmpty_data()
 
 void TestAxisTickPainter::computeTicks_degenerateViewportIsEmpty()
 {
-    QFETCH(bool, logScale);
-    QFETCH(qreal, viewportMin);
-    QFETCH(qreal, viewportMax);
+    QFETCH(const bool, logScale);
+    QFETCH(const qreal, viewportMin);
+    QFETCH(const qreal, viewportMax);
     auto ticker = QAccelPlot::AxisTicker{};
 
     const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(viewportMin, viewportMax, logScale, &ticker);
@@ -980,8 +980,8 @@ void TestAxisTickPainter::computeTicks_existingFormattersHaveNoUnitText_data()
 
 void TestAxisTickPainter::computeTicks_existingFormattersHaveNoUnitText()
 {
-    QFETCH(bool, logScale);
-    QFETCH(bool, textLabels);
+    QFETCH(const bool, logScale);
+    QFETCH(const bool, textLabels);
     auto text = QAccelPlot::TextTickLabelFormatter{};
     text.setLabels({QStringLiteral("a"), QStringLiteral("b"), QStringLiteral("c")});
     auto ticker = QAccelPlot::AxisTicker{};
@@ -1049,7 +1049,7 @@ void TestAxisTickPainter::axis_paintsTitleOnEverySide_data()
 
 void TestAxisTickPainter::axis_paintsTitleOnEverySide()
 {
-    QFETCH(QAccelPlot::Axis::Side, side);
+    QFETCH(const QAccelPlot::Axis::Side, side);
     const auto titleColor = QColor{Qt::red};
     const auto hoverColor = QColor{Qt::blue};
     auto axis = HoverableAxis{nullptr, side};

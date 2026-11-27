@@ -151,7 +151,7 @@ void TransitionRunnerTest::interruptionLeavesTheTargetDataToFinish_data()
 
 void TransitionRunnerTest::interruptionLeavesTheTargetDataToFinish()
 {
-    QFETCH(Interruption, interruption);
+    QFETCH(const Interruption, interruption);
     auto transition = std::make_unique<MorphTransition>();
     transition->setDuration(kLongDuration);
     auto replacement = MorphTransition{};

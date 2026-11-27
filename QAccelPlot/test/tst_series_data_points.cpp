@@ -101,13 +101,13 @@ void SeriesDataPointsTest::invalidArgumentsAreRejected_data()
 
 void SeriesDataPointsTest::invalidArgumentsAreRejected()
 {
-    QFETCH(int, type);
-    QFETCH(int, stride);
-    QFETCH(QString, series);
-    QFETCH(QString, countName);
-    QFETCH(QString, plural);
-    QFETCH(QString, doubleUnit);
-    QFETCH(QString, floatUnit);
+    QFETCH(const int, type);
+    QFETCH(const int, stride);
+    QFETCH(const QString, series);
+    QFETCH(const QString, countName);
+    QFETCH(const QString, plural);
+    QFETCH(const QString, doubleUnit);
+    QFETCH(const QString, floatUnit);
     auto plotSeries = makeSeries(static_cast<SeriesType>(type));
     plotSeries->setData(makeValues<double>(1, stride), 1);
     auto revisionSpy = QSignalSpy{plotSeries.get(), &PlotSeries::dataRevisionChanged};
@@ -145,8 +145,8 @@ void SeriesDataPointsTest::nullDataWithoutDataPointsIsAccepted_data()
 
 void SeriesDataPointsTest::nullDataWithoutDataPointsIsAccepted()
 {
-    QFETCH(int, type);
-    QFETCH(int, stride);
+    QFETCH(const int, type);
+    QFETCH(const int, stride);
     auto axis = Axis{};
     auto plotSeries = makeSeries(static_cast<SeriesType>(type));
     plotSeries->setXAxis(&axis);
@@ -168,8 +168,8 @@ void SeriesDataPointsTest::rawDataIsCopied_data()
 
 void SeriesDataPointsTest::rawDataIsCopied()
 {
-    QFETCH(int, type);
-    QFETCH(int, stride);
+    QFETCH(const int, type);
+    QFETCH(const int, stride);
     auto plotSeries = makeSeries(static_cast<SeriesType>(type));
     auto doubles = makeValues<double>(3, stride);
     auto floats = makeValues<float>(3, stride);
@@ -195,8 +195,8 @@ void SeriesDataPointsTest::postedDataIsAppliedFromWorkerThread_data()
 
 void SeriesDataPointsTest::postedDataIsAppliedFromWorkerThread()
 {
-    QFETCH(int, type);
-    QFETCH(int, stride);
+    QFETCH(const int, type);
+    QFETCH(const int, stride);
     auto plotSeries = makeSeries(static_cast<SeriesType>(type));
     auto revisionSpy = QSignalSpy{plotSeries.get(), &PlotSeries::dataRevisionChanged};
 
@@ -219,9 +219,9 @@ void SeriesDataPointsTest::dataBoundsReplaceTheRangeScan_data()
 
 void SeriesDataPointsTest::dataBoundsReplaceTheRangeScan()
 {
-    QFETCH(int, type);
-    QFETCH(int, stride);
-    QFETCH(QString, series);
+    QFETCH(const int, type);
+    QFETCH(const int, stride);
+    QFETCH(const QString, series);
     auto xAxis = Axis{};
     auto yAxis = Axis{};
     auto plotSeries = makeSeries(static_cast<SeriesType>(type));

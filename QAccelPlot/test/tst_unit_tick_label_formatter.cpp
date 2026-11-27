@@ -126,10 +126,10 @@ void UnitTickLabelFormatterTest::sharedPrefixFollowsVisibleRange_data()
 
 void UnitTickLabelFormatterTest::sharedPrefixFollowsVisibleRange()
 {
-    QFETCH(qreal, viewportMin);
-    QFETCH(qreal, viewportMax);
-    QFETCH(QStringList, labels);
-    QFETCH(QString, unitText);
+    QFETCH(const qreal, viewportMin);
+    QFETCH(const qreal, viewportMax);
+    QFETCH(const QStringList, labels);
+    QFETCH(const QString, unitText);
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     auto ticker = AxisTicker{};
@@ -157,11 +157,11 @@ void UnitTickLabelFormatterTest::labelsShareDecimalsOfPrefixedStep_data()
 
 void UnitTickLabelFormatterTest::labelsShareDecimalsOfPrefixedStep()
 {
-    QFETCH(qreal, viewportMin);
-    QFETCH(qreal, viewportMax);
-    QFETCH(int, tickCount);
-    QFETCH(QStringList, labels);
-    QFETCH(QString, unitText);
+    QFETCH(const qreal, viewportMin);
+    QFETCH(const qreal, viewportMax);
+    QFETCH(const int, tickCount);
+    QFETCH(const QStringList, labels);
+    QFETCH(const QString, unitText);
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     auto ticker = AxisTicker{};
@@ -253,10 +253,10 @@ void UnitTickLabelFormatterTest::formatValueFollowsTheAllowedPrefixes_data()
 
 void UnitTickLabelFormatterTest::formatValueFollowsTheAllowedPrefixes()
 {
-    QFETCH(QStringList, allowedPrefixes);
-    QFETCH(qreal, viewportMax);
-    QFETCH(qreal, value);
-    QFETCH(QString, text);
+    QFETCH(const QStringList, allowedPrefixes);
+    QFETCH(const qreal, viewportMax);
+    QFETCH(const qreal, value);
+    QFETCH(const QString, text);
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("px"));
     formatter.setAllowedPrefixes(allowedPrefixes);
@@ -314,11 +314,11 @@ void UnitTickLabelFormatterTest::allowedPrefixesResetRestoresEveryPowerOf1000()
 
 void UnitTickLabelFormatterTest::allowedPrefixesRestrictTheSharedPrefix()
 {
-    QFETCH(QString, unit);
-    QFETCH(QStringList, allowedPrefixes);
-    QFETCH(qreal, viewportMax);
-    QFETCH(QStringList, labels);
-    QFETCH(QString, unitText);
+    QFETCH(const QString, unit);
+    QFETCH(const QStringList, allowedPrefixes);
+    QFETCH(const qreal, viewportMax);
+    QFETCH(const QStringList, labels);
+    QFETCH(const QString, unitText);
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(unit);
     formatter.setAllowedPrefixes(allowedPrefixes);
@@ -344,9 +344,9 @@ void UnitTickLabelFormatterTest::fixedPrefixShowsAtEveryZoomLevel_data()
 
 void UnitTickLabelFormatterTest::fixedPrefixShowsAtEveryZoomLevel()
 {
-    QFETCH(qreal, viewportMax);
-    QFETCH(QStringList, labels);
-    QFETCH(QString, valueText);
+    QFETCH(const qreal, viewportMax);
+    QFETCH(const QStringList, labels);
+    QFETCH(const QString, valueText);
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     formatter.setPrefixMode(UnitTickLabelFormatter::Fixed);
@@ -378,10 +378,10 @@ void UnitTickLabelFormatterTest::fixedPrefixSnapsToTheAllowedPrefixes_data()
 
 void UnitTickLabelFormatterTest::fixedPrefixSnapsToTheAllowedPrefixes()
 {
-    QFETCH(QStringList, allowedPrefixes);
-    QFETCH(QString, fixedPrefix);
-    QFETCH(QString, unitText);
-    QFETCH(QString, valueText);
+    QFETCH(const QStringList, allowedPrefixes);
+    QFETCH(const QString, fixedPrefix);
+    QFETCH(const QString, unitText);
+    QFETCH(const QString, valueText);
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     formatter.setAllowedPrefixes(allowedPrefixes);
@@ -465,8 +465,8 @@ void UnitTickLabelFormatterTest::customPrefixSnapsToTheAllowedPrefixes_data()
 
 void UnitTickLabelFormatterTest::customPrefixSnapsToTheAllowedPrefixes()
 {
-    QFETCH(QString, result);
-    QFETCH(QString, unitText);
+    QFETCH(const QString, result);
+    QFETCH(const QString, unitText);
     auto engine = QJSEngine{};
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
@@ -493,8 +493,8 @@ void UnitTickLabelFormatterTest::customPrefixFallsBackToLargestMagnitude_data()
 
 void UnitTickLabelFormatterTest::customPrefixFallsBackToLargestMagnitude()
 {
-    QFETCH(QString, callback);
-    QFETCH(QString, warning);
+    QFETCH(const QString, callback);
+    QFETCH(const QString, warning);
     auto engine = QJSEngine{};
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
@@ -521,8 +521,8 @@ void UnitTickLabelFormatterTest::customPrefixIsUsedOnlyInCustomMode_data()
 
 void UnitTickLabelFormatterTest::customPrefixIsUsedOnlyInCustomMode()
 {
-    QFETCH(UnitTickLabelFormatter::PrefixMode, prefixMode);
-    QFETCH(QString, unitText);
+    QFETCH(const UnitTickLabelFormatter::PrefixMode, prefixMode);
+    QFETCH(const QString, unitText);
     auto engine = QJSEngine{};
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
@@ -613,9 +613,9 @@ void UnitTickLabelFormatterTest::logAxisSnapsToTheAllowedPrefixes_data()
 
 void UnitTickLabelFormatterTest::logAxisSnapsToTheAllowedPrefixes()
 {
-    QFETCH(QStringList, allowedPrefixes);
-    QFETCH(QStringList, labels);
-    QFETCH(QString, unitText);
+    QFETCH(const QStringList, allowedPrefixes);
+    QFETCH(const QStringList, labels);
+    QFETCH(const QString, unitText);
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     formatter.setAllowedPrefixes(allowedPrefixes);
@@ -754,9 +754,9 @@ void UnitTickLabelFormatterTest::perTickPrefixFollowsEachTickValue_data()
 
 void UnitTickLabelFormatterTest::perTickPrefixFollowsEachTickValue()
 {
-    QFETCH(qreal, viewportMin);
-    QFETCH(qreal, viewportMax);
-    QFETCH(QStringList, labels);
+    QFETCH(const qreal, viewportMin);
+    QFETCH(const qreal, viewportMax);
+    QFETCH(const QStringList, labels);
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     formatter.setPrefixMode(UnitTickLabelFormatter::PerTick);
@@ -780,10 +780,10 @@ void UnitTickLabelFormatterTest::perTickPrefixSnapsToTheAllowedPrefixes_data()
 
 void UnitTickLabelFormatterTest::perTickPrefixSnapsToTheAllowedPrefixes()
 {
-    QFETCH(QStringList, allowedPrefixes);
-    QFETCH(qreal, viewportMin);
-    QFETCH(qreal, viewportMax);
-    QFETCH(QStringList, labels);
+    QFETCH(const QStringList, allowedPrefixes);
+    QFETCH(const qreal, viewportMin);
+    QFETCH(const qreal, viewportMax);
+    QFETCH(const QStringList, labels);
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     formatter.setPrefixMode(UnitTickLabelFormatter::PerTick);
@@ -805,8 +805,8 @@ void UnitTickLabelFormatterTest::perTickPrefixWritesLogDecadesAsPlainNumbers_dat
 
 void UnitTickLabelFormatterTest::perTickPrefixWritesLogDecadesAsPlainNumbers()
 {
-    QFETCH(QStringList, allowedPrefixes);
-    QFETCH(QStringList, labels);
+    QFETCH(const QStringList, allowedPrefixes);
+    QFETCH(const QStringList, labels);
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     formatter.setPrefixMode(UnitTickLabelFormatter::PerTick);
@@ -840,7 +840,7 @@ void UnitTickLabelFormatterTest::perTickPrefixWritesTheUnitOnTickLabelsAtEitherU
 
 void UnitTickLabelFormatterTest::perTickPrefixWritesTheUnitOnTickLabelsAtEitherUnitPosition()
 {
-    QFETCH(UnitTickLabelFormatter::UnitPosition, unitPosition);
+    QFETCH(const UnitTickLabelFormatter::UnitPosition, unitPosition);
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     formatter.setPrefixMode(UnitTickLabelFormatter::PerTick);
@@ -867,9 +867,9 @@ void UnitTickLabelFormatterTest::perTickPrefixGivesEachFormattedValueItsOwnPrefi
 
 void UnitTickLabelFormatterTest::perTickPrefixGivesEachFormattedValueItsOwnPrefix()
 {
-    QFETCH(qreal, value);
-    QFETCH(qreal, resolution);
-    QFETCH(QString, text);
+    QFETCH(const qreal, value);
+    QFETCH(const qreal, resolution);
+    QFETCH(const QString, text);
     auto formatter = UnitTickLabelFormatter{};
     formatter.setUnit(QStringLiteral("m"));
     formatter.setPrefixMode(UnitTickLabelFormatter::PerTick);

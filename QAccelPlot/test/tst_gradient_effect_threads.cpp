@@ -238,7 +238,7 @@ void GradientEffectThreadsTest::unsignalledStopChangesAreRendered_data()
 
 void GradientEffectThreadsTest::unsignalledStopChangesAreRendered()
 {
-    QFETCH(bool, parentAtConstruction);
+    QFETCH(const bool, parentAtConstruction);
     auto scene = Scene{parentAtConstruction};
     if (scene.isSoftware()) {
         QSKIP("Custom curve materials require a hardware scene graph backend");

@@ -189,9 +189,9 @@ void TestPlotInteraction::wheelMagnitudeIsIndependentOfEventCount_data()
 
 void TestPlotInteraction::wheelMagnitudeIsIndependentOfEventCount()
 {
-    QFETCH(int, delta);
-    QFETCH(bool, logarithmic);
-    QFETCH(bool, overAxis);
+    QFETCH(const int, delta);
+    QFETCH(const bool, logarithmic);
+    QFETCH(const bool, overAxis);
     auto plot = TestablePlot{};
     plot.setSize({400, 300});
     auto axis = QAccelPlot::Axis{};
@@ -343,8 +343,8 @@ void TestPlotInteraction::zoomScaleFactor_extremesStillZoom_data()
 
 void TestPlotInteraction::zoomScaleFactor_extremesStillZoom()
 {
-    QFETCH(double, factor);
-    QFETCH(double, expectedRange);
+    QFETCH(const double, factor);
+    QFETCH(const double, expectedRange);
 
     auto plot = TestablePlot{};
     plot.setSize({300.0, 200.0});

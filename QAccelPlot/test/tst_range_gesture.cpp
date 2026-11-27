@@ -124,9 +124,9 @@ void RangeGestureTest::zoomPastTheRangeOfADoubleReturnsRangeUnchanged_data()
 
 void RangeGestureTest::zoomPastTheRangeOfADoubleReturnsRangeUnchanged()
 {
-    QFETCH(qreal, min);
-    QFETCH(qreal, max);
-    QFETCH(bool, logarithmic);
+    QFETCH(const qreal, min);
+    QFETCH(const qreal, max);
+    QFETCH(const bool, logarithmic);
 
     // Compared exactly: QCOMPARE takes any two values near zero for equal.
     const auto range = zoomedRange({min, max}, 3.0, 0.5, logarithmic);
@@ -149,10 +149,10 @@ void RangeGestureTest::panPastTheRangeOfADoubleReturnsRangeUnchanged_data()
 
 void RangeGestureTest::panPastTheRangeOfADoubleReturnsRangeUnchanged()
 {
-    QFETCH(qreal, min);
-    QFETCH(qreal, max);
-    QFETCH(qreal, fraction);
-    QFETCH(bool, logarithmic);
+    QFETCH(const qreal, min);
+    QFETCH(const qreal, max);
+    QFETCH(const qreal, fraction);
+    QFETCH(const bool, logarithmic);
 
     const auto range = pannedRange({min, max}, fraction, logarithmic);
     QVERIFY(range.min == min);
@@ -192,10 +192,10 @@ void RangeGestureTest::deepZoomInStaysZoomable_data()
 
 void RangeGestureTest::deepZoomInStaysZoomable()
 {
-    QFETCH(qreal, min);
-    QFETCH(qreal, max);
-    QFETCH(qreal, anchorRatio);
-    QFETCH(bool, logarithmic);
+    QFETCH(const qreal, min);
+    QFETCH(const qreal, max);
+    QFETCH(const qreal, anchorRatio);
+    QFETCH(const bool, logarithmic);
 
     auto range = ValueRange{min, max};
     for (auto step = 0; step < 3000; ++step) {

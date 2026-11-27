@@ -313,7 +313,7 @@ void ErrorBarSeriesTransitionsTest::interruptedTransitionShowsTargetData_data()
 
 void ErrorBarSeriesTransitionsTest::interruptedTransitionShowsTargetData()
 {
-    QFETCH(Interruption, interruption);
+    QFETCH(const Interruption, interruption);
     auto transition = std::make_unique<HeldHalfway<MorphTransition>>();
     auto replacement = MorphTransition{};
     bars_->setData(errorBarsAt({2.0}), 1);

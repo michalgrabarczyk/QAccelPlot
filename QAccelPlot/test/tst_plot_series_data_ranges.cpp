@@ -324,7 +324,7 @@ void PlotSeriesDataRangesTest::destroyedLogAxisInvalidatesRanges_data()
 
 void PlotSeriesDataRangesTest::destroyedLogAxisInvalidatesRanges()
 {
-    QFETCH(bool, horizontal);
+    QFETCH(const bool, horizontal);
     auto curve = LineCurve{};
     auto axis = std::make_unique<Axis>();
     axis->setLogScale(true);

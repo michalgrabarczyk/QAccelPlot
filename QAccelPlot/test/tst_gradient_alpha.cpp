@@ -154,8 +154,8 @@ void GradientAlphaTest::translucentColorKeepsItsHue_data()
 
 void GradientAlphaTest::translucentColorKeepsItsHue()
 {
-    QFETCH(QString, series);
-    QFETCH(QPointF, sample);
+    QFETCH(const QString, series);
+    QFETCH(const QPointF, sample);
 
     auto window = QQuickWindow{};
     if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {

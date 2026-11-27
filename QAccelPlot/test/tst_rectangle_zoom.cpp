@@ -179,8 +179,8 @@ void TestRectangleZoom::directZoom_data()
 
 void TestRectangleZoom::directZoom()
 {
-    QFETCH(bool, log);
-    QFETCH(bool, reversed);
+    QFETCH(const bool, log);
+    QFETCH(const bool, reversed);
     auto f = Fixture{};
     const auto min = log ? 1.0 : 0.0;
     const auto max = log ? 1e4 : 100.0;
@@ -246,7 +246,7 @@ void TestRectangleZoom::invalidSelection_data()
 
 void TestRectangleZoom::invalidSelection()
 {
-    QFETCH(QRectF, rect);
+    QFETCH(const QRectF, rect);
     auto f = Fixture{};
     QVERIFY(!f.plot.zoomToRect(rect));
     QVERIFY(!f.plot.zoomToRect(QRectF{f.point(0.25, 0.25), QSizeF{5, 20}}));
@@ -301,8 +301,8 @@ void TestRectangleZoom::dragDirections_data()
 
 void TestRectangleZoom::dragDirections()
 {
-    QFETCH(QPointF, start);
-    QFETCH(QPointF, end);
+    QFETCH(const QPointF, start);
+    QFETCH(const QPointF, end);
     auto f = Fixture{};
     auto activeSpy = QSignalSpy{f.plot.rectangleZoom(), &QAccelPlot::PlotRectangleZoom::activeChanged};
     press(f, f.point(start.x(), start.y()));
@@ -438,7 +438,7 @@ void TestRectangleZoom::cancellation_data()
 
 void TestRectangleZoom::cancellation()
 {
-    QFETCH(QString, cause);
+    QFETCH(const QString, cause);
     auto f = Fixture{};
     press(f, f.point(0.25, 0.25));
     move(f, f.point(0.75, 0.75));

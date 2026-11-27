@@ -50,8 +50,8 @@ void AxisRescaleTest::extremeFlatDataKeepsFiniteRange_data()
 
 void AxisRescaleTest::extremeFlatDataKeepsFiniteRange()
 {
-    QFETCH(double, value);
-    QFETCH(bool, logarithmic);
+    QFETCH(const double, value);
+    QFETCH(const bool, logarithmic);
     auto axis = Axis{};
     axis.setLogScale(logarithmic);
     axis.setDataRange(value, value);

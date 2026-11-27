@@ -99,8 +99,8 @@ void TestRectangleZoomRendering::overlayAboveSeriesBelowLegend_data()
 
 void TestRectangleZoomRendering::overlayAboveSeriesBelowLegend()
 {
-    QFETCH(QString, type);
-    QFETCH(QString, legend);
+    QFETCH(const QString, type);
+    QFETCH(const QString, legend);
     auto window = QQuickWindow{};
     if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {
         QSKIP("RectangleSeries materials require a hardware scene graph backend");

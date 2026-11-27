@@ -349,9 +349,9 @@ void PlotExporterTest::grabSizeIsTheClosestReachable_data()
 
 void PlotExporterTest::grabSizeIsTheClosestReachable()
 {
-    QFETCH(int, pixels);
-    QFETCH(qreal, devicePixelRatio);
-    QFETCH(int, expected);
+    QFETCH(const int, pixels);
+    QFETCH(const qreal, devicePixelRatio);
+    QFETCH(const int, expected);
     const auto size = Internal::grabSizeFor(QSize(pixels, pixels), devicePixelRatio);
 #if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
     Q_UNUSED(expected)

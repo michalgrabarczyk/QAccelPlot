@@ -456,7 +456,7 @@ void PointCloudTransitionsTest::interruptedTransitionShowsTargetData_data()
 
 void PointCloudTransitionsTest::interruptedTransitionShowsTargetData()
 {
-    QFETCH(Interruption, interruption);
+    QFETCH(const Interruption, interruption);
     auto transition = std::make_unique<HeldHalfway<MorphTransition>>();
     auto replacement = MorphTransition{};
     scene_.cloud->setData(std::vector<double>{2.0, 2.0}, 1);

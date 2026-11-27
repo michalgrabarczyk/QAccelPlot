@@ -324,8 +324,10 @@ void TestSpatialGrid::queryNearest_measuresEachRectangleOnce()
     // A 10 x 10 lattice of unit squares, so the grid has 10 x 10 cells about 9 units wide.
     auto data = std::vector<double>{};
     for (auto i = 0; i < 100; ++i) {
-        const auto x = (i % 10) * 10.0;
-        const auto y = (i / 10) * 10.0;
+        const auto column = i % 10;
+        const auto row = i / 10;
+        const auto x = column * 10.0;
+        const auto y = row * 10.0;
         data.insert(data.end(), {x, y, x + 1.0, y + 1.0});
     }
     // Covers several cells, spans every row, is too large for the cells, and is invalid.

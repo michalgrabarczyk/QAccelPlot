@@ -123,9 +123,9 @@ void ResettablePropertiesTest::resetRestoresTheDefault_data()
 
 void ResettablePropertiesTest::resetRestoresTheDefault()
 {
-    QFETCH(QString, type);
-    QFETCH(QByteArray, property);
-    QFETCH(QVariant, value);
+    QFETCH(const QString, type);
+    QFETCH(const QByteArray, property);
+    QFETCH(const QVariant, value);
 
     const auto factory = factories().find(type);
     QVERIFY2(factory != factories().end(), qPrintable(type));

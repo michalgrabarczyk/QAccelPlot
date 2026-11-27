@@ -232,7 +232,7 @@ void SeriesOpacityTest::seriesOpacityBlendsWithBackground_data()
 
 void SeriesOpacityTest::seriesOpacityBlendsWithBackground()
 {
-    QFETCH(QPoint, pixel);
+    QFETCH(const QPoint, pixel);
 
     constexpr auto kOpaque = 255;
     constexpr auto kHalf = 128;
