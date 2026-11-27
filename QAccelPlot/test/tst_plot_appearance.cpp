@@ -64,7 +64,7 @@ private slots:
 
 void TestPlotAppearance::border_defaultsToDisabled()
 {
-    QAccelPlot::PlotView plot;
+    const QAccelPlot::PlotView plot;
 
     QCOMPARE(plot.border()->width(), 0.0);
     QCOMPARE(plot.border()->color(), QColor(Qt::transparent));
@@ -72,9 +72,9 @@ void TestPlotAppearance::border_defaultsToDisabled()
 
 void TestPlotAppearance::border_clampsNegativeWidth()
 {
-    QAccelPlot::PlotView plot;
-    QSignalSpy widthChanged(plot.border(), &QAccelPlot::Border::widthChanged);
-    QSignalSpy colorChanged(plot.border(), &QAccelPlot::Border::colorChanged);
+    const QAccelPlot::PlotView plot;
+    const QSignalSpy widthChanged(plot.border(), &QAccelPlot::Border::widthChanged);
+    const QSignalSpy colorChanged(plot.border(), &QAccelPlot::Border::colorChanged);
 
     plot.border()->setWidth(-2.0);
     QCOMPARE(plot.border()->width(), 0.0);
@@ -92,7 +92,7 @@ void TestPlotAppearance::border_clampsNegativeWidth()
 void TestPlotAppearance::baselineWidth_defaultsAndClamps()
 {
     QAccelPlot::Axis axis;
-    QSignalSpy widthChanged(&axis, &QAccelPlot::Axis::baselineWidthChanged);
+    const QSignalSpy widthChanged(&axis, &QAccelPlot::Axis::baselineWidthChanged);
 
     QCOMPARE(axis.baselineWidth(), 2.0);
     axis.setBaselineWidth(-1.0);
@@ -107,7 +107,7 @@ void TestPlotAppearance::baselineWidth_defaultsAndClamps()
 void TestPlotAppearance::layoutSize_defaultsAndClamps()
 {
     QAccelPlot::Axis axis;
-    QSignalSpy sizeChanged(&axis, &QAccelPlot::Axis::layoutSizeChanged);
+    const QSignalSpy sizeChanged(&axis, &QAccelPlot::Axis::layoutSizeChanged);
 
     QCOMPARE(axis.layoutSize(), 50.0);
     axis.setLayoutSize(-1.0);
@@ -173,7 +173,7 @@ void TestPlotAppearance::customAxisLayoutSizesUpdatePlotRect()
     QCOMPARE(x2Axis->height(), 48.0);
     QCOMPARE(y2Axis->width(), 68.0);
 
-    QSignalSpy plotRectChanged(&plot, &QAccelPlot::PlotView::plotRectChanged);
+    const QSignalSpy plotRectChanged(&plot, &QAccelPlot::PlotView::plotRectChanged);
     yAxis->setLayoutSize(100.0);
     QCOMPARE(plot.plotRect(), QRectF(110.0, 50.0, 220.0, 170.0));
     QCOMPARE(plotRectChanged.count(), 1);
@@ -215,7 +215,7 @@ void TestPlotAppearance::extraAxisSideChangesRelayout_data()
 
 void TestPlotAppearance::extraAxisSideChangesRelayout()
 {
-    QFETCH(QAccelPlot::Axis::Side, side);
+    QFETCH(const QAccelPlot::Axis::Side, side);
     auto plot = QAccelPlot::PlotView{};
     plot.setSize({400, 300});
     auto axis = QAccelPlot::Axis{};
@@ -567,7 +567,7 @@ void TestPlotAppearance::hiddenAxesDoNotReserveLayoutSpace()
 
     QCOMPARE(plot.plotRect(), QRectF(60.0, 10.0, 230.0, 130.0));
 
-    QSignalSpy plotRectChanged(&plot, &QAccelPlot::PlotView::plotRectChanged);
+    const QSignalSpy plotRectChanged(&plot, &QAccelPlot::PlotView::plotRectChanged);
     yAxis->setVisible(false);
     QCOMPARE(plot.plotRect(), QRectF(10.0, 10.0, 280.0, 130.0));
     QCOMPARE(yAxis->size(), QSizeF{});

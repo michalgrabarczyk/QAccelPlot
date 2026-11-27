@@ -77,10 +77,22 @@ jobs:
           test -s qml-files.txt
           xargs qmllint < qml-files.txt
 
+  # Split by area to stay within the timeout.
   clang-tidy:
-    name: clang-tidy
+    name: clang-tidy (${{ matrix.area }})
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        area: [library, tests, examples]
+        include:
+          - area: library
+            pattern: 'QAccelPlot/src/QAccelPlot/.*\.cpp$'
+          - area: tests
+            pattern: 'QAccelPlot/test/.*\.cpp$'
+          - area: examples
+            pattern: 'examples/.*\.cpp$'
 
     steps:
       - uses: actions/checkout@v6
@@ -103,19 +115,28 @@ jobs:
           -DCMAKE_BUILD_TYPE=Debug
           -DCMAKE_CXX_COMPILER=clang++-19
           -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-          -DQACCELPLOT_BUILD_TESTS=OFF
-          -DQACCELPLOT_BUILD_EXAMPLES=OFF
+          -DQACCELPLOT_BUILD_TESTS=ON
+          -DQACCELPLOT_BUILD_EXAMPLES=ON
+          -DQACCELPLOT_DEPLOY_EXAMPLES=OFF
+          -DCMAKE_GLOBAL_AUTOGEN_TARGET=ON
 
-      # Building the library produces the moc, QML type registration, and
-      # shader outputs that the analyzed sources include.
-      - name: Build library
-        run: cmake --build build --parallel --target QAccelPlot
+      # The library build produces the QML type registration and shader outputs;
+      # autogen produces the moc outputs of the tests and examples.
+      - name: Build generated sources
+        run: cmake --build build --parallel --target QAccelPlot autogen
+
+      # Shared test sources appear once per test target; analyze each file once.
+      - name: Deduplicate compile database
+        run: |
+          mkdir tidy-db
+          jq 'unique_by(.file)' build/compile_commands.json > tidy-db/compile_commands.json
 
       # .clang-tidy sets WarningsAsErrors, so any finding fails this step.
+      # The pattern is anchored to the checkout so it skips generated sources under build/.
       # The file-count check guards against the pattern silently matching nothing.
       - name: Run clang-tidy
         shell: bash
         run: |
-          run-clang-tidy-19 -p build -clang-tidy-binary clang-tidy-19 -quiet \
-            'QAccelPlot/src/QAccelPlot/.*\.cpp$' | tee clang-tidy.log
+          run-clang-tidy-19 -p tidy-db -clang-tidy-binary clang-tidy-19 -quiet \
+            "^${GITHUB_WORKSPACE}/${{ matrix.pattern }}" | tee clang-tidy.log
           grep -Eq '^Running clang-tidy for [1-9][0-9]* files' clang-tidy.log

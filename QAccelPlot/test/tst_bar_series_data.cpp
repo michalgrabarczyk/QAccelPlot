@@ -349,7 +349,7 @@ void BarSeriesDataTest::replaceDataRejectsBadIndicesAndRangedBars()
 
     bars.setRangedData(std::vector<double>{0.0, 1.0, 4.0}, 1);
     revisionSpy.clear();
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries::replaceData\\(\\) replaces \\(position, value\\) bars, not ranged bars"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression(R"(BarSeries::replaceData\(\) replaces \(position, value\) bars, not ranged bars)"));
     bars.replaceData(0, 0.5, 2.0);
     QCOMPARE(revisionSpy.count(), 0);
     QCOMPARE(bars.barAt(0).value(QStringLiteral("value")).toDouble(), 4.0);
@@ -492,13 +492,13 @@ void BarSeriesDataTest::logPositionAxisUsesTheOffsetBarEdges_data()
 
 void BarSeriesDataTest::logPositionAxisUsesTheOffsetBarEdges()
 {
-    QFETCH(bool, horizontal);
-    QFETCH(double, firstPosition);
-    QFETCH(double, offset);
-    QFETCH(double, width);
-    QFETCH(double, positionMin);
-    QFETCH(double, positionMax);
-    QFETCH(double, valueMax);
+    QFETCH(const bool, horizontal);
+    QFETCH(const double, firstPosition);
+    QFETCH(const double, offset);
+    QFETCH(const double, width);
+    QFETCH(const double, positionMin);
+    QFETCH(const double, positionMax);
+    QFETCH(const double, valueMax);
 
     auto positionAxis = Axis{};
     auto valueAxis = Axis{};

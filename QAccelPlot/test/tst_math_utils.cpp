@@ -73,9 +73,9 @@ void TestMathUtils::defaultTolerance_data()
 
 void TestMathUtils::defaultTolerance()
 {
-    QFETCH(double, left);
-    QFETCH(double, right);
-    QFETCH(bool, expectedEqual);
+    QFETCH(const double, left);
+    QFETCH(const double, right);
+    QFETCH(const bool, expectedEqual);
 
     QCOMPARE(nearlyEqual(left, right), expectedEqual);
 }
@@ -97,11 +97,11 @@ void TestMathUtils::customTolerance_data()
 
 void TestMathUtils::customTolerance()
 {
-    QFETCH(double, left);
-    QFETCH(double, right);
-    QFETCH(double, relativeTolerance);
-    QFETCH(double, absoluteTolerance);
-    QFETCH(bool, expectedEqual);
+    QFETCH(const double, left);
+    QFETCH(const double, right);
+    QFETCH(const double, relativeTolerance);
+    QFETCH(const double, absoluteTolerance);
+    QFETCH(const bool, expectedEqual);
 
     QCOMPARE(nearlyEqual(left, right, relativeTolerance, absoluteTolerance), expectedEqual);
 }
@@ -136,9 +136,9 @@ void TestMathUtils::isValidCoordinate_data()
 
 void TestMathUtils::isValidCoordinate()
 {
-    QFETCH(double, value);
-    QFETCH(bool, logScale);
-    QFETCH(bool, expected);
+    QFETCH(const double, value);
+    QFETCH(const bool, logScale);
+    QFETCH(const bool, expected);
 
     QCOMPARE(QAccelPlot::isValidCoordinate(value, logScale), expected);
 }

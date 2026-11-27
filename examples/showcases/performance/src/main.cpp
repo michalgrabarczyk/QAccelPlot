@@ -78,14 +78,15 @@ void setupPerformanceMetrics(QGuiApplication& app, QQuickWindow* window, QObject
             return;
         }
 
-        const auto elapsedSeconds = elapsedMilliseconds > 0 ? elapsedMilliseconds / 1000.0 : 1.0;
+        const auto elapsedSeconds = elapsedMilliseconds > 0 ? static_cast<double>(elapsedMilliseconds) / 1000.0 : 1.0;
         const auto displayFps = qRound(presentedFrames / elapsedSeconds);
-        const auto dataUpdateRate = qRound(deliverySnapshot.appliedBatches / elapsedSeconds);
-        const auto longestDataGapMs = deliverySnapshot.longestDataGapNanoseconds / 1'000'000.0;
-        const auto dataCopyMs
-            = deliverySnapshot.copiedBatches > 0 ? deliverySnapshot.copyNanoseconds / (static_cast<double>(deliverySnapshot.copiedBatches) * 1'000'000.0) : 0.0;
+        const auto dataUpdateRate = qRound(static_cast<double>(deliverySnapshot.appliedBatches) / elapsedSeconds);
+        const auto longestDataGapMs = static_cast<double>(deliverySnapshot.longestDataGapNanoseconds) / 1'000'000.0;
+        const auto dataCopyMs = deliverySnapshot.copiedBatches > 0
+            ? static_cast<double>(deliverySnapshot.copyNanoseconds) / (static_cast<double>(deliverySnapshot.copiedBatches) * 1'000'000.0)
+            : 0.0;
         root->setProperty("fps", displayFps);
-        root->setProperty("averageFrameTimeMs", intervalSamples > 0 ? accumulatedNanoseconds / (intervalSamples * 1'000'000.0) : 0.0);
+        root->setProperty("averageFrameTimeMs", intervalSamples > 0 ? static_cast<double>(accumulatedNanoseconds) / (intervalSamples * 1'000'000.0) : 0.0);
         root->setProperty("updateRate", dataUpdateRate);
         root->setProperty("longestDataGapMs", longestDataGapMs);
         root->setProperty("dataCopyMs", dataCopyMs);
@@ -106,7 +107,7 @@ int main(int argc, char* argv[])
     QQmlApplicationEngine engine;
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
 
-    const auto screenshotMode = app.arguments().contains(QStringLiteral("--screenshot"));
+    const auto screenshotMode = QCoreApplication::arguments().contains(QStringLiteral("--screenshot"));
     const auto initialProperties = QVariantMap{{QStringLiteral("metricsEnabled"), !screenshotMode}};
     engine.setInitialProperties(initialProperties);
     engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
@@ -123,5 +124,5 @@ int main(int argc, char* argv[])
     }
     QAccelPlotExample::setupScreenshotHandler(app, engine);
 
-    return app.exec();
+    return QGuiApplication::exec();
 }

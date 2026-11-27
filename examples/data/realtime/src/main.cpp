@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
     QQmlApplicationEngine engine;
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
 
-    const auto realtimeEnabled = !app.arguments().contains(QStringLiteral("--screenshot"));
+    const auto realtimeEnabled = !QCoreApplication::arguments().contains(QStringLiteral("--screenshot"));
     engine.setInitialProperties({{QStringLiteral("realtimeEnabled"), realtimeEnabled}});
     engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
     auto* root = engine.rootObjects().value(0);
@@ -95,5 +95,5 @@ int main(int argc, char* argv[])
     }
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
-    return app.exec();
+    return QGuiApplication::exec();
 }

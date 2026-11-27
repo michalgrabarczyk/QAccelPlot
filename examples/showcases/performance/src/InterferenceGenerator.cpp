@@ -37,7 +37,7 @@ SineLookupCursor cursorFor(const Wave& wave, const int barCount, const double ti
 void writeBars(InterferencePart& part, const int first, const int last, const int partBegin, const int categoryCount, std::array<SineLookupCursor, 3> waves)
 {
     for (auto& wave : waves) {
-        wave.skip(static_cast<std::uint64_t>(partBegin + first));
+        wave.skip(static_cast<std::uint64_t>(partBegin) + static_cast<std::uint64_t>(first));
     }
     auto* bar = part.floats.data() + static_cast<std::size_t>(first) * 2;
     auto* category = categoryCount > 0 ? part.categories.data() + first : nullptr;

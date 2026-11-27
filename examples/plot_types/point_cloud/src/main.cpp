@@ -119,7 +119,7 @@ int main(int argc, char* argv[])
     root->setProperty("attractors", QVariant::fromValue<QObject*>(&attractors));
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
-    return app.exec();
+    return QGuiApplication::exec();
 }
 
 #include "main.moc"

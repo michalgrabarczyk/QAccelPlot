@@ -61,5 +61,5 @@ int main(int argc, char* argv[])
     populateExampleData(engine);
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
-    return app.exec();
+    return QGuiApplication::exec();
 }

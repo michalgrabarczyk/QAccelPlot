@@ -143,8 +143,12 @@ Next to `src/` in `QAccelPlot/`: `qml/` (QML helper types such as `Plot` and
 - Write string and character literals in ASCII, with `\u` escapes for other
   characters (`QStringLiteral("\u00B5m")`); `scripts/check-source-text.py`
   enforces this in CI.
-- Library sources must pass `clang-tidy` with the repository `.clang-tidy`
-  (enforced by the Static analysis CI workflow).
+- Library, test, and example sources must pass `clang-tidy` with the
+  repository `.clang-tidy` (nested configs in `QAccelPlot/test/` and
+  `examples/`), enforced by the Static analysis CI workflow.
+- Before pushing, run
+  `py scripts/check-changed.py origin/main --qt-dir <Qt kit>`. It runs
+  clang-format and clang-tidy on the sources changed since `origin/main`.
 
 ## QML Conventions
 

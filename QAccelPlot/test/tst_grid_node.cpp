@@ -107,8 +107,8 @@ void GridNodeTest::logTickControls_data()
 
 void GridNodeTest::logTickControls()
 {
-    QFETCH(int, majorCount);
-    QFETCH(int, minorCount);
+    QFETCH(const int, majorCount);
+    QFETCH(const int, minorCount);
     auto axis = QAccelPlot::Axis{};
     axis.setLogScale(true);
     axis.setViewportMin(1.0);
@@ -130,7 +130,7 @@ void GridNodeTest::disabledTicksProduceNoGrid_data()
 
 void GridNodeTest::disabledTicksProduceNoGrid()
 {
-    QFETCH(int, tickCount);
+    QFETCH(const int, tickCount);
     auto axis = QAccelPlot::Axis{};
     axis.setViewportMax(100.0);
     axis.ticker()->setTickCount(tickCount);
@@ -170,7 +170,7 @@ void GridNodeTest::collapsedRangeProducesNoGrid_data()
 
 void GridNodeTest::collapsedRangeProducesNoGrid()
 {
-    QFETCH(double, coordinate);
+    QFETCH(const double, coordinate);
     auto axis = QAccelPlot::Axis{};
     axis.setViewportMin(coordinate);
     axis.setViewportMax(coordinate);
@@ -200,11 +200,11 @@ void GridNodeTest::gridLinesMatchAxisTicks_data()
 
 void GridNodeTest::gridLinesMatchAxisTicks()
 {
-    QFETCH(bool, logScale);
-    QFETCH(double, viewportMin);
-    QFETCH(double, viewportMax);
-    QFETCH(int, tickCount);
-    QFETCH(int, subtickCount);
+    QFETCH(const bool, logScale);
+    QFETCH(const double, viewportMin);
+    QFETCH(const double, viewportMax);
+    QFETCH(const int, tickCount);
+    QFETCH(const int, subtickCount);
     auto axis = QAccelPlot::Axis{};
     axis.setLogScale(logScale);
     axis.setViewportMin(viewportMin);

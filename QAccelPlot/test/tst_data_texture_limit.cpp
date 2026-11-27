@@ -114,8 +114,8 @@ void DataTextureLimitTest::capacityFitsTextureLimit_data()
 
 void DataTextureLimitTest::capacityFitsTextureLimit()
 {
-    QFETCH(int, limit);
-    QFETCH(qint64, floats);
+    QFETCH(const int, limit);
+    QFETCH(const qint64, floats);
 
     QCOMPARE(Internal::dataTextureItemCapacity(limit, 1), floats);
     QCOMPARE(Internal::dataTextureItemCapacity(limit, 4), floats / 4);

@@ -203,11 +203,11 @@ void TestTransitions::itemClock_data()
 
 void TestTransitions::itemClock()
 {
-    QFETCH(double, progress);
-    QFETCH(int, order);
-    QFETCH(int, itemCount);
-    QFETCH(double, stagger);
-    QFETCH(double, expected);
+    QFETCH(const double, progress);
+    QFETCH(const int, order);
+    QFETCH(const int, itemCount);
+    QFETCH(const double, stagger);
+    QFETCH(const double, expected);
 
     const auto clock = ItemClock{step(TransitionKind::Morph, progress, stagger), itemCount, false};
 
@@ -285,15 +285,15 @@ void TestTransitions::plannedSlots_data()
 void TestTransitions::plannedSlots()
 {
     using Kind = std::optional<TransitionKind>;
-    QFETCH(int, fromCount);
-    QFETCH(int, toCount);
-    QFETCH(bool, keptChanged);
-    QFETCH(Kind, enter);
-    QFETCH(Kind, update);
-    QFETCH(Kind, exit);
-    QFETCH(bool, expectEnter);
-    QFETCH(bool, expectUpdate);
-    QFETCH(bool, expectExit);
+    QFETCH(const int, fromCount);
+    QFETCH(const int, toCount);
+    QFETCH(const bool, keptChanged);
+    QFETCH(const Kind, enter);
+    QFETCH(const Kind, update);
+    QFETCH(const Kind, exit);
+    QFETCH(const bool, expectEnter);
+    QFETCH(const bool, expectUpdate);
+    QFETCH(const bool, expectExit);
 
     const auto planned = QAccelPlot::Internal::plannedSlots(fromCount, toCount, keptChanged, enter, update, exit);
 
@@ -320,7 +320,7 @@ void TestTransitions::keptItemsChanged()
 {
     QFETCH(std::vector<double>, from);
     QFETCH(std::vector<double>, to);
-    QFETCH(bool, expected);
+    QFETCH(const bool, expected);
 
     const auto changed
         = QAccelPlot::Internal::keptItemsChanged({from.data(), static_cast<int>(from.size()) / 2}, {to.data(), static_cast<int>(to.size()) / 2}, 2);
@@ -339,7 +339,7 @@ void TestTransitions::morph_interpolatesKeptItems_data()
 
 void TestTransitions::morph_interpolatesKeptItems()
 {
-    QFETCH(double, progress);
+    QFETCH(const double, progress);
     auto change = Change{{1.0, 2.0, 3.0, 4.0}, {9.0, 8.0, 7.0, 6.0}};
     change.update = step(TransitionKind::Morph, progress);
 
@@ -439,8 +439,8 @@ void TestTransitions::draw_revealsAddedItems_data()
 
 void TestTransitions::draw_revealsAddedItems()
 {
-    QFETCH(double, progress);
-    QFETCH(int, expectedCount);
+    QFETCH(const double, progress);
+    QFETCH(const int, expectedCount);
     // One kept item, then four added ones.
     auto change = Change{{0.0, 0.0}, {0.0, 0.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0, 4.0}};
     change.enter = step(TransitionKind::Draw, progress, 1.0);
@@ -535,10 +535,10 @@ void TestTransitions::grow_itemBaselineOutsideTheAxis_growsFromTheViewportEdge_d
 
 void TestTransitions::grow_itemBaselineOutsideTheAxis_growsFromTheViewportEdge()
 {
-    QFETCH(double, open);
-    QFETCH(bool, logScale);
-    QFETCH(double, grownOpen);
-    QFETCH(double, grownClose);
+    QFETCH(const double, open);
+    QFETCH(const bool, logScale);
+    QFETCH(const double, grownOpen);
+    QFETCH(const double, grownClose);
     // Items of x, open, close growing from their open in a viewport from 1 to 10.
     auto change = Change{{}, {0.0, open, 8.0}};
     change.layout.stride = 3;
@@ -738,7 +738,7 @@ void TestTransitions::compactedFade_keepsTheStartsOfTheRemainingItems_data()
 
 void TestTransitions::compactedFade_keepsTheStartsOfTheRemainingItems()
 {
-    QFETCH(bool, exit);
+    QFETCH(const bool, exit);
     auto group = ItemFadeGroup{};
     group.first = 4;
     group.count = 6;

@@ -123,9 +123,9 @@ void ColormapTest::presetsSpanReferenceColors_data()
 
 void ColormapTest::presetsSpanReferenceColors()
 {
-    QFETCH(Colormap::Preset, preset);
-    QFETCH(QColor, first);
-    QFETCH(QColor, last);
+    QFETCH(const Colormap::Preset, preset);
+    QFETCH(const QColor, first);
+    QFETCH(const QColor, last);
 
     auto colormap = Colormap{};
     colormap.setPreset(preset);

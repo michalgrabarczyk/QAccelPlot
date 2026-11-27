@@ -353,9 +353,9 @@ void MarkerShapesTest::shapesCoverTheirOutline_data()
 
 void MarkerShapesTest::shapesCoverTheirOutline()
 {
-    QFETCH(Shape, shape);
-    QFETCH(QList<QPoint>, inside);
-    QFETCH(QList<QPoint>, outside);
+    QFETCH(const Shape, shape);
+    QFETCH(const QList<QPoint>, inside);
+    QFETCH(const QList<QPoint>, outside);
 
     const auto result = renderMarker({shape});
     QVERIFY(!result.image.isNull());
@@ -387,9 +387,9 @@ void MarkerShapesTest::hollowMarkersDrawOnlyTheOutline_data()
 
 void MarkerShapesTest::hollowMarkersDrawOnlyTheOutline()
 {
-    QFETCH(Shape, shape);
-    QFETCH(QList<QPoint>, inside);
-    QFETCH(QList<QPoint>, outside);
+    QFETCH(const Shape, shape);
+    QFETCH(const QList<QPoint>, inside);
+    QFETCH(const QList<QPoint>, outside);
 
     auto style = MarkerStyle{shape};
     style.filled = false;
@@ -425,8 +425,8 @@ void MarkerShapesTest::pointCloudMarkersMatchLineCurve_data()
 
 void MarkerShapesTest::pointCloudMarkersMatchLineCurve()
 {
-    QFETCH(Shape, shape);
-    QFETCH(bool, filled);
+    QFETCH(const Shape, shape);
+    QFETCH(const bool, filled);
 
     auto style = MarkerStyle{shape};
     style.filled = filled;
@@ -615,7 +615,7 @@ void MarkerShapesTest::markersFollowSameSizeDataUpdates_data()
 
 void MarkerShapesTest::markersFollowSameSizeDataUpdates()
 {
-    QFETCH(bool, withLine);
+    QFETCH(const bool, withLine);
     auto window = QQuickWindow{};
     window.setColor(Qt::black);
     window.resize(kCurveSize, kCurveSize);

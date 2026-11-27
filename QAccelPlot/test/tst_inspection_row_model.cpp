@@ -60,9 +60,9 @@ void TestInspectionRowModel::presentationChangesNotify_data()
 
 void TestInspectionRowModel::presentationChangesNotify()
 {
-    QFETCH(QByteArray, property);
-    QFETCH(QVariant, value);
-    QFETCH(int, role);
+    QFETCH(const QByteArray, property);
+    QFETCH(const QVariant, value);
+    QFETCH(const int, role);
     auto curve = LineCurve{};
     auto model = InspectionRowModel{};
     model.setRows({rowFor(&curve, 0)});

@@ -392,7 +392,7 @@ void BarSeriesTransitionsTest::interruptedTransitionShowsTargetData_data()
 
 void BarSeriesTransitionsTest::interruptedTransitionShowsTargetData()
 {
-    QFETCH(Interruption, interruption);
+    QFETCH(const Interruption, interruption);
     auto transition = std::make_unique<HeldHalfway<MorphTransition>>();
     auto replacement = MorphTransition{};
     scene_.bars->setData(std::vector<double>{5.0, 2.0}, 1);

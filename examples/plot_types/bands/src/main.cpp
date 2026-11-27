@@ -47,5 +47,5 @@ int main(int argc, char* argv[])
     band->setDataF(std::move(stats.band), kSampleCount);
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
-    return app.exec();
+    return QGuiApplication::exec();
 }

@@ -104,5 +104,5 @@ int main(int argc, char* argv[])
     states->setData(std::move(timeline.rects), std::move(timeline.states), count);
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
-    return app.exec();
+    return QGuiApplication::exec();
 }

@@ -40,11 +40,13 @@ void* operator new(const std::size_t size)
     throw std::bad_alloc{};
 }
 
+// NOLINTNEXTLINE(readability-inconsistent-declaration-parameter-name): MSVC declares it with a reserved name.
 void operator delete(void* memory) noexcept
 {
     std::free(memory);
 }
 
+// NOLINTNEXTLINE(readability-inconsistent-declaration-parameter-name): MSVC declares it with a reserved name.
 void operator delete(void* memory, std::size_t) noexcept
 {
     std::free(memory);

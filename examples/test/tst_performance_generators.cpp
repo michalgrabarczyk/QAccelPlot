@@ -420,7 +420,7 @@ void PerformanceGeneratorsTest::plasmaTilesAreSquaresOnTheGrid_data()
 
 void PerformanceGeneratorsTest::plasmaTilesAreSquaresOnTheGrid()
 {
-    QFETCH(int, rectangleCount);
+    QFETCH(const int, rectangleCount);
     auto generator = PlasmaGenerator{};
     auto batch = PlasmaBatch{};
     generator.generate(batch, parametersFor<PlasmaParameters>(rectangleCount), 2.5);
@@ -623,8 +623,8 @@ void PerformanceGeneratorsTest::spectrogramGridIsSquare_data()
 
 void PerformanceGeneratorsTest::spectrogramGridIsSquare()
 {
-    QFETCH(int, cellCount);
-    QFETCH(int, side);
+    QFETCH(const int, cellCount);
+    QFETCH(const int, side);
     QCOMPARE(SpectrogramGenerator::gridSide(cellCount), side);
 
     auto generator = SpectrogramGenerator{};

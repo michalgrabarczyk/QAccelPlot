@@ -91,7 +91,7 @@ std::optional<OpenGlesVersion> requestedOpenGlesVersion()
     const auto major = parts.value(0).toInt(&majorOk);
     const auto minor = parts.size() > 1 ? parts.at(1).toInt(&minorOk) : 0;
     if (parts.size() > 2 || !majorOk || !minorOk || major <= 0 || minor < 0) {
-        qFatal("QACCELPLOT_OPENGL_ES_VERSION must look like \"3.0\", got \"%s\".", qPrintable(text));
+        qFatal(R"(QACCELPLOT_OPENGL_ES_VERSION must look like "3.0", got "%s".)", qPrintable(text));
     }
     return OpenGlesVersion{major, minor};
 }
@@ -511,7 +511,7 @@ void setupEngineFailureHandler(QGuiApplication& app, QQmlApplicationEngine& engi
 
 void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine, int delayMs)
 {
-    const auto arguments = app.arguments();
+    const auto arguments = QCoreApplication::arguments();
     auto* window = qobject_cast<QQuickWindow*>(engine.rootObjects().value(0));
 
     // Select the page before the first frame so the capture delay covers its layout and rendering.
@@ -527,7 +527,7 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
         if (!error.isEmpty()) {
             qCritical().noquote() << error;
             // The event loop is not running yet, so a direct exit() would be ignored.
-            QMetaObject::invokeMethod(&app, [&app]() { app.exit(EXIT_FAILURE); }, Qt::QueuedConnection);
+            QMetaObject::invokeMethod(&app, []() { QCoreApplication::exit(EXIT_FAILURE); }, Qt::QueuedConnection);
             return;
         }
     }
@@ -540,19 +540,19 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
     const auto path = screenshotIndex + 1 < arguments.size() ? arguments.at(screenshotIndex + 1) : QStringLiteral("screenshot.png");
     if (!window) {
         qCritical().noquote() << "Unable to capture screenshot: the QML root object is not a window.";
-        app.exit(EXIT_FAILURE);
+        QCoreApplication::exit(EXIT_FAILURE);
         return;
     }
 
-    QObject::connect(window, &QQuickWindow::sceneGraphError, &app, [&app](const QQuickWindow::SceneGraphError error, const QString& message) {
+    QObject::connect(window, &QQuickWindow::sceneGraphError, &app, [](const QQuickWindow::SceneGraphError error, const QString& message) {
         qCritical().noquote() << QStringLiteral("Qt Quick scene graph error %1: %2").arg(static_cast<int>(error)).arg(message);
-        app.exit(EXIT_FAILURE);
+        QCoreApplication::exit(EXIT_FAILURE);
     });
 
     scheduleScreenshotCapture(window, delayMs, [&app, window, path](const OpenGlContextInfo contextInfo) {
-        auto fail = [&app](const QString& message) {
+        auto fail = [](const QString& message) {
             qCritical().noquote() << message;
-            app.exit(EXIT_FAILURE);
+            QCoreApplication::exit(EXIT_FAILURE);
         };
 
         const auto requestedApi = requestedGraphicsApiName();
@@ -587,10 +587,10 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
         }
 
         const auto page = currentPageName(window);
-        captureContent(window, &app, [&app, path, requestedApi, actualApi, actualQtVersion, page, contextInfo](const ContentCapture& capture) {
-            auto failCapture = [&app](const QString& message) {
+        captureContent(window, &app, [path, requestedApi, actualApi, actualQtVersion, page, contextInfo](const ContentCapture& capture) {
+            auto failCapture = [](const QString& message) {
                 qCritical().noquote() << message;
-                app.exit(EXIT_FAILURE);
+                QCoreApplication::exit(EXIT_FAILURE);
             };
 
             if (!capture.error.isEmpty()) {
@@ -635,7 +635,7 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
 
             qDebug() << "Screenshot saved to" << path;
             qDebug() << "Graphics metadata saved to" << metadataPath;
-            app.quit();
+            QCoreApplication::quit();
         });
     });
 }

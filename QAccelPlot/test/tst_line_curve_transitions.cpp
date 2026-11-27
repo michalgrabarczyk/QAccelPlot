@@ -201,7 +201,7 @@ void LineCurveTransitionsTest::interruptedTransitionShowsTargetData_data()
 
 void LineCurveTransitionsTest::interruptedTransitionShowsTargetData()
 {
-    QFETCH(Interruption, interruption);
+    QFETCH(const Interruption, interruption);
     auto transition = std::make_unique<DrawTransition>();
     transition->setDuration(kLongDuration);
     auto replacement = MorphTransition{};

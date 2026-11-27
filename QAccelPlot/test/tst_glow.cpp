@@ -97,8 +97,8 @@ void GlowTest::haloSurroundsTheSeries_data()
 
 void GlowTest::haloSurroundsTheSeries()
 {
-    QFETCH(int, kind);
-    QFETCH(QPoint, offset);
+    QFETCH(const int, kind);
+    QFETCH(const QPoint, offset);
     auto series = std::unique_ptr<PlotSeries>{};
     if (kind == 0) {
         auto bars = std::make_unique<BarSeries>();
@@ -177,8 +177,8 @@ void GlowTest::hollowMarkerHaloFollowsItsRing_data()
 
 void GlowTest::hollowMarkerHaloFollowsItsRing()
 {
-    QFETCH(bool, pointCloud);
-    QFETCH(bool, antialiased);
+    QFETCH(const bool, pointCloud);
+    QFETCH(const bool, antialiased);
 
     auto series = std::unique_ptr<PlotSeries>{};
     auto* marker = static_cast<SeriesMarker*>(nullptr);

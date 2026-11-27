@@ -118,9 +118,9 @@ void TestFormatters::numericFormat_data()
 
 void TestFormatters::numericFormat()
 {
-    QFETCH(qreal, value);
-    QFETCH(qreal, tickStep);
-    QFETCH(QString, expected);
+    QFETCH(const qreal, value);
+    QFETCH(const qreal, tickStep);
+    QFETCH(const QString, expected);
 
     const auto formatter = QAccelPlot::NumericTickLabelFormatter{};
     QCOMPARE(formatter.format(value, tickStep), expected);
@@ -145,8 +145,8 @@ void TestFormatters::numericLogTick_data()
 
 void TestFormatters::numericLogTick()
 {
-    QFETCH(qreal, value);
-    QFETCH(QString, expected);
+    QFETCH(const qreal, value);
+    QFETCH(const QString, expected);
 
     const auto formatter = QAccelPlot::NumericTickLabelFormatter{};
     QCOMPARE(formatter.formatLogTick(value), expected);
@@ -175,7 +175,7 @@ void TestFormatters::datetime_rejectsUnrepresentableMilliseconds_data()
 
 void TestFormatters::datetime_rejectsUnrepresentableMilliseconds()
 {
-    QFETCH(qreal, value);
+    QFETCH(const qreal, value);
     const auto formatter = QAccelPlot::DateTimeTickLabelFormatter{};
     QVERIFY(formatter.format(value, 1.0).isEmpty());
     QVERIFY(formatter.formatLogTick(value).isEmpty());
@@ -241,10 +241,10 @@ void TestFormatters::textFormat_data()
 
 void TestFormatters::textFormat()
 {
-    QFETCH(QStringList, labels);
-    QFETCH(qreal, value);
-    QFETCH(qreal, tickStep);
-    QFETCH(QString, expected);
+    QFETCH(const QStringList, labels);
+    QFETCH(const qreal, value);
+    QFETCH(const qreal, tickStep);
+    QFETCH(const QString, expected);
 
     auto formatter = QAccelPlot::TextTickLabelFormatter{};
     formatter.setLabels(labels);

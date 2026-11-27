@@ -24,5 +24,5 @@ int main(int argc, char* argv[])
     engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
-    return app.exec();
+    return QGuiApplication::exec();
 }

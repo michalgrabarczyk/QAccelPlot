@@ -907,8 +907,8 @@ void ColorBarTest::wheelMagnitudeIsIndependentOfEventCount_data()
 
 void ColorBarTest::wheelMagnitudeIsIndependentOfEventCount()
 {
-    QFETCH(int, delta);
-    QFETCH(bool, logarithmic);
+    QFETCH(const int, delta);
+    QFETCH(const bool, logarithmic);
     auto scene = InteractiveScene{Qt::Horizontal};
     if (logarithmic) {
         scene.colormap.setLogScale(true);

@@ -122,5 +122,5 @@ int main(int argc, char* argv[])
     auto histogram = QAccelPlotExample::VisibleHistogram{interference, amplitudeHistogram, std::move(pattern), kHistogramBins};
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
-    return app.exec();
+    return QGuiApplication::exec();
 }

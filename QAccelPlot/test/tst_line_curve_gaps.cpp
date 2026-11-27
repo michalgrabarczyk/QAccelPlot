@@ -189,7 +189,7 @@ void LineCurveGapsTest::shaderFiniteBitPredicateMatchesStdIsFinite_data()
 
 void LineCurveGapsTest::shaderFiniteBitPredicateMatchesStdIsFinite()
 {
-    QFETCH(float, value);
+    QFETCH(const float, value);
     QCOMPARE(shaderIsFiniteBits(value), static_cast<bool>(std::isfinite(value)));
 }
 

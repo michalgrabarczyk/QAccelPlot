@@ -138,8 +138,8 @@ void PointSpatialIndexTest::pointsOnALineAreSplitAlongIt_data()
 
 void PointSpatialIndexTest::pointsOnALineAreSplitAlongIt()
 {
-    QFETCH(bool, horizontal);
-    QFETCH(float, length);
+    QFETCH(const bool, horizontal);
+    QFETCH(const float, length);
 
     constexpr auto pointCount = 40000;
     auto xy = std::vector<float>(pointCount * 2);

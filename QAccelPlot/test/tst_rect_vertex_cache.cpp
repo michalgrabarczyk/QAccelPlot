@@ -71,7 +71,8 @@ void RectVertexCacheTest::rebuild_withoutColorFunction_writesIdsCornersAndWhite(
     const auto geometry = copiedGeometry(cache);
     for (auto i = 0; i < cache.vertexCount(); ++i) {
         const auto& vertex = vertexAt(*geometry, i);
-        QCOMPARE(vertex.id, static_cast<float>(i / RectVertexCache::kVerticesPerRect));
+        const auto rectIndex = i / RectVertexCache::kVerticesPerRect;
+        QCOMPARE(vertex.id, static_cast<float>(rectIndex));
         QCOMPARE(vertex.corner, static_cast<float>(i % RectVertexCache::kVerticesPerRect));
         QCOMPARE(vertexColor(vertex), QColor{Qt::white});
     }

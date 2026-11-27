@@ -557,8 +557,8 @@ void RectangleSeriesDataTest::scaleChangesRefreshRenderCoordinates_data()
 
 void RectangleSeriesDataTest::scaleChangesRefreshRenderCoordinates()
 {
-    QFETCH(bool, horizontal);
-    QFETCH(bool, logScale);
+    QFETCH(const bool, horizontal);
+    QFETCH(const bool, logScale);
     auto xAxis = Axis{};
     auto yAxis = Axis{};
     xAxis.setViewportMin(1);

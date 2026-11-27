@@ -39,7 +39,7 @@ void TestColorPalette::palettesDefineEveryColor_data()
 
 void TestColorPalette::palettesDefineEveryColor()
 {
-    QFETCH(bool, dark);
+    QFETCH(const bool, dark);
     const auto* palette = dark ? &QAccelPlot::ColorPalette::dark() : &QAccelPlot::ColorPalette::light();
 
     const auto* metaObject = palette->metaObject();
@@ -116,7 +116,7 @@ void TestColorPalette::qmlLegendDefaultsUseDarkPalette()
                       "import QAccelPlot\n"
                       "Legend { model: LegendModel {} }\n",
         QUrl(QStringLiteral("qrc:/tst_color_palette/LegendDefaults.qml")));
-    QScopedPointer<QObject> legend(component.create());
+    const QScopedPointer<QObject> legend(component.create());
     QVERIFY2(legend, qPrintable(component.errorString()));
 
     // A binding that cannot resolve the Colors singleton only warns and leaves QtQuick defaults.

@@ -112,9 +112,9 @@ void LineCurveJoinsTest::steepSegmentsKeepTheirWidth_data()
 
 void LineCurveJoinsTest::steepSegmentsKeepTheirWidth()
 {
-    QFETCH(bool, noise);
-    QFETCH(qreal, lineWidth);
-    QFETCH(bool, antialiasing);
+    QFETCH(const bool, noise);
+    QFETCH(const qreal, lineWidth);
+    QFETCH(const bool, antialiasing);
 
     // Samples 4 px apart that swing tens of pixels turn sharply at almost every join.
     auto curve = LineCurve{};
