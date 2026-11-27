@@ -1,0 +1,13 @@
+#
+# SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+# SPDX-License-Identifier: MIT
+#
+# Extends the repository .clang-tidy. Checks disabled for tests:
+#   bugprone-unchecked-optional-access           Tests read optionals they just populated; an empty one fails the test.
+#   misc-no-recursion                            Item-tree walks in test helpers recurse on purpose.
+#   readability-make-member-function-const       QtTest private slots are test cases, not queries.
+InheritParentConfig: true
+Checks: >
+  -bugprone-unchecked-optional-access,
+  -misc-no-recursion,
+  -readability-make-member-function-const

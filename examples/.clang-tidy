@@ -1,0 +1,11 @@
+#
+# SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+# SPDX-License-Identifier: MIT
+#
+# Extends the repository .clang-tidy. Checks disabled for examples:
+#   bugprone-exception-escape                    Example main() lets allocation failures terminate.
+#   misc-no-recursion                            Item-tree walks in example helpers recurse on purpose.
+InheritParentConfig: true
+Checks: >
+  -bugprone-exception-escape,
+  -misc-no-recursion
