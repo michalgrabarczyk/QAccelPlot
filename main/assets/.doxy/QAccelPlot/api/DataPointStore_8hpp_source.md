@@ -102,6 +102,7 @@ public:
     [[nodiscard]] const std::vector<int>& categories() const noexcept;
 
     [[nodiscard]] Extents extents(bool logScaleX, bool logScaleY, int first = 0, int last = -1) const;
+    [[nodiscard]] Extents renderedExtents(bool logScaleX, bool logScaleY, int first = 0, int last = -1) const;
 
     std::vector<double> setDrawn(std::vector<double>&& dataPoints, int count);
     void clearDrawn();

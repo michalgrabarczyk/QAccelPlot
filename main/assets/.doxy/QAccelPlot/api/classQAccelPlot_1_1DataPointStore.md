@@ -106,6 +106,7 @@ _Holds the data points of one series and derives everything that depends only on
 |  int | [**renderStride**](#function-renderstride) () noexcept const<br>_Returns the floats per data point in the render data._  |
 |  bool | [**rendered**](#function-rendered) (int index) const<br>_Returns whether_ `renderedView()` _holds drawn data point__index_ _._ |
 |  int | [**renderedCount**](#function-renderedcount) (int count) const<br>_Returns how many of the first_ _count_ _drawn data points_`renderedView()` _holds._ |
+|  [**Extents**](structQAccelPlot_1_1DataPointStore_1_1Extents.md) | [**renderedExtents**](#function-renderedextents) (bool logScaleX, bool logScaleY, int first=0, int last=-1) const<br>_Returns the extents of data points [_ _first_ _,__last_ _) of_`renderedView()` _under the layout's range rule._ |
 |  [**View**](structQAccelPlot_1_1DataPointStore_1_1View.md) | [**renderedView**](#function-renderedview) () const<br>_Returns the data points the render data is built from:_ `drawnView()` _, without the invalid data points when_`skipInvalid()` _is set._ |
 |  void | [**replace**](#function-replace) (int index, const double \* coordinates) <br>_Replaces the coordinates of data point_ _index_ _with_`columnCount()` _doubles; promotes float data first._ |
 |  void | [**setAttributes**](#function-setattributes) (std::vector&lt; float &gt; && attributes) <br>_Replaces the float attributes: empty, or_ `attributeCount` _floats per data point._ |
@@ -672,6 +673,30 @@ int QAccelPlot::DataPointStore::renderedCount (
 
 
 
+
+<hr>
+
+
+
+
+### function renderedExtents {#function-renderedextents}
+
+_Returns the extents of data points [_ _first_ _,__last_ _) of_`renderedView()` _under the layout's range rule._
+```C++
+Extents QAccelPlot::DataPointStore::renderedExtents (
+    bool logScaleX,
+    bool logScaleY,
+    int first=0,
+    int last=-1
+) const
+```
+
+
+
+Like `extents()`, but over the data points that are drawn, such as a running transition's frame, with _first_ and _last_ indexing `renderedView()`. 
+
+
+        
 
 <hr>
 
