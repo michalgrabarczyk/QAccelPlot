@@ -45,7 +45,7 @@ void destroyBeforeDelivery(QQuickWindow* window)
 
 int runCapture(QGuiApplication& app)
 {
-    app.setQuitOnLastWindowClosed(false);
+    QGuiApplication::setQuitOnLastWindowClosed(false);
     auto engine = QQmlApplicationEngine{};
     engine.loadData(R"(
         import QtQuick
@@ -60,8 +60,8 @@ int runCapture(QGuiApplication& app)
         return EXIT_FAILURE;
     }
 
-    const auto beforeDelay = app.arguments().contains(QStringLiteral("before-delay"));
-    const auto beforeDelivery = app.arguments().contains(QStringLiteral("before-delivery"));
+    const auto beforeDelay = QCoreApplication::arguments().contains(QStringLiteral("before-delay"));
+    const auto beforeDelivery = QCoreApplication::arguments().contains(QStringLiteral("before-delivery"));
     if (beforeDelivery) {
         destroyBeforeDelivery(window);
     }
@@ -72,8 +72,8 @@ int runCapture(QGuiApplication& app)
     if (beforeDelay || beforeDelivery) {
         QTimer::singleShot(300, &app, &QCoreApplication::quit);
     }
-    QTimer::singleShot(8000, &app, [&app]() { app.exit(EXIT_FAILURE); });
-    return app.exec();
+    QTimer::singleShot(8000, &app, []() { QCoreApplication::exit(EXIT_FAILURE); });
+    return QGuiApplication::exec();
 }
 
 } // namespace
@@ -100,8 +100,8 @@ void ScreenshotCaptureTest::capture_data()
 
 void ScreenshotCaptureTest::capture()
 {
-    QFETCH(QString, renderLoop);
-    QFETCH(QString, mode);
+    QFETCH(const QString, renderLoop);
+    QFETCH(const QString, mode);
 #ifdef Q_OS_MACOS
     if (renderLoop == QStringLiteral("threaded")) {
         QSKIP("Qt does not support the threaded render loop with OpenGL on macOS");
@@ -145,7 +145,7 @@ int main(int argc, char* argv[])
 {
     QAccelPlotExample::configureGraphicsApi();
     auto app = QGuiApplication{argc, argv};
-    if (app.arguments().contains(QStringLiteral("--capture"))) {
+    if (QCoreApplication::arguments().contains(QStringLiteral("--capture"))) {
         return runCapture(app);
     }
     auto test = ScreenshotCaptureTest{};

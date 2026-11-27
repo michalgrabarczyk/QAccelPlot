@@ -56,8 +56,8 @@ int main(int argc, char* argv[])
     if (auto* root = engine.rootObjects().value(0)) {
         populate(*root);
         // A screenshot must not depend on where the mouse happens to be.
-        root->setProperty("pinnedCursor", app.arguments().contains(QStringLiteral("--screenshot")));
+        root->setProperty("pinnedCursor", QCoreApplication::arguments().contains(QStringLiteral("--screenshot")));
     }
     QAccelPlotExample::setupScreenshotHandler(app, engine);
-    return app.exec();
+    return QGuiApplication::exec();
 }

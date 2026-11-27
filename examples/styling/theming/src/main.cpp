@@ -17,10 +17,10 @@ int main(int argc, char* argv[])
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
-    engine.setInitialProperties({{QStringLiteral("isDark"), !app.arguments().contains(QStringLiteral("--light-theme"))}});
+    engine.setInitialProperties({{QStringLiteral("isDark"), !QCoreApplication::arguments().contains(QStringLiteral("--light-theme"))}});
 
     engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
-    return app.exec();
+    return QGuiApplication::exec();
 }

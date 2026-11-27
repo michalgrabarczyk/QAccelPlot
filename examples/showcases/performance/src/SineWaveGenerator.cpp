@@ -40,7 +40,7 @@ void insertGaps(std::vector<SineWavePart>& parts, const int pointCount, const fl
 // and sine starts at wave index 0.
 void writeWave(SineWavePart& part, const int first, const int last, const int partBegin, const float xStep, SineLookupCursor sine)
 {
-    sine.skip(static_cast<std::uint64_t>(partBegin + first));
+    sine.skip(static_cast<std::uint64_t>(partBegin) + static_cast<std::uint64_t>(first));
     auto* xy = part.floats.data();
     for (auto i = first; i < last; ++i) {
         const auto offset = static_cast<std::size_t>(i) * 2;

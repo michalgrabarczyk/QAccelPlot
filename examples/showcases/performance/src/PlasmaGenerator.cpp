@@ -59,7 +59,7 @@ bool operator==(const PlasmaParameters& a, const PlasmaParameters& b)
 void PlasmaGenerator::generate(Batch& batch, const Parameters& parameters, const double timeSeconds)
 {
     const auto rectangleCount = parameters.dataset.count;
-    const auto columns = std::max(1, static_cast<int>(std::ceil(std::sqrt(rectangleCount * kDomainWidth / kDomainHeight))));
+    const auto columns = std::max(1, static_cast<int>(std::ceil(std::sqrt(static_cast<float>(rectangleCount) * kDomainWidth / kDomainHeight))));
     const auto rows = (rectangleCount + columns - 1) / columns;
     const auto pitch = std::min(kDomainWidth / static_cast<float>(columns), kDomainHeight / static_cast<float>(rows));
     const auto originX = (kDomainWidth - static_cast<float>(columns) * pitch + pitch) * 0.5f;

@@ -10,6 +10,7 @@
 
 #include <QLatin1String>
 
+#include <algorithm>
 #include <chrono>
 #include <cstddef>
 #include <memory>
@@ -104,12 +105,8 @@ private:
 
     static bool hasPrecisionFor(const Batch& batch, const Ingestion ingestion)
     {
-        for (const auto& part : batch.parts) {
-            if (!QAccelPlotExample::hasPrecisionFor(part, ingestion)) {
-                return false;
-            }
-        }
-        return true;
+        return std::all_of(
+            batch.parts.begin(), batch.parts.end(), [ingestion](const auto& part) { return QAccelPlotExample::hasPrecisionFor(part, ingestion); });
     }
 
     void configure(const CommonOptions& options, const double timeSeconds)
