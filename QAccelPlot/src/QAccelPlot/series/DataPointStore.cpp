@@ -70,6 +70,70 @@ void scanUnchecked(const T* data, const int stride, const int first, const int l
     }
 }
 
+// Extents of data points [first, last) of data, whose data points have layout; last of -1 means the end.
+DataPointStore::Extents scanExtents(
+    const DataPointStore::View& data, const DataPointStore::Layout& layout, const bool logScaleX, const bool logScaleY, const int first, const int last)
+{
+    using RangeRule = DataPointStore::RangeRule;
+    const auto begin = std::clamp(first, 0, data.count);
+    const auto end = last < 0 ? data.count : std::clamp(last, begin, data.count);
+    const auto columns = static_cast<int>(layout.columns.size());
+    const auto isX = [&](const int column) { return layout.columns[static_cast<std::size_t>(column)] == DataPointStore::Dimension::X; };
+    const auto logScaleOf = [&](const int column) { return isX(column) ? logScaleX : logScaleY; };
+
+    auto columnBounds = std::array<Bounds, kMaxColumns>{};
+    auto checked = true;
+    if (layout.rangeRule == RangeRule::EachCoordinate) {
+        if (data.precise) {
+            scanUnchecked(data.precise, data.stride, begin, end, columns, columnBounds);
+        } else {
+            scanUnchecked(data.floats, data.stride, begin, end, columns, columnBounds);
+        }
+        checked = false;
+        for (auto column = 0; column < columns; ++column) {
+            if (!fastBoundsUsable(columnBounds[column], logScaleOf(column))) {
+                checked = true;
+                break;
+            }
+        }
+    }
+
+    if (checked) {
+        columnBounds.fill(Bounds{});
+        for (auto i = begin; i < end; ++i) {
+            auto hasNaN = false;
+            auto allValid = true;
+            for (auto column = 0; column < columns; ++column) {
+                const auto value = data.value(i, column);
+                hasNaN = hasNaN || std::isnan(value);
+                allValid = allValid && isValidCoordinate(value, logScaleOf(column));
+            }
+            if ((layout.rangeRule == RangeRule::WholeDataPoint && !allValid) || (layout.rangeRule == RangeRule::SkipOnNaN && hasNaN)) {
+                continue;
+            }
+            for (auto column = 0; column < columns; ++column) {
+                const auto value = data.value(i, column);
+                if (isValidCoordinate(value, logScaleOf(column))) {
+                    columnBounds[column].include(value);
+                }
+            }
+        }
+    }
+
+    auto x = Bounds{};
+    auto y = Bounds{};
+    for (auto column = 0; column < columns; ++column) {
+        const auto& bounds = columnBounds[column];
+        if (bounds.min > bounds.max) {
+            continue;
+        }
+        auto& target = isX(column) ? x : y;
+        target.include(bounds.min);
+        target.include(bounds.max);
+    }
+    return DataPointStore::Extents{x.extent(), y.extent()};
+}
+
 } // namespace
 
 double DataPointStore::View::value(const int index, const int column) const noexcept
@@ -344,63 +408,12 @@ const std::vector<int>& DataPointStore::categories() const noexcept
 
 DataPointStore::Extents DataPointStore::extents(const bool logScaleX, const bool logScaleY, const int first, const int last) const
 {
-    const auto data = view();
-    const auto begin = std::clamp(first, 0, count_);
-    const auto end = last < 0 ? count_ : std::clamp(last, begin, count_);
-    const auto columns = columnCount();
-    const auto logScaleOf = [&](const int column) { return layout_.columns[static_cast<std::size_t>(column)] == Dimension::X ? logScaleX : logScaleY; };
+    return scanExtents(view(), layout_, logScaleX, logScaleY, first, last);
+}
 
-    auto columnBounds = std::array<Bounds, kMaxColumns>{};
-    auto checked = true;
-    if (layout_.rangeRule == RangeRule::EachCoordinate) {
-        if (data.precise) {
-            scanUnchecked(data.precise, data.stride, begin, end, columns, columnBounds);
-        } else {
-            scanUnchecked(data.floats, data.stride, begin, end, columns, columnBounds);
-        }
-        checked = false;
-        for (auto column = 0; column < columns; ++column) {
-            if (!fastBoundsUsable(columnBounds[column], logScaleOf(column))) {
-                checked = true;
-                break;
-            }
-        }
-    }
-
-    if (checked) {
-        columnBounds.fill(Bounds{});
-        for (auto i = begin; i < end; ++i) {
-            auto hasNaN = false;
-            auto allValid = true;
-            for (auto column = 0; column < columns; ++column) {
-                const auto value = data.value(i, column);
-                hasNaN = hasNaN || std::isnan(value);
-                allValid = allValid && isValidCoordinate(value, logScaleOf(column));
-            }
-            if ((layout_.rangeRule == RangeRule::WholeDataPoint && !allValid) || (layout_.rangeRule == RangeRule::SkipOnNaN && hasNaN)) {
-                continue;
-            }
-            for (auto column = 0; column < columns; ++column) {
-                const auto value = data.value(i, column);
-                if (isValidCoordinate(value, logScaleOf(column))) {
-                    columnBounds[column].include(value);
-                }
-            }
-        }
-    }
-
-    auto x = Bounds{};
-    auto y = Bounds{};
-    for (auto column = 0; column < columns; ++column) {
-        const auto& bounds = columnBounds[column];
-        if (bounds.min > bounds.max) {
-            continue;
-        }
-        auto& target = layout_.columns[static_cast<std::size_t>(column)] == Dimension::X ? x : y;
-        target.include(bounds.min);
-        target.include(bounds.max);
-    }
-    return Extents{x.extent(), y.extent()};
+DataPointStore::Extents DataPointStore::renderedExtents(const bool logScaleX, const bool logScaleY, const int first, const int last) const
+{
+    return scanExtents(renderedView(), layout_, logScaleX, logScaleY, first, last);
 }
 
 std::vector<double> DataPointStore::setDrawn(std::vector<double>&& dataPoints, const int count)

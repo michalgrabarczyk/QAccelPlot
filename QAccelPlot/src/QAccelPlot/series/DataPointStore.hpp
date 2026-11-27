@@ -160,6 +160,11 @@ public:
     ///
     /// \a last of -1 means the end. \a logScaleX and \a logScaleY decide which coordinates are valid.
     [[nodiscard]] Extents extents(bool logScaleX, bool logScaleY, int first = 0, int last = -1) const;
+    /// \brief Returns the extents of data points [\a first, \a last) of \c renderedView() under the layout's range rule.
+    ///
+    /// Like \c extents(), but over the data points that are drawn, such as a running transition's
+    /// frame, with \a first and \a last indexing \c renderedView().
+    [[nodiscard]] Extents renderedExtents(bool logScaleX, bool logScaleY, int first = 0, int last = -1) const;
 
     /// \brief Draws \a count data points moved from \a dataPoints instead of the stored ones.
     ///
