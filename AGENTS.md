@@ -4,8 +4,7 @@
 
 QAccelPlot is a high-performance Qt Quick plotting library. It uses the Qt
 Scene Graph (QSG) for hardware-accelerated rendering, exposing QML-friendly
-components backed by C++ `QQuickItem` subclasses. The library is licensed under
-MIT.
+components backed by C++ `QQuickItem` subclasses.
 
 ## Build & Toolchain
 
@@ -30,10 +29,14 @@ cmake --build build --config Release
 cmake -S . -B build -DQACCELPLOT_BUILD_TESTS=ON
 cmake --build build --config Release
 ctest --test-dir build --output-on-failure
+# Example build tests (link/run checks per example) also need -DQACCELPLOT_BUILD_EXAMPLES=ON
 
 # API documentation (requires Doxygen)
 cmake -S . -B build -DQACCELPLOT_BUILD_DOCS=ON
 cmake --build build --target qaccelplot_docs
+
+# User guide (MkDocs Material, source in docs/guide/)
+mkdocs build --strict
 ```
 
 ### Qt version notes
@@ -51,68 +54,40 @@ Each visual element (`PlotView`, `LineCurve`, etc.) inherits from
 Non-visual QML types (`Axis`, `Grid`, `AbstractPlotAnnotation`, etc.) inherit
 from `QObject`. Shader files are pre-compiled to `.qsb` format (via Qt Shader
 Tools) and embedded via `qt_add_resources`. Data is typically supplied from a
-background thread; the main thread swaps in pre-computed buffers.
+background thread; the main thread swaps in pre-computed buffers. Point buffers
+are `std::vector<float>` with interleaved XY data.
+
+New sources go in the matching subfolder of `src/QAccelPlot/`; the
+`CONFIGURE_DEPENDS` glob in `QAccelPlot/CMakeLists.txt` picks them up.
 
 ### Source directory map
 
-```
-QAccelPlot/
-├── src/                          — Include root (#include <QAccelPlot/...>)
-│   └── QAccelPlot/
-│       ├── PlotView.*            — Main plot canvas item
-│       ├── PlotMouseEvent.*      — Custom mouse event type
-│       ├── Border.*              — Outline color and width (border grouped property)
-│       ├── MathUtils.hpp         — Math utilities
-│       ├── QAccelPlotLogging.*   — Qt logging category
-│       ├── internal/             — Helpers shared across folders or used by PlotView: pointer tracking,
-│       │                           outlined rectangle item, rectangle zoom overlay, item fade and glow styles
-│       ├── annotations/          — DataAnchor (attach QML items to data coords)
-│       ├── axis/                 — Axis, AxisLabel and TextLabel (label grouped properties),
-│       │                           AxisTicker, AxisTickPainter, ColorBar,
-│       │                           internal/ (pan and zoom range math, axis label placement)
-│       ├── data/                 — Histogram (binning samples into BarSeries data),
-│       │                           HistogramFactory (QML Histogram singleton)
-│       ├── effects/              — SeriesEffect (base), GradientFill, GradientStroke, Glow, FadeTrail
-│       │                           internal/ (gradient stop reading, coordinates, and value ranges)
-│       ├── export/               — PlotExporter (raster image export),
-│       │                           internal/ (grab sizing, painted-item texture scaling, image file writing)
-│       ├── formatters/           — DateTimeTickLabelFormatter, NumericTickLabelFormatter,
-│       │                           TextTickLabelFormatter, TickLabelFormatter (base/JS callback),
-│       │                           UnitTickLabelFormatter (automatic SI unit prefix),
-│       │                           internal/ (numeric label text, unit prefixes)
-│       ├── grid/                 — Grid, GridNode
-│       ├── inspection/           — SeriesInspection (per-series data queries), InspectionResult (query value types),
-│       │                           PlotInspector, SelectionTool, InspectionRowModel,
-│       │                           internal/ (in-place search of ordered data, k-d index, async index cache,
-│       │                           objects declared inside an inspector, selection rectangle)
-│       ├── legend/               — LegendEntry (how a legend draws a series), LegendModel
-│       ├── linestyles/           — SolidLine, DashLine, NoLine
-│       ├── materials/            — QSGMaterial subclasses for GPU rendering
-│       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer, BandEdgeRenderer,
-│       │                           LineStroke (shared line ribbon helpers)
-│       ├── series/               — LineCurve, PointCloud, HeatmapSeries, RectangleSeries, BarSeries, BandSeries,
-│       │                           PlotSeries, ColormappedSeries (colormap and value range base),
-│       │                           ErrorBarSeries, CandlestickSeries,
-│       │                           BandEdges (edges grouped property),
-│       │                           LineCurveVertexCache,
-│       │                           LineCurveGaps (gaps grouped property),
-│       │                           StepMode (how a line joins data points),
-│       │                           MarkerShape, SeriesMarker (marker grouped property),
-│       │                           Category (one category of a bar or rectangle series),
-│       │                           LineCurveGapFilter (invalid-sample contract),
-│       │                           SpatialGrid, PointSpatialIndex (hover hit testing),
-│       │                           internal/ (rectangle vertices and geometry, step paths,
-│       │                           heatmap grids, hover index budget, effects list, shared series helpers)
-│       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
-│       └── transitions/          — DataTransition, EnterExitTransition, DrawTransition, GrowTransition,
-│                                   MorphTransition, TransitionRunner (runs the enter, update, and exit
-│                                   transitions of one item), internal/ (frame engine, opacity animations)
-├── qml/                          — QML helper types (Plot, Legend, Crosshair, InspectionTooltip,
-│                                   InspectionMarkers)
-├── shaders/                      — GLSL shaders compiled to .qsb
-├── test/                         — Unit tests
-└── CMakeLists.txt                — Library build configuration
-```
+`QAccelPlot/src/` is the include root (`#include <QAccelPlot/...>`). The top
+level of `src/QAccelPlot/` holds `PlotView` and its helpers (mouse events,
+border, drag rectangle, rectangle zoom, logging).
+
+| Folder | Contents |
+|---|---|
+| `annotations/` | QML items attached to data coordinates |
+| `axis/` | Axes, ticks, axis labels, color bar |
+| `data/` | Data preparation, such as histogram binning |
+| `effects/` | Series effects (gradients, glow, fade trail) and `Colormap` |
+| `export/` | Raster image export |
+| `formatters/` | Tick label formatters |
+| `grid/` | Grid lines |
+| `inspection/` | Hover and selection queries over series data |
+| `internal/` | Helpers shared across folders or used by `PlotView` |
+| `legend/` | Legend model and per-series legend entries |
+| `linestyles/` | Solid, dashed, and no-line styles |
+| `materials/` | `QSGMaterial` subclasses (GPU side) |
+| `renderers/` | Geometry builders for line curves and band edges |
+| `series/` | All series types and their grouped properties |
+| `theme/` | Color palettes and the `Colors` QML singleton |
+| `transitions/` | Enter, update, and exit animations for series data |
+
+Next to `src/` in `QAccelPlot/`: `qml/` (QML helper types such as `Plot` and
+`Legend`), `shaders/` (GLSL compiled to `.qsb`), and `test/` (unit tests;
+`consumer/` is a standalone app linking the library as a user project does).
 
 ### Other directories
 
@@ -120,15 +95,14 @@ QAccelPlot/
   the rest are grouped by category: `plot_types/`, `styling/`, `axes/`,
   `data/`, `interaction/`, and `showcases/`. Each example directory is named
   after its target in snake_case (`QAccelPlotExampleTickFormats` →
-  `axes/tick_formats/`).
+  `axes/tick_formats/`). `common/` holds shared example code (`ExampleHeader`,
+  `ExampleUtils`); `test/` holds example unit and visual tests.
 - `docs/` — MkDocs guide source + Doxygen configuration
-- `qml/` — Top-level QML types (Plot wrapper, Legend)
 - `scripts/` — Build and CI helper scripts
 - `cmake/` — CMake modules
 
 ## C++ Conventions
 
-- `#pragma once` for all header include guards.
 - Trailing `_` for all private member variables (e.g., `xAxis_`, `color_`).
 - Declare Qt properties with the full
   `Q_PROPERTY(Type name READ getter WRITE setter NOTIFY signal)` pattern.
@@ -149,7 +123,8 @@ QAccelPlot/
   `InspectionNS::Status`); moc and QML resolve them. Don't name a class
   `QAccelPlot`: it would hide the namespace and force `::QAccelPlot::` prefixes.
 - Keep `.hpp` / `.cpp` pairs for every class; headers organized in
-  subdirectories under `src/QAccelPlot/`. Include library headers with the
+  subdirectories under `src/QAccelPlot/`. Define functions in the `.cpp` in
+  the order the `.hpp` declares them. Include library headers with the
   `QAccelPlot/` prefix: `"QAccelPlot/series/LineCurve.hpp"` inside `QAccelPlot/`,
   `<QAccelPlot/series/LineCurve.hpp>` in examples.
 - Put library-only helpers in `QAccelPlot::Internal`. A helper used by one
@@ -157,14 +132,9 @@ QAccelPlot/
   lives in the top-level `src/QAccelPlot/internal/`.
 - Follow Qt's signal/slot naming: `fooChanged()` signal paired with
   `setFoo()` setter.
-- Prefer `qreal` for geometric values exposed to QML; use `float` for
-  performance-critical internal buffers.
-- Use `std::vector<float>` with interleaved XY data for plot point buffers.
-- Mark variables and functions `const` whenever possible.
+- Give every public C++ member a `/// \brief` documentation comment.
 - When defining a variable in `.cpp`, prefer `auto v = double{};` over
   `double v{};`.
-- Always use braces `{ }` after `if`, `for`, and `while` bodies, even for
-  single-statement bodies.
 - Mark an unused parameter `[[maybe_unused]]` and keep its name; don't comment
   the name out or use `Q_UNUSED`. Remove the parameter instead when no
   override, signal, or shared signature requires it.
@@ -176,78 +146,18 @@ QAccelPlot/
 - Library sources must pass `clang-tidy` with the repository `.clang-tidy`
   (enforced by the Static analysis CI workflow).
 
-## Clean Code
-
-- Keep functions short — if a function exceeds ~50 lines, extract smaller,
-  well-named helper functions.
-- Define functions in `.cpp` files in the same order they are declared in the
-  corresponding `.hpp` file.
-- Follow the Single Responsibility Principle: each class should have one clear
-  reason to change.
-- Split large classes into smaller, focused ones when responsibilities can be
-  cleanly separated.
-- Don't be verbose with code comments. Add a comment only when it clearly
-  brings value, for example when a change is unintuitive or the reason behind
-  it is not obvious from the code.
-- Don't add a comment when the code already communicates the change clearly.
-  (This does not apply to the required `///` API documentation comments.)
-
 ## QML Conventions
 
-- QML files live in `qml/`.
-- Use Qt Quick property bindings rather than imperative assignments where
-  practical.
 - The library uses a namespaced import pattern:
   `import QAccelPlot as QAccelPlot`. This keeps generic type names (like
   `Colors`) out of the application's unqualified namespace.
 
-## Language
+## Language & Git
 
 - Use American English spelling in all documentation, comments, and
   identifiers (e.g., "color" not "colour", "normalize" not "normalise").
-
-## Git
-
-- Never commit or push changes unless explicitly asked.
-- Name branches according to the type of work:
-  - Use `fix/<descriptive-name>` for bug fixes.
-  - Use `dev/<descriptive-name>` for all other changes, including features,
-    refactors, documentation, and maintenance.
-- Keep branch names short, descriptive, lowercase, and hyphen-separated after
-  the prefix.
-
-## Releases
-
-`CHANGELOG.md` is the source of truth for release notes. Before creating a
-release tag:
-
-1. Update the top-level CMake project version to the release version.
-2. Move the relevant changelog entries from `[Unreleased]` into a dated section
-   for that exact version, keeping `[Unreleased]` for future work.
-3. Update migration or compatibility documentation for breaking changes.
-4. Merge the release change into `main` and ensure normal CI passes.
-
-Create and push the matching tag from `main`, for example:
-
-```sh
-git tag v0.2.0
-git push origin v0.2.0
-```
-
-The release workflow requires the tag to match the CMake version and a
-non-empty changelog section. Before 1.0, releases must increment `MINOR` and
-keep `PATCH` at zero. The tagged commit must be reachable from `main`.
-
-Published release tags are immutable. Never move or reuse a tag after its
-GitHub Release has been created.
-
-## Adding New Plot Elements
-
-1. Create `src/QAccelPlot/MyElement.hpp` and `src/QAccelPlot/MyElement.cpp`.
-2. Inherit from `QQuickItem` (visual) or `QObject` (non-visual).
-3. Add `QML_NAMED_ELEMENT(MyElement)` and all `Q_PROPERTY` declarations.
-4. Override `updatePaintNode` if the element needs custom rendering.
-5. Register the new source files in `QAccelPlot/CMakeLists.txt`.
+- Name branches `fix/<name>` for bug fixes and `dev/<name>` for everything
+  else; keep `<name>` short, lowercase, and hyphen-separated.
 
 ## Common Pitfalls
 
@@ -255,9 +165,10 @@ GitHub Release has been created.
   hardware Scene Graph backend (OpenGL, Direct3D, Vulkan, or Metal). The
   software backend cannot render curves and emits a warning. Check
   `QSG_RHI_BACKEND` and `QT_QUICK_BACKEND` environment variables.
-- **Buffer ownership**: `setDataF(std::vector<float>&&, int)` moves the buffer
-  immediately and must be called on the curve's thread (normally the UI
-  thread). For worker threads, use `postData()` which queues the handoff.
+- **Threading**: Never write directly to a `QQuickItem` from a worker thread.
+  `setDataF(std::vector<float>&&, int)` moves the buffer immediately and must
+  be called on the curve's thread (normally the UI thread); from a worker
+  thread, use `LineCurve::postData()`, which queues the handoff.
 - **Data ranges**: Data setters do not scan for the data range. A series
   computes it when something reads it (`rescaleToData()`, an axis with
   `autoRescale`, `dataMin`/`dataMax`, a gradient with an unset bound). A series must
@@ -267,61 +178,13 @@ GitHub Release has been created.
 - **Static QML module**: Applications link the umbrella
   `QAccelPlot::QAccelPlot` target and call `qt_import_qml_plugins()` before
   `qt_finalize_executable()`. C++-only tools can link `QAccelPlot::Core`.
-- **Thread safety**: Never write directly to a `QQuickItem` from a worker
-  thread. Use `LineCurve::postData()` or queue the handoff to the UI thread.
 
-## Testing
+## Where to read more
 
-Tests are built with `-DQACCELPLOT_BUILD_TESTS=ON`. Run with:
-
-```sh
-ctest --test-dir build --output-on-failure
-```
-
-Example build tests (link/run checks for each example) require
-`-DQACCELPLOT_BUILD_EXAMPLES=ON` as well.
-
-## Documentation
-
-- User guide: MkDocs Material, source in `docs/guide/`, built with
-  `mkdocs build --strict`.
-- API reference: Doxygen, source comments use `///` triple-slash style.
-  `QT_AUTOBRIEF` is enabled so the first sentence of a `///` block is the
-  brief description.
-- Every public C++ member should have a `/// \brief` documentation comment.
-
-### Writing style
-
-These rules apply to all documentation: the MkDocs guide, Doxygen comments,
-README, CHANGELOG, and example descriptions.
-
-- Be concise and precise. Say what something does, how to use it, and any
-  constraints or pitfalls, then stop.
-- Avoid filler prose: no introductions that restate the heading, no marketing
-  language, no repeating what the code or API signature already shows.
-- Prefer short sentences, bullet lists, tables, and code snippets over long
-  paragraphs.
-- Keep `\brief` descriptions to one sentence. Add details only when they
-  convey behavior, units, ranges, threading, or ownership that the signature
-  does not.
-- Document only what exists. Don't describe planned features or speculate
-  about future behavior.
-- When updating docs, edit the existing text rather than appending new
-  paragraphs that overlap with it.
-
-### Example headers
-
-Each example describes itself with `ExampleHeader`:
-
-- `title`: the example name.
-- `subtitle`: one sentence saying what the example shows. Name the main type
-  when the example is about it.
-- `interactions`: at most four bullets, each one line at the default window
-  size, saying what you can do. Start with a verb, use sentence case, and end
-  without a period. Bold buttons, tabs, and keys with `<b>…</b>`. Name the tab
-  when a bullet applies to one tab only. Leave out default pan, zoom, and reset
-  unless they behave differently; leave out the list when there is nothing
-  else to do.
+- Before reviewing a change, writing documentation or `///` comments, or adding
+  or changing an example, read `CODING_STANDARDS.md`.
+- Before tagging a release, read `docs/agents/releases.md`.
+- Before opening a pull request, read `CONTRIBUTING.md`.
 
 ## Agent skills
 
