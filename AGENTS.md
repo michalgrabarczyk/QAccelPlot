@@ -199,3 +199,8 @@ Issues live in GitHub Issues for `michalgrabarczyk/QAccelPlot` (via the `gh` CLI
 ### Domain docs
 
 Single-context: one `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+
+### Nightly architecture review
+
+A scheduled workflow runs `improve-codebase-architecture` unattended and opens a
+`nightly-architecture` pull request. See `docs/agents/nightly-architecture.md`.
