@@ -38,7 +38,8 @@ class HoverIndexBudget;
 /// \par Invalid points
 /// Non-finite coordinates, and non-positive coordinates on a logarithmic axis, are kept in storage
 /// so indices stay stable, but they are not drawn, not hit-tested, and do not contribute to data ranges.
-/// A point with a non-finite value is drawn with the uniform \c color.
+/// A point with a non-finite value, or a value at or below zero under \c Colormap::logScale, is drawn
+/// with the uniform \c color and does not count toward an unset bound of the value range.
 ///
 /// \par Transitions
 /// \c enterTransition animates added points, \c updateTransition kept points, and \c exitTransition
@@ -188,8 +189,8 @@ protected:
     void onAxisScaleChanged() override;
     /// \brief Refreshes the hover index, the value range, and the count after the points changed.
     void onDataPointsChanged(const DataUpdate& dataUpdate) override;
-    /// \brief Returns the span of the finite point values.
-    std::optional<ValueSpan> scanValueRange() const override;
+    /// \brief Passes every point value to \a range.
+    void collectColorValues(ColorValueRange& range) const override;
 
 private:
     /// \brief Points of \c stride doubles each: (x, y), or (x, y, value).

@@ -81,6 +81,7 @@ private slots:
     void rangedBarsAreUploadedAsTriples();
     void valueRangeIsScannedOnlyWithAColormap();
     void colorSourceSelectsTheScannedValues();
+    void logColormapRangeSkipsNonPositiveSources();
     void colormapIsPassedToTheMaterial();
     void logColormapReceivesAbsoluteValues();
 };
@@ -808,6 +809,25 @@ void BarSeriesDataTest::colorSourceSelectsTheScannedValues()
     bars.setRangedData(std::vector<double>{2.0, 3.0, 1.0, 3.0, 7.0, 2.0, 8.0, kInf, 3.0}, 3);
     QCOMPARE(bars.dataValueMin(), 2.0);
     QCOMPARE(bars.dataValueMax(), 8.0);
+}
+
+void BarSeriesDataTest::logColormapRangeSkipsNonPositiveSources()
+{
+    auto colormap = Colormap{};
+    colormap.setLogScale(true);
+    auto bars = BarSeries{};
+    bars.setColormap(&colormap);
+    bars.setData(std::vector<double>{-1.0, 5.0, 0.0, -3.0, 2.0, 0.0, 3.0, 20.0}, 4);
+    QCOMPARE(bars.dataValueMin(), 5.0);
+    QCOMPARE(bars.dataValueMax(), 20.0);
+
+    bars.setColorSource(BarSeries::ColorSource::Position);
+    QCOMPARE(bars.dataValueMin(), 2.0);
+    QCOMPARE(bars.dataValueMax(), 3.0);
+
+    colormap.setLogScale(false);
+    QCOMPARE(bars.dataValueMin(), -1.0);
+    QCOMPARE(bars.dataValueMax(), 3.0);
 }
 
 void BarSeriesDataTest::colormapIsPassedToTheMaterial()
