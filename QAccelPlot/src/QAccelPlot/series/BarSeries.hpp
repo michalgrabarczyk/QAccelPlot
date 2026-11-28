@@ -63,9 +63,8 @@ class BarMaterial;
 /// \c barOffset does not apply. A colormap with at least two stops overrides \c color and the
 /// category colors, and \c hoverColor still marks the hovered bar. Values outside the value range
 /// take the color at its nearer end. A bar whose source the colormap cannot map, such as a
-/// non-positive one under \c Colormap::logScale, keeps \c color or its category color. Under
-/// \c logScale, an unset bound resolved from such a bar is not positive, so every bar keeps its
-/// color; set \c Colormap::min above zero.
+/// non-positive one under \c Colormap::logScale, keeps \c color or its category color, and does
+/// not count toward an unset bound of the value range.
 /// Bars can be histogram bins colored by their bin, with a \c ColorBar or the position axis as the
 /// key:
 ///
@@ -333,10 +332,10 @@ protected:
     bool supportsEffect(const SeriesEffect& effect) const override;
     /// \brief Refreshes the vertices, the hover index, the count, and the value range after the bars changed.
     void onDataPointsChanged(const DataUpdate& dataUpdate) override;
-    /// \brief Returns the span of the finite \c colorSource values while a colormap is assigned.
+    /// \brief Passes the \c colorSource value of every bar to \a range while a colormap is assigned.
     ///
-    /// Ranged bars contribute both edges for \c Position.
-    std::optional<ValueSpan> scanValueRange() const override;
+    /// Ranged bars pass both edges for \c Position. Bars with a missing position or value pass nothing.
+    void collectColorValues(ColorValueRange& range) const override;
 
 private:
     // A set of bars: count bars of stride values each, with one category per bar or none.

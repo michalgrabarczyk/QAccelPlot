@@ -757,36 +757,26 @@ void BarSeries::onDataPointsChanged(const DataUpdate& dataUpdate)
     updateValueRange();
 }
 
-std::optional<ColormappedSeries::ValueSpan> BarSeries::scanValueRange() const
+void BarSeries::collectColorValues(ColorValueRange& range) const
 {
     if (!colormap()) {
-        return std::nullopt;
+        return;
     }
     const auto ranged = valuesPerBar() == 3;
     const auto byPosition = colorSource_ == ColorSource::Position;
-    auto span = Extent{};
-    const auto include = [&span](const double coordinate) {
-        if (std::isfinite(coordinate)) {
-            span.include(coordinate);
-        }
-    };
     for (auto i = 0; i < count(); ++i) {
         if (std::isnan(positionSpan(i)[0]) || std::isnan(value(i))) {
             continue;
         }
         if (!byPosition) {
-            include(value(i));
+            range.include(value(i));
             continue;
         }
-        include(component(i, 0));
+        range.include(component(i, 0));
         if (ranged) {
-            include(component(i, 1));
+            range.include(component(i, 1));
         }
     }
-    if (span.isEmpty()) {
-        return std::nullopt;
-    }
-    return ValueSpan{span.min, span.max};
 }
 
 bool BarSeries::showsTransitionFrame() const

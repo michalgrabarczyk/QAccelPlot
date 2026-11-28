@@ -219,8 +219,8 @@ protected:
     DataRanges computeDataRanges() const override;
     /// \brief Repaints, because the mapping from pixels to cells depends on the axis scale.
     void onAxisScaleChanged() override;
-    /// \brief Returns the span of the finite cell values.
-    std::optional<ValueSpan> scanValueRange() const override;
+    /// \brief Passes every cell value to \a range.
+    void collectColorValues(ColorValueRange& range) const override;
 
 private:
     /// \brief Grid edges. In \c edges_ an unset edge is NaN; \c resolvedExtent() resolves it to index space.

@@ -558,26 +558,15 @@ void PointCloud::onDataPointsChanged([[maybe_unused]] const DataUpdate& dataUpda
     }
 }
 
-std::optional<ColormappedSeries::ValueSpan> PointCloud::scanValueRange() const
+void PointCloud::collectColorValues(ColorValueRange& range) const
 {
     const auto values = dataPoints().attributes();
     if (!values.data) {
-        return std::nullopt;
+        return;
     }
-    auto minimum = std::numeric_limits<qreal>::max();
-    auto maximum = std::numeric_limits<qreal>::lowest();
     for (auto index = std::size_t{0}; index < static_cast<std::size_t>(count()); ++index) {
-        const auto value = values.data[index * static_cast<std::size_t>(values.stride)];
-        if (!std::isfinite(value)) {
-            continue;
-        }
-        minimum = std::min(minimum, static_cast<qreal>(value));
-        maximum = std::max(maximum, static_cast<qreal>(value));
+        range.include(values.data[index * static_cast<std::size_t>(values.stride)]);
     }
-    if (minimum > maximum) {
-        return std::nullopt;
-    }
-    return ValueSpan{minimum, maximum};
 }
 
 void PointCloud::setHoveredIndex(const int index)

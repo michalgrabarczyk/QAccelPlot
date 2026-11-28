@@ -2080,7 +2080,7 @@ data, so series sharing one colormap can resolve different ranges; it reads `NaN
 and assigning `undefined` unsets it again.
 `setRange(min, max)` sets both with one update. Set `logScale: true`
 when the values span decades; values at or below zero are then drawn with
-`color`.
+`color` and don't count toward an unset bound.
 
 From QML, call `setValues()` after `setData()` with one value per point. From
 C++, pass values together with the positions:
@@ -2594,8 +2594,7 @@ QAccelPlot.BarSeries {
 - Values outside the range take the color at its nearer end.
 - `barOffset` does not move a bar's position on the colormap.
 - Under `logScale: true`, a bar at or below zero keeps `color` or its
-  category color. If an unset bound resolves from such a bar, the range is not
-  positive and every bar keeps its color; set `min` above zero.
+  category color and doesn't count toward an unset bound.
 - A [`ColorBar`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#show-a-color-bar) keys the series. To key a
   heatmap with a histogram of its values instead, see
   [Use a histogram as a color bar](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/histograms/#use-a-histogram-as-a-color-bar).

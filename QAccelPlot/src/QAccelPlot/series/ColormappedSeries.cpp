@@ -46,23 +46,31 @@ qreal ColormappedSeries::dataValueMax() const
     return dataValueMax_;
 }
 
+ColormappedSeries::ColorValueRange::ColorValueRange(const bool logScale)
+    : lowest_{logScale ? static_cast<double>(std::numeric_limits<float>::min()) : std::numeric_limits<double>::lowest()}
+{
+}
+
 ColormappedSeries::ColormappedSeries(DataPointStore::Layout layout, DataPointWording wording, QQuickItem* parent)
     : PlotSeries(std::move(layout), std::move(wording), parent)
 {
 }
 
-std::optional<ColormappedSeries::ValueSpan> ColormappedSeries::scanValueRange() const
+void ColormappedSeries::collectColorValues([[maybe_unused]] ColorValueRange& range) const
 {
-    return std::nullopt;
 }
 
 void ColormappedSeries::updateValueRange()
 {
     const auto fixedMin = colormap_ ? colormap_->min() : kNaN;
     const auto fixedMax = colormap_ ? colormap_->max() : kNaN;
-    const auto span = std::isnan(fixedMin) || std::isnan(fixedMax) ? scanValueRange() : std::nullopt;
-    const auto resolvedMin = std::isnan(fixedMin) ? (span ? span->min : 0.0) : fixedMin;
-    const auto resolvedMax = std::isnan(fixedMax) ? (span ? span->max : 1.0) : fixedMax;
+    auto range = ColorValueRange{colormap_ && colormap_->logScale()};
+    if (std::isnan(fixedMin) || std::isnan(fixedMax)) {
+        collectColorValues(range);
+    }
+    const auto found = range.min_ <= range.max_;
+    const auto resolvedMin = std::isnan(fixedMin) ? (found ? range.min_ : 0.0) : fixedMin;
+    const auto resolvedMax = std::isnan(fixedMax) ? (found ? range.max_ : 1.0) : fixedMax;
     if (nearlyEqual(resolvedMin, dataValueMin_) && nearlyEqual(resolvedMax, dataValueMax_)) {
         return;
     }

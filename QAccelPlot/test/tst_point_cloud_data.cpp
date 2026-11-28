@@ -61,6 +61,7 @@ private slots:
     void dataRangesFollowLogarithmicAxes();
     void dataBoundsReplaceTheRangeScan();
     void valueRangeResolvesDataAndFixedSources();
+    void logColormapRangeSkipsUnmappableValues();
     void setValuesExpandsAndClearsInPlace();
     void accessorsReturnNaNOutOfRange();
     void clearDataResetsState();
@@ -273,6 +274,22 @@ void PointCloudDataTest::valueRangeResolvesDataAndFixedSources()
     QCOMPARE(cloud.dataValueMin(), 0.0);
     QCOMPARE(cloud.dataValueMax(), 20.0);
     QVERIFY(std::isnan(cloud.valueAt(0)));
+}
+
+void PointCloudDataTest::logColormapRangeSkipsUnmappableValues()
+{
+    constexpr auto subnormal = std::numeric_limits<float>::denorm_min();
+    auto cloud = PointCloud{};
+    cloud.setDataF(std::vector<float>(10, 1.0f), std::vector<float>{-4.0f, 0.0f, subnormal, 2.0f, 50.0f}, 5);
+    auto colormap = Colormap{};
+    colormap.setLogScale(true);
+    cloud.setColormap(&colormap);
+    QCOMPARE(cloud.dataValueMin(), 2.0);
+    QCOMPARE(cloud.dataValueMax(), 50.0);
+
+    colormap.setLogScale(false);
+    QCOMPARE(cloud.dataValueMin(), -4.0);
+    QCOMPARE(cloud.dataValueMax(), 50.0);
 }
 
 void PointCloudDataTest::setValuesExpandsAndClearsInPlace()

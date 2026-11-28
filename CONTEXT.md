@@ -15,6 +15,10 @@ The filled part of a candle in the candlestick style, spanning from its open to 
 The mark a candlestick series draws for one data point (x, open, high, low, close), in either style: a body with a wick, or an OHLC bar.
 _Avoid_: bar, stick, OHLC (as a noun for the mark)
 
+**Color value**:
+The value of a data point that a colormap maps to a color: a point value of a point cloud, a cell value of a heatmap, or a bar's value or position, as its color source selects. An unset bound of the colormap's value range resolves from the color values the colormap can map: finite ones, and under a log-scale colormap positive ones.
+_Avoid_: scalar, intensity, z value
+
 **Data point**:
 One entry of a series' data in data coordinates: a point of a line curve or point cloud, a rectangle, a bar, a band slice (x, low, high), an error bar (x, y, low, high), or a candle (x, open, high, low, close), together with its per-data-point attributes such as a point value or a category.
 _Avoid_: datapoint, record, sample (for series data)
